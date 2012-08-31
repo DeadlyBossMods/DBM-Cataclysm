@@ -22,7 +22,7 @@ mod:RegisterEventsInCombat(
 	"UNIT_SPELLCAST_SUCCEEDED"
 )
 
-local warnMutated					= mod:NewSpellAnnounce("ej4112", 3, 467)
+local warnMutated					= mod:NewSpellAnnounce("ej4112", 3, 61618)
 local warnImpale					= mod:NewTargetAnnounce(106400, 3, nil, mod:IsTank() or mod:IsHealer())
 local warnElementiumBolt			= mod:NewSpellAnnounce(105651, 4)
 local warnTentacle					= mod:NewSpellAnnounce(105551, 3)
@@ -54,7 +54,7 @@ local specWarnCongealingBlood		= mod:NewSpecialWarningSwitch("ej4350", mod:IsDps
 local specWarnTetanus				= mod:NewSpecialWarningStack(106730, mod:IsTank(), 4)
 local specWarnTetanusOther			= mod:NewSpecialWarningTarget(106730, mod:IsTank())
 
-local timerMutated					= mod:NewNextTimer(17, "ej4112", nil, nil, nil, 467)--use druid spell Thorns icon temporarily.
+local timerMutated					= mod:NewNextTimer(17, "ej4112", nil, nil, nil, 61618)
 local timerImpale					= mod:NewTargetTimer(49.5, 106400, nil, mod:IsTank() or mod:IsHealer())--45 plus 4 second cast plus .5 delay between debuff ID swap.
 local timerImpaleCD					= mod:NewCDTimer(35, 106400, nil, mod:IsTank() or mod:IsHealer())
 local timerElementiumCast			= mod:NewCastTimer(7.5, 105651)
