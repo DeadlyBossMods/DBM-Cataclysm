@@ -94,7 +94,7 @@ function mod:SPELL_CAST_START(args)
 		warnHourofTwilight:Show(hourOfTwilightCount)
 		specWarnHourofTwilight:Show()
 		--Reset Mechanic begin
-		if (self.Options.ResetHoTCounter == "ResetDynamic" and self:IsDifficulty("heroic10", "heroic25") or self.Options.ResetHoTCounter == "Reset3Always") and hourOfTwilightCount == 3
+		if self:IsDifficulty("heroic10", "heroic25") and (self.Options.ResetHoTCounter == "ResetDynamic" or self.Options.ResetHoTCounter == "Reset3Always") and hourOfTwilightCount == 3
 		or self.Options.ResetHoTCounter == "ResetDynamic" and self:IsDifficulty("normal10", "normal25", "lfr25") and hourOfTwilightCount == 2 then
 			hourOfTwilightCount = 0
 		end
