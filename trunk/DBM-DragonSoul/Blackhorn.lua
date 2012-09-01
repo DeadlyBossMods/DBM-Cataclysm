@@ -178,12 +178,12 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(108044, 109228, 109229, 109230) then
+	if args:IsSpellID(108044) then
 		warnRoar:Show()
 		timerRoarCD:Start()
 	elseif args:IsSpellID(108042) then
 		timerDevastateCD:Start()
-	elseif args:IsSpellID(107558, 108861, 109207, 109208) then
+	elseif args:IsSpellID(107558) then
 		timerDegenerationCD:Start(args.sourceGUID)
 	end
 end
@@ -223,7 +223,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		if DBM.BossHealth:IsShown() then
 			DBM.BossHealth:AddBoss(56427, L.name)
 		end
-	elseif args:IsSpellID(110214, 110598) then
+	elseif args:IsSpellID(110214) then
 		warnConsumingShroud:Show(args.destName)
 		timerConsumingShroud:Start()
 	end
@@ -231,14 +231,14 @@ end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_SUMMON(args)
-	if args:IsSpellID(108051, 109216, 109217, 109218) then
+	if args:IsSpellID(108051) then
 		warnTwilightFlames:Show()
 		timerTwilightFlamesCD:Start()
 	end
 end
 
 function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
-	if (spellId == 108076 or spellId == 109222 or spellId == 109223 or spellId == 109224) and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then--Goriona's Void zones
+	if spellId == 108076 and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then--Goriona's Void zones
 		specWarnTwilightFlames:Show()
 	elseif spellId == 110095 and destGUID == UnitGUID("player") and self:AntiSpam(3, 3) then
 		specWarnDeckFire:Show()

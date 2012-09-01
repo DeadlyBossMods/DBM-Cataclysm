@@ -100,7 +100,7 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(103414, 108571, 109033, 109034) then
+	if args:IsSpellID(103414) then
 		if args:GetSrcCreatureID() == 55265 then
 			stompCount = stompCount + 1
 			warnStomp:Show()
@@ -176,7 +176,7 @@ function mod:SPELL_SUMMON(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(103821, 110045, 110046, 110047) and self:AntiSpam(3, 1) then
+	if args:IsSpellID(103821) and self:AntiSpam(3, 1) then
 		crystalCount = 0
 		timerStomp:Cancel()
 		timerCrystal:Cancel()
@@ -190,7 +190,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 end
 
 function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
-	if (spellId == 103785 or spellId == 108570 or spellId == 110287 or spellId == 110288) and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then
+	if spellId == 103785 and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then
 		specwarnBlood:Show()
 	end
 end

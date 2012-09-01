@@ -111,8 +111,7 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	TimerCombatStart	= "Ultraxion aktiv",
-	timerRaidCDs		= "%s CD: %s"--spellname CD Castername
+	TimerCombatStart	= "Ultraxion aktiv"
 })
 
 L:SetOptionLocalization({
@@ -124,10 +123,7 @@ L:SetOptionLocalization({
 	SpecWarnHoTN		= "Spezialvorwarnung für Stunde des Zwielichts (bei Neustart auf \"Nie\" nach 3er-Gruppenregel)",
 	One					= "5 Sekunden vor Zählerstand 1 (1 4 7 ...)",
 	Two					= "5 Sekunden vor Zählerstand 2 (2 5 ...)",
-	Three				= "5 Sekunden vor Zählerstand 3 (3 6 ...)",
-	dropdownRaidCDs		= "Zeige Timer für \"Raid-Cooldowns\"",
-	ShowRaidCDs			= "Alle",
-	ShowRaidCDsSelf		= "Nur meine"
+	Three				= "5 Sekunden vor Zählerstand 3 (3 6 ...)"
 })
 
 L:SetMiscLocalization({

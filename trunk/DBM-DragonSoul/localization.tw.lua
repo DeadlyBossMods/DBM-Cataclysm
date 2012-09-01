@@ -111,8 +111,7 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	TimerCombatStart	= "戰鬥開始",
-	timerRaidCDs		= "%s冷卻:%s"
+	TimerCombatStart	= "戰鬥開始"
 })
 
 L:SetOptionLocalization({
@@ -124,10 +123,7 @@ L:SetOptionLocalization({
 	SpecWarnHoTN		= "為暮光之時前五秒顯示特別警告，如設為不使用則預設為每三次重置計數",
 	One					= "1(即為第1 4 7次)",
 	Two					= "2(即為第2 5次)",
-	Three				= "3(即為第3 6次)",
-	dropdownRaidCDs		= "為團隊冷卻顯示計時器",
-	ShowRaidCDs			= "所有人的冷卻",
-	ShowRaidCDsSelf		= "只有我的冷卻",
+	Three				= "3(即為第3 6次)"
 })
 
 L:SetMiscLocalization({

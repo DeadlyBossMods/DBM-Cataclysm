@@ -27,7 +27,7 @@ mod:RegisterEventsInCombat(
 )
 
 local warnAbsorbedBlood		= mod:NewStackAnnounce(105248, 2)
-local warnResidue			= mod:NewCountAnnounce("ej4057", 3, nil, false)
+local warnResidue			= mod:NewCountAnnounce("ej4057", 3, nil, false)--This is HIGHLY inaccurate in 5.x, i do not know why right now. I'll actually log fight next week
 local warnGrip				= mod:NewTargetAnnounce(105490, 4)
 local warnNuclearBlast		= mod:NewCastAnnounce(105845, 4)
 local warnSealArmor			= mod:NewCastAnnounce(105847, 4)
@@ -166,7 +166,7 @@ function mod:SPELL_CAST_START(args)
 		warnNuclearBlast:Show()
 		specWarnNuclearBlast:Show()
 		soundNuclearBlast:Play()
-	elseif args:IsSpellID(105847, 105848) then
+	elseif args:IsSpellID(105847, 105848) then--This still has 2 spellids, since it's locational, location based IDs did NOT get crunched.
 		warnSealArmor:Show()
 		specWarnSealArmor:Show()
 		if self:IsDifficulty("lfr25") then
@@ -200,14 +200,18 @@ end
 
 -- not needed guid check. This is residue creation step.
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(105219, 109371, 109372, 109373) then 
+	if args:IsSpellID(105219) then 
 		diedOozeGUIDS[args.sourceGUID] = GetTime()
 		residueCount = residueCount + 1
-		warningResidue()
+		if residueCount >= 0 then
+			warningResidue()
+		end
 	elseif args:IsSpellID(105248) then
 		diedOozeGUIDS[args.sourceGUID] = nil
 		residueCount = residueCount - 1
-		warningResidue()
+		if residueCount >= 0 then
+			warningResidue()
+		end
 	end
 end
 
@@ -229,7 +233,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpellID(105248) then
 		warnAbsorbedBlood:Cancel()--Just a little anti spam
 		warnAbsorbedBlood:Schedule(1.25, args.destName, 1)
-	elseif args:IsSpellID(105490, 109457, 109458, 109459) then
+	elseif args:IsSpellID(105490) then
 		gripTargets[#gripTargets + 1] = args.destName
 		timerGripCD:Cancel(args.sourceGUID)
 		countdownGrip:Cancel(args.sourceGUID)
@@ -245,7 +249,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 		self:Unschedule(showGripWarning)
 		self:Schedule(0.3, showGripWarning)
-	elseif args:IsSpellID(105479, 109362, 109363, 109364) then
+	elseif args:IsSpellID(105479) then
 		if self.Options.ShowShieldInfo then
 			setPlasmaTarget(args.destGUID, args.destName)
 		end
@@ -264,11 +268,11 @@ function mod:SPELL_AURA_APPLIED_DOSE(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(105490, 109457, 109458, 109459) then
+	if args:IsSpellID(105490) then
 		if self.Options.SetIconOnGrip then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args:IsSpellID(105479, 109362, 109363, 109364) then
+	elseif args:IsSpellID(105479) then
 		if self.Options.ShowShieldInfo then
 			clearPlasmaTarget(args.destGUID, args.destName)
 		end

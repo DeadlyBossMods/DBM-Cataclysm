@@ -85,8 +85,8 @@ local firstAspect = true
 local engageCount = 0
 local shrapnelTargets = {}
 local warnedCount = 0
-local hemorrhage = GetSpellInfo(105863)
-local fragment = GetSpellInfo(106775)
+--local hemorrhage = GetSpellInfo(105863)--Should no longer be needed to do by spell name, as it's down to only 1 spell id, but i'll leave just in case
+--local fragment = GetSpellInfo(106775)--^
 local activateTetanusTimers = false
 local parasite = EJ_GetSectionInfo(4347)
 local parasiteScan = 0
@@ -188,7 +188,7 @@ function mod:SPELL_CAST_START(args)
 			end
 			timerCataclysmCD:Start()
 		end
-	elseif args:IsSpellID(106523, 110042, 110043, 110044) then
+	elseif args:IsSpellID(106523) then
 		warnCataclysm:Show()
 		timerCataclysm:Start()
 	elseif args:IsSpellID(108813) then
@@ -221,7 +221,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		timerHemorrhageCD:Cancel()--Does this one cancel in event you super overgear this and stomp his ass this fast?
 		timerCataclysm:Cancel()
 		timerCataclysmCD:Cancel()
-	elseif args:IsSpellID(106834, 109592, 109593, 109594) then--Phase 2
+	elseif args:IsSpellID(106834) then--Phase 2
 		warnPhase2:Show()
 		timerFragmentsCD:Start(10.5)
 		timerTerrorCD:Start(35.5)
@@ -239,7 +239,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			specWarnImpaleOther:Show(args.destName)
 		end
-	elseif args:IsSpellID(106794, 110139, 110140, 110141) then
+	elseif args:IsSpellID(106794) then
 		shrapnelTargets[#shrapnelTargets + 1] = args.destName
 		self:Unschedule(warnShrapnelTargets)
 		if args:IsPlayer() then
@@ -268,7 +268,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			timerParasiteCD:Start()
 			parasiteCasted = true
 		end
-	elseif args:IsSpellID(106730, 109603, 109604, 109605) then -- Debuffs from adds
+	elseif args:IsSpellID(106730) then -- Debuffs from adds
 		warnTetanus:Show(args.destName, args.amount or 1)
 		timerTetanus:Start(args.destName)
 		if (args.amount or 1) >= 4 then
@@ -289,9 +289,9 @@ mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(106444, 109631, 109632, 109633) then
+	if args:IsSpellID(106444) then
 		timerImpale:Cancel(args.destName)
-	elseif args:IsSpellID(106794, 110139, 110140, 110141) and args:IsPlayer() then
+	elseif args:IsSpellID(106794) and args:IsPlayer() then
 		timerShrapnel:Cancel()
 		countdownShrapnel:Cancel()
 	elseif args:IsSpellID(108649) then
@@ -302,7 +302,7 @@ function mod:SPELL_AURA_REMOVED(args)
 		if self.Options.RangeFrame then
 			DBM.RangeCheck:Hide()
 		end
-	elseif args:IsSpellID(106730, 109603, 109604, 109605) then -- Debuffs from adds
+	elseif args:IsSpellID(106730) then -- Debuffs from adds
 		timerTetanus:Cancel(args.destName)
 	end
 end
@@ -328,11 +328,11 @@ function mod:UNIT_DIED(args)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(uId, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, _, _, spellId)
 	if spellId == 110663 and self:AntiSpam(2, 3) then--Elementium Meteor Transform (apparently this doesn't fire UNIT_DIED anymore, need to use this alternate method)
 		self:SendSync("BoltDied")--Send sync because Elementium bolts do not have a bossN arg, which means event only fires if it's current target/focus.
 	-- Actually i have a pretty good idea what problem is now. thinking about it, with no uId filter, it's triggering off a rogue in raid (also have hemorrhage spell)
-	elseif spellName == hemorrhage and self:AntiSpam(2, 2) and not UnitIsFriend("player", uId) then--Filter all party/pet unitIDs, should eliminate friendly hemorrhage casts.
+	elseif spellId == 105863 and self:AntiSpam(2, 2) then
 		warnHemorrhage:Show()
 		specWarnHemorrhage:Show()
 	elseif spellId == 105551 and self:AntiSpam(2, 2) then--Spawn Blistering Tentacles
@@ -340,7 +340,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(uId, spellName, _, _, spellId)
 			warnTentacle:Show()
 			specWarnTentacle:Show()
 		end
-	elseif spellName == fragment and self:AntiSpam(2, 2) then--Summon Impaling Tentacle (Fragments summon)
+	elseif spellId == 106775 and self:AntiSpam(2, 2) then--Summon Impaling Tentacle (Fragments summon)
 		warnFragments:Show()
 		specWarnFragments:Show()
 		timerFragmentsCD:Start()

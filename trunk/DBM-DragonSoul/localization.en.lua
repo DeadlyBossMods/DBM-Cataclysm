@@ -110,8 +110,7 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	TimerCombatStart	= "Ultraxion Active",
-	timerRaidCDs		= "%s CD: %s"--spellname CD Castername
+	TimerCombatStart	= "Ultraxion Active"
 })
 
 L:SetOptionLocalization({
@@ -123,10 +122,7 @@ L:SetOptionLocalization({
 	SpecWarnHoTN		= "Special warn 5s before Hour of Twilight. If counter reset is Never, this follows 3set rule",
 	One					= "1 (ie 1 4 7)",
 	Two					= "2 (ie 2 5)",
-	Three				= "3 (ie 3 6)",
-	dropdownRaidCDs		= "Show timers for Raid Cooldowns",
-	ShowRaidCDs			= "Everyone",
-	ShowRaidCDsSelf		= "Only Mine"
+	Three				= "3 (ie 3 6)"
 })
 
 L:SetMiscLocalization({

@@ -110,8 +110,7 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	TimerCombatStart	= "Ultraxion pousa",
-	timerRaidCDs		= "%s CD: %s"--spellname CD Castername
+	TimerCombatStart	= "Ultraxion pousa"
 })
 
 L:SetOptionLocalization({
@@ -123,10 +122,7 @@ L:SetOptionLocalization({
 	SpecWarnHoTN		= "Aviso especial 5s antes de Hora do Crepúsculo. Se configurado para Nunca zerar, a regra de 3 em 3 será utilizada.",
 	One					= "1 (ou seja, 1 4 7)",
 	Two					= "2 (ou seja, 2 5)",
-	Three				= "3 (ou seja, 3 6)",
-	dropdownRaidCDs		= "Exibir cronógrafos para recargas da raide.",
-	ShowRaidCDs			= "Todo mundo",
-	ShowRaidCDsSelf		= "Apenas meus"
+	Three				= "3 (ou seja, 3 6)"
 })
 
 L:SetMiscLocalization({
