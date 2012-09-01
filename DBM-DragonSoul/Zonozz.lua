@@ -97,7 +97,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(104322, 104606, 104607, 104608) then
+	if args:IsSpellID(104322) then
 		warnPsychicDrain:Show()
 		specWarnPsychicDrain:Show()
 		timerPsychicDrainCD:Start()
@@ -105,7 +105,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 end	
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(104377, 104378, 110322, 110306) and not phase2Started then
+	if args:IsSpellID(104377, 104378) and not phase2Started then--Might not need both, but leave just in case, removed the 2 non existant ones though.
 		phase2Started = true
 		timerFocusedAngerCD:Cancel()
 		timerPsychicDrainCD:Cancel()
@@ -122,13 +122,13 @@ function mod:SPELL_AURA_APPLIED(args)
 				timerVoidofUnmakingCD:Update(54.3, 90.3)
 			end
 		end
-	elseif args:IsSpellID(104543, 109409, 109410, 109411) then
+	elseif args:IsSpellID(104543) then
 		warnFocusedAnger:Show(args.destName, args.amount or 1)
 		timerFocusedAngerCD:Start()
 	elseif args:IsSpellID(106836) then--Do NOT add 103527 to this, that's a seperate spellid for when BOSS is affected by diffusion, this warning is counting the ball stacks.
 		warnVoidDiffusion:Show(args.destName, args.amount or 1)
 		timerVoidDiffusionCD:Start()
-	elseif args:IsSpellID(103434, 104599, 104600, 104601) then
+	elseif args:IsSpellID(103434) then
 		shadowsTargets[#shadowsTargets + 1] = args.destName
 		if args:IsPlayer() and self:IsDifficulty("heroic10", "heroic25") then
 			specWarnShadows:Show()
@@ -146,7 +146,7 @@ end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(104600, 104601) and args:IsPlayer() then--Only heroic spellids here, no reason to call functions that aren't needed on normal or LFR
+	if args:IsSpellID(103434) and args:IsPlayer() and self:IsDifficulty("heroic10", "heroic25") then
 		self:updateRangeFrame()
 	end
 end

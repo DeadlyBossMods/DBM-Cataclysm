@@ -12,7 +12,6 @@ mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
 	"SPELL_CAST_START",
-	"SPELL_CAST_SUCCESS",
 	"SPELL_AURA_APPLIED",
 	"SPELL_AURA_REMOVED"
 )
@@ -50,7 +49,6 @@ local countdownFadingLight			= mod:NewCountdown(10, 109075)
 local countdownHourofTwilight		= mod:NewCountdown(45.5, 106371, mod:IsHealer())--can be confusing with Fading Light, only enable for healer. (healers no dot affect by Fading Light)
 
 --Raid CDs will have following options: Don't show Raid CDs, Show only My Raid CDs, Show all raid CDs
-mod:AddDropdownOption("dropdownRaidCDs", {"Never", "ShowRaidCDs", "ShowRaidCDsSelf"}, "Never", "timer")
 
 mod:AddDropdownOption("ResetHoTCounter", {"Never", "ResetDynamic", "Reset3Always"}, "Reset3Always", "announce")
 --ResetDynamic = 3s on heroic and 2s on normal.
@@ -117,46 +115,6 @@ function mod:SPELL_CAST_START(args)
 	elseif args:IsSpellID(106388) then
 		specWarnTwilightEruption:Show()
 		timerTwilightEruption:Start()
-	end
-end
-
-function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(106372, 106376, 106377, 106378, 106379) then
-		timerUnstableMonstrosity:Start()
-	elseif args:IsSpellID(97462) and self:IsInCombat() and (self.Options.dropdownRaidCDs == "ShowRaidCDs" or (self.Options.dropdownRaidCDs == "ShowRaidCDsSelf" and UnitName("player") == args.sourceName)) then--Warrior Rallying Cry
-		if UnitDebuff(args.sourceName, GetSpellInfo(106218)) then
-			timerRaidCDs:Start(90, args.spellName, args.sourceName)
-		else
-			timerRaidCDs:Start(180, args.spellName, args.sourceName)
-		end
-	elseif args:IsSpellID(871) and self:IsInCombat() and (self.Options.dropdownRaidCDs == "ShowRaidCDs" or (self.Options.dropdownRaidCDs == "ShowRaidCDsSelf" and UnitName("player") == args.sourceName)) then--Warrior Shield Wall (4pc Assumed)
-		if UnitDebuff(args.sourceName, GetSpellInfo(106218)) then
-			timerRaidCDs:Start(60, args.spellName, args.sourceName)
-		else
-			timerRaidCDs:Start(120, args.spellName, args.sourceName)
-		end
-	elseif args:IsSpellID(62618) and self:IsInCombat() and (self.Options.dropdownRaidCDs == "ShowRaidCDs" or (self.Options.dropdownRaidCDs == "ShowRaidCDsSelf" and UnitName("player") == args.sourceName)) then--Paladin Divine Guardian (4pc assumed)
-		if UnitDebuff(args.sourceName, GetSpellInfo(106218)) then
-			timerRaidCDs:Start(60, args.spellName, args.sourceName)
-		else
-			timerRaidCDs:Start(120, args.spellName, args.sourceName)
-		end
-	elseif args:IsSpellID(55233) and self:IsInCombat() and (self.Options.dropdownRaidCDs == "ShowRaidCDs" or (self.Options.dropdownRaidCDs == "ShowRaidCDsSelf" and UnitName("player") == args.sourceName)) then--DK Vampric Blood (4pc assumed)
-		if UnitDebuff(args.sourceName, GetSpellInfo(106218)) then
-			timerRaidCDs:Start(30, args.spellName, args.sourceName)
-		else
-			timerRaidCDs:Start(60, args.spellName, args.sourceName)
-		end
-	elseif args:IsSpellID(22842) and self:IsInCombat() and (self.Options.dropdownRaidCDs == "ShowRaidCDs" or (self.Options.dropdownRaidCDs == "ShowRaidCDsSelf" and UnitName("player") == args.sourceName)) then--Druid Frenzied Regen (4pc assumed)
-		if UnitDebuff(args.sourceName, GetSpellInfo(106218)) then
-			timerRaidCDs:Start(90, args.spellName, args.sourceName)
-		else
-			timerRaidCDs:Start(180, args.spellName, args.sourceName)
-		end
-	elseif args:IsSpellID(98008) and self:IsInCombat() and (self.Options.dropdownRaidCDs == "ShowRaidCDs" or (self.Options.dropdownRaidCDs == "ShowRaidCDsSelf" and UnitName("player") == args.sourceName)) then--Shaman Spirit Link
-		timerRaidCDs:Start(180, args.spellName, args.sourceName)
-	elseif args:IsSpellID(62618) and self:IsInCombat() and (self.Options.dropdownRaidCDs == "ShowRaidCDs" or (self.Options.dropdownRaidCDs == "ShowRaidCDsSelf" and UnitName("player") == args.sourceName)) then--Priest Power Word: Barrior
-		timerRaidCDs:Start(180, args.spellName, args.sourceName)
 	end
 end
 

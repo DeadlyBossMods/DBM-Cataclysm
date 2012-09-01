@@ -89,19 +89,19 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(104849, 108383, 108384, 108385) then--Do not add any other ID, these are tank IDs. Raid aoe IDs coul be added as an alternate timer somewhere else maybe.
+	if args:IsSpellID(104849) then--Do not add any other ID, these are tank IDs. Raid aoe IDs coul be added as an alternate timer somewhere else maybe.
 		timerVoidBoltCD:Start()
 	elseif args:IsSpellID(105530) then
 		warnManaVoid:Show()
 		specWarnManaVoid:Show()
 		timerManaVoid:Start()
-	elseif args:IsSpellID(105573, 108350, 108351, 108352) and self:IsInCombat() then
+	elseif args:IsSpellID(105573) and self:IsInCombat() then
 		if yellowActive then
 			timerAcidCD:Start(3.5)--Strangely, this is 3.5 even though base CD is 8.3-8.5
 		else
 			timerAcidCD:Start()
 		end
-	elseif args:IsSpellID(105033, 108356, 108357, 108358) and args:GetSrcCreatureID() == 55312 then
+	elseif args:IsSpellID(105033) and args:GetSrcCreatureID() == 55312 then
 		if yellowActive then
 			timerSearingCD:Start(3.5)
 		else
@@ -121,7 +121,7 @@ Ooze Absorption and granted abilities expression (black adds only fire UNIT_SPEL
 (spellid = 104896 or spellid = 104894 or spellid = 105027 or spellid = 104897 or spellid = 104901 or spellid = 104898) and targetMobId = 55312 or fulltype = SPELL_CAST_SUCCESS and (spell = "Digestive Acid" or spell = "Mana Void" or spell = "Searing Blood" or spell = "Deep Corruption")
 --]]
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(104849, 108383, 108384, 108385) then
+	if args:IsSpellID(104849) then
 		warnVoidBolt:Show(args.destName, args.amount or 1)
 		local _, _, _, _, _, duration, expires = UnitDebuff(args.destName, args.spellName)--This is now consistently 12 seconds, but it's been nerfed twice without warning, i'm just gonna leave this here to make the mod continue to auto correct it when/if it changes more.
 		timerVoidBolt:Start(duration, args.destName)
@@ -176,7 +176,7 @@ end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(104849, 108383, 108384, 108385) then
+	if args:IsSpellID(104849) then
 		timerVoidBolt:Cancel(args.destName)
 	elseif args:IsSpellID(104901) and args:GetDestCreatureID() == 55312 then--Yellow Removed
 		yellowActive = false

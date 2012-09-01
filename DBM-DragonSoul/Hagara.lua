@@ -176,7 +176,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			self:Schedule(0.3, warnTombTargets)
 		end
-	elseif args:IsSpellID(107851, 110898, 110899, 110900) then
+	elseif args:IsSpellID(107851) then
 		assaultCount = assaultCount + 1
 		warnAssault:Show(assaultCount)
 		specWarnAssault:Show()
@@ -200,7 +200,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_APPLIED_DOSE(args)
-	if args:IsSpellID(105316, 107061, 107062, 107063) then
+	if args:IsSpellID(105316) then
 		if ((self:IsDifficulty("lfr25") and args.amount % 6 == 0) or (not self:IsDifficulty("lfr25") and args.amount % 3 == 0)) and args:IsPlayer() then--Warn every 3 stacks (6 stacks in LFR), don't want to spam TOO much.
 			specWarnIceLance:Show(args.amount)
 		end
@@ -210,7 +210,7 @@ end
 function mod:SPELL_AURA_REMOVED(args)
 	if args:IsSpellID(104451) and self.Options.SetIconOnFrostTomb then
 		self:SetIcon(args.destName, 0)
-	elseif args:IsSpellID(105256, 109552, 109553, 109554) then--Tempest
+	elseif args:IsSpellID(105256) then--Tempest
 		if self.Options.SetBubbles and GetCVarBool("chatBubbles") then
 			SetCVar("chatBubbles", 0)
 			CVAR = true
@@ -240,7 +240,7 @@ function mod:SPELL_AURA_REMOVED(args)
 	elseif args:IsSpellID(105482) then--Lighting defeated.
 		pillarsRemaining = pillarsRemaining - 1
 		warnPillars:Show(lightningPillar, pillarsRemaining)
-	elseif args:IsSpellID(105409, 109560, 109561, 109562) then--Water Shield
+	elseif args:IsSpellID(105409) then--Water Shield
 		if self.Options.SetBubbles and GetCVarBool("chatBubbles") then
 			SetCVar("chatBubbles", 0)
 			CVAR = true
@@ -272,7 +272,7 @@ function mod:SPELL_CAST_START(args)
 		warnFrostTombCast:Show(args.spellName)
 		specWarnFrostTombCast:Show()
 		timerFrostTomb:Start()
-	elseif args:IsSpellID(105256, 109552, 109553, 109554) then--Tempest
+	elseif args:IsSpellID(105256) then--Tempest
 		if self.Options.SetBubbles and not GetCVarBool("chatBubbles") and CVAR then--Only turn them back on if they are off now, but were on when we pulled
 			SetCVar("chatBubbles", 1)
 			CVAR = false
@@ -290,7 +290,7 @@ function mod:SPELL_CAST_START(args)
 		if self.Options.RangeFrame and not self:IsDifficulty("lfr25") then
 			DBM.RangeCheck:Hide()
 		end
-	elseif args:IsSpellID(105409, 109560, 109561, 109562) then--Water Shield
+	elseif args:IsSpellID(105409) then--Water Shield
 		if self.Options.SetBubbles and not GetCVarBool("chatBubbles") and CVAR then--Only turn them back on if they are off now, but were on when we pulled
 			SetCVar("chatBubbles", 1)
 			CVAR = false
@@ -312,7 +312,7 @@ function mod:SPELL_CAST_START(args)
 		if self.Options.RangeFrame and not self:IsDifficulty("lfr25") then
 			DBM.RangeCheck:Show(10)
 		end
-	elseif args:IsSpellID(105289, 108567, 110887, 110888) then
+	elseif args:IsSpellID(105289) then
 		self:ScheduleMethod(0.2, "ShatteredIceTarget")
 	end
 end

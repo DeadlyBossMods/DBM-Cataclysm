@@ -111,8 +111,7 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	TimerCombatStart	= "울트락시온 활성화",
-	timerRaidCDs		= "%s 대기시간 : %s"
+	TimerCombatStart	= "울트락시온 활성화"
 })
 
 L:SetOptionLocalization({
@@ -124,10 +123,7 @@ L:SetOptionLocalization({
 	SpecWarnHoTN		= "황혼의 시간 5초 전 특수 경고 설정 (시전 횟수 재시작 설정에 영향 받음)",
 	One					= "시전 횟수가 1일때 보기 (또는 1, 4, 7 일때)",
 	Two					= "시전 횟수가 2일때 보기 (또는 2, 5 일때)",
-	Three				= "시전 횟수가 3일때 보기 (또는 3, 6 일때)",
-	dropdownRaidCDs		= "공격대 재사용 대기시간 바 표시",
-	ShowRaidCDs			= "모두",
-	ShowRaidCDsSelf		= "자신 것만"
+	Three				= "시전 횟수가 3일때 보기 (또는 3, 6 일때)"
 })
 
 L:SetMiscLocalization({
