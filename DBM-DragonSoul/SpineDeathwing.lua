@@ -58,7 +58,8 @@ mod:AddBoolOption("ShowShieldInfo", false)--on 25 man this is quite frankly a sp
 local gripTargets = {}
 local gripIcon = 6
 local corruptionActive = {}
-local residueCount = 0
+local residueNum = 0
+local residueDebug = false
 local diedOozeGUIDS = {}
 
 local function checkTendrils()
@@ -81,15 +82,18 @@ end
 
 local function warningResidue()
 	warnResidue:Cancel()
-	warnResidue:Schedule(1.25, residueCount)
+	if residueNum >= 0 then -- (better to warn 0 on heroic)
+		warnResidue:Schedule(1.25, residueNum)
+	end
 end
 
 local function checkOozeResurrect(GUID)
 	-- set min resurrect time to 5 sec. (guessed)
 	if diedOozeGUIDS[GUID] and GetTime() - diedOozeGUIDS[GUID] > 5 then
-		residueCount = residueCount - 1
+		residueNum = residueNum - 1
 		diedOozeGUIDS[GUID] = nil
 		warningResidue()
+		if residueDebug then print(residueNum) end
 	end
 end
 
@@ -152,7 +156,7 @@ function mod:OnCombatStart(delay)
 		clearPlasmaVariables()
 	end
 	gripIcon = 6
-	residueCount = 0
+	residueNum = 0
 end
 
 function mod:OnCombatEnd()
@@ -201,17 +205,14 @@ end
 -- not needed guid check. This is residue creation step.
 function mod:SPELL_CAST_SUCCESS(args)
 	if args:IsSpellID(105219) then 
+		residueNum = residueNum + 1
 		diedOozeGUIDS[args.sourceGUID] = GetTime()
-		residueCount = residueCount + 1
-		if residueCount >= 0 then
-			warningResidue()
-		end
+		warningResidue()
 	elseif args:IsSpellID(105248) then
+		residueNum = residueNum - 1
 		diedOozeGUIDS[args.sourceGUID] = nil
-		residueCount = residueCount - 1
-		if residueCount >= 0 then
-			warningResidue()
-		end
+		warningResidue()
+		if residueDebug then print(residueNum) end
 	end
 end
 
