@@ -94,7 +94,7 @@ local function checkOozeResurrect(GUID)
 		residueNum = residueNum - 1
 		diedOozeGUIDS[GUID] = nil
 		warningResidue()
-		if residueDebug then print(residueNum) end
+		if residueDebug then print("revived", residueNum) end
 	end
 end
 
@@ -209,24 +209,26 @@ function mod:SPELL_CAST_SUCCESS(args)
 		residueNum = residueNum + 1
 		diedOozeGUIDS[args.sourceGUID] = GetTime()
 		warningResidue()
+		if residueDebug then print("created", residueNum) end
 	elseif args:IsSpellID(105248) then
 		residueNum = residueNum - 1
 		diedOozeGUIDS[args.sourceGUID] = nil
 		warningResidue()
-		if residueDebug then print(residueNum) end
+		if residueDebug then print("absorbed", residueNum) end
 	end
 end
 
 --Damage event that indicates an ooze is taking damage
 --we check its GUID to see if it's a resurrected ooze and if so remove it from table.
---oozes do not fires SPELL_DAMAGE event from source. so track SPELL_DAMAGE event only from dest.
+--for WoW 5.x priest spell, Shadow Word: Pain (spellid = 124464) fires spell_damage event. (this is damage over time spell, but combat log records this spell as SPELL_DAMAGE event. not SPELL_PERIODIC_DAMAGE)
+--this cause bad revive check, so only source SPELL_DAMAGE (fires when ooze dies again) and SWING_DAMAGE event will resolve this.
+--although this change causes slow revive check, it will be better than shows bad residue count.
 function mod:SPELL_DAMAGE(sourceGUID, _, _, _, destGUID)
-	checkOozeResurrect(destGUID)
+	checkOozeResurrect(sourceGUID)
 end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE
 
 function mod:SWING_DAMAGE(sourceGUID, _, _, _, destGUID)
-	checkOozeResurrect(destGUID)
 	checkOozeResurrect(sourceGUID)
 end
 mod.SWING_MISSED = mod.SWING_DAMAGE
