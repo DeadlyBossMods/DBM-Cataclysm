@@ -46,7 +46,7 @@ local timerSpiritBolts		= mod:NewBuffActiveTimer(5, 43383)
 local timerSpiritBoltsNext	= mod:NewNextTimer(36, 43383)
 
 local function getClass(name)
-	local class = "unknown"
+	local _, class
 	if UnitName("player") == name then
 		_, class = UnitClass("player")
 	else
@@ -60,7 +60,7 @@ local function getClass(name)
 		end
 	end
 	class = class:sub(0, 1):upper()..class:sub(2):lower()
-	return class
+	return class or "unknown"
 end
 
 function mod:OnCombatStart(delay)
