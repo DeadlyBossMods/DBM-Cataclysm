@@ -46,20 +46,22 @@ local timerSpiritBolts		= mod:NewBuffActiveTimer(5, 43383)
 local timerSpiritBoltsNext	= mod:NewNextTimer(36, 43383)
 
 local function getClass(name)
-	local _, class
+	local class
 	if UnitName("player") == name then
-		_, class = UnitClass("player")
+		class = select(2, UnitClass("player"))
 	else
 		local nameString = "%s-%s"	-- "PlayerName-RealmName"
 		for i=1, DBM:GetGroupMembers() do
 			local n,r = UnitName("party"..i)	-- arg1 = PlayerName , arg2 = RealmName
 			if n == name or (n and r and nameString:format(n,r) == name) then
-				_, class = UnitClass("party"..i)
+				class = select(2, UnitClass("party"..i))
 				break
 			end
 		end
 	end
-	class = class:sub(0, 1):upper()..class:sub(2):lower()
+	if class then
+		class = class:sub(0, 1):upper()..class:sub(2):lower()
+	end
 	return class or "unknown"
 end
 
