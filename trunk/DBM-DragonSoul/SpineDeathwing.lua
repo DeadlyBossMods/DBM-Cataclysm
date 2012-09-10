@@ -82,7 +82,9 @@ end
 
 local function warningResidue()
 	warnResidue:Cancel()
-	warnResidue:Schedule(1.25, residueNum)
+	if residueNum >= 0 then -- (better to warn 0 on heroic)
+		warnResidue:Schedule(1.25, residueNum)
+	end
 end
 
 local function checkOozeResurrect(GUID)
@@ -90,9 +92,7 @@ local function checkOozeResurrect(GUID)
 	if diedOozeGUIDS[GUID] and GetTime() - diedOozeGUIDS[GUID] > 5 then
 		residueNum = residueNum - 1
 		diedOozeGUIDS[GUID] = nil
-		if residueNum >= 0 then -- (better to warn 0 on heroic)
-			warningResidue()
-		end
+		warningResidue()
 		if residueDebug then print("revived", residueNum) end
 	end
 end
@@ -207,16 +207,12 @@ function mod:SPELL_CAST_SUCCESS(args)
 	if args:IsSpellID(105219) then 
 		residueNum = residueNum + 1
 		diedOozeGUIDS[args.sourceGUID] = GetTime()
-		if residueNum >= 0 then -- (better to warn 0 on heroic)
-			warningResidue()
-		end
+		warningResidue()
 		if residueDebug then print("created", residueNum) end
 	elseif args:IsSpellID(105248) and not diedOozeGUIDS[args.sourceGUID] = nil then
 		residueNum = residueNum - 1
 		diedOozeGUIDS[args.sourceGUID] = nil
-		if residueNum >= 0 then -- (better to warn 0 on heroic)
-			warningResidue()
-		end
+		warningResidue()
 		if residueDebug then print("absorbed", residueNum) end
 	end
 end
