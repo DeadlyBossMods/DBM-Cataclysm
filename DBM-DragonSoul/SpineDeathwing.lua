@@ -81,9 +81,9 @@ local function showGripWarning()
 end
 
 local function warningResidue()
-	warnResidue:Cancel()
+	--http://mysticalos.com/residue_bug.jpeg (screen shot is from using OLD code, it does not work here. I got it up to -10)
 	if residueNum >= 0 then -- (better to warn 0 on heroic)
-		warnResidue:Schedule(1.25, residueNum)
+		warnResidue:Show(residueNum)
 	end
 end
 
@@ -92,7 +92,8 @@ local function checkOozeResurrect(GUID)
 	if diedOozeGUIDS[GUID] and GetTime() - diedOozeGUIDS[GUID] > 5 then
 		residueNum = residueNum - 1
 		diedOozeGUIDS[GUID] = nil
-		warningResidue()
+		self:Unschedule(warningResidue)
+		self:Schedule(1.25, warningResidue)
 		if residueDebug then print("revived", residueNum) end
 	end
 end
@@ -207,12 +208,14 @@ function mod:SPELL_CAST_SUCCESS(args)
 	if args:IsSpellID(105219) then 
 		residueNum = residueNum + 1
 		diedOozeGUIDS[args.sourceGUID] = GetTime()
-		warningResidue()
+		self:Unschedule(warningResidue)
+		self:Schedule(1.25, warningResidue)
 		if residueDebug then print("created", residueNum) end
 	elseif args:IsSpellID(105248) and not diedOozeGUIDS[args.sourceGUID] = nil then
 		residueNum = residueNum - 1
 		diedOozeGUIDS[args.sourceGUID] = nil
-		warningResidue()
+		self:Unschedule(warningResidue)
+		self:Schedule(1.25, warningResidue)
 		if residueDebug then print("absorbed", residueNum) end
 	end
 end
