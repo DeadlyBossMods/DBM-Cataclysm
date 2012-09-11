@@ -211,7 +211,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 		self:Unschedule(warningResidue)
 		self:Schedule(1.25, warningResidue)
 		if residueDebug then print("created", residueNum) end
-	elseif args:IsSpellID(105248) and not diedOozeGUIDS[args.sourceGUID] = nil then
+	elseif args:IsSpellID(105248) and diedOozeGUIDS[args.sourceGUID] then
 		residueNum = residueNum - 1
 		diedOozeGUIDS[args.sourceGUID] = nil
 		self:Unschedule(warningResidue)
