@@ -30,6 +30,8 @@ local warnOhgan				= mod:NewSpellAnnounce(96724, 4)
 local warnFrenzy			= mod:NewSpellAnnounce(96800, 3)
 local warnRevive 			= mod:NewAnnounce("WarnRevive", 2, 96484, false)
 
+local timerSummonOhgan		= mod:NewNextTimer(20, 96717)--Engage only
+local timerResOhgan			= mod:NewCDTimer(40, 96724)--rez cd
 local timerDecapitate		= mod:NewNextTimer(35, 96684)
 local timerBloodletting		= mod:NewTargetTimer(10, 96776)
 local timerBloodlettingCD	= mod:NewCDTimer(25, 96776)
@@ -43,6 +45,7 @@ mod:AddBoolOption("SetIconOnOhgan", false)
 
 local reviveCounter = 8
 local ohganGUID = nil
+local ohganDiedOnce = false
 
 mod:RegisterOnUpdateHandler(function(self)
 	if self.Options.SetIconOnOhgan and ohganGUID then
@@ -60,6 +63,8 @@ end, 1)
 function mod:OnCombatStart(delay)
 	reviveCounter = 8
 	ohganGUID = nil
+	ohganDiedOnce = false
+	timerSummonOhgan:Start(-delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
@@ -83,6 +88,7 @@ function mod:SPELL_CAST_START(args)
 	elseif args:IsSpellID(96724) then
 		warnOhgan:Show()
 		timerOhgan:Start()
+		timerResOhgan:Start()--We start Cd here cause this is how it works. if it comes off CD while he's alive, then if he dies, he is rezed instantly
 	end
 end
 
@@ -105,5 +111,8 @@ function mod:UNIT_DIED(args)
 	if cid == 52156 then
 		reviveCounter = reviveCounter - 1
 		warnRevive:Show(reviveCounter)
+	elseif cid == 52157 and not ohganDiedOnce then
+		ohganDiedOnce = true
+		timerResOhgan:Start(20)--First time he dies, res isn't on CD yet, but he won't use it for 20 seconds.
 	end
 end
