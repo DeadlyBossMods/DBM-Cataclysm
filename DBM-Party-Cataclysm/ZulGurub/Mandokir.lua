@@ -28,13 +28,13 @@ local warnBloodletting		= mod:NewTargetAnnounce(96776, 3)
 local warnSlam				= mod:NewSpellAnnounce(96740, 4)
 local warnOhgan				= mod:NewSpellAnnounce(96724, 4)
 local warnFrenzy			= mod:NewSpellAnnounce(96800, 3)
-local warnRevive 			= mod:NewAnnounce("WarnRevive", 2, nil, false)
+local warnRevive 			= mod:NewAnnounce("WarnRevive", 2, 96484, false)
 
 local timerDecapitate		= mod:NewNextTimer(35, 96684)
 local timerBloodletting		= mod:NewTargetTimer(10, 96776)
 local timerBloodlettingCD	= mod:NewCDTimer(25, 96776)
-local timerSlam				= mod:NewCastTimer(96740)
-local timerOhgan			= mod:NewCastTimer(96724)
+local timerSlam				= mod:NewCastTimer(2, 96740)
+local timerOhgan			= mod:NewCastTimer(2.5, 96724)
 
 local specWarnSlam			= mod:NewSpecialWarningSpell(96740)
 local specWarnOhgan			= mod:NewSpecialWarning("SpecWarnOhgan")
@@ -93,7 +93,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 	end
 end
 
-function mod:SPELL_HEAL(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
+function mod:SPELL_HEAL(_, _, _, _, destGUID, _, _, _, spellId)
 	if spellId == 96724 then
 		specWarnOhgan:Show()
 		ohganGUID = destGUID
