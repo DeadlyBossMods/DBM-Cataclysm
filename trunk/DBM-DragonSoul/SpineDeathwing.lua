@@ -92,8 +92,8 @@ local function checkOozeResurrect(GUID)
 	if diedOozeGUIDS[GUID] and GetTime() - diedOozeGUIDS[GUID] > 5 then
 		residueNum = residueNum - 1
 		diedOozeGUIDS[GUID] = nil
-		self:Unschedule(warningResidue)
-		self:Schedule(1.25, warningResidue)
+		mod:Unschedule(warningResidue)
+		mod:Schedule(1.25, warningResidue)
 		if residueDebug then print("revived", residueNum) end
 	end
 end
