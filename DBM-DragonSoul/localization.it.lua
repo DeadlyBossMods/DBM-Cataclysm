@@ -178,7 +178,7 @@ L:SetMiscLocalization({
 	Pull			= "Le Placche! Sta Arrivando! Se distrigguiamo le placche avremo una possibilita' di Ucciderlo!",
 	NoDebuff		= "No %s",
 	PlasmaTarget	= "Plasma Rovente: %s",
-	DRoll			= "Sta per Avvitarsi",
+	DRoll			= "Sta per effettuare un avvitamento",
 	DLevels			= "Fermatelo!!!"
 })
 
