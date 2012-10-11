@@ -115,7 +115,7 @@ end
 
 local function getBossuId()
 	local uId
-	if UnitExits("boss1") or UnitExits("boss2") or UnitExits("boss3") then
+	if UnitExists("boss1") or UnitExists("boss2") or UnitExists("boss3") then
 		for i = 1, 3 do
 			if UnitName("boss"..i) == L.name then
 				uId = "boss"..i
