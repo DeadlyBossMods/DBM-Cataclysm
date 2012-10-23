@@ -163,7 +163,7 @@ L:SetMiscLocalization({
 	YellPhase2		= "¡Os maldigo, mortales! ¡Ese cruel menosprecio por las posesiones de uno debe ser castigado con fuerza extrema!",
 	YellPhase3		= "He intentado ser un buen anfitrión, pero ¡no morís! Es hora de dejarnos de tonterías y simplemente... ¡MATAROS A TODOS!",
 	YellShadowBlaze	= "¡Mirad cómo la llama de las sombras da vida a sus huesos! ¡Luchan a mis órdenes!",
-	ShadowBlazeExact	= "hispa de Fuegoarbusto en %ds",
+	ShadowBlazeExact	= "Llamarada de las Sombras en %ds",
 	ShadowBlazeEstimate	= "Llamarada de las Sombras pronto (~5s)"
 })
 
