@@ -65,8 +65,8 @@ L:SetMiscLocalization({
 	Quake			= "Der Boden unter Euch grollt unheilvoll...",
 	Thundershock	= "Die Luft beginnt, vor Energie zu knistern...",
 	Switch			= "Genug der Spielereien!",--"Wir kümmern uns um sie!" comes 3 seconds after this one
-	Phase3			= "Beeindruckende Leistung…",--"SCHMECKT DIE VERDAMMNIS!" is about 13 seconds after; its indeed this special UTF-8 char at end, not "..." (logfiles 4.1.0.14007)
-	Kill			= "Unmöglich…", -- its indeed this special UTF-8 char at end, not "..." (logfiles 4.1.0.14007)
+	Phase3			= "Beeindruckende Leistung…",--"SCHMECKT DIE VERDAMMNIS!" is about 13 seconds after; its indeed this special UTF-8 char at end, not "..." (logfiles 5.1.0.16309)
+	Kill			= "Unmöglich…", -- its indeed this special UTF-8 char at end, not "..." (logfiles 5.1.0.16309)
 	blizzHatesMe	= "Leuchtfeuer & Ableiter auf mir! Aus dem Weg!",
 	WrongDebuff		= "Kein %s"
 })
@@ -118,8 +118,8 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	YellDragon			= "Fresst, Kinder! Nährt Euch an ihrem Fleisch!", --needs to be verified (video-captured translation, maybe inaccurate whitespaces)
-	YellEgg				= "Ihr denkt, ich sei schwach? Narren!", --needs to be verified (video-captured translation, maybe inaccurate whitespaces)
+	YellDragon			= "Fresst, Kinder! Nährt Euch an ihrem Fleisch!",
+	YellEgg				= "Ihr denkt, ich sei schwach? Narren!",
 	HasAggro			= "Hat Aggro"
 })
 
