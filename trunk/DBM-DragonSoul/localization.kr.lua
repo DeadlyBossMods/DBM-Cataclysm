@@ -164,10 +164,12 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(318)
 
 L:SetWarningLocalization({
+	warnSealArmor			= "%s",
 	SpecWarnTendril			= "등에 달라 붙으세요!"
 })
 
 L:SetOptionLocalization({
+	warnSealArmor			= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(105847),
 	SpecWarnTendril			= "$spell:105563 약화 효과가 없을 경우 특수 경고 보기",--http://ptr.wowhead.com/npc=56188
 	InfoFrame				= "$spell:105563 약화 효과 없음에 대한 정보 프레임 보기",
 	SetIconOnGrip			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(105490),
