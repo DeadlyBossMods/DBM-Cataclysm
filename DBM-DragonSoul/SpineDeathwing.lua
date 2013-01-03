@@ -30,7 +30,7 @@ local warnAbsorbedBlood		= mod:NewStackAnnounce(105248, 2)
 local warnResidue			= mod:NewCountAnnounce("ej4057", 3, nil, false)--This is HIGHLY inaccurate in 5.x, i do not know why right now. I'll actually log fight next week
 local warnGrip				= mod:NewTargetAnnounce(105490, 4)
 local warnNuclearBlast		= mod:NewCastAnnounce(105845, 4)
-local warnSealArmor			= mod:NewCastAnnounce(105847, 4)
+local warnSealArmor			= mod:NewAnnounce("warnSealArmor", 4, 105847)
 local warnAmalgamation		= mod:NewSpellAnnounce("ej4054", 3, 106005)--Amalgamation spawning, give temp icon.
 
 local specWarnRoll			= mod:NewSpecialWarningSpell("ej4050", nil, nil, nil, true)--The actual roll
@@ -55,6 +55,7 @@ mod:AddBoolOption("InfoFrame", true)
 mod:AddBoolOption("SetIconOnGrip", true)
 mod:AddBoolOption("ShowShieldInfo", false)--on 25 man this is quite frankly a spammy nightmare, especially on heroic. off by default since it's really only sensible in 10 man. Besides I may be adding an alternate frame option for "grip damage needed"
 
+local sealArmorText = DBM_CORE_AUTO_ANNOUNCE_TEXTS.cast:format(GetSpellInfo(105847), 23)
 local gripTargets = {}
 local gripIcon = 6
 local corruptionActive = {}
@@ -146,9 +147,9 @@ end
 
 function mod:OnCombatStart(delay)
 	if self:IsDifficulty("lfr25") then
-		warnSealArmor = mod:NewCastAnnounce(105847, 4, 34.5)
+		sealArmorText = DBM_CORE_AUTO_ANNOUNCE_TEXTS.cast:format(GetSpellInfo(105847), 34.5)
 	else
-		warnSealArmor = mod:NewCastAnnounce(105847, 4)
+		sealArmorText = DBM_CORE_AUTO_ANNOUNCE_TEXTS.cast:format(GetSpellInfo(105847), 23)
 	end
 	table.wipe(gripTargets)
 	table.wipe(corruptionActive)
@@ -172,7 +173,7 @@ function mod:SPELL_CAST_START(args)
 		specWarnNuclearBlast:Show()
 		soundNuclearBlast:Play()
 	elseif args:IsSpellID(105847, 105848) then--This still has 2 spellids, since it's locational, location based IDs did NOT get crunched.
-		warnSealArmor:Show()
+		warnSealArmor:Show(sealArmorText)
 		specWarnSealArmor:Show()
 		if self:IsDifficulty("lfr25") then
 			timerSealArmor:Start(34.5)

@@ -163,10 +163,12 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(318)
 
 L:SetWarningLocalization({
+	warnSealArmor			= "%s",
 	SpecWarnTendril			= "Get Secured!"
 })
 
 L:SetOptionLocalization({
+	warnSealArmor			= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(105847),
 	SpecWarnTendril			= "Show special warning when you are missing $spell:105563 debuff",
 	InfoFrame				= "Show info frame for players without $spell:105563",
 	SetIconOnGrip			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(105490),
