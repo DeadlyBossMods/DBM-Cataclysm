@@ -132,13 +132,13 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	warnRageRagnarosSoon		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.prewarn:format(101109, GetSpellInfo(101109)),
+	warnRageRagnarosSoon		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.prewarn:format(101109),
 	warnSplittingBlow			= "Show location warnings for $spell:98951",
 	warnEngulfingFlame			= "Show location warnings for $spell:99171 on normal",
 	warnEngulfingFlameHeroic	= "Show location warnings for $spell:99171 on heroic",
 	warnSeedsLand				= "Show warning/timer for $spell:98520 landing instead of seed casts.",
-	warnEmpoweredSulf			= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(100604, GetSpellInfo(100604)),
-	timerRageRagnaros			= DBM_CORE_AUTO_TIMER_OPTIONS.cast:format(101109, GetSpellInfo(101109)),
+	warnEmpoweredSulf			= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(100604),
+	timerRageRagnaros			= DBM_CORE_AUTO_TIMER_OPTIONS.cast:format(101109),
 	TimerPhaseSons				= "Show a duration timer for the \"Sons of Flame phase\"",
 	RangeFrame					= "Show range frame",
 	InfoHealthFrame				= "Show info frame for health (<100k hp)",

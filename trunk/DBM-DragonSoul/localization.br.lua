@@ -89,7 +89,7 @@ L:SetOptionLocalization({
 	TimerSpecial			= "Exibir cronógrafo para lançamento da primeira habilidade",
     RangeFrame				= "Exibir medidor de distância: (3) para $spell:105269, (10) para $journal:4327",
 	AnnounceFrostTombIcons	= "Anunciar no chat da raide, ícones para alvos de $spell:104451\n(requer liderança)",
-	warnFrostTombCast		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(104448, GetSpellInfo(104448)),
+	warnFrostTombCast		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(109325),
 	SpecialCount			= "Tocar som de contagem regressiva para $spell:105256 ou $spell:105465",

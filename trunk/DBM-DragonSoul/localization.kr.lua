@@ -11,13 +11,13 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	KohcromCD		= "크초르모 주문사용: %s",--Universal single local timer used for all of his mimick timers
+	KohcromCD		= "크초르모 시전: %s",--Universal single local timer used for all of his mimick timers
 })
 
 L:SetOptionLocalization({
-	KohcromWarning	= "$journal:4262가 사용하는 주문 알림 보기 (영웅 난이도)",
-	KohcromCD		= "$journal:4262가 사용할 주문 바 표시 (영웅 난이도)",
-	RangeFrame		= "거리 프레임 보기 (5m, 업적 용도)"
+	KohcromWarning	= "$journal:4262가 사용하는 주문 알림 보기(영웅 난이도)",
+	KohcromCD		= "$journal:4262가 사용할 주문 바 표시(영웅 난이도)",
+	RangeFrame		= "거리 창 보기(5m, 업적 용도)"
 })
 
 L:SetMiscLocalization({
@@ -29,10 +29,10 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(324)
 
 L:SetOptionLocalization({
-	ShadowYell			= "$spell:103434 주문의 영향을 받은 경우 대화로 알리기 (영웅 난이도)",
-	CustomRangeFrame	= "교란의 그림자 주문에 대한 거리 프레임 설정 (영웅 난이도)",
-	Never				= "거리 프레임 사용안함",
-	Normal				= "일반 거리 프레임",
+	ShadowYell			= "$spell:103434 주문의 영향을 받은 경우 대화로 알리기(영웅 난이도)",
+	CustomRangeFrame	= "교란의 그림자 주문에 대한 거리 창 설정(영웅 난이도)",
+	Never				= "거리 창 사용안함",
+	Normal				= "일반 거리 창",
 	DynamicPhase2		= "고라스의 검은 피 도중에만 필터링 사용",
 	DynamicAlways		= "항상 디버프 필터링 사용"
 })
@@ -56,10 +56,10 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	warnOozesHit		= "보스에게 흡수된 핏방울에 대한 알림 보기",
+	warnOozesHit		= "요르사지에게 흡수된 핏방울에 대한 알림 보기",
 	timerOozesActive	= "핏방울이 소환된 후 공격 가능하기까지 남은시간 바 표시",
 	timerOozesReach		= "소환된 핏방울이 보스에게 도착하기까지 남은시간 바 표시",
-	RangeFrame			= "$spell:104898 주문이 활성화 된 경우 거리 프레임 보기 (4m)\n(일반 난이도 이상)"
+	RangeFrame			= "$spell:104898 주문이 활성화 된 경우 거리 창 보기(4m)\n(일반 난이도 이상)"
 })
 
 L:SetMiscLocalization({
@@ -82,23 +82,23 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	TimerSpecial			= "다음 번개 또는 얼음"
+	TimerSpecial			= "다음 번개/얼음"
 })
 
 L:SetOptionLocalization({
 	WarnPillars				= "$journal:3919 또는 $journal:4069 남은 횟수 알림 보기",
 	TimerSpecial			= "다음 $spell:105256 또는 $spell:105465 까지 남은시간 바 표시",
-	RangeFrame				= "$spell:105269 (3m), $journal:4327 (10m) 주문의 영향을 받은 경우 거리 프레임 보기",
-	AnnounceFrostTombIcons	= "$spell:104451 대상을 공격대 대화로 알리기 (승급 권한 필요)",
-	warnFrostTombCast		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(104448, GetSpellInfo(104448)),
+	RangeFrame				= "$spell:105269(3m), $journal:4327(10m) 주문의 영향을 받은 경우 거리 창 보기",
+	AnnounceFrostTombIcons	= "$spell:104451 대상을 공격대 대화로 알리기(승급 권한 필요)",
+	warnFrostTombCast		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(109325),
-	SpecialCount			= "$spell:105256 또는 $spell:105465 주문의 초읽기 소리 듣기(5,4,3,2,1)",
+	SpecialCount			= "$spell:105256 또는 $spell:105465 주문의 초읽기 소리 듣기",
 	SetBubbles				= "$spell:104451 시전이 가능할 때 대화 말풍선을 표시하지 않음\n(전투 종료 후 원래대로 복구됨)"
 })
 
 L:SetMiscLocalization({
-	TombIconSet				= "얼음 무덤 징표 : {rt%d} %s"
+	TombIconSet				= "얼음 무덤 아이콘 : {rt%d} %s"
 })
 
 ---------------
@@ -120,10 +120,10 @@ L:SetOptionLocalization({
 	Never				= "사용 안함",
 	ResetDynamic		= "일반 2회, 영웅 3회 단위로 재시작",
 	Reset3Always		= "난이도 구분 없이 3회 단위로 재시작",
-	SpecWarnHoTN		= "황혼의 시간 5초 전 특수 경고 설정 (시전 횟수 재시작 설정에 영향 받음)",
-	One					= "시전 횟수가 1일때 보기 (또는 1, 4, 7 일때)",
-	Two					= "시전 횟수가 2일때 보기 (또는 2, 5 일때)",
-	Three				= "시전 횟수가 3일때 보기 (또는 3, 6 일때)"
+	SpecWarnHoTN		= "황혼의 시간 5초 전 특수 경고 설정(시전 횟수 재시작 설정에 영향 받음)",
+	One					= "시전 횟수가 1일때 보기(또는 1, 4, 7 일때)",
+	Two					= "시전 횟수가 2일때 보기(또는 2, 5 일때)",
+	Three				= "시전 횟수가 3일때 보기(또는 3, 6 일때)"
 })
 
 L:SetMiscLocalization({
@@ -171,9 +171,9 @@ L:SetWarningLocalization({
 L:SetOptionLocalization({
 	warnSealArmor			= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(105847),
 	SpecWarnTendril			= "$spell:105563 약화 효과가 없을 경우 특수 경고 보기",--http://ptr.wowhead.com/npc=56188
-	InfoFrame				= "$spell:105563 약화 효과 없음에 대한 정보 프레임 보기",
+	InfoFrame				= "$spell:105563 약화 효과 없음에 대한 정보 창 보기",
 	SetIconOnGrip			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(105490),
-	ShowShieldInfo			= "보스 체력 프레임에 $spell:105479 주문 흡수량 바 표시"
+	ShowShieldInfo			= "우두머리 체력 바 대신 $spell:105479 주문 흡수량 바 보기"
 })
 
 L:SetMiscLocalization({
@@ -190,7 +190,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(333)
 
 L:SetOptionLocalization({
-	RangeFrame			= "$spell:108649 약화 효과 상태에 따른 거리 프레임 표시 (영웅 난이도)",
+	RangeFrame			= "$spell:108649 약화 효과 상태에 따른 거리 창 보기(영웅 난이도)",
 	SetIconOnParasite	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(108649)
 })
 
@@ -204,7 +204,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("DSTrash")
 
 L:SetGeneralLocalization({
-	name =	"용의 영혼 일반몹"
+	name =	"용의 영혼 일반구간"
 })
 
 L:SetWarningLocalization({
