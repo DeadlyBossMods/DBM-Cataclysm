@@ -171,13 +171,13 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	warnRageRagnarosSoon		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.prewarn:format(101109, GetSpellInfo(101109)),
+	warnRageRagnarosSoon		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.prewarn:format(101109),
 	warnSplittingBlow			= "警报：$spell:100877的位置",
 	warnEngulfingFlame			= "警报：$spell:99171",
 	WarnEngulfingFlameHeroic	= "警报：英雄模式下$spell:99171的位置",
 	warnSeedsLand				= "警报与计时条：$spell:98520落地，而非施法警报",
-	warnEmpoweredSulf			= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(100997, GetSpellInfo(100997)),
-	timerRageRagnaros			= DBM_CORE_AUTO_TIMER_OPTIONS.cast:format(101109, GetSpellInfo(101109)),
+	warnEmpoweredSulf			= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(100997),
+	timerRageRagnaros			= DBM_CORE_AUTO_TIMER_OPTIONS.cast:format(101109),
 	TimerPhaseSons				= "计时条：烈焰之子阶段持续时间",
 	RangeFrame					= "距离监视器",
 	InfoHealthFrame				= "信息框：生命值少于10万的团员的列表",

@@ -140,13 +140,13 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	warnRageRagnarosSoon		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.prewarn:format(101109, GetSpellInfo(101109)),
+	warnRageRagnarosSoon		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.prewarn:format(101109),
 	warnSplittingBlow			= "Exibir avisos para local de $spell:100877",
 	warnEngulfingFlame			= "Exibir avisos para local de $spell:99171",
 	WarnEngulfingFlameHeroic	= "Exibir avisos para local de $spell:99171 (modo heróico)",
 	warnSeedsLand				= "Exibir aviso/cronógrafo para queda de $spell:98520 ao invés do lançamento",
-	warnEmpoweredSulf			= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(100997, GetSpellInfo(100997)),
-	timerRageRagnaros			= DBM_CORE_AUTO_TIMER_OPTIONS.cast:format(101109, GetSpellInfo(101109)),
+	warnEmpoweredSulf			= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(100997),
+	timerRageRagnaros			= DBM_CORE_AUTO_TIMER_OPTIONS.cast:format(101109),
 	TimerPhaseSons				= "Exibir cronógrafo de duração da \"Fase dos Filhos das Chamas\"",
 	RangeFrame					= "Exibir medidor de distância",
 	InfoHealthFrame				= "Exibir quadro de informações de vida (<100k pv)",

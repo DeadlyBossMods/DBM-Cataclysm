@@ -45,7 +45,7 @@ L= DBM:GetModLocalization(108)
 L= DBM:GetModLocalization(109)
 
 L:SetOptionLocalization({
-	SetIconOnBoss	= "$spell:76200 시전 후 보스에게 전술 목표 아이콘 표시 "
+	SetIconOnBoss	= "$spell:76200 시전 후 본체에게 전술 목표 아이콘 표시 "
 })
 
 ---------------------
@@ -193,7 +193,7 @@ L= DBM:GetModLocalization(117)
 L= DBM:GetModLocalization(118)
 
 L:SetOptionLocalization{
-	RangeFrame	= "거리 프레임 보기 (5m)"
+	RangeFrame	= "거리 창 보기(5m)"
 }
 
 ----------
@@ -211,7 +211,7 @@ L:SetGeneralLocalization({
 L= DBM:GetModLocalization(119)
 
 L:SetOptionLocalization{
-	BossHealthAdds	= "추가 몬스터에 대한 체력 프레임 보기"
+	BossHealthAdds	= "우두머리 체력 바 사용시 정령 체력도 함께 보기"
 }
 
 ------------------------------------
@@ -303,7 +303,7 @@ L:SetOptionLocalization({
 	TimerEmerge		= "다음 등장 바 표시",
 	TimerSubmerge	= "다음 잠수 바 표시",
 	CrystalArrow	= "$spell:81634 대상이 근처에 있을 경우 DBM 화살표 보기",
-	RangeFrame		= "거리 프레임 보기 (5m)"	
+	RangeFrame		= "거리 창 보기(5m)"
 })
 
 --------------
@@ -411,7 +411,7 @@ L= DBM:GetModLocalization(186)
 
 L:SetOptionLocalization{
 	StormIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43648),
-	RangeFrame		= "거리 프레임 보기 (10m)",
+	RangeFrame		= "거리 창 보기(10m)",
 	StormArrow		= "$spell:97300 시전시 DBM 화살표 보기",
 	SetIconOnEagle	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97318)
 }
@@ -440,7 +440,7 @@ L:SetOptionLocalization{
 	WarnNormalSoon	= "인간 형상 사전 알림 보기",
 	TimerBear		= "다음 곰 형상 바 표시",
 	TimerNormal		= "다음 인간 형상 바 표시",
-	InfoFrame		= "$spell:42402 효과에 대한 정보 프레임 보기"
+	InfoFrame		= "$spell:42402 효과에 대한 정보 창 보기"
 }
 
 L:SetMiscLocalization{
@@ -512,7 +512,7 @@ L:SetTimerLocalization{
 
 L:SetOptionLocalization{
 	timerNextForm	= "형상 변환 바 표시",
-	InfoFrame		= "$spell:42402 효과에 대한 정보 프레임 보기",
+	InfoFrame		= "$spell:42402 효과에 대한 정보 창 보기",
 	ThrowIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43093),
 	ClawRageIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43150)
 }
@@ -546,7 +546,7 @@ L:SetWarningLocalization{
 L:SetOptionLocalization{
 	WarnRevive		= "영혼 부활 남은 횟수 알림 보기",
 	SpecWarnOhgan	= "되살아난 오간이 공격 가능 할때 특수 경고 보기",
-	SetIconOnOhgan	= "되살아난 오간에게 전술 목표 아이콘 설정하기"
+	SetIconOnOhgan	= "되살아난 오간에게 전술 목표 아이콘 설정"
 }
 
 ----------------------
@@ -588,7 +588,7 @@ L:SetWarningLocalization{
 
 L:SetOptionLocalization{
 	SpecWarnToxic	= "$spell:96328 효과가 없을 경우 특수 경고 보기",
-	InfoFrame		= "$spell:96328 효과 없음에 대한 정보 프레임 보기",
+	InfoFrame		= "$spell:96328 효과 없음에 대한 정보 창 보기",
 	SetIconOnGaze	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(96342)
 }
 
@@ -766,7 +766,7 @@ L:SetGeneralLocalization{
 L = DBM:GetModLocalization("Garr")
 
 L:SetGeneralLocalization{
-	name = "가르 (대격변)"
+	name = "가르(대격변)"
 }
 
 ----------------
