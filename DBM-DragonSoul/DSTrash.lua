@@ -47,7 +47,7 @@ end
 
 function mod:BoulderTarget(sGUID)
 	local targetname = nil
-	for i=1, DBM:GetGroupMembers() do
+	for i=1, DBM:GetNumGroupMembers() do
 		if UnitGUID("raid"..i.."target") == sGUID then
 			targetname = DBM:GetUnitFullName("raid"..i.."targettarget")
 			break

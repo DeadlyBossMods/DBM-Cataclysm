@@ -123,7 +123,7 @@ local function getBossuId()
 			end
 		end
 	else
-		for i = 1, DBM:GetGroupMembers() do
+		for i = 1, DBM:GetNumGroupMembers() do
 			if UnitName("raid"..i.."target") == L.name and not UnitIsPlayer("raid"..i.."target") then
 				uId = "raid"..i.."target"
 				break
