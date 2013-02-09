@@ -97,7 +97,7 @@ end
 
 function mod:CorruptingCrashTarget(sGUID)
 	local targetname = nil
-	for i=1, DBM:GetGroupMembers() do
+	for i=1, DBM:GetNumGroupMembers() do
 		if UnitGUID("raid"..i.."target") == sGUID then
 			targetname = DBM:GetUnitFullName("raid"..i.."targettarget")
 			break
@@ -229,7 +229,7 @@ end
 
 mod:RegisterOnUpdateHandler(function(self)
 	if self.Options.SetIconOnCreature and (DBM:GetRaidRank() > 0 and not (iconsSet == 8 and self:IsDifficulty("normal25", "heroic25") or iconsSet == 4 and self:IsDifficulty("normal10", "heroic10"))) then
-		for i = 1, DBM:GetGroupMembers() do
+		for i = 1, DBM:GetNumGroupMembers() do
 			local uId = "raid"..i.."target"
 			local guid = UnitGUID(uId)
 			if creatureIcons[guid] then
