@@ -255,13 +255,6 @@ local function isTank(unit)
 	return false
 end
 
-local function warnSeeds()
-	warnMoltenSeed:Show()
-	specWarnMoltenSeed:Show()
-	countdownSeeds:Start(60)
-	timerMoltenSeedCD:Start()
-end
-
 function mod:TargetScanner(SpellID, Force)
 	scansDone = scansDone + 1
 	local targetname, uId = self:GetBossTarget(52409)
@@ -286,6 +279,13 @@ function mod:TargetScanner(SpellID, Force)
 			self:ScheduleMethod(0.025, "TargetScanner", SpellID)
 		end
 	end
+end
+
+local function warnSeeds()
+	warnMoltenSeed:Show()
+	specWarnMoltenSeed:Show()
+	countdownSeeds:Start(60)
+	timerMoltenSeedCD:Start()
 end
 
 function mod:OnCombatStart(delay)

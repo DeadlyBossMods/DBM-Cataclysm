@@ -103,7 +103,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(87904, 101458, 101459, 101460) then
+	if args:IsSpellID(87904) then
 		warnFeedback:Show(args.destName, args.amount or 1)
 		timerFeedback:Cancel()--prevent multiple timers spawning with diff args.
 		countdownFeedback:Cancel()
@@ -114,7 +114,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			timerFeedback:Start(20, args.amount or 1)
 			countdownFeedback:Start(20)
 		end
-	elseif args:IsSpellID(88301, 93279, 93280, 93281) then--Acid Rain (phase 2 debuff)
+	elseif args:IsSpellID(88301) then--Acid Rain (phase 2 debuff)
 		if args.amount and args.amount > 1 and args:IsPlayer() then
 			warnAcidRain:Show(args.amount)
 		end
@@ -153,30 +153,30 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(87770, 93261, 93262, 93263) then--Phase 1 wind burst
+	if args:IsSpellID(87770) then--Phase 1 wind burst
 		warnWindBurst:Show()
 		specWarnWindBurst:Show()
 		timerWindBurstCD:Start()
 		if self:IsDifficulty("heroic10", "heroic25") then
-			timerWindBurst:Start(4)--4 second cast on heroic according to wowhead.
+			timerWindBurst:Start(4)
 		else
 			timerWindBurst:Start()
 		end
 	end
 end
 
-function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
-	if (spellId == 88858 or spellId == 93286 or spellId == 93287 or spellId == 93288) and self:AntiSpam(5, 1) then--Phase 3 wind burst, does not use cast success
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
+	if spellId == 88858 and self:AntiSpam(5, 1) then--Phase 3 wind burst, does not use cast success
 		warnWindBurst:Show()
 		timerWindBurstCD:Start(20)
-	elseif (spellId == 89588 or spellId == 93299 or spellId == 93298 or spellId == 93297) and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then--Phase 3 Clouds
+	elseif spellId == 89588 and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then--Phase 3 Clouds
 		specWarnCloud:Show()
 	end
 end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE
 
-function mod:SPELL_PERIODIC_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
-	if (spellId == 91020 or spellId == 93258 or spellId == 93259 or spellId == 93260) and destGUID == UnitGUID("player") and self:AntiSpam(4, 1) then--Phase 1 Ice Storm
+function mod:SPELL_PERIODIC_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
+	if spellId == 91020 and destGUID == UnitGUID("player") and self:AntiSpam(4, 1) then--Phase 1 Ice Storm
 		specWarnIceStorm:Show()
 	end
 end

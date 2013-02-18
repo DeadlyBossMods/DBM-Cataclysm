@@ -181,7 +181,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(77826, 94124, 94125, 94126) then
+	if args:IsSpellID(77826) then
 		if args:GetSrcCreatureID() == 41270 then--Source is onyxia
 			warnOnyShadowflameBreath:Show()
 			timerOnyBreathCD:Start()
@@ -189,7 +189,7 @@ function mod:SPELL_CAST_START(args)
 			warnNefShadowflameBreath:Show()
 			timerNefBreathCD:Start()
 		end
-	elseif args:IsSpellID(80734, 101430, 101431, 101432) then--Since this is cast within 5 seconds of adds spawning, can use a GUID check here to add all 3 of http://www.wowhead.com/npc=41948 to boss health if not already on boss health.
+	elseif args:IsSpellID(80734) then
 		if not DBM.BossHealth:HasBoss(args.sourceGUID) then
 			DBM.BossHealth:AddBoss(args.sourceGUID, args.sourceName)
 		end
@@ -261,7 +261,7 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(77827, 94128, 94129, 94130) then
+	if args:IsSpellID(77827) then
 		if args:GetSrcCreatureID() == 41270 then
 			warnOnyTailSwipe:Show()
 			timerOnySwipeCD:Start()
@@ -272,8 +272,8 @@ function mod:SPELL_CAST_SUCCESS(args)
 	end
 end
 
-function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
-	if (spellId == 81007 or spellId == 94085 or spellId == 94086 or spellId == 94087) and destGUID == UnitGUID("player") and self:AntiSpam(4) then
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
+	if spellId == 81007 and destGUID == UnitGUID("player") and self:AntiSpam(4) then
 		specWarnShadowblaze:Show()
 	elseif spellId ~= 50288 and self:GetCIDFromGUID(destGUID) == 41918 and bit.band(sourceFlags, COMBATLOG_OBJECT_TYPE_PLAYER) ~= 0 and self:IsInCombat() then--Any spell damage except for starfall
 		if sourceGUID ~= UnitGUID("player") then
@@ -285,7 +285,7 @@ function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, 
 end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE
 
-function mod:SWING_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags)
+function mod:SWING_DAMAGE(sourceGUID, sourceName, sourceFlags, _, destGUID)
 	if self:GetCIDFromGUID(destGUID) == 41918 and bit.band(sourceFlags, COMBATLOG_OBJECT_TYPE_PLAYER) ~= 0 and self:IsInCombat() then
 		if sourceGUID ~= UnitGUID("player") then
 			if self.Options.TankArrow then

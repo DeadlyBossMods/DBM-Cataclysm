@@ -17,6 +17,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_SUCCESS",
 	"SPELL_AURA_APPLIED",
 	"SPELL_AURA_APPLIED_DOSE",
+	"SPELL_AURA_REMOVED",
 	"SPELL_SUMMON",
 	"SPELL_DAMAGE",
 	"SPELL_MISSED",
@@ -197,8 +198,8 @@ function mod:SPELL_AURA_APPLIED(args)
 				specWarnSunder:Show(args.amount)
 			end
 		else
-			if (args.amount or 1) >= 2 and not UnitDebuff("player", GetSpellInfo(108043)) and not UnitIsDeadOrGhost("player") then--Other tank has 2 or more sunders and you have none.
-				specWarnSunderOther:Show(args.destName)--So nudge you to taunt it off other tank already.
+			if (args.amount or 1) >= 2 and not UnitDebuff("player", GetSpellInfo(108043)) and not UnitIsDeadOrGhost("player") then
+				specWarnSunderOther:Show(args.destName)
 			end
 		end
 	elseif args:IsSpellID(108038) then
@@ -229,6 +230,12 @@ function mod:SPELL_AURA_APPLIED(args)
 	end
 end		
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
+
+function mod:SPELL_AURA_REMOVED(args)
+	if args:IsSpellID(108043) then
+		timerSunder:Cancel(args.destName)
+	end
+end
 
 function mod:SPELL_SUMMON(args)
 	if args:IsSpellID(108051) then
