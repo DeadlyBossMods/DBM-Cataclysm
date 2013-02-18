@@ -167,7 +167,7 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
-	SpecWarnTendril			= "Exibir aviso especial quando você não tem $spell:109454",--http://ptr.wowhead.com/npc=56188
+	SpecWarnTendril			= "Exibir aviso especial quando você não tem $spell:109454",
 	InfoFrame				= "Exibir quadro de informações para jogadores sem $spell:109454",
 	SetIconOnGrip			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(109459),
 	ShowShieldInfo			= "Exibir vida do chefe, com uma barra de vida para $spell:105479"

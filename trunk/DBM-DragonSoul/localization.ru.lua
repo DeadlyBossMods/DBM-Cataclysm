@@ -161,7 +161,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	SpecWarnTendril			= "Спец-предупреждение, когда на вас нет дебаффа $spell:109454",--http://ptr.wowhead.com/npc=56188
+	SpecWarnTendril			= "Спец-предупреждение, когда на вас нет дебаффа $spell:109454",
 	InfoFrame				= "Показывать информационное окно для игроков без $spell:109454",
 	SetIconOnGrip			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(109459),
 	ShowShieldInfo			= "Показывать полосы здоровья для исцеления $spell:105479"

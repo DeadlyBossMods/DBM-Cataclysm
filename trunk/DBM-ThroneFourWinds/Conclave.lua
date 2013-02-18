@@ -96,7 +96,6 @@ end
 function mod:BreezeTarget()
 	scansDone = scansDone + 1
 	local targetname, uId = self:GetBossTarget(45870)
---	print(targetname, uId)
 	if targetname and uId then
 		if UnitIsFriend("player", uId) then--He's targeting a friendly unit, he doesn't cast this on players, so it's wrong target.
 			if scansDone < 15 then--Make sure no infinite loop.
@@ -117,7 +116,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		if args:IsPlayer() then
 			timerSlicingGale:Start()
 		end
-	elseif args:IsSpellID(84651, 93117, 93118, 93119) and args:GetDestCreatureID() == 45870 and self:AntiSpam(3, 1) then--Zephyr stacks on Anshal
+	elseif args:IsSpellID(84651) and args:GetDestCreatureID() == 45870 and self:AntiSpam(3, 1) then--Zephyr stacks on Anshal
 		if (args.amount or 1) >= 15 then--Special has ended when he's at 15 stacks.
 			warnSpecialSoon:Cancel()
 			warnSpecialSoon:Schedule(85)
@@ -149,8 +148,8 @@ function mod:SPELL_AURA_REMOVED(args)
 	end
 end
 
-function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
-	if (spellId == 86111 or spellId == 93129 or spellId == 93130 or spellId == 93131) and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
+	if spellId == 86111 and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then
 		specWarnIcePatch:Show()
 	end
 end
@@ -182,7 +181,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 				timerPoisonToxicCD:Start()
 			end
 		end
-	elseif args:IsSpellID(86082, 93233) then -- 93233 removed in mop, it seems that replaced with 86082
+	elseif args:IsSpellID(86082) then -- 93233 removed in mop, it seems that replaced with 86082
 		if self:GetUnitCreatureId("target") == 45871 or self:GetUnitCreatureId("focus") == 45871 or not self.Options.OnlyWarnforMyTarget then--Nezir
 			timerPermaFrostCD:Start()
 		end
