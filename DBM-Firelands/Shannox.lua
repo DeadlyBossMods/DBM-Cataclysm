@@ -195,7 +195,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		if self.Options.SetIconOnRage then
 			self:SetIcon(args.destName, 6, 15)
 		end
-	elseif args:IsSpellID(100167, 101215, 101216, 101217) then
+	elseif args:IsSpellID(100167) then
 		warnWary:Show(args.destName)
 		timerWary:Start(args.destName)
 	elseif args:IsSpellID(99837) then--Filter when the dogs get it?
@@ -204,7 +204,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		else--It's a trapped dog
 			timerCrystalPrison:Start(args.destName)--make a 10 second timer for how long dog is trapped.
 		end
-	elseif args:IsSpellID(99937, 101218, 101219, 101220) then
+	elseif args:IsSpellID(99937) then
 		if (args.amount or 1) % 3 == 0 then	--Warn every 3 stacks
 			warnTears:Show(args.destName, args.amount or 1)
 		end
@@ -226,7 +226,7 @@ function mod:SPELL_AURA_REMOVED(args)
 		if self.Options.SetIconOnFaceRage then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args:IsSpellID(99937, 101218, 101219, 101220) then
+	elseif args:IsSpellID(99937) then
 		timerTears:Cancel(args.destName)
 	end
 end

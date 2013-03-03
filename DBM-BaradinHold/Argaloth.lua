@@ -57,7 +57,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(88954, 95173) then
+	if args:IsSpellID(88954) then
 		consuming = consuming + 1--Count raid members who got consuming
 		timerConsuming:Start()
 		timerConsumingCD:Start()
@@ -74,7 +74,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 	elseif args:IsSpellID(88972) then
 		timerFirestorm:Start()
-	elseif args:IsSpellID(88942, 95172) then--Debuff application not cast, special warning for tank taunts.
+	elseif args:IsSpellID(88942) then--Debuff application not cast, special warning for tank taunts.
 		if self:AntiSpam(3, 1) then
 			warnMeteorSlash:Show()
 			timerMeteorSlash:Start()

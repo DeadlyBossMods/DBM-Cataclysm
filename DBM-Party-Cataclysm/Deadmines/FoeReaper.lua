@@ -62,7 +62,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpellID(88481) then
 		warnOverdrive:Show()
 		timerOverdrive:Start()
-	elseif args:IsSpellID(88522, 91720) then
+	elseif args:IsSpellID(88522) then
 		warnEnrage:Show()
 	end
 end

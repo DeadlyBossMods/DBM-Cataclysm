@@ -15,18 +15,18 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_SUCCESS"
 )
 
-local warnTears		= mod:NewSpellAnnounce(96435, 3)
-local warnLash		= mod:NewTargetAnnounce(96423, 3)
-local warnWaveAgony	= mod:NewSpellAnnounce(96457, 3)
-local warnRavage	= mod:NewTargetAnnounce(96592, 3)
-local warnPhase2	= mod:NewPhaseAnnounce(2)
+local warnTears			= mod:NewSpellAnnounce(96435, 3)
+local warnLash			= mod:NewTargetAnnounce(96423, 3)
+local warnWaveAgony		= mod:NewSpellAnnounce(96457, 3)
+local warnRavage		= mod:NewTargetAnnounce(96592, 3)
+local warnPhase2		= mod:NewPhaseAnnounce(2)
 
-local specWarnTears	= mod:NewSpecialWarningInterrupt(96435)
+local specWarnTears		= mod:NewSpecialWarningInterrupt(96435)
 
-local timerTears	= mod:NewCastTimer(6, 96435)
-local timerLash		= mod:NewTargetTimer(10, 96423)
+local timerTears		= mod:NewCastTimer(6, 96435)
+local timerLash			= mod:NewTargetTimer(10, 96423)
 local timerWaveAgony	= mod:NewCDTimer(32, 96457)
-local timerRavage	= mod:NewTargetTimer(10, 96592)
+local timerRavage		= mod:NewTargetTimer(10, 96592)
 
 local phase2warned = false
 
@@ -39,7 +39,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		warnTears:Show()
 		specWarnTears:Show(args.sourceName)
 		timerTears:Start()
-	elseif args:IsSpellID(96423, 96958) then -- unconfirmed in mop
+	elseif args:IsSpellID(96423) then -- unconfirmed in mop
 		warnLash:Show(args.destName)
 		timerLash:Start(args.destName)
 	elseif args:IsSpellID(96592) then

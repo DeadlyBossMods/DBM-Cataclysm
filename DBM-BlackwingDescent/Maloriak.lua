@@ -134,7 +134,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(77699, 92978, 92979, 92980) then
+	if args:IsSpellID(77699) then
 		flashFreezeTargets[#flashFreezeTargets + 1] = args.destName
 		if mod:IsDifficulty("heroic10", "heroic25") then
 			specWarnFlashFreeze:Show(args.destName)
@@ -145,7 +145,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 		self:Unschedule(showFlashFreezeWarning)
 		self:Schedule(0.3, showFlashFreezeWarning)
-	elseif args:IsSpellID(77760, 92975, 92976, 92977) then
+	elseif args:IsSpellID(77760) then
 		bitingChillTargets[#bitingChillTargets + 1] = args.destName
 		if self.Options.BitingChillIcon then
 			self:SetIcon(args.destName, bitingChillIcon)
@@ -156,10 +156,10 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 		self:Unschedule(showBitingChillWarning)
 		self:Schedule(0.3, showBitingChillWarning)
-	elseif args:IsSpellID(77912, 92965, 92966, 92967) and not args:IsDestTypePlayer() then
+	elseif args:IsSpellID(77912) and not args:IsDestTypePlayer() then
 		warnRemedy:Show()
 		specWarnRemedy:Show(args.destName)
-	elseif args:IsSpellID(77786, 92971, 92972, 92973) then
+	elseif args:IsSpellID(77786) then
 		warnConsumingFlames:Show(args.destName)
 		timerConsumingFlames:Start(args.destName)
 		if self.Options.ConsumingFlamesIcon then
@@ -171,21 +171,21 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif args:IsSpellID(77615) and self:AntiSpam(3, 1) then
 		warnDebilitatingSlime:Show()
 		timerDebilitatingSlime:Start()
-	elseif args:IsSpellID(92930, 92986, 92987, 92988) and args:IsPlayer() and self:AntiSpam(3, 2) then
+	elseif args:IsSpellID(92930) and args:IsPlayer() and self:AntiSpam(3, 2) then
 		specWarnSludge:Show()
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(77699, 92978, 92979, 92980) then
+	if args:IsSpellID(77699) then
 		if self.Options.FlashFreezeIcon then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args:IsSpellID(77760, 92975, 92976, 92977) then
+	elseif args:IsSpellID(77760) then
 		if self.Options.BitingChillIcon then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args:IsSpellID(77786, 92971, 92972, 92973) then
+	elseif args:IsSpellID(77786) then
 		if self.Options.ConsumingFlamesIcon then
 			self:SetIcon(args.destName, 0)
 		end
@@ -234,7 +234,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(77679, 92968, 92969, 92970) then
+	if args:IsSpellID(77679) then
 		warnScorchingBlast:Show()
 		timerScorchingBlast:Start()
 	end
@@ -296,7 +296,7 @@ function mod:RAID_BOSS_EMOTE(msg)
 			DBM.RangeCheck:Hide()
 		end
 		if self.Options.SetTextures and GetCVarBool("projectedTextures") then
-			CVAR = true--If projected was on when we entered dark phase, because if it was NOT on, we don't want to turn it back on later.
+			CVAR = true
 			SetCVar("projectedTextures", 0)
 		end
 	end

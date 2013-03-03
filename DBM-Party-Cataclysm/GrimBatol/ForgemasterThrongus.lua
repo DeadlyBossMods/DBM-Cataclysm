@@ -32,16 +32,16 @@ function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpellID(74981) then
 		warnDualBlades:Show()
 		timerDualBlades:Start()
-	elseif args:IsSpellID(75007, 90729) then
+	elseif args:IsSpellID(75007) then
 		warnEncumbered:Show()
 		timerEncumbered:Start()
 	elseif args:IsSpellID(74908, 76481) then
 		warnPhalanx:Show()
 		timerPhalanx:Start()
-	elseif args:IsSpellID(75056, 90756) then
+	elseif args:IsSpellID(75056) then
 		warnImpalingSlam:Show(args.destName)
 		timerImpalingSlam:Start(args.destName)
-	elseif args:IsSpellID(74976, 90737) and self:AntiSpam(10) then
+	elseif args:IsSpellID(74976) and self:AntiSpam(10) then
 		warnDisorientingRoar:Show()
 	elseif args:IsSpellID(74987) and args:IsPlayer() then
 		specWarnCaveIn:Show()

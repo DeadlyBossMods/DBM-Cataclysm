@@ -64,7 +64,7 @@ end
 function mod:SPELL_AURA_APPLIED_DOSE(args)
 	if args:IsSpellID(87683) then
 		warnVengeance:Show()
-	elseif args:IsSpellID(83908, 86158, 86157, 86159) then
+	elseif args:IsSpellID(83908) then
 		timerMalevolentStrike:Start(args.destName)
 		if args.amount % 4 == 0 or args.amount >= 10 then		-- warn every 4th stack and every stack if 10 or more
 			warnMalevolentStrike:Show(args.destName, args.amount)
@@ -76,7 +76,7 @@ function mod:SPELL_AURA_APPLIED_DOSE(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(83710, 86169, 86170, 86171) and self:AntiSpam(6) then
+	if args:IsSpellID(83710) and self:AntiSpam(6) then
 		warnFuriousRoar:Show()
 		timerFuriousRoar:Cancel()--We Cancel any scheduled roar timers before doing anything else.
 		timerFuriousRoar:Start()--And start a fresh one.
@@ -84,7 +84,7 @@ function mod:SPELL_CAST_START(args)
 	elseif args:IsSpellID(83707) then
 		warnBreath:Show()
 		timerBreathCD:Start()
-	elseif args:IsSpellID(83703, 86166, 86167, 86168) then
+	elseif args:IsSpellID(83703) then
 		warnShadowNova:Show()
 		specWarnShadowNova:Show(args.sourceName)
 		timerNovaCD:Start()

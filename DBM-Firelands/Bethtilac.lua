@@ -72,7 +72,7 @@ end
 function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpellID(99506) then--Applied debuff after cast. Used to announce special warnings and start target timer, only after application confirmed and not missed.
 		timerWidowKiss:Start(args.destName)
-	elseif args:IsSpellID(99526, 99559) and args:IsDestTypePlayer() then--99526 is on player, 99559 is on drone, leaving both for now with a filter, may remove 99559 and filter later.
+	elseif args:IsSpellID(99526) then--99526 is on player, 99559 is on drone
 		warnFixate:Show(args.destName)
 		timerFixate:Start(args.destName)
 		if args:IsPlayer() then
@@ -128,16 +128,16 @@ function mod:SPELL_CAST_SUCCESS(args)
 			specWarnTouchWidowKissOther:Show(args.destName)
 		end
 	--Phase 1 ember flares. Only show for people who are actually up top.
-	elseif args:IsSpellID(98934, 100648, 100834, 100835) and (self:GetUnitCreatureId("target") == 52498 or self:GetBossTarget(52498) == DBM:GetUnitFullName("target")) then
+	elseif args:IsSpellID(98934) and (self:GetUnitCreatureId("target") == 52498 or self:GetBossTarget(52498) == DBM:GetUnitFullName("target")) then
 		timerEmberFlareCD:Start()
 	--Phase 2 ember flares. Show for everyone
-	elseif args:IsSpellID(99859, 100649, 100935, 100936) then
+	elseif args:IsSpellID(99859) then
 		timerEmberFlareCD:Start()
 	end
 end
 
-function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
-	if (spellId == 99278 or spellId == 101133) and destGUID == UnitGUID("player") and self:AntiSpam(3) then
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
+	if spellId == 99278 and destGUID == UnitGUID("player") and self:AntiSpam(3) then
 		specWarnVolatilePoison:Show()
 	end
 end

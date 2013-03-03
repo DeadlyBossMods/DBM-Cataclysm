@@ -35,7 +35,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(43303, 97490) then -- unconfirmed in mop
+	if args:IsSpellID(43303) then
 		warnShock:Show(args.destName)
 		timerShock:Show(args.destName)
 	elseif args:IsSpellID(43139) then
@@ -45,16 +45,16 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(43303, 97490) then -- unconfirmed in mop
+	if args:IsSpellID(43303)
 		timerShock:Cancel(args.destName)
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(43302, 97492) then -- unconfirmed in mop
+	if args:IsSpellID(43302) then
 		warnTotemLighting:Show()
 		specWarnTotem:Show()
-	elseif args:IsSpellID(97499, 97500) then -- unconfirmed in mop
+	elseif args:IsSpellID(97499) then
 		warnTotemWater:Show()
 		specWarnTotemWater:Show()
 	end

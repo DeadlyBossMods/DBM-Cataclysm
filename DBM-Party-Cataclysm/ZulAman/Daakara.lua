@@ -39,9 +39,6 @@ mod:AddBoolOption("ThrowIcon", false)
 mod:AddBoolOption("ClawRageIcon", true)
 mod:AddBoolOption("InfoFrame")
 
-function mod:OnCombatStart(delay)
-end
-
 function mod:OnCombatEnd()
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Hide()
@@ -49,7 +46,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(43093, 97639) then -- unconfirmed in mop
+	if args:IsSpellID(43093) then
 		warnThrow:Show(args.destName)
 		timerThrow:Start()
 		if self.Options.ThrowIcon then
@@ -57,7 +54,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 	elseif args:IsSpellID(17207) then
 		warnWhirlwind:Show()
-	elseif args:IsSpellID(97672) then
+	elseif args:IsSpellID(43150) then
 		warnClawRage:Show(args.destName)
 		if self.Options.ClawRageIcon then
 			self:SetIcon(args.destName, 8, 5)
@@ -71,7 +68,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(43093, 97639) and mod.Options.ThrowIcon then -- unconfirmed in mop
+	if args:IsSpellID(43093) and self.Options.ThrowIcon then
 		self:SetIcon(args.destName, 0)
 	elseif args:IsSpellID(42594) then--Bear
 		timerSurgeCD:Cancel()
@@ -122,8 +119,8 @@ function mod:SPELL_CAST_SUCCESS(args)
 	end
 end
 
-function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
-	if (spellId == 43217 or spellId == 97682) and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then -- unconfirmed in mop
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
+	if spellId == 43217 and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then
 		specWarnBurn:Show()
 	end
 end

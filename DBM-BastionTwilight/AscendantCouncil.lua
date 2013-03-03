@@ -207,14 +207,10 @@ end
 
 -- copyied from twins.lua
 local shieldValues = {
-	[82631] = 500000,
-	[92512] = 1500000,
-	[92513] = 700000,
-	[92514] = 2000000,
-	[83718] = 500000,
-	[92541] = 1650000,
-	[92542] = 650000,
-	[92543] = 2100000,
+	[3] = 500000,
+	[4] = 1500000,
+	[5] = 700000,
+	[6] = 2000000,
 }
 local showShieldHealthBar, hideShieldHealthBar
 do
@@ -292,7 +288,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(82772, 92503, 92504, 92505) then
+	if args:IsSpellID(82772) then
 		frozenCount = frozenCount + 1
 		frozenTargets[#frozenTargets + 1] = args.destName
 		self:Unschedule(showFrozenWarning)
@@ -344,19 +340,16 @@ function mod:SPELL_AURA_APPLIED(args)
 		if self:GetUnitCreatureId("target") == 43686 or self:GetBossTarget(43686) == DBM:GetUnitFullName("target") then--Warn if the boss casting it is your target, OR your target is the person its being cast on.
 			warnFlameTorrent:Show()
 		end
-	elseif args:IsSpellID(82631, 92512, 92513, 92514) then--Aegis of Flame
+	elseif args:IsSpellID(82631) then--Aegis of Flame
 		local shieldname = GetSpellInfo(82631)
+		local _, _, diff = GetInstanceInfo()
 		warnAegisFlame:Show()
 		specWarnAegisFlame:Show()
-		showShieldHealthBar(self, args.destGUID, shieldname, shieldValues[args.spellId] or 0)
+		showShieldHealthBar(self, args.destGUID, shieldname, shieldValues[diff] or 0)
 		self:Schedule(20, hideShieldHealthBar)
---[[	elseif args:IsSpellID(83718, 92541, 92542, 92543) then--Harden Skin (doesn't work, dumb thing doesn't use absorb events it tracks as damage done to boss, even though the boss isn't taking damage, shield is.
-		local shieldname = GetSpellInfo(92543)
-		showShieldHealthBar(self, args.destGUID, shieldname, shieldValues[args.spellId] or 0)
-		self:Schedule(30, hideShieldHealthBar)--]]
 	elseif args:IsSpellID(82762) and args:IsPlayer() then
 		specWarnWaterLogged:Show()
-	elseif args:IsSpellID(84948, 92486, 92487, 92488) then
+	elseif args:IsSpellID(84948) then
 		gravityCrushTargets[#gravityCrushTargets + 1] = args.destName
 		timerGravityCrushCD:Start()
 		if self.Options.GravityCrushIcon then
@@ -411,7 +404,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REFRESH(args)--We do not combine refresh with applied cause it causes issues with burning blood/heart of ice.
-	if args:IsSpellID(82772, 92503, 92504, 92505) then
+	if args:IsSpellID(82772) then
 		frozenCount = frozenCount + 1
 		frozenTargets[#frozenTargets + 1] = args.destName
 		self:Unschedule(showFrozenWarning)
@@ -443,7 +436,7 @@ function mod:SPELL_AURA_REFRESH(args)--We do not combine refresh with applied ca
 		end
 	elseif args:IsSpellID(82762) and args:IsPlayer() then
 		specWarnWaterLogged:Show()
-	elseif args:IsSpellID(84948, 92486, 92487, 92488) then
+	elseif args:IsSpellID(84948) then
 		gravityCrushTargets[#gravityCrushTargets + 1] = args.destName
 		timerGravityCrushCD:Start()
 		if self.Options.GravityCrushIcon then
@@ -505,7 +498,7 @@ function mod:SPELL_AURA_REMOVED(args)
 		if self.Options.BurningBloodIcon then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args:IsSpellID(82772, 92503, 92504, 92505) then
+	elseif args:IsSpellID(82772) then
 		frozenCount = frozenCount - 1
 		if frozenCount == 0 then
 			timerFrozen:Cancel()
@@ -518,7 +511,7 @@ function mod:SPELL_AURA_REMOVED(args)
 		if self.Options.LightningRodIcon then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args:IsSpellID(84948, 92486, 92487, 92488) then
+	elseif args:IsSpellID(84948) then
 		timerGravityCrush:Cancel(args.destName)
 		if self.Options.GravityCrushIcon then
 			self:SetIcon(args.destName, 0)
@@ -538,27 +531,24 @@ function mod:SPELL_AURA_REMOVED(args)
 		if self.Options.GravityCoreIcon then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args:IsSpellID(82631, 92512, 92513, 92514) then	-- Shield Removed
+	elseif args:IsSpellID(82631) then	-- Shield Removed
 		self:Unschedule(hideShieldHealthBar)
 		hideShieldHealthBar()
 		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43686 or self:GetUnitCreatureId("focus") == 43686) or not self:IsMelee() then
 			specWarnRisingFlames:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
 		end
---[[	elseif args:IsSpellID(83718, 92541, 92542, 92543) then--Harden Skin Removed
-		self:Unschedule(hideShieldHealthBar)
-		hideShieldHealthBar()-]]
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(82746, 92506, 92507, 92508) then
+	if args:IsSpellID(82746) then
 		timerGlaciate:Start()
 		if self:GetUnitCreatureId("target") == 43687 then--Only warn if targeting/tanking this boss.
 			warnGlaciate:Show()
 			specWarnGlaciate:Show()
 			soundGlaciate:Play()
 		end
-	elseif args:IsSpellID(82752, 92509, 92510, 92511) then
+	elseif args:IsSpellID(82752) then
 		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43687 or self:GetUnitCreatureId("focus") == 43687) or not self:IsMelee() then
 			specWarnHydroLance:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
 		end
@@ -570,13 +560,13 @@ function mod:SPELL_CAST_START(args)
 		warnEruption:Show()
 		specWarnEruption:Show()
 		timerEruptionCD:Start()
-	elseif args:IsSpellID(83718, 92541, 92542, 92543) then
+	elseif args:IsSpellID(83718) then
 		warnHardenSkin:Show()
 		timerHardenSkinCD:Start()
 		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43689 or self:GetUnitCreatureId("focus") == 43689) or not self:IsMelee() then
 			specWarnHardenedSkin:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
 		end
-	elseif args:IsSpellID(83565, 92544, 92545, 92546) then
+	elseif args:IsSpellID(83565) then
 		infoFrameUpdated = false
 		warnQuake:Show()
 		timerQuakeCD:Cancel()
@@ -586,11 +576,11 @@ function mod:SPELL_CAST_START(args)
 	elseif args:IsSpellID(83087) then
 		warnDisperse:Show()
 		timerDisperse:Start()
-	elseif args:IsSpellID(83070, 92454, 92455, 92456) then
+	elseif args:IsSpellID(83070) then
 		warnLightningBlast:Show()
 		timerLightningBlast:Start()
 		specWarnLightningBlast:Show()
-	elseif args:IsSpellID(83067, 92469, 92470, 92471) then
+	elseif args:IsSpellID(83067) then
 		infoFrameUpdated = false
 		warnThundershock:Show()
 		timerThundershockCD:Cancel()
@@ -615,50 +605,6 @@ function mod:SPELL_CAST_SUCCESS(args)
 		timerBurningBloodCD:Start()
 	end
 end
-
---[[
-function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if msg == L.Switch or msg:find(L.Switch) then
-		updateBossFrame(2)
-		timerWaterBomb:Cancel()
-		timerGlaciate:Cancel()
-		timerAegisFlame:Cancel()
-		timerBurningBloodCD:Cancel()
-		timerHeartIceCD:Cancel()
-		timerGravityCoreCD:Cancel()
-		timerStaticOverloadCD:Cancel()
-		timerHydroLanceCD:Cancel()
-		if self:IsDifficulty("heroic10", "heroic25") then
-			timerFrostBeaconCD:Start(25)
-			timerFlameStrikeCD:Start(28)
-		end
-		timerQuakeCD:Start()
-		self:Schedule(3, checkSearingWinds)
-	elseif msg == L.Phase3 or msg:find(L.Phase3) then
-		updateBossFrame(3)
-		timerQuakeCD:Cancel()
-		timerThundershockCD:Cancel()
-		timerHardenSkinCD:Cancel()
-		timerEruptionCD:Cancel()
-		timerDisperse:Cancel()
-		timerTransition:Start()
-		if self:IsDifficulty("heroic10", "heroic25") then
-			timerFlameStrikeCD:Cancel()
-			self:Schedule(14, function() timerFrostBeaconCD:Cancel() end) -- Frost Beacon appears during phase transition, but not works. Anyway, to prevent spam, actually cancel timers when phase 3 starts.
-		end
-		timerLavaSeedCD:Start(30)
-		timerGravityCrushCD:Start(43)
-		self:Unschedule(checkSearingWinds)
-		self:Unschedule(checkGrounded)
-		if self.Options.RangeFrame then
-			DBM.RangeCheck:Show(10)
-		end
-		if self.Options.InfoFrame then
-			DBM.InfoFrame:Hide()
-		end
-	end
-end
---]]
 
 function mod:RAID_BOSS_EMOTE(msg)
 	if (msg == L.Quake or msg:find(L.Quake)) and phase == 2 then

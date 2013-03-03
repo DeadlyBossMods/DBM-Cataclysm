@@ -31,7 +31,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(76028, 93586) then
+	if args:IsSpellID(76028) then
 		warnTerrifyingRoar:Show()
 		timerTerrifyingRoarCD:Start()
 	end

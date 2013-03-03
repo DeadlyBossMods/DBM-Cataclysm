@@ -93,7 +93,7 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(93362, 93383) then
+	if args:IsSpellID(93362) then
 		self:ScheduleMethod(0.2, "FlameStrikeTarget", args.sourceGUID)
 		self:SetFlamestrike()
 	elseif args:IsSpellID(93377) then
@@ -102,8 +102,8 @@ function mod:SPELL_CAST_START(args)
 	end
 end
 
-function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
-	if (spellId == 93383 or spellId == 93362) and destGUID == UnitGUID("player") and self:AntiSpam() then
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
+	if spellId == 93362 and destGUID == UnitGUID("player") and self:AntiSpam() then
 		specWarnFlameStrike:Show()
 	end
 end

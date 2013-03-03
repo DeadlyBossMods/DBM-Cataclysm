@@ -193,7 +193,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(90125, 92944) then
+	if args:IsSpellID(90125) then
 		warnBreath:Show()
 		specWarnBreath:Show()
 		timerBreathCD:Start()
@@ -206,10 +206,10 @@ end
 function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpellID(90045, 92946) then
 		specWarnIndomitable:Show()
-	elseif args:IsSpellID(89421, 92955) then--Cast wracks (10,25)
+	elseif args:IsSpellID(89421) then--Cast wracks (10,25)
 		warnWrack:Show(args.destName)
 		timerWrack:Start()
-	elseif args:IsSpellID(89435, 92956) then -- jumped wracks (10,25)
+	elseif args:IsSpellID(89435) then -- jumped wracks (10,25)
 		wrackTargets[#wrackTargets + 1] = args.destName
 		self:Unschedule(showWrackWarning)
 		self:Schedule(0.3, showWrackWarning)
@@ -255,8 +255,8 @@ function mod:SPELL_AURA_REMOVED(args)
 	end
 end
 
-function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
-	if (spellId == 92954 or spellId == 92959) and not orbWarned then
+function mod:SPELL_DAMAGE(_, _, _, _, _, _, _, _, spellId)
+	if spellId == 92954 and not orbWarned then
 		orbWarned = true
 		showOrbWarning("damage")
 	end

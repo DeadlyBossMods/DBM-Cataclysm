@@ -23,6 +23,7 @@ local timerAstralRain	= mod:NewBuffActiveTimer(8, 74134)
 local timerSupernova	= mod:NewCastTimer(3, 74136)
 
 local warnedSplit
+
 function mod:OnCombatStart(delay)
 	warnedSplit = false
 end
@@ -31,7 +32,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpellID(74134) then--74365?
 		warnAstralRain:Show()
 		timerAstralRain:Start()
-	elseif args:IsSpellID(74133, 90760) then
+	elseif args:IsSpellID(74133) then
 		warnVeilSky:Show()
 	end
 end

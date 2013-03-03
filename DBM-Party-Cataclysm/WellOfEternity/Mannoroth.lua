@@ -21,6 +21,7 @@ local timerFelStormCD			= mod:NewCDTimer(29, 103888)
 local timerTyrandeHelp			= mod:NewTimer(82, "TimerTyrandeHelp", 102472)
 
 local felstorms = 0
+
 function mod:OnCombatStart(delay)
 	timerFelStormCD:Start(15-delay)
 	timerTyrandeHelp:Start(-delay)
