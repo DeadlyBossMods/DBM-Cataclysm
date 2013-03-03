@@ -327,7 +327,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(99399, 101238, 101239, 101240) then
+	if args:IsSpellID(99399) then
 		warnBurningWound:Show(args.destName, args.amount or 1)
 		if (args.amount or 0) >= 4 and args:IsPlayer() then
 			specWarnBurningWound:Show(args.amount)
@@ -344,7 +344,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			timerFlamesCD:Start(60)--60 second CD in phase 2
 		end
-	elseif args:IsSpellID(100604, 100997) then
+	elseif args:IsSpellID(100604) then
 		warnEmpoweredSulf:Show(args.spellName)
 		specWarnEmpoweredSulf:Show()
 		soundEmpoweredSulf:Play()
@@ -357,13 +357,13 @@ end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(99399, 101238, 101239, 101240) then
+	if args:IsSpellID(99399) then
 		timerBurningWound:Cancel(args.destName)
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(98710, 100890, 100891, 100892) then
+	if args:IsSpellID(98710) then
 		firstSmash = true
 		warnSulfurasSmash:Show()
 		specWarnSulfurasSmash:Show()
@@ -395,7 +395,7 @@ function mod:SPELL_CAST_START(args)
 				end
 			end
 		end
-	elseif args:IsSpellID(98951, 100883, 100884, 100885) or args:IsSpellID(98952, 100877, 100878, 100879) or args:IsSpellID(98953, 100880, 100881, 100882) then--This has 12 spellids, 1 for each possible location for hammer.
+	elseif args:IsSpellID(98951, 98952, 98953) then--This has 3 spellids, 1 for each possible location for hammer.
 		sonsLeft = 8
 		phase = phase + 1
 		self:Unschedule(warnSeeds)
@@ -415,43 +415,35 @@ function mod:SPELL_CAST_START(args)
 		specWarnSplittingBlow:Show()
 		timerInvokeSons:Start()
 		timerLavaBoltCD:Start(17.3)--9.3 seconds + cast time for splitting blow
-		--In 5.0 they remove all but 98951, 98952, 98953
-		if args:IsSpellID(98951, 100883, 100884, 100885) then--West
+		if args:IsSpellID(98951) then--West
 			warnSplittingBlow:Show(args.spellName, L.West)
-		elseif args:IsSpellID(98952, 100877, 100878, 100879) then--Middle
+		elseif args:IsSpellID(98952) then--Middle
 			warnSplittingBlow:Show(args.spellName, L.Middle)
-		elseif args:IsSpellID(98953, 100880, 100881, 100882) then--East
+		elseif args:IsSpellID(98953) then--East
 			warnSplittingBlow:Show(args.spellName, L.East)
 		end
-	elseif args:IsSpellID(99172, 100175) or args:IsSpellID(99235, 100178) or args:IsSpellID(99236, 100181) then--Another scripted spell with a ton of spellids based on location of room. heroic purposely excluded do to different mechanic linked to World of Flames that will be used instead.
+	elseif args:IsSpellID(99172, 99235, 99236) then--Another scripted spell with a ton of spellids based on location of room.
 		if phase == 3 then
 			timerFlamesCD:Start(30)--30 second CD in phase 3
 		else
 			timerFlamesCD:Start()--40 second CD in phase 2
 		end
-		--North: 99172 (10N), 100175 (25N), 100177 (25H)
-		--Middle: 99235 (10N), 100178 (25N), 100180 (25H)
-		--South: 99236 (10N), 100181 (25N), 100183 (25H)
-		if args:IsSpellID(99172, 100175) then--North
+		--North: 99172
+		--Middle: 99235
+		--South: 99236
+		if args:IsSpellID(99172) then--North
+			if not self.Options.WarnEngulfingFlameHeroic and self:IsDifficulty("heroic10", "heroic25") then return end
 			warnEngulfingFlame:Show(args.spellName, L.North)
 			if self:IsMelee() or seedsActive then--Always warn melee classes if it's in melee (duh), warn everyone if seeds are active since 90% of strats group up in melee
 				specWarnEngulfing:Show()
 			end
-		elseif args:IsSpellID(99235, 100178) then--Middle
+		elseif args:IsSpellID(99235) then--Middle
+			if not self.Options.WarnEngulfingFlameHeroic and self:IsDifficulty("heroic10", "heroic25") then return end
 			warnEngulfingFlame:Show(args.spellName, L.Middle)
-		elseif args:IsSpellID(99236, 100181) then--South
+		elseif args:IsSpellID(99236) then--South
+			if not self.Options.WarnEngulfingFlameHeroic and self:IsDifficulty("heroic10", "heroic25") then return end
 			warnEngulfingFlame:Show(args.spellName, L.South)
 		end
-	--Heroic Engulfing Flames below, spammy do to the mechanic difference between heroic and normal thus optional under a different option.
-	elseif args:IsSpellID(100176, 100177) and self.Options.WarnEngulfingFlameHeroic then
-		warnEngulfingFlame:Show(args.spellName, L.North)
-		if self:IsMelee() then--Always warn melee classes if it's in melee (duh), warn everyone if seeds are active since 90% of strats group up in melee
-			specWarnEngulfing:Show()
-		end
-	elseif args:IsSpellID(100179, 100180) and self.Options.WarnEngulfingFlameHeroic then
-		warnEngulfingFlame:Show(args.spellName, L.Middle)
-	elseif args:IsSpellID(100182, 100183) and self.Options.WarnEngulfingFlameHeroic then
-			warnEngulfingFlame:Show(args.spellName, L.South)
 	elseif args:IsSpellID(100646) then
 		warnEntrappingRoots:Show()
 		timerEntrapingRootsCD:Start()
@@ -462,7 +454,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(98237, 100383, 100384, 100387) and not args:IsSrcTypePlayer() then -- can be stolen which triggers a new SPELL_CAST_SUCCESS event...
+	if args:IsSpellID(98237) and not args:IsSrcTypePlayer() then -- can be stolen which triggers a new SPELL_CAST_SUCCESS event...
 		warnHandRagnaros:Show()
 		timerHandRagnaros:Start()
 	elseif args:IsSpellID(98164) then	--98164 confirmed
@@ -474,7 +466,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 			DBM.InfoFrame:SetHeader(L.HealthInfo)
 			DBM.InfoFrame:Show(5, "health", 100000)
 		end
-	elseif args:IsSpellID(98263, 100113, 100114, 100115) and self:AntiSpam(4, 1) then
+	elseif args:IsSpellID(98263) and self:AntiSpam(4, 1) then
 		warnWrathRagnaros:Show()
 		--Wrath of Ragnaros has a 25 second cd if 2 happen before first smash, otherwise it's 30.
 		--In this elaborate function we count the wraths before first smash
@@ -491,7 +483,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 				timerWrathRagnaros:Start(36)--First smash didn't happen yet, and first wrath happened later then 5 seconds into pull, 2nd smash will be delayed by sulfuras smash.
 			end
 		end
-	elseif args:IsSpellID(100460, 100981, 100982, 100983) then	-- Blazing heat
+	elseif args:IsSpellID(100460) then	-- Blazing heat
 		warnBlazingHeat:Show(args.destName)
 		timerBlazingHeatCD:Start(args.sourceGUID)--args.sourceGUID is to support multiple cds when more then 1 is up at once
 		if args:IsPlayer() then
@@ -530,23 +522,23 @@ function mod:SPELL_CAST_SUCCESS(args)
 	end
 end
 
-function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
-	if (spellId == 98518 or spellId == 100252 or spellId == 100253 or spellId == 100254) and not elementalsGUID[sourceGUID] then--Molten Inferno. elementals cast this on spawn.
+function mod:SPELL_DAMAGE(sourceGUID, _, _, _, destGUID, _, _, _, spellId)
+	if spellId == 98518 and not elementalsGUID[sourceGUID] then--Molten Inferno. elementals cast this on spawn.
 		elementalsGUID[sourceGUID] = true--Add unit GUID's to ignore
 		elementalsSpawned = elementalsSpawned + 1--Add up the total elementals
-	elseif (spellId == 98175 or spellId == 100106 or spellId == 100107 or spellId == 100108) and not magmaTrapGUID[sourceGUID] then--Magma Trap Eruption. We use it to count traps that have been set off
+	elseif spellId == 98175 and not magmaTrapGUID[sourceGUID] then--Magma Trap Eruption. We use it to count traps that have been set off
 		magmaTrapGUID[sourceGUID] = true--Add unit GUID's to ignore
 		magmaTrapSpawned = magmaTrapSpawned - 1--Add up total traps
 		if magmaTrapSpawned == 0 and self.Options.InfoHealthFrame and not seedsActive then--All traps are gone hide the health frame.
 			DBM.InfoFrame:Hide()
 		end
-	elseif (spellId == 98870 or spellId == 100122 or spellId == 100123 or spellId == 100124) and destGUID == UnitGUID("player") and self:AntiSpam(5, 2) then
+	elseif spellId == 98870 and destGUID == UnitGUID("player") and self:AntiSpam(5, 2) then
 		specWarnScorchedGround:Show()
-	elseif (spellId == 99144 or spellId == 100303 or spellId == 100304 or spellId == 100305) and destGUID == UnitGUID("player") and self:AntiSpam(5, 2) then
+	elseif spellId == 99144 and destGUID == UnitGUID("player") and self:AntiSpam(5, 2) then
 		specWarnBlazingHeatMV:Show()
-	elseif (spellId == 100941 or spellId == 100998) and destGUID == UnitGUID("player") and self:AntiSpam(5, 2) and not UnitBuff("player", deluge) then
+	elseif spellId == 100941 and destGUID == UnitGUID("player") and self:AntiSpam(5, 2) and not UnitBuff("player", deluge) then
 		specWarnDreadFlame:Show()
-	elseif (spellId == 98981 or spellId == 100289 or spellId == 100290 or spellId == 100291) and self:AntiSpam(3, 1) then--Reuse anti spam ID 1 again because lava bolts and wraths are never near eachother.
+	elseif spellId == 98981 and self:AntiSpam(3, 1) then--Reuse anti spam ID 1 again because lava bolts and wraths are never near eachother.
 		timerLavaBoltCD:Start()
 	end
 end

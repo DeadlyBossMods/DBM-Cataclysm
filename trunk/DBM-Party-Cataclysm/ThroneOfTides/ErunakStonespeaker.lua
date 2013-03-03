@@ -69,9 +69,9 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif args:IsSpellID(76165) then
 		warnEmberstrike:Show(args.destName)
 		timerMagmaSplash:Start(args.destName)
-	elseif args:IsSpellID(76207, 91413) then
+	elseif args:IsSpellID(76207) then
 		warnEnslave:Show(args.destName)
-	elseif args:IsSpellID(76307, 91492) then
+	elseif args:IsSpellID(76307) then
 		timerAbsorbMagic:Start()
 	elseif args:IsSpellID(76339) then
 		warnAgony:Show()
@@ -97,13 +97,13 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(76171, 91412) then
+	if args:IsSpellID(76171) then
 		warnLavaBolt:Show()
 		timerLavaBolt:Start()
 		specWarnLavaBolt:Show(args.sourceName)
 	elseif args:IsSpellID(84931) then
 		self:ScheduleMethod(0.1, "EarthShardsTarget")
-	elseif args:IsSpellID(76307, 91492) then
+	elseif args:IsSpellID(76307) then
 		warnAbsorbMagic:Show(76307)
 		specWarnAbsorbMagic:Show()
 	end

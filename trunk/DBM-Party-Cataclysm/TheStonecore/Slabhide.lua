@@ -50,7 +50,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
-	if (spellId == 80800 or spellId == 80801 or spellId == 92657 or spellId == 92658) and destGUID == UnitGUID("player") and self:AntiSpam() then
+	if (spellId == 80800 or spellId == 80801) and destGUID == UnitGUID("player") and self:AntiSpam() then
 		specWarnEruption:Show()
 	end
 end

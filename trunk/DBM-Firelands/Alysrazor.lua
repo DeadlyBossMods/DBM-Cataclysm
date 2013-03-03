@@ -26,12 +26,12 @@ mod:RegisterEvents(
 	"SPELL_CAST_START"
 )
 
-local warnMolting		= mod:NewSpellAnnounce(99464, 3)
-local warnFirestormSoon	= mod:NewPreWarnAnnounce(100744, 10, 3)
-local warnFirestorm		= mod:NewSpellAnnounce(100744, 4)
-local warnCataclysm		= mod:NewCastAnnounce(102111, 3)
-local warnPhase			= mod:NewAnnounce("WarnPhase", 3, "Interface\\Icons\\Spell_Nature_WispSplode")
-local warnNewInitiate	= mod:NewAnnounce("WarnNewInitiate", 3, 61131)
+local warnMolting				= mod:NewSpellAnnounce(99464, 3)
+local warnFirestormSoon			= mod:NewPreWarnAnnounce(100744, 10, 3)
+local warnFirestorm				= mod:NewSpellAnnounce(100744, 4)
+local warnCataclysm				= mod:NewCastAnnounce(102111, 3)
+local warnPhase					= mod:NewAnnounce("WarnPhase", 3, "Interface\\Icons\\Spell_Nature_WispSplode")
+local warnNewInitiate			= mod:NewAnnounce("WarnNewInitiate", 3, 61131)
 
 local specWarnFirestorm			= mod:NewSpecialWarningSpell(100744, nil, nil, nil, true)
 local specWarnFieroblast		= mod:NewSpecialWarningInterrupt(101223)
@@ -39,20 +39,20 @@ local specWarnGushingWoundSelf	= mod:NewSpecialWarningYou(99308, false)
 local specWarnTantrum			= mod:NewSpecialWarningSpell(99362, mod:IsTank())
 local specWarnGushingWoundOther	= mod:NewSpecialWarningTarget(99308, false)
 
-local timerCombatStart		= mod:NewTimer(35.5, "TimerCombatStart", 2457)
-local timerFieryVortexCD	= mod:NewNextTimer(179, 99794)
-local timerMoltingCD		= mod:NewNextTimer(60, 99464)
-local timerCataclysm		= mod:NewCastTimer(5, 102111)--Heroic
-local timerCataclysmCD		= mod:NewCDTimer(31, 102111)--Heroic
-local timerFirestormCD		= mod:NewCDTimer(83, 100744)--Heroic
-local timerPhaseChange		= mod:NewTimer(33.5, "TimerPhaseChange", 99816)
-local timerHatchEggs		= mod:NewTimer(50, "TimerHatchEggs", 42471)
-local timerNextInitiate		= mod:NewTimer(32, "timerNextInitiate", 61131)
-local timerTantrum			= mod:NewBuffActiveTimer(10, 99362, nil, mod:IsTank())
-local timerSatiated			= mod:NewBuffActiveTimer(15, 99359, nil, mod:IsTank())
-local timerBlazingClaw		= mod:NewTargetTimer(15, 99844, nil, false)
+local timerCombatStart			= mod:NewTimer(35.5, "TimerCombatStart", 2457)
+local timerFieryVortexCD		= mod:NewNextTimer(179, 99794)
+local timerMoltingCD			= mod:NewNextTimer(60, 99464)
+local timerCataclysm			= mod:NewCastTimer(5, 102111)--Heroic
+local timerCataclysmCD			= mod:NewCDTimer(31, 102111)--Heroic
+local timerFirestormCD			= mod:NewCDTimer(83, 100744)--Heroic
+local timerPhaseChange			= mod:NewTimer(33.5, "TimerPhaseChange", 99816)
+local timerHatchEggs			= mod:NewTimer(50, "TimerHatchEggs", 42471)
+local timerNextInitiate			= mod:NewTimer(32, "timerNextInitiate", 61131)
+local timerTantrum				= mod:NewBuffActiveTimer(10, 99362, nil, mod:IsTank())
+local timerSatiated				= mod:NewBuffActiveTimer(15, 99359, nil, mod:IsTank())
+local timerBlazingClaw			= mod:NewTargetTimer(15, 99844, nil, false)
 
-local countdownFirestorm	= mod:NewCountdown(83, 100744)
+local countdownFirestorm		= mod:NewCountdown(83, 100744)
 
 mod:AddBoolOption("InfoFrame", false)
 
@@ -106,7 +106,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpellID(99362) and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and (args.sourceGUID == UnitGUID("targettarget") or args.sourceGUID == UnitGUID("focustargettarget"))) then--Only give warning if it's mob you're targeting and you're a tank, or you're targeting the tank it's on and he's targeting the bird.
 		specWarnTantrum:Show()
 		timerTantrum:Show()
-	elseif args:IsSpellID(99359, 100850, 100851, 100852) and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and (args.sourceGUID == UnitGUID("targettarget") or args.sourceGUID == UnitGUID("focustargettarget"))) then--^^ Same as above only with diff spell
+	elseif args:IsSpellID(99359) and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and (args.sourceGUID == UnitGUID("targettarget") or args.sourceGUID == UnitGUID("focustargettarget"))) then--^^ Same as above only with diff spell
 		if self:IsDifficulty("heroic10", "heroic25") then
 			timerSatiated:Start(10)
 		else
@@ -119,19 +119,19 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 	elseif args:IsSpellID(99432) then--Burnout applied (0 energy)
 		warnPhase:Show(3)
-	elseif args:IsSpellID(99844, 101729, 101730, 101731) and args:IsDestTypePlayer() then
+	elseif args:IsSpellID(99844) and args:IsDestTypePlayer() then
 		timerBlazingClaw:Start(args.destName)
 	end
 end
 
 function mod:SPELL_AURA_APPLIED_DOSE(args)
-	if args:IsSpellID(99844, 101729, 101730, 101731) and args:IsDestTypePlayer() then
+	if args:IsSpellID(99844) and args:IsDestTypePlayer() then
 		timerBlazingClaw:Start(args.destName)
 	end
 end
 
 function mod:SPELL_AURA_REFRESH(args)
-	if args:IsSpellID(99359, 100850, 100851, 100852) and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and args.sourceGUID == UnitGUID("targettarget")) then--^^ Same as above only with diff spell
+	if args:IsSpellID(99359) and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and args.sourceGUID == UnitGUID("targettarget")) then--^^ Same as above only with diff spell
 		if self:IsDifficulty("heroic10", "heroic25") then
 			timerSatiated:Start(10)
 		else
@@ -152,7 +152,7 @@ function mod:SPELL_AURA_REMOVED(args)
 		warnPhase:Show(4)
 	elseif args:IsSpellID(99362) and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and args.sourceGUID == UnitGUID("targettarget")) then
 		timerTantrum:Cancel()
-	elseif args:IsSpellID(99359, 100850, 100851, 100852) and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and args.sourceGUID == UnitGUID("targettarget")) then--^^ Same as above only with diff spell
+	elseif args:IsSpellID(99359) and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and args.sourceGUID == UnitGUID("targettarget")) then--^^ Same as above only with diff spell
 		timerSatiated:Cancel()
 	elseif args:IsSpellID(101731) then
 		timerBlazingClaw:Cancel(args.destName)
@@ -160,7 +160,7 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(101223, 101294, 101295, 101296) then
+	if args:IsSpellID(101223) then
 		if args.sourceGUID == UnitGUID("target") then
 			specWarnFieroblast:Show(args.sourceName)
 		end
@@ -186,7 +186,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(99464, 100698) and self:IsDifficulty("normal10", "normal25") then
+	if args:IsSpellID(99464) and self:IsDifficulty("normal10", "normal25") then
 		warnMolting:Show()
 		if moltCast < 2 then
 			timerMoltingCD:Start()

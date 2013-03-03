@@ -69,7 +69,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	end
 end
 
-function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
 	if spellId == 103653 and destGUID == UnitGUID("player") and self:AntiSpam(5) then
 		specwarnPurified:Show()
 	elseif spellId == 103775 and destGUID == UnitGUID("player") and self:AntiSpam(5) then

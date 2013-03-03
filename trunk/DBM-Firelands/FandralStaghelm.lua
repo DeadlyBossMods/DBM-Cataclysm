@@ -188,9 +188,9 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 	elseif args:IsSpellID(97235) then
 		warnFury:Show(args.destName, args.amount or 1)
-	elseif args:IsSpellID(98535, 100206, 100207, 100208) and args:IsPlayer() and not recentlyJumped then
+	elseif args:IsSpellID(98535) and args:IsPlayer() and not recentlyJumped then
 		specWarnLeapingFlames:Show()--You stood in the fire!
-	elseif args:IsSpellID(98584, 100209, 100210, 100211) and args:IsPlayer() then
+	elseif args:IsSpellID(98584) and args:IsPlayer() then
 		if (args.amount or 1) >= 4 then
 			specWarnOrb:Show(args.amount)--You stood in the fire!
 		end

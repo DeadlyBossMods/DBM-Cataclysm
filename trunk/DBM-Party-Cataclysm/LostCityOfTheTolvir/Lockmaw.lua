@@ -50,10 +50,10 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(81690, 89998) then
+	if args:IsSpellID(81690) then
 		warnScentBlood:Show(args.destName)
 		timerScentBlood:Start(args.destName)
-	elseif args:IsSpellID(81630, 90004) then
+	elseif args:IsSpellID(81630) then
 		poisonCount = poisonCount + 1
 		poisonTargets[#poisonTargets + 1] = args.destName
 		self:Unschedule(showPoisonWarning)
@@ -66,9 +66,9 @@ end
 mod.SPELL_AURA_REFRESH = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(81690, 89998) then
+	if args:IsSpellID(81690) then
 		timerScentBlood:Cancel(args.destName)
-	elseif args:IsSpellID(75861, 91079) then
+	elseif args:IsSpellID(75861) then
 		poisonCount = poisonCount - 1
 		if poisonCount == 0 then
 			timerPoison:Cancel()

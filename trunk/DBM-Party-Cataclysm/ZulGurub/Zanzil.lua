@@ -81,10 +81,3 @@ function mod:SPELL_CAST_START(args)
 		self:ScheduleMethod(0.2, "GazeTarget")
 	end
 end
-
---[[
-SPELL_AURA_APPLIED:  96316 - "Zanzil's Resurrection Elixir"
-19:25:47.165
-19:26:17.697
-19:26:48.624
---]]

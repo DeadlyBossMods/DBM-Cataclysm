@@ -169,7 +169,7 @@ function mod:SPELL_CAST_START(args)
 	elseif args:IsSpellID(108046) then
 		self:ScheduleMethod(0.2, "ShockwaveTarget")
 		timerShockwaveCD:Start()
-	elseif args:IsSpellID(110212, 110213) then
+	elseif args:IsSpellID(110212) then
 		warnTwilightBreath:Show()
 		timerTwilightBreath:Start()
 	elseif args:IsSpellID(108039) then

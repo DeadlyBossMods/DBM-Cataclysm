@@ -27,9 +27,6 @@ mod:AddBoolOption("RedLightGreenLight", true, "announce")
 local timerIceShards	= mod:NewBuffActiveTimer(5, 93527)
 local timerRedMix		= mod:NewBuffActiveTimer(10, 93689)
 
-function mod:OnCombatStart(delay)
-end
-
 function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpellID(93527) then
 		warnIceShards:Show()
@@ -51,9 +48,9 @@ end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(93505, 93702) then -- unconfirmed in mop
+	if args:IsSpellID(93505) then
 		warnFrostMix:Show()
-	elseif args:IsSpellID(93697, 93704) then -- unconfirmed in mop
+	elseif args:IsSpellID(93697) then
 		warnPoisonMix:Show()
 	end
 end

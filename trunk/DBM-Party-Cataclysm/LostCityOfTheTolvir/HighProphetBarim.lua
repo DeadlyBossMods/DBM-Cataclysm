@@ -16,18 +16,18 @@ mod:RegisterEventsInCombat(
 	"UNIT_DIED"
 )
 
-local warnPlagueAges		= mod:NewTargetAnnounce(82622, 3)
-local warnLashings		= mod:NewTargetAnnounce(82506, 3)
-local warnRepentance		= mod:NewSpellAnnounce(82320, 2)	-- kind of add phase
-local warnSoulSever		= mod:NewTargetAnnounce(82255, 3)
+local warnPlagueAges			= mod:NewTargetAnnounce(82622, 3)
+local warnLashings				= mod:NewTargetAnnounce(82506, 3)
+local warnRepentance			= mod:NewSpellAnnounce(82320, 2)	-- kind of add phase
+local warnSoulSever				= mod:NewTargetAnnounce(82255, 3)
 
-local timerPlagueAges		= mod:NewTargetTimer(9, 82622)
-local timerLashings		= mod:NewTargetTimer(20, 82506)
-local timerSoulSever		= mod:NewTargetTimer(4, 82255)
-local timerSoulSeverCD		= mod:NewCDTimer(11, 82255)
+local timerPlagueAges			= mod:NewTargetTimer(9, 82622)
+local timerLashings				= mod:NewTargetTimer(20, 82506)
+local timerSoulSever			= mod:NewTargetTimer(4, 82255)
+local timerSoulSeverCD			= mod:NewCDTimer(11, 82255)
 
-local specWarnHeavenFury	= mod:NewSpecialWarningMove(81942)
-local specWarnHallowedGround = mod:NewSpecialWarningMove(88814)
+local specWarnHeavenFury		= mod:NewSpecialWarningMove(81942)
+local specWarnHallowedGround 	= mod:NewSpecialWarningMove(88814)
 
 mod:AddBoolOption("BossHealthAdds")
 
@@ -43,7 +43,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(82622, 89997) then
+	if args:IsSpellID(82622) then
 		warnPlagueAges:Show(args.destName)
 		timerPlagueAges:Start(args.destName)
 	elseif args:IsSpellID(82506) then
@@ -60,22 +60,22 @@ function mod:SPELL_AURA_APPLIED(args)
 		warnSoulSever:Show(args.destName)
 		timerSoulSever:Start(args.destName)
 		timerSoulSeverCD:Start()
-	elseif args:IsSpellID(88814, 90010) and args:IsPlayer() and GetTime() - spamSIS > 5.5 then
+	elseif args:IsSpellID(88814) and args:IsPlayer() and GetTime() - spamSIS > 5.5 then
 		spamSIS = GetTime()
 		specWarnHallowedGround:Show()
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(82622, 89997) then
+	if args:IsSpellID(82622) then
 		timerPlagueAges:Cancel(args.destName)
 	elseif args:IsSpellID(82506) then
 		timerLashings:Cancel(args.destName)
 	end
 end
 
-function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
-	if (spellId == 81942 or spellId == 90040) and destGUID == UnitGUID("player") and GetTime() - spamSIS > 3 then
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
+	if spellId == 81942 and destGUID == UnitGUID("player") and GetTime() - spamSIS > 3 then
 		spamSIS = GetTime()
 		specWarnHeavenFury:Show()
 	end

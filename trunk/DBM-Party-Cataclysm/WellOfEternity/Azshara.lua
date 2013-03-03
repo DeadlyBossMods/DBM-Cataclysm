@@ -26,6 +26,7 @@ local timerObedienceCD	= mod:NewCDTimer(37, 103241)
 local timerAdds			= mod:NewTimer(36, "TimerAdds")
 
 local addsCount = 0
+
 function mod:Adds()
 	addsCount = addsCount + 1
 	if addsCount == 3 then return end

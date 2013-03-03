@@ -80,7 +80,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 		timerStormCD:Start()
 		if self.Options.RangeFrame then
 			DBM.RangeCheck:Hide()
-			mod:Schedule(10, function()
+			self:Schedule(10, function()
 				DBM.RangeCheck:Show(6)
 			end)
 		end

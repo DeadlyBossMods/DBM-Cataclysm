@@ -47,7 +47,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(84522, 90016) then
+	if args:IsSpellID(84522) then
 		warnThunderCrash:Show()
 		timerThunderCrash:Start()
 	elseif args:IsSpellID(91872) then
@@ -72,7 +72,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 end
 
 function mod:SPELL_SUMMON(args)
-	if args:IsSpellID(84547, 84553, 84554, 90013, 90014) then
+	if args:IsSpellID(84547, 84553, 84554) then
 		warnStaticShock:Show()
 		servantSpawn = servantSpawn + 1
 		if servantSpawn == 3 then--Third add spawned

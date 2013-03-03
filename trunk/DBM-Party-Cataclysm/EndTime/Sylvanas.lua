@@ -14,12 +14,12 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_SUCCESS"
 )
 
-local warnShriek	= mod:NewTargetAnnounce(101412, 3, nil, false)
-local warnCalling	= mod:NewSpellAnnounce(100686, 4)
-local warnSacrifice	= mod:NewSpellAnnounce(101348, 2, nil, false)
+local warnShriek		= mod:NewTargetAnnounce(101412, 3, nil, false)
+local warnCalling		= mod:NewSpellAnnounce(100686, 4)
+local warnSacrifice		= mod:NewSpellAnnounce(101348, 2, nil, false)
 
-local timerShriek	= mod:NewTargetTimer(30, 101412)
-local timerCalling	= mod:NewNextTimer(40, 100686)	-- guessed she can do it more than once
+local timerShriek		= mod:NewTargetTimer(30, 101412)
+local timerCalling		= mod:NewNextTimer(40, 100686)	-- guessed she can do it more than once
 local timerSacrifice	= mod:NewNextTimer(30, 101348)
 
 function mod:OnCombatStart(delay)

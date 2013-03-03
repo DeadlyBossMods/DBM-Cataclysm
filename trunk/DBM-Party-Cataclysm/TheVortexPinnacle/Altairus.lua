@@ -65,7 +65,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(88308, 93989) then
+	if args:IsSpellID(88308) then
 		self:ScheduleMethod(0.2, "BreathTarget")
 		timerBreath:Start()
 		timerBreathCD:Start()

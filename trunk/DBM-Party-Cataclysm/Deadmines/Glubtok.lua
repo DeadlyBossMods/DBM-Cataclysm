@@ -34,7 +34,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(59304) and mod:IsInCombat() then
+	if args:IsSpellID(59304) and self:IsInCombat() then
 		warnSpiritStrike:Show()
 	end
 end

@@ -26,7 +26,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(93581, 93712) then -- unconfirmed in mop
+	if args:IsSpellID(93581) then
 		warnPain:Show(args.destName)
 	end
 end
@@ -38,7 +38,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(93423, 93710) then -- unconfirmed in mop
+	if args:IsSpellID(93423) then
 		timerAsphyxiate:Start()
 	elseif args:IsSpellID(93720) then
 		warnWracking:Show()

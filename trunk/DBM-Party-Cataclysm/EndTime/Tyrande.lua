@@ -21,9 +21,6 @@ local specwarnStardust	= mod:NewSpecialWarningInterrupt(102173)
 
 local timerGuidance		= mod:NewNextTimer(20, 102472)
 
-function mod:OnCombatStart(delay)
-end
-
 function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpellID(102472) then
 		warnGuidanceStack:Show(args.amount or 1)

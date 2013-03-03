@@ -33,7 +33,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(93693, 93736) then -- unconfirmed in mop
+	if args:IsSpellID(93693) then
 		warnShield:Show()
 	elseif args:IsSpellID(93852) then
 		warnWordShame:Show(args.destName)
@@ -56,8 +56,8 @@ function mod:SPELL_CAST_SUCCESS(args)
 	end
 end
 
-function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
-	if (spellId == 93691 or spellId == 94370) and destGUID == UnitGUID("player") and self:AntiSpam(4) then
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
+	if spellId == 93691 and destGUID == UnitGUID("player") and self:AntiSpam(4) then
 		specWarnDesecration:Show()
 	end
 end

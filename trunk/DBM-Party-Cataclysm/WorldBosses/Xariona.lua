@@ -102,9 +102,3 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(uId, spellName)
 		end
 	end
 end
---[[
-			"<7.8> [REGEN_DISABLED]  ++ > Regen Disabled : Entering combat! ++ > ", -- [11]
-			"<9.8> Xariona:Possible Target<Omegal>:target:Fury of the Twilight Flight::0:93554", -- [1]
-			"<39.9> Xariona:Possible Target<Omegal>:target:Fury of the Twilight Flight::0:93554", -- [7]
-			"<75.9> Xariona:Possible Target<Omegal>:target:Unleashed Magic::0:93556", -- [16]
---]]

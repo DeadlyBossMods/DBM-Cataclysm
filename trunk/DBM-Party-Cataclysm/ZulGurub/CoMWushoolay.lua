@@ -58,7 +58,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(96710, 96711) and args:IsPlayer() then
+	if args:IsSpellID(96710) and args:IsPlayer() then
 		specWarnCloud:Show()
 	end
 end

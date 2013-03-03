@@ -83,7 +83,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_APPLIED_DOSE(args)
-	if args:IsSpellID(98255, 101157, 101158, 101159) and self:GetCIDFromGUID(args.destGUID) == 52558 and args.amount > 10 and self:AntiSpam(5, 1) then
+	if args:IsSpellID(98255) and self:GetCIDFromGUID(args.destGUID) == 52558 and args.amount > 10 and self:AntiSpam(5, 1) then
 		warnMoltenArmor:Show(args.destName, args.amount)
 	end
 end
@@ -92,7 +92,7 @@ function mod:SPELL_CAST_START(args)
 	if args:IsSpellID(98034) then
 		warnDrinkMagma:Show()
 		timerMoltenSpew:Start()
-	elseif args:IsSpellID(97282, 100411, 100968, 100969) then
+	elseif args:IsSpellID(97282) then
 		warnFlameStomp:Show()
 		specWarnFlameStomp:Show()
 		if not phase2Started then
@@ -121,7 +121,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 end
 
 function mod:SPELL_SUMMON(args)
-	if args:IsSpellID(98136, 100392) and self:AntiSpam(5, 2) then
+	if args:IsSpellID(98136) and self:AntiSpam(5, 2) then
 		fragmentCount = fragmentCount + 1
 		warnFragments:Show()
 		if fragmentCount < 2 then

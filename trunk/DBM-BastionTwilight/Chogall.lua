@@ -156,7 +156,7 @@ function mod:OnCombatEnd()
 end 
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(91317, 93365, 93366, 93367) then
+	if args:IsSpellID(91317) then
 		worshipTargets[#worshipTargets + 1] = args.destName
 		if self.Options.SetIconOnWorship then
 			self:SetIcon(args.destName, worshipIcon)
@@ -168,23 +168,23 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			self:Schedule(0.3, showWorshipWarning)
 		end
-	elseif args:IsSpellID(81194, 93264, 93265, 93266) then
+	elseif args:IsSpellID(81194) then
 		warnFlamingDestruction:Show()
 		if self:GetUnitCreatureId("target") == 43324 or self:GetBossTarget(43324) == DBM:GetUnitFullName("target") then--Add tank doesn't need this spam, just tank on chogal and healers healing that tank.
 			specwarnFlamingDestruction:Show()
 		end
 		timerFlamingDestruction:Start()
-	elseif args:IsSpellID(81572, 93218, 93219, 93220) then
+	elseif args:IsSpellID(81572) then
 		warnEmpoweredShadows:Show()
 		specWarnEmpoweredShadows:Show()
 		timerEmpoweredShadows:Start()
-	elseif args:IsSpellID(82518, 93154, 93155, 93156) then
+	elseif args:IsSpellID(82518) then
 		specwarnFury:Show(args.destName)
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(91317, 93365, 93366, 93367) then
+	if args:IsSpellID(91317) then
 		if self.Options.SetIconOnWorship then
 			self:SetIcon(args.destName, 0)
 		end
@@ -207,12 +207,12 @@ function mod:SPELL_CAST_START(args)
 			timerShadowsOrders:Cancel()--Cancel shadows orders timer, flame is going to be next.
 			timerFlamesOrders:Start(15)--Flames orders is 15 seconds after first fury, regardless whether or not shadow was last.
 		end
-	elseif args:IsSpellID(82411, 93132, 93133, 93134) then -- Creatures are channeling after their spawn.
+	elseif args:IsSpellID(82411) then -- Creatures are channeling after their spawn.
 		if self.Options.SetIconOnCreature and not creatureIcons[args.sourceGUID] then
 			creatureIcons[args.sourceGUID] = creatureIcon
 			creatureIcon = creatureIcon - 1
 		end
-	elseif args:IsSpellID(81713, 93175, 93176, 93177) then
+	elseif args:IsSpellID(81713 then
 		if not DBM.BossHealth:HasBoss(args.sourceGUID) then--Check if added to boss health
 			DBM.BossHealth:AddBoss(args.sourceGUID, args.sourceName)--And add if not.
 		end
@@ -242,7 +242,7 @@ mod:RegisterOnUpdateHandler(function(self)
 end, 1)
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(82414, 93160, 93161, 93162) then
+	if args:IsSpellID(82414) then
 		warnCreations:Show()
 		resetCreatureIconState()
 		if self:IsDifficulty("heroic10", "heroic25") then -- other difficulty not sure, only comfirmed 25 man heroic
@@ -273,7 +273,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 		else
 			timerFlamingDestructionCD:Start(10.8)--Half the time on normal since you don't actually have to kill elementals plus the only thing worth showing on normal.
 		end
-	elseif args:IsSpellID(81685, 93178, 93179, 93180) then
+	elseif args:IsSpellID(81685) then
 		if not DBM.BossHealth:HasBoss(args.sourceGUID) then--Check if added to boss health
 			DBM.BossHealth:AddBoss(args.sourceGUID, args.sourceName)--And add if not.
 		end
@@ -281,8 +281,8 @@ function mod:SPELL_CAST_SUCCESS(args)
 	end
 end
 
-function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
-	if (spellId == 81538 or spellId == 93212 or spellId == 93213 or spellId == 93214) and destGUID == UnitGUID("player") and self:AntiSpam(3, 1) then
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
+	if spellId == 81538 and destGUID == UnitGUID("player") and self:AntiSpam(3, 1) then
 		specWarnBlaze:Show()
 	end
 end
