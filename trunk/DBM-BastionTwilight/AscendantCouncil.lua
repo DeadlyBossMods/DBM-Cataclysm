@@ -205,13 +205,6 @@ local function updateBossFrame()
 	end
 end
 
--- copyied from twins.lua
-local shieldValues = {
-	[3] = 500000,
-	[4] = 1500000,
-	[5] = 700000,
-	[6] = 2000000,
-}
 local showShieldHealthBar, hideShieldHealthBar
 do
 	local frame = CreateFrame("Frame") -- using a separate frame avoids the overhead of the DBM event handlers which are not meant to be used with frequently occuring events like all damage events...
@@ -236,10 +229,13 @@ do
 		end
 	end)
 	
-	function showShieldHealthBar(self, mob, shieldName, absorb)
+	function showShieldHealthBar(self, mob, shieldName)
 		shieldedMob = mob
-		absorbRemaining = absorb
-		maxAbsorb = absorb
+		maxAbsorb = mod:IsDifficulty("heroic25") and 2000000 or
+					mod:IsDifficulty("heroic10") and 700000 or
+					mod:IsDifficulty("normal25") and 1500000 or
+					mod:IsDifficulty("normal10") and 500000 or 0
+		absorbRemaining = maxAbsorb
 		DBM.BossHealth:RemoveBoss(getShieldHP)
 		DBM.BossHealth:AddBoss(getShieldHP, shieldName)
 	end
@@ -342,10 +338,9 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 	elseif args:IsSpellID(82631) then--Aegis of Flame
 		local shieldname = GetSpellInfo(82631)
-		local _, _, diff = GetInstanceInfo()
 		warnAegisFlame:Show()
 		specWarnAegisFlame:Show()
-		showShieldHealthBar(self, args.destGUID, shieldname, shieldValues[diff] or 0)
+		showShieldHealthBar(self, args.destGUID, shieldname)
 		self:Schedule(20, hideShieldHealthBar)
 	elseif args:IsSpellID(82762) and args:IsPlayer() then
 		specWarnWaterLogged:Show()

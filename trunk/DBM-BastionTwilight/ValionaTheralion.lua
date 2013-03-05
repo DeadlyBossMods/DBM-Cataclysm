@@ -111,7 +111,7 @@ do
 	end	
 	mod.SPELL_PERIODIC_HEAL = mod.SPELL_HEAL
 	
-	function setBlackoutTarget(mod, target, name)--86788, 92876, 92877, 92878
+	function setBlackoutTarget(mod, target, name)
 		BlackoutTarget = target
 		healed = 0
 		maxAbsorb = mod:IsDifficulty("heroic25") and 75000 or
