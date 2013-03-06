@@ -87,10 +87,11 @@ end
 local function showOrbWarning(source)
 	table.wipe(orbList)
 	mod:Unschedule(showOrbWarning)
+	local _, _, difficulty = GetInstanceInfo()
 	for i = 1, DBM:GetNumGroupMembers() do
 		-- do some checks for 25/10 man raid size so we don't warn for ppl who are not in the instance
-		if GetInstanceDifficulty() == 6 and i > 10 then return end
-		if GetInstanceDifficulty() == 7 and i > 25 then return end
+		if difficulty == 5 and i > 10 then return end
+		if difficulty == 6 and i > 25 then return end
 		local n = GetRaidRosterInfo(i)
 		-- Has aggro on something, but not a tank
 		if UnitThreatSituation(n) == 3 and not isTank(n) then
