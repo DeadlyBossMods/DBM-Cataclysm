@@ -45,7 +45,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(43303)
+	if args:IsSpellID(43303) then
 		timerShock:Cancel(args.destName)
 	end
 end
