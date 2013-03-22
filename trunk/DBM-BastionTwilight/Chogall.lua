@@ -212,7 +212,7 @@ function mod:SPELL_CAST_START(args)
 			creatureIcons[args.sourceGUID] = creatureIcon
 			creatureIcon = creatureIcon - 1
 		end
-	elseif args:IsSpellID(81713 then
+	elseif args.spellId == 81713 then
 		if not DBM.BossHealth:HasBoss(args.sourceGUID) then--Check if added to boss health
 			DBM.BossHealth:AddBoss(args.sourceGUID, args.sourceName)--And add if not.
 		end
