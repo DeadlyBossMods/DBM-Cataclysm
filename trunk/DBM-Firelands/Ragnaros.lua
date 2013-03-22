@@ -327,7 +327,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(99399) then
+	if args.spellId == 99399 then
 		warnBurningWound:Show(args.destName, args.amount or 1)
 		if (args.amount or 0) >= 4 and args:IsPlayer() then
 			specWarnBurningWound:Show(args.amount)
@@ -344,7 +344,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			timerFlamesCD:Start(60)--60 second CD in phase 2
 		end
-	elseif args:IsSpellID(100604) then
+	elseif args.spellId == 100604 then
 		warnEmpoweredSulf:Show(args.spellName)
 		specWarnEmpoweredSulf:Show()
 		soundEmpoweredSulf:Play()
@@ -357,13 +357,13 @@ end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(99399) then
+	if args.spellId == 99399 then
 		timerBurningWound:Cancel(args.destName)
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(98710) then
+	if args.spellId == 98710 then
 		firstSmash = true
 		warnSulfurasSmash:Show()
 		specWarnSulfurasSmash:Show()
@@ -415,11 +415,11 @@ function mod:SPELL_CAST_START(args)
 		specWarnSplittingBlow:Show()
 		timerInvokeSons:Start()
 		timerLavaBoltCD:Start(17.3)--9.3 seconds + cast time for splitting blow
-		if args:IsSpellID(98951) then--West
+		if args.spellId == 98951 then--West
 			warnSplittingBlow:Show(args.spellName, L.West)
-		elseif args:IsSpellID(98952) then--Middle
+		elseif args.spellId == 98952 then--Middle
 			warnSplittingBlow:Show(args.spellName, L.Middle)
-		elseif args:IsSpellID(98953) then--East
+		elseif args.spellId == 98953 then--East
 			warnSplittingBlow:Show(args.spellName, L.East)
 		end
 	elseif args:IsSpellID(99172, 99235, 99236) then--Another scripted spell with a ton of spellids based on location of room.
@@ -431,33 +431,33 @@ function mod:SPELL_CAST_START(args)
 		--North: 99172
 		--Middle: 99235
 		--South: 99236
-		if args:IsSpellID(99172) then--North
+		if args.spellId == 99172 then--North
 			if not self.Options.WarnEngulfingFlameHeroic and self:IsDifficulty("heroic10", "heroic25") then return end
 			warnEngulfingFlame:Show(args.spellName, L.North)
 			if self:IsMelee() or seedsActive then--Always warn melee classes if it's in melee (duh), warn everyone if seeds are active since 90% of strats group up in melee
 				specWarnEngulfing:Show()
 			end
-		elseif args:IsSpellID(99235) then--Middle
+		elseif args.spellId == 99235 then--Middle
 			if not self.Options.WarnEngulfingFlameHeroic and self:IsDifficulty("heroic10", "heroic25") then return end
 			warnEngulfingFlame:Show(args.spellName, L.Middle)
-		elseif args:IsSpellID(99236) then--South
+		elseif args.spellId == 99236 then--South
 			if not self.Options.WarnEngulfingFlameHeroic and self:IsDifficulty("heroic10", "heroic25") then return end
 			warnEngulfingFlame:Show(args.spellName, L.South)
 		end
-	elseif args:IsSpellID(100646) then
+	elseif args.spellId == 100646 then
 		warnEntrappingRoots:Show()
 		timerEntrapingRootsCD:Start()
-	elseif args:IsSpellID(100479) then
+	elseif args.spellId == 100479 then
 		warnBreadthofFrost:Show()
 		timerBreadthofFrostCD:Start()
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(98237) and not args:IsSrcTypePlayer() then -- can be stolen which triggers a new SPELL_CAST_SUCCESS event...
+	if args.spellId == 98237 and not args:IsSrcTypePlayer() then -- can be stolen which triggers a new SPELL_CAST_SUCCESS event...
 		warnHandRagnaros:Show()
 		timerHandRagnaros:Start()
-	elseif args:IsSpellID(98164) then	--98164 confirmed
+	elseif args.spellId == 98164 then	--98164 confirmed
 		magmaTrapSpawned = magmaTrapSpawned + 1
 		scansDone = 0
 		timerMagmaTrap:Start()
@@ -466,7 +466,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 			DBM.InfoFrame:SetHeader(L.HealthInfo)
 			DBM.InfoFrame:Show(5, "health", 100000)
 		end
-	elseif args:IsSpellID(98263) and self:AntiSpam(4, 1) then
+	elseif args.spellId == 98263 and self:AntiSpam(4, 1) then
 		warnWrathRagnaros:Show()
 		--Wrath of Ragnaros has a 25 second cd if 2 happen before first smash, otherwise it's 30.
 		--In this elaborate function we count the wraths before first smash
@@ -483,7 +483,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 				timerWrathRagnaros:Start(36)--First smash didn't happen yet, and first wrath happened later then 5 seconds into pull, 2nd smash will be delayed by sulfuras smash.
 			end
 		end
-	elseif args:IsSpellID(100460) then	-- Blazing heat
+	elseif args.spellId == 100460 then	-- Blazing heat
 		warnBlazingHeat:Show(args.destName)
 		timerBlazingHeatCD:Start(args.sourceGUID)--args.sourceGUID is to support multiple cds when more then 1 is up at once
 		if args:IsPlayer() then
@@ -499,7 +499,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 				blazingHeatIcon = 2
 			end
 		end
-	elseif args:IsSpellID(99268) then
+	elseif args.spellId == 99268 then
 		meteorSpawned = meteorSpawned + 1
 		if meteorSpawned == 1 or meteorSpawned % 2 == 0 then--Spam filter, announce at 1, 2, 4, 6, 8, 10 etc. The way that they spawn
 			scansDone = 0
@@ -512,9 +512,9 @@ function mod:SPELL_CAST_SUCCESS(args)
 			DBM.InfoFrame:SetHeader(L.MeteorTargets)
 			DBM.InfoFrame:Show(6, "playerbaddebuff", 99849)--If you get more then 6 chances are you're screwed unless it's normal mode and he's at like 11%. Really anything more then 4 is chaos and wipe waiting to happen.
 		end
-	elseif args:IsSpellID(100714) then
+	elseif args.spellId == 100714 then
 		warnCloudBurst:Show()
-	elseif args:IsSpellID(101110) then
+	elseif args.spellId == 101110 then
 		warnRageRagnaros:Show(args.destName)
 		if self.Options.RangeFrame and args:IsPlayer() then
 			DBM.RangeCheck:Show(8)

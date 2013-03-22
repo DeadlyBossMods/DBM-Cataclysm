@@ -27,23 +27,23 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(101412) then
+	if args.spellId == 101412 then
 		warnShriek:Show(args.destName)
 		timerShriek:Start(args.destName)
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(101412) then
+	if args.spellId == 101412 then
 		timerShriek:Cancel(args.destName)
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(100686) then
+	if args.spellId == 100686 then
 		warnCalling:Show()
 		timerSacrifice:Start()
-	elseif args:IsSpellID(101348) then
+	elseif args.spellId == 101348 then
 		warnSacrifice:Show()
 		timerCalling:Start()
 	end

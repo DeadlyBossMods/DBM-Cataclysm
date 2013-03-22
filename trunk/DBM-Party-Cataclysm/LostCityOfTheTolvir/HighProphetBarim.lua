@@ -43,33 +43,33 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(82622) then
+	if args.spellId == 82622 then
 		warnPlagueAges:Show(args.destName)
 		timerPlagueAges:Start(args.destName)
-	elseif args:IsSpellID(82506) then
+	elseif args.spellId == 82506 then
 		warnLashings:Show(args.destName)
 		timerLashings:Start(args.destName)
-	elseif args:IsSpellID(82320) and args.destName == L.name then
+	elseif args.spellId == 82320 and args.destName == L.name then
 		warnRepentance:Show()
 		spamSIS = GetTime()
 		if self.Options.BossHealthAdds then
 			DBM.BossHealth:AddBoss(43927, HarbringerDarkness)
 			DBM.BossHealth:RemoveBoss(48906)
 		end
-	elseif args:IsSpellID(82255) then
+	elseif args.spellId == 82255 then
 		warnSoulSever:Show(args.destName)
 		timerSoulSever:Start(args.destName)
 		timerSoulSeverCD:Start()
-	elseif args:IsSpellID(88814) and args:IsPlayer() and GetTime() - spamSIS > 5.5 then
+	elseif args.spellId == 88814 and args:IsPlayer() and GetTime() - spamSIS > 5.5 then
 		spamSIS = GetTime()
 		specWarnHallowedGround:Show()
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(82622) then
+	if args.spellId == 82622 then
 		timerPlagueAges:Cancel(args.destName)
-	elseif args:IsSpellID(82506) then
+	elseif args.spellId == 82506 then
 		timerLashings:Cancel(args.destName)
 	end
 end

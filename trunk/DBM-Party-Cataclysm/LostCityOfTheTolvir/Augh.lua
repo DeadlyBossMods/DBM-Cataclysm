@@ -23,18 +23,18 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(84768) and self:AntiSpam(5) then
+	if args.spellId == 84768 and self:AntiSpam(5) then
 		warnSmokeBomb:Show()
-	elseif args:IsSpellID(84799) then
+	elseif args.spellId == 84799 then
 		warnParalyticDart:Show(args.destName)
 		timerParalyticDart:Start(args.destName)
-	elseif args:IsSpellID(84784) then
+	elseif args.spellId == 84784 then
 		warnWhirlWind:Show()
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(84799) then
+	if args.spellId == 84799 then
 		timerParalyticDart:Cancel()
 	end
 end

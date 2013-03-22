@@ -33,25 +33,25 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(93693) then
+	if args.spellId == 93693 then
 		warnShield:Show()
-	elseif args:IsSpellID(93852) then
+	elseif args.spellId == 93852 then
 		warnWordShame:Show(args.destName)
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(93844) then
+	if args.spellId == 93844 then
 		warnEmpowerment:Show()
 		specWarnEmpowerment:Show(args.sourceName)
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(93685) then
+	if args.spellId == 93685 then
 		warnMaleficStrike:Show()
 		timerMaleficStrike:Start()
-	elseif args:IsSpellID(93687) then
+	elseif args.spellId == 93687 then
 		warnDesecration:Show()
 	end
 end

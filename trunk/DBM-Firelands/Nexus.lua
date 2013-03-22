@@ -27,25 +27,25 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(99502) then
+	if args.spellId == 99502 then
 		warnBreath:Show()
 		specwarnBreath:Show()
 		timerBreath:Start()
-	elseif args:IsSpellID(99392) then
+	elseif args.spellId == 99392 then
 		warnHeal:Show()
 		specwarnHealInterrupt:Show(args.sourceName)
 	end
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(99392) and not args:IsPlayer() then
+	if args.spellId == 99392 and not args:IsPlayer() then
 		specwarnHealDispel:Show()
 		timerHeal:Start()
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(99392) then
+	if args.spellId == 99392 then
 		timerHeal:Cancel()
 	end
 end

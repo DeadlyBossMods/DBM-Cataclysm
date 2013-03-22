@@ -116,7 +116,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		if args:IsPlayer() then
 			timerSlicingGale:Start()
 		end
-	elseif args:IsSpellID(84651) and args:GetDestCreatureID() == 45870 and self:AntiSpam(3, 1) then--Zephyr stacks on Anshal
+	elseif args.spellId == 84651 and args:GetDestCreatureID() == 45870 and self:AntiSpam(3, 1) then--Zephyr stacks on Anshal
 		if (args.amount or 1) >= 15 then--Special has ended when he's at 15 stacks.
 			warnSpecialSoon:Cancel()
 			warnSpecialSoon:Schedule(85)
@@ -156,7 +156,7 @@ end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(86205) then
+	if args.spellId == 86205 then
 		breezeCounter = breezeCounter + 1
 		scansDone = 0
 		if self:GetUnitCreatureId("target") == 45870 or self:GetUnitCreatureId("focus") == 45870 or self:GetUnitCreatureId("target") == 45812 or not self.Options.OnlyWarnforMyTarget then--Anshal and his flowers
@@ -166,7 +166,7 @@ function mod:SPELL_CAST_START(args)
 				timerSoothingBreezeCD:Start()
 			end
 		end
-	elseif args:IsSpellID(86192) then
+	elseif args.spellId == 86192 then
 		if self:GetUnitCreatureId("target") == 45872 or self:GetUnitCreatureId("focus") == 45872 or not self.Options.OnlyWarnforMyTarget then
 			warnSummonTornados:Show()
 		end
@@ -174,14 +174,14 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(85422) then
+	if args.spellId == 85422 then
 		if self:GetUnitCreatureId("target") == 45870 or self:GetUnitCreatureId("focus") == 45870 or self:GetUnitCreatureId("target") == 45812 or not self.Options.OnlyWarnforMyTarget then--Anshal and his flowers
 			warnNurture:Show()
 			if self:IsDifficulty("heroic10", "heroic25") then
 				timerPoisonToxicCD:Start()
 			end
 		end
-	elseif args:IsSpellID(86082) then -- 93233 removed in mop, it seems that replaced with 86082
+	elseif args.spellId == 86082 then -- 93233 removed in mop, it seems that replaced with 86082
 		if self:GetUnitCreatureId("target") == 45871 or self:GetUnitCreatureId("focus") == 45871 or not self.Options.OnlyWarnforMyTarget then--Nezir
 			timerPermaFrostCD:Start()
 		end
@@ -199,7 +199,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 			warnStormShield:Show()
 			specWarnShield:Show()
 		end
-	elseif args:IsSpellID(86281) and self:AntiSpam(3, 3) then-- Poison Toxic Warning (at Heroic, Poison Toxic damage is too high, so warning needed)
+	elseif args.spellId == 86281 and self:AntiSpam(3, 3) then-- Poison Toxic Warning (at Heroic, Poison Toxic damage is too high, so warning needed)
 		if self:GetUnitCreatureId("target") == 45870 or self:GetUnitCreatureId("focus") == 45870 or self:GetUnitCreatureId("target") == 45812 or not self.Options.OnlyWarnforMyTarget then
 			warnPoisonToxic:Show()
 			timerPoisonToxic:Show()
@@ -212,7 +212,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 		if self:GetUnitCreatureId("target") == 45871 or self:GetUnitCreatureId("focus") == 45871 or not self.Options.OnlyWarnforMyTarget then--Nezir
 			timerWindChill:Start()
 		end
-	elseif args:IsSpellID(86193) then
+	elseif args.spellId == 86193 then
 		windBlastCounter = windBlastCounter + 1
 		if self:GetUnitCreatureId("target") == 45872 or self:GetUnitCreatureId("focus") == 45872 or not self.Options.OnlyWarnforMyTarget then--Rohash
 			warnWindBlast:Show()

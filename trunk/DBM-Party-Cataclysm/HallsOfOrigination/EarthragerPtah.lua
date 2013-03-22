@@ -16,7 +16,7 @@ mod:RegisterEventsInCombat(
 local warnFlameBolt	= mod:NewSpellAnnounce(77370, 2)
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(77370) then
+	if args.spellId == 77370 then
 		warnFlameBolt:Show()
 	end
 end

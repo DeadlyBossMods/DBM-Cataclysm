@@ -158,7 +158,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(107018) then
+	if args.spellId == 107018 then
 		parasiteCasted = false
 		if firstAspect then--The abilities all come 15seconds earlier for first one only
 			firstAspect = false
@@ -188,17 +188,17 @@ function mod:SPELL_CAST_START(args)
 			end
 			timerCataclysmCD:Start()
 		end
-	elseif args:IsSpellID(106523) then
+	elseif args.spellId == 106523 then
 		warnCataclysm:Show()
 		timerCataclysm:Start()
-	elseif args:IsSpellID(108813) then
+	elseif args.spellId == 108813 then
 		parasiteScan = 0
 		self:ScanParasite()
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(105651) then
+	if args.spellId == 105651 then
 		warnElementiumBolt:Show()
 		specWarnElementiumBolt:Show()
 		if not UnitBuff("player", GetSpellInfo(106027)) and not UnitIsDeadOrGhost("player") then--Check for Nozdormu's Presence
@@ -210,18 +210,18 @@ function mod:SPELL_CAST_SUCCESS(args)
 			timerElementiumBlast:Start(20)
 			specWarnElementiumBoltDPS:Schedule(7.5)
 		end
-	elseif args:IsSpellID(110063) then--Astral Recall. Thrall teleports off back platform back to front on defeat.
+	elseif args.spellId == 110063 then--Astral Recall. Thrall teleports off back platform back to front on defeat.
 		self:SendSync("MadnessDown")
 	end
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(106548) then--Arm/Wing Transition
+	if args.spellId == 106548 then--Arm/Wing Transition
 		timerElementiumBoltCD:Cancel()
 		timerHemorrhageCD:Cancel()--Does this one cancel in event you super overgear this and stomp his ass this fast?
 		timerCataclysm:Cancel()
 		timerCataclysmCD:Cancel()
-	elseif args:IsSpellID(106834) then--Phase 2
+	elseif args.spellId == 106834 then--Phase 2
 		warnPhase2:Show()
 		timerFragmentsCD:Start(10.5)
 		timerTerrorCD:Start(35.5)
@@ -230,7 +230,7 @@ function mod:SPELL_AURA_APPLIED(args)
 				"UNIT_HEALTH_FREQUENT"
 			)
 		end
-	elseif args:IsSpellID(106400) then
+	elseif args.spellId == 106400 then
 		warnImpale:Show(args.destName)
 		timerImpale:Start(args.destName)
 		timerImpaleCD:Start()
@@ -239,7 +239,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			specWarnImpaleOther:Show(args.destName)
 		end
-	elseif args:IsSpellID(106794) then
+	elseif args.spellId == 106794 then
 		shrapnelTargets[#shrapnelTargets + 1] = args.destName
 		self:Unschedule(warnShrapnelTargets)
 		if args:IsPlayer() then
@@ -252,7 +252,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			self:Schedule(0.3, warnShrapnelTargets)
 		end
-	elseif args:IsSpellID(108649) then
+	elseif args.spellId == 108649 then
 		warnParasite:Show(args.destName)
 		timerParasite:Start(args.destName)
 		self:updateRangeFrame()
@@ -268,7 +268,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			timerParasiteCD:Start()
 			parasiteCasted = true
 		end
-	elseif args:IsSpellID(106730) then -- Debuffs from adds
+	elseif args.spellId == 106730 then -- Debuffs from adds
 		warnTetanus:Show(args.destName, args.amount or 1)
 		timerTetanus:Start(args.destName)
 		if (args.amount or 1) >= 4 then
@@ -289,12 +289,12 @@ mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(106444) then
+	if args.spellId == 106444 then
 		timerImpale:Cancel(args.destName)
-	elseif args:IsSpellID(106794) and args:IsPlayer() then
+	elseif args.spellId == 106794 and args:IsPlayer() then
 		timerShrapnel:Cancel()
 		countdownShrapnel:Cancel()
-	elseif args:IsSpellID(108649) then
+	elseif args.spellId == 108649 then
 		specWarnParasiteDPS:Show()
 		if self.Options.SetIconOnParasite then
 			self:SetIcon(args.destName, 0)
@@ -302,13 +302,13 @@ function mod:SPELL_AURA_REMOVED(args)
 		if self.Options.RangeFrame then
 			DBM.RangeCheck:Hide()
 		end
-	elseif args:IsSpellID(106730) then -- Debuffs from adds
+	elseif args.spellId == 106730 then -- Debuffs from adds
 		timerTetanus:Cancel(args.destName)
 	end
 end
 
 function mod:SPELL_SUMMON(args)
-	if args:IsSpellID(109091) and self:AntiSpam(10, 1) then--They spawn over like 8 seconds, not at same time, so we need a large anti spam.
+	if args.spellId == 109091 and self:AntiSpam(10, 1) then--They spawn over like 8 seconds, not at same time, so we need a large anti spam.
 		specWarnCongealingBlood:Show()
 	end
 end

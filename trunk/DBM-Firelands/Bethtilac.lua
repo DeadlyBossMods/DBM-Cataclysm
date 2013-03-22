@@ -70,9 +70,9 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(99506) then--Applied debuff after cast. Used to announce special warnings and start target timer, only after application confirmed and not missed.
+	if args.spellId == 99506 then--Applied debuff after cast. Used to announce special warnings and start target timer, only after application confirmed and not missed.
 		timerWidowKiss:Start(args.destName)
-	elseif args:IsSpellID(99526) then--99526 is on player, 99559 is on drone
+	elseif args.spellId == 99526 then--99526 is on player, 99559 is on drone
 		warnFixate:Show(args.destName)
 		timerFixate:Start(args.destName)
 		if args:IsPlayer() then
@@ -82,7 +82,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(99506) then
+	if args.spellId == 99506 then
 		timerWidowKiss:Cancel(args.destName)
 		if args:IsPlayer() then
 			if self.Options.RangeFrame then
@@ -93,7 +93,7 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(99052) then
+	if args.spellId == 99052 then
 		smolderingCount = smolderingCount + 1
 		warnSmolderingDevastation:Show(smolderingCount)
 		if self:GetUnitCreatureId("target") == 52498 or self:GetBossTarget(52498) == DBM:GetUnitFullName("target") then--If spider is you're target or it's tank is, you're up top.
@@ -116,7 +116,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(99476) then--Cast debuff only, don't add other spellid. (99476 spellid uses on SPELL_CAST_START, NOT SPELL_AURA_APPLIED), 
+	if args.spellId == 99476 then--Cast debuff only, don't add other spellid. (99476 spellid uses on SPELL_CAST_START, NOT SPELL_AURA_APPLIED), 
 		warnWidowKiss:Show(args.destName)
 		timerWidowsKissCD:Start()
 		if self.Options.RangeFrame and not DBM.RangeCheck:IsShown() and self:IsTank() then
@@ -128,10 +128,10 @@ function mod:SPELL_CAST_SUCCESS(args)
 			specWarnTouchWidowKissOther:Show(args.destName)
 		end
 	--Phase 1 ember flares. Only show for people who are actually up top.
-	elseif args:IsSpellID(98934) and (self:GetUnitCreatureId("target") == 52498 or self:GetBossTarget(52498) == DBM:GetUnitFullName("target")) then
+	elseif args.spellId == 98934 and (self:GetUnitCreatureId("target") == 52498 or self:GetBossTarget(52498) == DBM:GetUnitFullName("target")) then
 		timerEmberFlareCD:Start()
 	--Phase 2 ember flares. Show for everyone
-	elseif args:IsSpellID(99859) then
+	elseif args.spellId == 99859 then
 		timerEmberFlareCD:Start()
 	end
 end

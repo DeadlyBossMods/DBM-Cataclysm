@@ -72,14 +72,14 @@ function mod:FlameStrikeTarget(sGUID)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(93340) then
+	if args.spellId == 93340 then
 		warnFrostWhirl:Show()
 		specWarnFrostWhirl:Show()
 	end
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(87903) then
+	if args.spellId == 87903 then
 		warnVolcanicWrath:Show()
 		specWarnVolcanicWrath:Show()
 		timerVolcanicWrath:Show()
@@ -87,16 +87,16 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(87903) then--I will have to log this trash to verify this spell event.
+	if args.spellId == 87903 then--I will have to log this trash to verify this spell event.
 		timerVolcanicWrath:Cancel()
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(93362) then
+	if args.spellId == 93362 then
 		self:ScheduleMethod(0.2, "FlameStrikeTarget", args.sourceGUID)
 		self:SetFlamestrike()
-	elseif args:IsSpellID(93377) then
+	elseif args.spellId == 93377 then
 		specWarnRupture:Show()
 		self:ScheduleMethod(0.2, "RuptureTarget", args.sourceGUID)
 	end

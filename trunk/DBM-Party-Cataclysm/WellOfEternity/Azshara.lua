@@ -45,7 +45,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(103241) then
+	if args.spellId == 103241 then
 		warnObedience:Show()
 		specWarnObedience:Show(args.sourceName)
 --		timerObedienceCD:Start()

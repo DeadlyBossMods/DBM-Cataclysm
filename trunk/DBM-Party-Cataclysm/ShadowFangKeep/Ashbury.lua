@@ -26,21 +26,21 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(93581) then
+	if args.spellId == 93581 then
 		warnPain:Show(args.destName)
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(93757) then
+	if args.spellId == 93757 then
 		warnArchangel:Show()
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(93423) then
+	if args.spellId == 93423 then
 		timerAsphyxiate:Start()
-	elseif args:IsSpellID(93720) then
+	elseif args.spellId == 93720 then
 		warnWracking:Show()
 	end
 end

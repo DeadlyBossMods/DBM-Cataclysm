@@ -51,7 +51,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(86881) then
+	if args.spellId == 86881 then
 		if args:IsPlayer() then
 			specWarnCrystalBarrage:Show()
 		else
@@ -78,7 +78,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(82415) then
+	if args.spellId == 82415 then
 		warnDampening:Show()
 		timerDampening:Start()
 	end

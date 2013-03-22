@@ -23,7 +23,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(86340) then
+	if args.spellId == 86340 then
 		warnSummonTempest:Show()
 		timerSummonTempest:Start()
 	end

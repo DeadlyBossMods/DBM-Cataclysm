@@ -134,7 +134,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(77699) then
+	if args.spellId == 77699 then
 		flashFreezeTargets[#flashFreezeTargets + 1] = args.destName
 		if mod:IsDifficulty("heroic10", "heroic25") then
 			specWarnFlashFreeze:Show(args.destName)
@@ -145,7 +145,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 		self:Unschedule(showFlashFreezeWarning)
 		self:Schedule(0.3, showFlashFreezeWarning)
-	elseif args:IsSpellID(77760) then
+	elseif args.spellId == 77760 then
 		bitingChillTargets[#bitingChillTargets + 1] = args.destName
 		if self.Options.BitingChillIcon then
 			self:SetIcon(args.destName, bitingChillIcon)
@@ -156,10 +156,10 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 		self:Unschedule(showBitingChillWarning)
 		self:Schedule(0.3, showBitingChillWarning)
-	elseif args:IsSpellID(77912) and not args:IsDestTypePlayer() then
+	elseif args.spellId == 77912 and not args:IsDestTypePlayer() then
 		warnRemedy:Show()
 		specWarnRemedy:Show(args.destName)
-	elseif args:IsSpellID(77786) then
+	elseif args.spellId == 77786 then
 		warnConsumingFlames:Show(args.destName)
 		timerConsumingFlames:Start(args.destName)
 		if self.Options.ConsumingFlamesIcon then
@@ -168,24 +168,24 @@ function mod:SPELL_AURA_APPLIED(args)
 		if args:IsPlayer() then
 			specWarnConsumingFlames:Show()
 		end
-	elseif args:IsSpellID(77615) and self:AntiSpam(3, 1) then
+	elseif args.spellId == 77615 and self:AntiSpam(3, 1) then
 		warnDebilitatingSlime:Show()
 		timerDebilitatingSlime:Start()
-	elseif args:IsSpellID(92930) and args:IsPlayer() and self:AntiSpam(3, 2) then
+	elseif args.spellId == 92930 and args:IsPlayer() and self:AntiSpam(3, 2) then
 		specWarnSludge:Show()
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(77699) then
+	if args.spellId == 77699 then
 		if self.Options.FlashFreezeIcon then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args:IsSpellID(77760) then
+	elseif args.spellId == 77760 then
 		if self.Options.BitingChillIcon then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args:IsSpellID(77786) then
+	elseif args.spellId == 77786 then
 		if self.Options.ConsumingFlamesIcon then
 			self:SetIcon(args.destName, 0)
 		end
@@ -193,14 +193,14 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(77569) then
+	if args.spellId == 77569 then
 		warnReleaseAdds:Show()
 		specWarnAdds:Show()--Special case that does not use standardized melee/ranged check do to fact this one usually has very specific assignments and may have a melee assigned that has to be warned regardless of target.
 		timerAddsCD:Start()
 		if adds >= 3 then--only schedule it if there actually are adds left.
 			self:Schedule(3, InterruptCheck)
 		end
-	elseif args:IsSpellID(77991) then
+	elseif args.spellId == 77991 then
 		warnPhase2:Show()
 		timerMagmaJetsCD:Start()
 		timerFlashFreeze:Cancel()
@@ -210,17 +210,17 @@ function mod:SPELL_CAST_START(args)
 		if self.Options.SetTextures and not GetCVarBool("projectedTextures") and CVAR then
 			SetCVar("projectedTextures", 1)
 		end
-	elseif args:IsSpellID(92754) then
+	elseif args.spellId == 92754 then
 		warnEngulfingDarkness:Show()
 		timerEngulfingDarknessCD:Start()
 		if self:GetUnitCreatureId("target") == 41378 or self:GetBossTarget(33186) == DBM:GetUnitFullName("target") then--First check is for tank (tank is targeting boss), second check is for HEALER< IE, the HEALER is targeting the bosses TARGET
 			specWarnEngulfingDarkness:Show()
 		end
-	elseif args:IsSpellID(77896) then
+	elseif args.spellId == 77896 then
 		warnArcaneStorm:Show()
 		timerArcaneStormCD:Start()
 		specWarnArcaneStorm:Show(args.sourceName)
-	elseif args:IsSpellID(78194) then
+	elseif args.spellId == 78194 then
 		warnMagmaJets:Show()
 		if self:IsDifficulty("heroic10", "heroic25") then
 			timerMagmaJetsCD:Start(5)
@@ -234,7 +234,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(77679) then
+	if args.spellId == 77679 then
 		warnScorchingBlast:Show()
 		timerScorchingBlast:Start()
 	end

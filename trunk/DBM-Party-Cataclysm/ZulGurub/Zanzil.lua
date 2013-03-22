@@ -59,25 +59,25 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(96388) then
+	if args.spellId == 96388 then
 		timerZanzilGas:Start()
-	elseif args:IsSpellID(96316) then
+	elseif args.spellId == 96316 then
 		warnZanzilElixir:Show()
 		timerZanzilElixir:Start()
-	elseif args:IsSpellID(96916) and args:IsPlayer() and self:AntiSpam() then
+	elseif args.spellId == 96916 and args:IsPlayer() and self:AntiSpam() then
 		specWarnFire:Show()
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(96914) then
+	if args.spellId == 96914 then
 		warnZanzilFire:Show()
-	elseif args:IsSpellID(96338) then
+	elseif args.spellId == 96338 then
 		warnZanzilGas:Show()
 		if not UnitDebuff("player", GetSpellInfo(96328)) and not UnitIsDeadOrGhost("player") then
 			specWarnToxic:Show()
 		end
-	elseif args:IsSpellID(96342) and self:IsInCombat() then
+	elseif args.spellId == 96342 and self:IsInCombat() then
 		self:ScheduleMethod(0.2, "GazeTarget")
 	end
 end

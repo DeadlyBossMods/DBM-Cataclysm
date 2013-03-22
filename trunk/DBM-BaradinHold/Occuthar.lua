@@ -39,12 +39,12 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(96920) then
+	if args.spellId == 96920 then
 		warnEyes:Show()
 		timerEyes:Start()
 		focusedCast = 0
 		timerFocusedFire:Start()--eyes resets the CD of focused. Blizz hotfix makes more sense now.
-	elseif args:IsSpellID(96913) then
+	elseif args.spellId == 96913 then
 		warnSearingShadows:Show()
 		timerSearingShadows:Start()
 		specWarnSearingShadows:Schedule(3.2)
@@ -52,7 +52,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(96884) then
+	if args.spellId == 96884 then
 		focusedCast = focusedCast + 1
 		if focusedCast < 3 then--Don't start it after 3rd cast since eyes will be cast next and reset the CD, we start a bar there instead.
 			timerFocusedFire:Start()

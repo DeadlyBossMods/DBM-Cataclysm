@@ -46,9 +46,9 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(42398) and self:AntiSpam(4) then
+	if args.spellId == 42398 and self:AntiSpam(4) then
 		warnSilence:Show()
-	elseif args:IsSpellID(42402) then
+	elseif args.spellId == 42402 then
 		warnSurge:Show(args.destName)
 		timerSurgeCD:Start()
 	end

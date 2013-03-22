@@ -76,7 +76,7 @@ function mod:BoulderTarget(sGUID)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(107597) then -- Spell cast 3 sec. Seems to location sets before cast completion. I tested 2.5 and good worked.
+	if args.spellId == 107597 then -- Spell cast 3 sec. Seems to location sets before cast completion. I tested 2.5 and good worked.
 		self:ScheduleMethod(2.5, "BoulderTarget", args.sourceGUID)
 	end
 end

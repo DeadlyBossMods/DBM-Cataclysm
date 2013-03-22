@@ -46,37 +46,37 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(75603) then
+	if args.spellId == 75603 then
 		warnNemesis:Show(args.destName)
 		timerNemesis:Start(args.destName)
-	elseif args:IsSpellID(77336) then
+	elseif args.spellId == 77336 then
 		warnBubble:Show(args.destName)
 		timerBubble:Show()
-	elseif args:IsSpellID(77235) then
+	elseif args.spellId == 77235 then
 		warnImpale:Show(args.destName)
 		timerImpale:Start(args.destName)
 		timerImpaleCD:Start()
-	elseif args:IsSpellID(76956) and args:IsPlayer() then
+	elseif args.spellId == 76956 and args:IsPlayer() then
 		specWarnAlphaBeams:Show()
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(75603) then
+	if args.spellId == 75603 then
 		timerNemesis:Cancel(args.destName)
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(76184) then
+	if args.spellId == 76184 then
 		warnAlphaBeams:Show()
 		timerAlphaBeams:Start()
 		timerAlphaBeamsCD:Start()
-	elseif args:IsSpellID(75622) then
+	elseif args.spellId == 75622 then
 		warnOmegaStance:Show()
 		timerOmegaStance:Start()
 		timerOmegaStanceCD:Start()
-	elseif args:IsSpellID(77241) then
+	elseif args.spellId == 77241 then
 		warnInferno:Show()
 		timerInferno:Start()
 	end

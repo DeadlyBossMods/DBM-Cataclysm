@@ -40,9 +40,9 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(80467) then
+	if args.spellId == 80467 then
 		warnEnrage:Show()
-	elseif args:IsSpellID(78939) then
+	elseif args.spellId == 78939 then
 		warnBulwark:Show()
 		timerBulwark:Start()
 		timerBulwarkCD:Start()
@@ -50,21 +50,21 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(78939) then--This can be dispelled.
+	if args.spellId == 78939 then--This can be dispelled.
 		timerBulwark:Cancel()
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(78807) then
+	if args.spellId == 78807 then
 		warnShatter:Show()
 		timerShatter:Start()
 --		timerShatterCD:Start()
 		specWarnShatter:Show()
 		soundShatter:Play()
-	elseif args:IsSpellID(92426) then
+	elseif args.spellId == 92426 then
 		warnShatterSoon:Show()
-	elseif args:IsSpellID(78903) then
+	elseif args.spellId == 78903 then
 		warnGroundSlam:Show()
 		specWarnGroundSlam:Show()
 		timerGroundSlam:Start()

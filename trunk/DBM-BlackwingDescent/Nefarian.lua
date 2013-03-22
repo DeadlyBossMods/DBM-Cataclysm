@@ -181,7 +181,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(77826) then
+	if args.spellId == 77826 then
 		if args:GetSrcCreatureID() == 41270 then--Source is onyxia
 			warnOnyShadowflameBreath:Show()
 			timerOnyBreathCD:Start()
@@ -189,7 +189,7 @@ function mod:SPELL_CAST_START(args)
 			warnNefShadowflameBreath:Show()
 			timerNefBreathCD:Start()
 		end
-	elseif args:IsSpellID(80734) then
+	elseif args.spellId == 80734 then
 		if not DBM.BossHealth:HasBoss(args.sourceGUID) then
 			DBM.BossHealth:AddBoss(args.sourceGUID, args.sourceName)
 		end
@@ -206,7 +206,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(79339) then
+	if args.spellId == 79339 then
 		cinderTargets[#cinderTargets + 1] = args.destName
 		playerDebuffs = playerDebuffs + 1
 		if args:IsPlayer() then
@@ -225,7 +225,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			self:Schedule(0.3, warnCinderTargets)
 		end
-	elseif args:IsSpellID(79318) then
+	elseif args.spellId == 79318 then
 		dominionTargets[#dominionTargets + 1] = args.destName
 		if args:IsPlayer() then
 			specWarnDominion:Show()
@@ -240,13 +240,13 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_APPLIED_DOSE(args)
-	if args:IsSpellID(80627) and args:IsPlayer() and (args.amount or 1) >= 150 then
+	if args.spellId == 80627 and args:IsPlayer() and (args.amount or 1) >= 150 then
 		specWarnStolenPower:Show(args.amount)
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(79339) then
+	if args.spellId == 79339 then
 		playerDebuffs = playerDebuffs - 1
 		if args:IsPlayer() and self.Options.RangeFrame and playerDebuffs >= 1 then
 			DBM.RangeCheck:Show(10, cindersDebuffFilter)--Change to debuff filter based check since theirs is gone but there are still cinders in raid.
@@ -261,7 +261,7 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(77827) then
+	if args.spellId == 77827 then
 		if args:GetSrcCreatureID() == 41270 then
 			warnOnyTailSwipe:Show()
 			timerOnySwipeCD:Start()

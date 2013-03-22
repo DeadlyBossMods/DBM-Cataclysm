@@ -25,7 +25,7 @@ local timerSunStrike	= mod:NewCDTimer(27, 73872)
 local specWarnSunOrb	= mod:NewSpecialWarningInterrupt(80352)
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(76355) and self:AntiSpam(5) then
+	if args.spellId == 76355 and self:AntiSpam(5) then
 		warnBlessing:Show()
 		timerBlessing:Start()
 		timerSunStrike:Start(50)	-- or hack it into SPELL_AURA_REMOVED
@@ -33,16 +33,16 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(87653) then
+	if args.spellId == 87653 then
 		warnLeap:Show()
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(80352) then
+	if args.spellId == 80352 then
 		warnSunOrb:Show()
 		specWarnSunOrb:Show(args.sourceName)
-	elseif args:IsSpellID(73872) then
+	elseif args.spellId == 73872 then
 		warnSunStrike:Show()
 		timerSunStrike:Start()
 	end

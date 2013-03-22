@@ -30,16 +30,16 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(74938) then
+	if args.spellId == 74938 then
 		warnShield:Show()
-	elseif args:IsSpellID(75592) then
+	elseif args.spellId == 75592 then
 		warnReckoning:Show(args.destName)
 		timerReckoning:Start(args.destName)
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(75592) then
+	if args.spellId == 75592 then
 		timerReckoning:Cancel(args.destName)
 	end
 end
