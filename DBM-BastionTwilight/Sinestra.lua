@@ -194,11 +194,11 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(90125) then
+	if args.spellId == 90125 then
 		warnBreath:Show()
 		specWarnBreath:Show()
 		timerBreathCD:Start()
-	elseif args:IsSpellID(86227) then
+	elseif args.spellId == 86227 then
 		warnExtinction:Show()
 		timerExtinction:Start()
 	end
@@ -207,14 +207,14 @@ end
 function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpellID(90045, 92946) then
 		specWarnIndomitable:Show()
-	elseif args:IsSpellID(89421) then--Cast wracks (10,25)
+	elseif args.spellId == 89421 then--Cast wracks (10,25)
 		warnWrack:Show(args.destName)
 		timerWrack:Start()
-	elseif args:IsSpellID(89435) then -- jumped wracks (10,25)
+	elseif args.spellId == 89435 then -- jumped wracks (10,25)
 		wrackTargets[#wrackTargets + 1] = args.destName
 		self:Unschedule(showWrackWarning)
 		self:Schedule(0.3, showWrackWarning)
-	elseif args:IsSpellID(87299) then
+	elseif args.spellId == 87299 then
 		eggDown = 0
 		warnPhase2:Show()
 		timerBreathCD:Cancel()
@@ -227,12 +227,12 @@ function mod:SPELL_AURA_APPLIED(args)
 		if self.Options.SetIconOnOrbs then
 			self:ClearIcons()
 		end
-	elseif args:IsSpellID(87231) and not args:IsDestTypePlayer() then
+	elseif args.spellId == 87231 and not args:IsDestTypePlayer() then
 		if not DBM.BossHealth:HasBoss(args.sourceGUID) then
 			DBM.BossHealth:AddBoss(args.sourceGUID, args.sourceName)
 			calenGUID = args.sourceGUID
 		end
-	elseif args:IsSpellID(87654) then
+	elseif args.spellId == 87654 then
 		if not DBM.BossHealth:HasBoss(args.sourceGUID) then
 			DBM.BossHealth:AddBoss(args.sourceGUID, args.sourceName)
 		end
@@ -242,14 +242,14 @@ function mod:SPELL_AURA_APPLIED(args)
 				specWarnEggShield:Show()
 			end
 		end
-	elseif args:IsSpellID(87946) and args:IsNPC() then--NPC check just simplifies it cause he gains the buff too, before he dies, less local variables this way.
+	elseif args.spellId == 87946 and args:IsNPC() then--NPC check just simplifies it cause he gains the buff too, before he dies, less local variables this way.
 		warnRedEssence:Show()
 		timerRedEssence:Start()
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(87654) and self:AntiSpam(3) then
+	if args.spellId == 87654 and self:AntiSpam(3) then
 		timerEggWeaken:Show()
 		specWarnEggWeaken:Show()
 		eggRemoved = true

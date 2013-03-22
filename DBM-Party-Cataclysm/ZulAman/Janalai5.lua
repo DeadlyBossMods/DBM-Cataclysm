@@ -41,13 +41,13 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(97497) and args:IsPlayer() and self:AntiSpam() then
+	if args.spellId == 97497 and args:IsPlayer() and self:AntiSpam() then
 		specWarnFlameBreath:Show()
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(43140) then
+	if args.spellId == 43140 then
 		warnFlameCast:Show()	-- Seems he doesn't target the person :(
 	end
 end

@@ -168,7 +168,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(105845) then
+	if args.spellId == 105845 then
 		warnNuclearBlast:Show()
 		specWarnNuclearBlast:Show()
 		soundNuclearBlast:Play()
@@ -180,7 +180,7 @@ function mod:SPELL_CAST_START(args)
 		else
 			timerSealArmor:Start()
 		end
-	elseif args:IsSpellID(109379) then
+	elseif args.spellId == 109379 then
 		if not corruptionActive[args.sourceGUID] then
 			corruptionActive[args.sourceGUID] = 0
 			if self:IsDifficulty("normal25", "heroic25") then
@@ -206,13 +206,13 @@ end
 
 -- not needed guid check. This is residue creation step.
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(105219) then 
+	if args.spellId == 105219 then 
 		residueNum = residueNum + 1
 		diedOozeGUIDS[args.sourceGUID] = GetTime()
 		self:Unschedule(warningResidue)
 		self:Schedule(1.25, warningResidue)
 		if residueDebug then print("created", residueNum) end
-	elseif args:IsSpellID(105248) and diedOozeGUIDS[args.sourceGUID] then
+	elseif args.spellId == 105248 and diedOozeGUIDS[args.sourceGUID] then
 		residueNum = residueNum - 1
 		diedOozeGUIDS[args.sourceGUID] = nil
 		self:Unschedule(warningResidue)
@@ -237,10 +237,10 @@ end
 mod.SWING_MISSED = mod.SWING_DAMAGE
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(105248) then
+	if args.spellId == 105248 then
 		warnAbsorbedBlood:Cancel()--Just a little anti spam
 		warnAbsorbedBlood:Schedule(1.25, args.destName, 1)
-	elseif args:IsSpellID(105490) then
+	elseif args.spellId == 105490 then
 		gripTargets[#gripTargets + 1] = args.destName
 		timerGripCD:Cancel(args.sourceGUID)
 		countdownGrip:Cancel(args.sourceGUID)
@@ -256,7 +256,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 		self:Unschedule(showGripWarning)
 		self:Schedule(0.3, showGripWarning)
-	elseif args:IsSpellID(105479) then
+	elseif args.spellId == 105479 then
 		if self.Options.ShowShieldInfo then
 			setPlasmaTarget(args.destGUID, args.destName)
 		end
@@ -264,7 +264,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end		
 
 function mod:SPELL_AURA_APPLIED_DOSE(args)
-	if args:IsSpellID(105248) then
+	if args.spellId == 105248 then
 		warnAbsorbedBlood:Cancel()--Just a little anti spam
 		if args.amount == 9 then
 			warnAbsorbedBlood:Show(args.destName, 9)
@@ -275,11 +275,11 @@ function mod:SPELL_AURA_APPLIED_DOSE(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(105490) then
+	if args.spellId == 105490 then
 		if self.Options.SetIconOnGrip then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args:IsSpellID(105479) then
+	elseif args.spellId == 105479 then
 		if self.Options.ShowShieldInfo then
 			clearPlasmaTarget(args.destGUID, args.destName)
 		end

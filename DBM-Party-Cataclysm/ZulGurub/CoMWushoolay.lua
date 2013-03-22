@@ -48,17 +48,17 @@ function mod:LightingRushTarget()
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(96697) then
+	if args.spellId == 96697 then
 		self:ScheduleMethod(0.2, "LightingRushTarget")
 		warnRush:Show()
 		timerRushCD:Start()
-	elseif args:IsSpellID(96698) then
+	elseif args.spellId == 96698 then
 		warnRod:Show()
 	end
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(96710) and args:IsPlayer() then
+	if args.spellId == 96710 and args:IsPlayer() then
 		specWarnCloud:Show()
 	end
 end

@@ -97,7 +97,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(104322) then
+	if args.spellId == 104322 then
 		warnPsychicDrain:Show()
 		specWarnPsychicDrain:Show()
 		timerPsychicDrainCD:Start()
@@ -122,13 +122,13 @@ function mod:SPELL_AURA_APPLIED(args)
 				timerVoidofUnmakingCD:Update(54.3, 90.3)
 			end
 		end
-	elseif args:IsSpellID(104543) then
+	elseif args.spellId == 104543 then
 		warnFocusedAnger:Show(args.destName, args.amount or 1)
 		timerFocusedAngerCD:Start()
-	elseif args:IsSpellID(106836) then--Do NOT add 103527 to this, that's a seperate spellid for when BOSS is affected by diffusion, this warning is counting the ball stacks.
+	elseif args.spellId == 106836 then--Do NOT add 103527 to this, that's a seperate spellid for when BOSS is affected by diffusion, this warning is counting the ball stacks.
 		warnVoidDiffusion:Show(args.destName, args.amount or 1)
 		timerVoidDiffusionCD:Start()
-	elseif args:IsSpellID(103434) then
+	elseif args.spellId == 103434 then
 		shadowsTargets[#shadowsTargets + 1] = args.destName
 		if args:IsPlayer() and self:IsDifficulty("heroic10", "heroic25") then
 			specWarnShadows:Show()
@@ -146,7 +146,7 @@ end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(103434) and args:IsPlayer() and self:IsDifficulty("heroic10", "heroic25") then
+	if args.spellId == 103434 and args:IsPlayer() and self:IsDifficulty("heroic10", "heroic25") then
 		self:updateRangeFrame()
 	end
 end

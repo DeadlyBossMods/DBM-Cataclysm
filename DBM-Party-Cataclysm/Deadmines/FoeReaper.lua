@@ -52,23 +52,23 @@ function mod:HarvestTarget()
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(88495) then
+	if args.spellId == 88495 then
 		self:ScheduleMethod(0.1, "HarvestTarget")
 		timerHarvest:Start()
 	end
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(88481) then
+	if args.spellId == 88481 then
 		warnOverdrive:Show()
 		timerOverdrive:Start()
-	elseif args:IsSpellID(88522) then
+	elseif args.spellId == 88522 then
 		warnEnrage:Show()
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(59304) and mod:IsInCombat() then
+	if args.spellId == 59304 and mod:IsInCombat() then
 		warnSpiritStrike:Show()
 	end
 end

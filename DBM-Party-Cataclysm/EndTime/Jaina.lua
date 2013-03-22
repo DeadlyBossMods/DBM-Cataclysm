@@ -28,12 +28,12 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(101927) then
+	if args.spellId == 101927 then
 		warnFlarecore:Show()
 		specWarnFlarecore:Show()
 		timerFlarecore:Start()
 		timerFlarecoreDetonate:Start()
-	elseif args:IsSpellID(101812) then	-- Frost Blades is cast immediately after Blink (Frost Blades = 3 events, Blink = 1 event)
+	elseif args.spellId == 101812 then	-- Frost Blades is cast immediately after Blink (Frost Blades = 3 events, Blink = 1 event)
 		warnFrostBlades:Show()
 		timerFrostBlades:Start()
 	end

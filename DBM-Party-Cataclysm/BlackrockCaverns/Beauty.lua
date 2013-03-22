@@ -24,14 +24,14 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(76031) then
+	if args.spellId == 76031 then
 		warnMagmaSpit:Show(args.destName)
 		timerMagmaSpit:Start(args.destName)
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(76028) then
+	if args.spellId == 76028 then
 		warnTerrifyingRoar:Show()
 		timerTerrifyingRoarCD:Start()
 	end

@@ -27,7 +27,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(93956) then
+	if args.spellId == 93956 then
 		veilShadowCast = veilShadowCast + 1
 		if self:AntiSpam(4) then
 			warnVeilShadow:Show()
@@ -37,7 +37,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(93956) then
+	if args.spellId == 93956 then
 		veilShadowCast = veilShadowCast - 1
 		if veilShadowCast == 0 then
 			timerVeilShadow:Cancel()
@@ -46,7 +46,7 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(93857) then
+	if args.spellId == 93857 then
 		warnWorgenSpirit:Show()
 		timerWorgenSpirit:Start()
 	end

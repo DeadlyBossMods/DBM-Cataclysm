@@ -28,12 +28,12 @@ local timerEnrageCast		= mod:NewCastTimer(2.5, 76100)
 local timerCurse			= mod:NewTargetTimer(15, 76094)
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(76094) then
+	if args.spellId == 76094 then
 		warnCurse:Show(args.destName)
 		timerCurse:Start(args.destName)
-	elseif args:IsSpellID(76100) then
+	elseif args.spellId == 76100 then
 		timerEnrage:Start()
-	elseif args:IsSpellID(76026) then
+	elseif args.spellId == 76026 then
 		warnSqueeze:Show(args.destName)
 		timerSqueeze:Start(args.destName)
 		timerSqueezeCD:Start()
@@ -41,17 +41,17 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(76094) then
+	if args.spellId == 76094 then
 		timerCurse:Cancel(args.destName)
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(76047) then
+	if args.spellId == 76047 then
 		warnDarkFissure:Show()
 		timerDarkFissure:Start()
 		timerDarkFissureCD:Start()
-	elseif args:IsSpellID(76100) then
+	elseif args.spellId == 76100 then
 		warnEnrage:Show()
 		timerEnrageCast:Start()
 	end

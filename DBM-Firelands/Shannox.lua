@@ -186,7 +186,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(100415) then
+	if args.spellId == 100415 then
 		warnRage:Show(args.destName)
 		timerRage:Start(args.destName)
 		if args:IsPlayer() then
@@ -195,16 +195,16 @@ function mod:SPELL_AURA_APPLIED(args)
 		if self.Options.SetIconOnRage then
 			self:SetIcon(args.destName, 6, 15)
 		end
-	elseif args:IsSpellID(100167) then
+	elseif args.spellId == 100167 then
 		warnWary:Show(args.destName)
 		timerWary:Start(args.destName)
-	elseif args:IsSpellID(99837) then--Filter when the dogs get it?
+	elseif args.spellId == 99837 then--Filter when the dogs get it?
 		if args:IsDestTypePlayer() then
 			warnCrystalPrisonTrapped:Show(args.destName)
 		else--It's a trapped dog
 			timerCrystalPrison:Start(args.destName)--make a 10 second timer for how long dog is trapped.
 		end
-	elseif args:IsSpellID(99937) then
+	elseif args.spellId == 99937 then
 		if (args.amount or 1) % 3 == 0 then	--Warn every 3 stacks
 			warnTears:Show(args.destName, args.amount or 1)
 		end
@@ -222,28 +222,28 @@ end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(99945) then
+	if args.spellId == 99945 then
 		if self.Options.SetIconOnFaceRage then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args:IsSpellID(99937) then
+	elseif args.spellId == 99937 then
 		timerTears:Cancel(args.destName)
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(100002) then
+	if args.spellId == 100002 then
 		warnSpear:Show()--Only valid until rip dies
 		specWarnSpear:Show()
 		timerSpearCD:Start()
-	elseif args:IsSpellID(99840) and ripLimbDead then	--This is cast after Riplimb dies.
+	elseif args.spellId == 99840 and ripLimbDead then	--This is cast after Riplimb dies.
 		warnMagmaRupture:Show()
 		timerMagmaRuptureCD:Start()
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(99947) then
+	if args.spellId == 99947 then
 		warnFaceRage:Show(args.destName)
 		specWarnFaceRage:Show(args.destName)
 		timerFaceRageCD:Start()
@@ -254,11 +254,11 @@ function mod:SPELL_CAST_SUCCESS(args)
 end
 
 function mod:SPELL_SUMMON(args)
-	if args:IsSpellID(99836) then
+	if args.spellId == 99836 then
 		timerCrystalPrisonCD:Start()
 		trapScansDone = 0
 		self:TrapHandler(99836)
-	elseif args:IsSpellID(99839) then
+	elseif args.spellId == 99839 then
 		trapScansDone = 0
 		self:TrapHandler(99839)
 	end

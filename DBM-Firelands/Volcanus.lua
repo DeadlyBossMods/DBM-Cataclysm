@@ -28,7 +28,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(100146) then
+	if args.spellId == 100146 then
 		warnRoots:Show()
 		timerRootsCD:Start()
 	end

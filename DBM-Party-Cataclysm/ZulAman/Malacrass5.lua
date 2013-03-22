@@ -70,36 +70,36 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(43451) then					--Paladin Heal (Holy Light)
+	if args.spellId == 43451 then					--Paladin Heal (Holy Light)
 		warnHolyLight:Show()
 		specWarnHolyLight:Show(args.sourceName)
-	elseif args:IsSpellID(43431) then				--Priest Heal (Flash Heal)
+	elseif args.spellId == 43431 then				--Priest Heal (Flash Heal)
 		warnFlashHeal:Show()
 		specWarnFlashHeal:Show(args.sourceName)
-	elseif args:IsSpellID(43548) then				--Shaman Heal (Healing Wave)
+	elseif args.spellId == 43548 then				--Shaman Heal (Healing Wave)
 		warnHealingWave:Show()
 		specWarnHealingWave:Show(args.sourceName)
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(43436) then					--Shaman (Fire Nova Totem)
+	if args.spellId == 43436 then					--Shaman (Fire Nova Totem)
 		warnFireNovaTotem:Show()
 		specWarnFireNovaTotem:Show()
 	end
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(43501) then
+	if args.spellId == 43501 then
 		local class = getClass(args.destName)
 		warnSiphon:Show(args.destName)
 		timerSiphon:Start(args.spellName, class)
-	elseif args:IsSpellID(43383) then
+	elseif args.spellId == 43383 then
 		warnSpiritBolts:Show()
 		warnSpiritBoltsSoon:Schedule(31)
 		timerSpiritBolts:Start()
 		timerSpiritBoltsNext:Start()
-	elseif args:IsSpellID(43421) then
+	elseif args.spellId == 43421 then
 		warnLifebloom:Show(args.destName)
 		specWarnLifebloom:Show(args.destName)
 	end

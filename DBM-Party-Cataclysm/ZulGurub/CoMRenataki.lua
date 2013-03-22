@@ -31,7 +31,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(96646) then
+	if args.spellId == 96646 then
         warnBlades:Show()
         specWarnBlades:Show()
         soundBlades:Play()
@@ -41,7 +41,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(96639) then
+	if args.spellId == 96639 then
 		warnVanish:Show()
 		timerVanishCD:Start()
 		timerAmbush:Start()

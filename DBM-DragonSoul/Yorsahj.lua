@@ -89,25 +89,25 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(104849) then--Do not add any other ID, these are tank IDs. Raid aoe IDs coul be added as an alternate timer somewhere else maybe.
+	if args.spellId == 104849 then--Do not add any other ID, these are tank IDs. Raid aoe IDs coul be added as an alternate timer somewhere else maybe.
 		timerVoidBoltCD:Start()
-	elseif args:IsSpellID(105530) then
+	elseif args.spellId == 105530 then
 		warnManaVoid:Show()
 		specWarnManaVoid:Show()
 		timerManaVoid:Start()
-	elseif args:IsSpellID(105573) and self:IsInCombat() then
+	elseif args.spellId == 105573 and self:IsInCombat() then
 		if yellowActive then
 			timerAcidCD:Start(3.5)--Strangely, this is 3.5 even though base CD is 8.3-8.5
 		else
 			timerAcidCD:Start()
 		end
-	elseif args:IsSpellID(105033) and args:GetSrcCreatureID() == 55312 then
+	elseif args.spellId == 105033 and args:GetSrcCreatureID() == 55312 then
 		if yellowActive then
 			timerSearingCD:Start(3.5)
 		else
 			timerSearingCD:Start()
 		end
-	elseif args:IsSpellID(105171) then-- this spellid is debuff spellid(10h, 25h). damaging spellid is different. so added only 1 spellids.
+	elseif args.spellId == 105171 then-- this spellid is debuff spellid(10h, 25h). damaging spellid is different. so added only 1 spellids.
 		timerDeepCorruption:Start()
 		warnDeepCorruption:Show()
 	end
@@ -121,7 +121,7 @@ Ooze Absorption and granted abilities expression (black adds only fire UNIT_SPEL
 (spellid = 104896 or spellid = 104894 or spellid = 105027 or spellid = 104897 or spellid = 104901 or spellid = 104898) and targetMobId = 55312 or fulltype = SPELL_CAST_SUCCESS and (spell = "Digestive Acid" or spell = "Mana Void" or spell = "Searing Blood" or spell = "Deep Corruption")
 --]]
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(104849) then
+	if args.spellId == 104849 then
 		warnVoidBolt:Show(args.destName, args.amount or 1)
 		local _, _, _, _, _, duration, expires = UnitDebuff(args.destName, args.spellName)--This is now consistently 12 seconds, but it's been nerfed twice without warning, i'm just gonna leave this here to make the mod continue to auto correct it when/if it changes more.
 		timerVoidBolt:Start(duration, args.destName)
@@ -134,34 +134,34 @@ function mod:SPELL_AURA_APPLIED(args)
 				end
 			end
 		end
-	elseif args:IsSpellID(104901) and args:GetDestCreatureID() == 55312 then--Yellow
+	elseif args.spellId == 104901 and args:GetDestCreatureID() == 55312 then--Yellow
 		table.insert(oozesHitTable, L.Yellow)
 		if #oozesHitTable == expectedOozes then--All of em absorbed
 			warnOozesHit:Show(bossName, table.concat(oozesHitTable, ", "))
 		end
 		yellowActive = true
-	elseif args:IsSpellID(104896) and args:GetDestCreatureID() == 55312 then--Purple
+	elseif args.spellId == 104896 and args:GetDestCreatureID() == 55312 then--Purple
 		table.insert(oozesHitTable, L.Purple)
 		if #oozesHitTable == expectedOozes then
 			warnOozesHit:Show(bossName, table.concat(oozesHitTable, ", "))
 		end
 		specWarnPurple:Show()--We warn here to make sure everyone is topped off and things like healing rain are not on ground.
-	elseif args:IsSpellID(105027) and args:GetDestCreatureID() == 55312 then--Blue
+	elseif args.spellId == 105027 and args:GetDestCreatureID() == 55312 then--Blue
 		table.insert(oozesHitTable, L.Blue)
 		if #oozesHitTable == expectedOozes then
 			warnOozesHit:Show(bossName, table.concat(oozesHitTable, ", "))
 		end
-	elseif args:IsSpellID(104897) and args:GetDestCreatureID() == 55312 then--Red
+	elseif args.spellId == 104897 and args:GetDestCreatureID() == 55312 then--Red
 		table.insert(oozesHitTable, L.Red)
 		if #oozesHitTable == expectedOozes then
 			warnOozesHit:Show(bossName, table.concat(oozesHitTable, ", "))
 		end
-	elseif args:IsSpellID(104894) and args:GetDestCreatureID() == 55312 then--Black
+	elseif args.spellId == 104894 and args:GetDestCreatureID() == 55312 then--Black
 		table.insert(oozesHitTable, L.Black)
 		if #oozesHitTable == expectedOozes then
 			warnOozesHit:Show(bossName, table.concat(oozesHitTable, ", "))
 		end
-	elseif args:IsSpellID(104898) then--Green
+	elseif args.spellId == 104898 then--Green
 		if args:GetSrcCreatureID() == 55312 then--Only trigger the actual acid spits off the boss getting buff, not the oozes spawning.
 			table.insert(oozesHitTable, L.Green)
 			if #oozesHitTable == expectedOozes then
@@ -176,13 +176,13 @@ end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(104849) then
+	if args.spellId == 104849 then
 		timerVoidBolt:Cancel(args.destName)
-	elseif args:IsSpellID(104901) and args:GetDestCreatureID() == 55312 then--Yellow Removed
+	elseif args.spellId == 104901 and args:GetDestCreatureID() == 55312 then--Yellow Removed
 		yellowActive = false
-	elseif args:IsSpellID(104897) and args:GetDestCreatureID() == 55312 then--Red Removed
+	elseif args.spellId == 104897 and args:GetDestCreatureID() == 55312 then--Red Removed
 		timerSearingCD:Cancel()
-	elseif args:IsSpellID(104898) then--Green Removed
+	elseif args.spellId == 104898 then--Green Removed
 		if args:GetDestCreatureID() == 55312 then
 			timerAcidCD:Cancel()
 		end

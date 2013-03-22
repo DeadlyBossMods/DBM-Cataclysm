@@ -30,7 +30,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(75571) then
+	if args.spellId == 75571 then
 		warnWoundingStrike:Show(args.destName)
 		if self:IsDifficulty("heroic5") then
 			timerWoundingStrike:Start(10, args.destName)
@@ -42,13 +42,13 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(75272) then
+	if args.spellId == 75272 then
 		warnQuake:Show()
 		timerQuake:Start()
 		timerQuakeCD:Start()
-	elseif args:IsSpellID(75539) then
+	elseif args.spellId == 75539 then
 		warnChainsWoe:Show()
-	elseif args:IsSpellID(75543) then
+	elseif args.spellId == 75543 then
 		if self:IsDifficulty("heroic5") then
 			timerSkullcracker:Start(8)
 		else

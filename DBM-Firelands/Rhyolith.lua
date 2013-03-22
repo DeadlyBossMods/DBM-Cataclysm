@@ -68,7 +68,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(99846) and not phase2Started then
+	if args.spellId == 99846 and not phase2Started then
 		phase2Started = true
 		warnPhase2:Show()
 		if timerFlameStomp:GetTime() > 0 then--This only happens if it was still on CD going into phase
@@ -83,16 +83,16 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_APPLIED_DOSE(args)
-	if args:IsSpellID(98255) and self:GetCIDFromGUID(args.destGUID) == 52558 and args.amount > 10 and self:AntiSpam(5, 1) then
+	if args.spellId == 98255 and self:GetCIDFromGUID(args.destGUID) == 52558 and args.amount > 10 and self:AntiSpam(5, 1) then
 		warnMoltenArmor:Show(args.destName, args.amount)
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(98034) then
+	if args.spellId == 98034 then
 		warnDrinkMagma:Show()
 		timerMoltenSpew:Start()
-	elseif args:IsSpellID(97282) then
+	elseif args.spellId == 97282 then
 		warnFlameStomp:Show()
 		specWarnFlameStomp:Show()
 		if not phase2Started then
@@ -106,14 +106,14 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(98493) then
+	if args.spellId == 98493 then
 		warnHeatedVolcano:Show()
 		if self:IsDifficulty("heroic10", "heroic25") then
 			timerHeatedVolcano:Start()
 		else
 			timerHeatedVolcano:Start(40)
 		end
-	elseif args:IsSpellID(97225) then
+	elseif args.spellId == 97225 then
 		warnMagmaFlow:Show()
 		specWarnMagmaFlow:Show()
 		timerMagmaFlowActive:Start()
@@ -121,7 +121,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 end
 
 function mod:SPELL_SUMMON(args)
-	if args:IsSpellID(98136) and self:AntiSpam(5, 2) then
+	if args.spellId == 98136 and self:AntiSpam(5, 2) then
 		fragmentCount = fragmentCount + 1
 		warnFragments:Show()
 		if fragmentCount < 2 then
@@ -130,7 +130,7 @@ function mod:SPELL_SUMMON(args)
 			fragmentCount = 0
 			timerSparkCD:Start(22.5, sparkCount+1)
 		end
-	elseif args:IsSpellID(98552) then
+	elseif args.spellId == 98552 then
 		sparkCount = sparkCount + 1
 		warnShard:Show(sparkCount)
 		timerFragmentCD:Start()

@@ -46,47 +46,47 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(43093) then
+	if args.spellId == 43093 then
 		warnThrow:Show(args.destName)
 		timerThrow:Start()
 		if self.Options.ThrowIcon then
 			self:SetIcon(args.destName, 8)
 		end
-	elseif args:IsSpellID(17207) then
+	elseif args.spellId == 17207 then
 		warnWhirlwind:Show()
-	elseif args:IsSpellID(43150) then
+	elseif args.spellId == 43150 then
 		warnClawRage:Show(args.destName)
 		if self.Options.ClawRageIcon then
 			self:SetIcon(args.destName, 8, 5)
 		end
-	elseif args:IsSpellID(97497) and args:IsPlayer() and self:IsInCombat() and self:AntiSpam(3, 1) then
+	elseif args.spellId == 97497 and args:IsPlayer() and self:IsInCombat() and self:AntiSpam(3, 1) then
 		specWarnFlameBreath:Show()
-	elseif args:IsSpellID(42402) then
+	elseif args.spellId == 42402 then
 		warnSurge:Show(args.destName)
 		timerSurgeCD:Start()
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(43093) and self.Options.ThrowIcon then
+	if args.spellId == 43093 and self.Options.ThrowIcon then
 		self:SetIcon(args.destName, 0)
-	elseif args:IsSpellID(42594) then--Bear
+	elseif args.spellId == 42594 then--Bear
 		timerSurgeCD:Cancel()
 		timerParalysisCD:Cancel()
 		if self.Options.InfoFrame then
 			DBM.InfoFrame:Hide()
 		end
-	elseif args:IsSpellID(42606) then--Eagle
+	elseif args.spellId == 42606 then--Eagle
 		timerLightningTotemCD:Cancel()
-	elseif args:IsSpellID(42607) then--Lynx
+	elseif args.spellId == 42607 then--Lynx
 
-	elseif args:IsSpellID(42608) then--Dragonhawk
+	elseif args.spellId == 42608 then--Dragonhawk
 
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(42594) then
+	if args.spellId == 42594 then
 		timerThrow:Cancel()
 		warnBear:Show()
 		timerParalysisCD:Start(2.5)
@@ -95,17 +95,17 @@ function mod:SPELL_CAST_START(args)
 			DBM.InfoFrame:SetHeader(L.PlayerDebuffs)
 			DBM.InfoFrame:Show(5, "playerbaddebuff", 42402)
 		end
-	elseif args:IsSpellID(42606) then
+	elseif args.spellId == 42606 then
 		timerThrow:Cancel()
 		warnEagle:Show()
 		timerLightningTotemCD:Start(10)
-	elseif args:IsSpellID(42607) then
+	elseif args.spellId == 42607 then
 		timerThrow:Cancel()
 		warnLynx:Show()
-	elseif args:IsSpellID(42608) then
+	elseif args.spellId == 42608 then
 		timerThrow:Cancel()
 		warnDragonhawk:Show()
-	elseif args:IsSpellID(97930) then
+	elseif args.spellId == 97930 then
 		timerThrow:Cancel()
 		warnLightningTotem:Show()
 		timerLightningTotemCD:Start()
@@ -113,7 +113,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(43095) then
+	if args.spellId == 43095 then
 		warnParalysis:Show()
 		timerParalysisCD:Start()
 	end

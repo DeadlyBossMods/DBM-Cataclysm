@@ -90,7 +90,7 @@ function mod:OnCombatEnd()
 end 
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(78092) then
+	if args.spellId == 78092 then
 		warnTracking:Show(args.destName)
 		if args:IsPlayer() then
 			specWarnTracking:Show()
@@ -103,17 +103,17 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(78092) then
+	if args.spellId == 78092 then
 		if self.Options.TrackingIcon then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args:IsSpellID(92681) then--Phase shift removed, add targetable/killable.
+	elseif args.spellId == 92681 then--Phase shift removed, add targetable/killable.
 		specWarnAddTargetable:Show(args.destName)
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(92677) then
+	if args.spellId == 92677 then
 		warnObnoxious:Show()
 		if self:IsMelee() and (self:GetUnitCreatureId("target") == 49740 or self:GetUnitCreatureId("focus") == 49740) or not self:IsMelee() then
 			specWarnObnoxious:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
@@ -122,15 +122,15 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(78075) then
+	if args.spellId == 78075 then
 		timerSonicBreath:Start()
 		warnSonicBreath:Show()
-	elseif args:IsSpellID(77840) then
+	elseif args.spellId == 77840 then
 		specWarnSearingFlame:Show()
-	elseif args:IsSpellID(92681) then--Add is phase shifting which means a new one is spawning, or an old one is changing target cause their first target died.
+	elseif args.spellId == 92681 then--Add is phase shifting which means a new one is spawning, or an old one is changing target cause their first target died.
 		warnPhaseShift:Show()
 		pesteredWarned = false--Might need more work on this.
-	elseif args:IsSpellID(77672) then--Sonar Pulse (the discs)
+	elseif args.spellId == 77672 then--Sonar Pulse (the discs)
 		warnSonarPulse:Show()
 		specWarnSonarPulse:Show()
 		timerSonarPulseCD:Start()

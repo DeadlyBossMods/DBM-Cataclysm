@@ -36,9 +36,9 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(103252) then
+	if args.spellId == 103252 then
 		warnIcyTomb:Show(args.destName)
-	elseif args:IsSpellID(102582) then
+	elseif args.spellId == 102582 then
 		warnChainsFrost:Show()
 	end
 end

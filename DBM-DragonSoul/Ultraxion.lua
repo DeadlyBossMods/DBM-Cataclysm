@@ -86,7 +86,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(106371) then
+	if args.spellId == 106371 then
 		fadingLightCount = 0
 		hourOfTwilightCount = hourOfTwilightCount + 1
 		warnHourofTwilight:Show(hourOfTwilightCount)
@@ -112,14 +112,14 @@ function mod:SPELL_CAST_START(args)
 			timerFadingLightCD:Start(20)
 			timerHourofTwilight:Start()
 		end
-	elseif args:IsSpellID(106388) then
+	elseif args.spellId == 106388 then
 		specWarnTwilightEruption:Show()
 		timerTwilightEruption:Start()
 	end
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(105925) then--Tank Only SpellID
+	if args.spellId == 105925 then--Tank Only SpellID
 		fadingLightCount = fadingLightCount + 1
 		fadingLightTargets[#fadingLightTargets + 1] = args.destName
 		if self:IsDifficulty("heroic10", "heroic25") and fadingLightCount < 3 then
@@ -141,7 +141,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			self:Schedule(0.5, warnFadingLightTargets)
 		end
-	elseif args:IsSpellID(109075) then--Non Tank ID
+	elseif args.spellId == 109075 then--Non Tank ID
 		fadingLightTargets[#fadingLightTargets + 1] = args.destName
 		if (args:IsPlayer() or UnitDebuff("player", GetSpellInfo(109075))) and self:AntiSpam(2) then
 			local _, _, _, _, _, duration, expires = UnitDebuff("player", args.spellName)
@@ -155,7 +155,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			self:Schedule(0.5, warnFadingLightTargets)
 		end
-	elseif args:IsSpellID(106498) and args:IsPlayer() then
+	elseif args.spellId == 106498 and args:IsPlayer() then
 		timerLoomingDarkness:Start()
 	end
 end

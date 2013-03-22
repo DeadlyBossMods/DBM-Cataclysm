@@ -31,10 +31,10 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(83463) and not warnedPhase2 then
+	if args.spellId == 83463 and not warnedPhase2 then
 		warnPhase2:Show(2)
 		warnedPhase2 = true
-	elseif args:IsSpellID(76133) and not warnedPhase3 then
+	elseif args.spellId == 76133 and not warnedPhase3 then
 		warnPhase3:Show(3)
 		warnedPhase3 = true
 	end

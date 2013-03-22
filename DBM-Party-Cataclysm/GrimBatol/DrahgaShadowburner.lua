@@ -39,18 +39,18 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(75328) then
+	if args.spellId == 75328 then
 		DBM.BossHealth:RemoveBoss(40320)
-	elseif args:IsSpellID(75317) and args:IsPlayer() then
+	elseif args.spellId == 75317 and args:IsPlayer() then
 		specWarnSeepingTwilight:Show()
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(75321) then
+	if args.spellId == 75321 then
 		warnFlame:Show()
 		timerFlame:Start()
-	elseif args:IsSpellID(90950) then
+	elseif args.spellId == 90950 then
 		warnDevouring:Show()
 		specWarnDevouring:Show()
 		timerDevouring:Start()
@@ -58,7 +58,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_SUMMON(args)
-	if args:IsSpellID(75271) then
+	if args.spellId == 75271 then
 		warnShredding:Show()
 		timerShredding:Start()
 	end

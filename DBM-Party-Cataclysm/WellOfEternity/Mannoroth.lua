@@ -29,13 +29,13 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(105041) then
+	if args.spellId == 105041 then
 		timerFelStormCD:Start()		-- ~30sec after Nether Tear ?
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(103888) then
+	if args.spellId == 103888 then
 		felstorms = felstorms + 1
 		timerFelStormCD:Cancel()
 		specWarnFelStorm:Show()

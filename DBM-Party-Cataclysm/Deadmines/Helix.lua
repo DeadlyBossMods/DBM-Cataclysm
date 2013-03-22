@@ -21,7 +21,7 @@ local timerChestBomb		= mod:NewTargetTimer(10, 88352)
 local specWarnChestBomb		= mod:NewSpecialWarningYou(88352)
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(88352) then
+	if args.spellId == 88352 then
 		warnChestBomb:Show(args.destName)
 		timerChestBomb:Start(args.destName)
 		if args:IsPlayer() then
@@ -31,7 +31,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(59304) and self:IsInCombat() then
+	if args.spellId == 59304 and self:IsInCombat() then
 		warnSpiritStrike:Show()
 	end
 end

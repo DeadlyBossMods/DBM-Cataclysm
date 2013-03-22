@@ -71,20 +71,20 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(103687) then
+	if args.spellId == 103687 then
 		warnCrushArmor:Show(args.destName, args.amount or 1)
 		timerCrushArmor:Start(args.destName)
 		if (args.amount or 1) > 3 then
 			specwarnCrushArmor:Show(args.amount or 1)
 		end
-	elseif args:IsSpellID(103846) and self:AntiSpam(3, 1) then
+	elseif args.spellId == 103846 and self:AntiSpam(3, 1) then
 		warnFurious:Show()
 	end
 end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(103851) and self:AntiSpam(3, 1) then--Filter twin here, they vortex together but we don't want to trigger everything twice needlessly.
+	if args.spellId == 103851 and self:AntiSpam(3, 1) then--Filter twin here, they vortex together but we don't want to trigger everything twice needlessly.
 		stompCount = 0
 		crystalCount = 0
 		timerStomp:Start(19)
@@ -100,7 +100,7 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(103414) then
+	if args.spellId == 103414 then
 		if args:GetSrcCreatureID() == 55265 then
 			stompCount = stompCount + 1
 			warnStomp:Show()
@@ -123,7 +123,7 @@ function mod:SPELL_CAST_START(args)
 		else
 			KohcromWarning:Show(args.sourceName, args.spellName)
 		end
-	elseif args:IsSpellID(103851) then
+	elseif args.spellId == 103851 then
 		if args:GetSrcCreatureID() == 55265 then
 			warnBlood:Show()
 			timerBlood:Start()
@@ -132,7 +132,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_SUMMON(args)
-	if args:IsSpellID(103639) then
+	if args.spellId == 103639 then
 		if self:GetUnitCreatureId("target") == self:GetCIDFromGUID(args.sourceGUID) or self:GetUnitCreatureId("focus") == self:GetCIDFromGUID(args.sourceGUID) then
 			specwarnCrystal:Show(args.sourceName)
 		end
@@ -158,7 +158,7 @@ function mod:SPELL_SUMMON(args)
 		else
 			KohcromWarning:Show(args.sourceName, args.spellName)
 		end
-	elseif args:IsSpellID(109017) then
+	elseif args.spellId == 109017 then
 		warnKohcrom:Show()
 		-- when Kohcrom summoning, Stomp and Crystal timer restarts.
 		if kohcromSkip == 1 then -- next is Crystal, Crystal will be skipped.
@@ -176,7 +176,7 @@ function mod:SPELL_SUMMON(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(103821) and self:AntiSpam(3, 1) then
+	if args.spellId == 103821 and self:AntiSpam(3, 1) then
 		crystalCount = 0
 		timerStomp:Cancel()
 		timerCrystal:Cancel()

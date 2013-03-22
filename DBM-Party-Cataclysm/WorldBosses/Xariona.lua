@@ -53,25 +53,25 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(93556) then
+	if args.spellId == 93556 then
 		warnUnleashedMagic:Show()
 		specWarnUnleashedMagic:Show()
 		timerUnleashedMagicCD:Start()
-	elseif args:IsSpellID(93546) then
+	elseif args.spellId == 93546 then
 		self:ScheduleMethod(0.2, "FissureTarget")
 		timerTwilightFissureCD:Start()
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(93553) then
+	if args.spellId == 93553 then
 		warnTwilightZone:Show()
 		timerTwilightZoneCD:Start()
 	end
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(93551) then
+	if args.spellId == 93551 then
 		warnTwilightBuffet:Show(args.destName)
 		timerTwilightBuffet:Start(args.destName)
 		timerTwilightBuffetCD:Start()
@@ -79,7 +79,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(93551) then
+	if args.spellId == 93551 then
 		timerTwilightBuffet:Cancel(args.destName)
 	end
 end

@@ -110,7 +110,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(99516) then
+	if args.spellId == 99516 then
 		countdownTargets[#countdownTargets + 1] = args.destName
 		timerCountdown:Start()
 		timerCountdownCD:Start()
@@ -131,14 +131,14 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 		self:Unschedule(showCountdownWarning)
 		self:Schedule(0.5, showCountdownWarning)
-	elseif args:IsSpellID(99256) then--Torment
+	elseif args.spellId == 99256 then--Torment
 		if self.Options.SetIconOnTorment then
 			self:SetIcon(args.destName, tormentIcon)
 			tormentIcon = tormentIcon - 1
 		end
-	elseif args:IsSpellID(99263) and args:IsPlayer() then
+	elseif args.spellId == 99263 and args:IsPlayer() then
 		timerVitalFlame:Start()
-	elseif args:IsSpellID(99352) then--Decimation Blades
+	elseif args.spellId == 99352 then--Decimation Blades
 		bladesName = GetSpellInfo(99353)
 		lastStrike = GetTime()--Set last strike here too
 		strikeCount = 0--Reset count.
@@ -147,12 +147,12 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			timerStrikeCD:Start(6, bladesName)--6 seconds on 10 man
 		end
-	elseif args:IsSpellID(99350) then--Inferno Blades
+	elseif args.spellId == 99350 then--Inferno Blades
 		bladesName = GetSpellInfo(99351)
 		lastStrike = GetTime()--Set last strike here too
 		strikeCount = 0--Reset count.
 		timerStrikeCD:Start(2.5, bladesName)
-	elseif args:IsSpellID(99257) then--Tormented
+	elseif args.spellId == 99257 then--Tormented
 		if args:IsPlayer() then
 			warnTormented:Show()
 			specWarnTormented:Show()
@@ -173,7 +173,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REFRESH(args)
-	if args:IsSpellID(99257) then--Tormented
+	if args.spellId == 99257 then--Tormented
 		if args:IsPlayer() then
 			if self:IsDifficulty("normal10") then--The very first timer is subject to inaccuracis do to variation. But they are minor, usually within 0.5sec
 				timerTormented:Start(20)
@@ -192,11 +192,11 @@ function mod:SPELL_AURA_REMOVED(args)
 	if args:IsSpellID(99352, 99350) then--Decimation Blade/Inferno blade
 		timerBladeNext:Start()--30 seconds after last blades FADED
 		timerStrikeCD:Cancel()
-	elseif args:IsSpellID(99256) then--Torment
+	elseif args.spellId == 99256 then--Torment
 		if self.Options.SetIconOnTorment then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args:IsSpellID(99257) then--Tormented
+	elseif args.spellId == 99257 then--Tormented
 		if args:IsPlayer() then
 			timerTormented:Cancel()
 			if self.Options.RangeFrame and self:IsDifficulty("heroic10", "heroic25") and self:IsInCombat() then
@@ -250,14 +250,14 @@ end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE--Dodge/parried decimation strikes show as SPELL_MISSED
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(99352) then
+	if args.spellId == 99352 then
 		warnDecimationBlade:Show()
 		specWarnDecimation:Show()
 		timerBladeActive:Start(args.spellName)
-	elseif args:IsSpellID(99350) then
+	elseif args.spellId == 99350 then
 		warnInfernoBlade:Show()
 		timerBladeActive:Start(args.spellName)
-	elseif args:IsSpellID(99259) then
+	elseif args.spellId == 99259 then
 		shardCount = shardCount + 1
 		tormentIcon = 8
 		warnShardsTorment:Show(shardCount)

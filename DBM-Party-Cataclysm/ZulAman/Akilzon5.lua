@@ -62,7 +62,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(97318) then
+	if args.spellId == 97318 then
 		if args:IsDestTypePlayer() then
 			warnPlucked:Show(args.destName)	
 		else
@@ -72,7 +72,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(43648) then
+	if args.spellId == 43648 then
 		warnStorm:Show(args.destName)
 		specWarnStorm:Show()
 		timerStorm:Start()

@@ -30,7 +30,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(96619) then
+	if args.spellId == 96619 then
 		warnRupture:Show(args.destName)
 		if args:IsPlayer() then
 			specWarnRupture:Show()

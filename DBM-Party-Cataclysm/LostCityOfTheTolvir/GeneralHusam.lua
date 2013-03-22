@@ -25,16 +25,16 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(83445) then
+	if args.spellId == 83445 then
 		warnShockwave:Show()
 		timerShockwave:Start()
-	elseif args:IsSpellID(91263) then
+	elseif args.spellId == 91263 then
 		warnDetonate:Show()
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(83113) then
+	if args.spellId == 83113 then
 		warnIntentions:Show()
 		timerIntentions:Start()
 	end

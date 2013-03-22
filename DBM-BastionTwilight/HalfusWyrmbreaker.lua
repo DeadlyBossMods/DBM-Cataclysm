@@ -48,9 +48,9 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(87683) then
+	if args.spellId == 87683 then
 		warnVengeance:Show()
-	elseif args:IsSpellID(84030) then
+	elseif args.spellId == 84030 then
 		warnParalysis:Show()
 		timerParalysis:Start()
 		timerParalysisCD:Start()
@@ -62,9 +62,9 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_APPLIED_DOSE(args)
-	if args:IsSpellID(87683) then
+	if args.spellId == 87683 then
 		warnVengeance:Show()
-	elseif args:IsSpellID(83908) then
+	elseif args.spellId == 83908 then
 		timerMalevolentStrike:Start(args.destName)
 		if args.amount % 4 == 0 or args.amount >= 10 then		-- warn every 4th stack and every stack if 10 or more
 			warnMalevolentStrike:Show(args.destName, args.amount)
@@ -76,15 +76,15 @@ function mod:SPELL_AURA_APPLIED_DOSE(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(83710) and self:AntiSpam(6) then
+	if args.spellId == 83710 and self:AntiSpam(6) then
 		warnFuriousRoar:Show()
 		timerFuriousRoar:Cancel()--We Cancel any scheduled roar timers before doing anything else.
 		timerFuriousRoar:Start()--And start a fresh one.
 		timerFuriousRoar:Schedule(30)--If it comes off CD while he's stunned by paralysis, he no longer waits to casts it after stun, it now consumes his CD as if it was cast on time. This is why we schedule this timer. So we get a timer for next roar after a stun.
-	elseif args:IsSpellID(83707) then
+	elseif args.spellId == 83707 then
 		warnBreath:Show()
 		timerBreathCD:Start()
-	elseif args:IsSpellID(83703) then
+	elseif args.spellId == 83703 then
 		warnShadowNova:Show()
 		specWarnShadowNova:Show(args.sourceName)
 		timerNovaCD:Start()
@@ -92,7 +92,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args:IsSpellID(83612) then
+	if args.spellId == 83612 then
 		DBM.BossHealth:AddBoss(self:GetCIDFromGUID(args.sourceGUID), args.sourceName)
 	end
 end

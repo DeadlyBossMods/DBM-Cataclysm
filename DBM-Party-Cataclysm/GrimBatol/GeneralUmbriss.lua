@@ -53,18 +53,18 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(74846) then
+	if args.spellId == 74846 then
 		warnBleedingWound:Show(args.destName)
 		timerBleedingWound:Start(args.destName)
 		timerBleedingWoundCD:Start()
-	elseif args:IsSpellID(74853) then
+	elseif args.spellId == 74853 then
 		warnFrenzy:Show()
-	elseif args:IsSpellID(74837) then
+	elseif args.spellId == 74837 then
 		maladyCount = maladyCount + 1
 		maladyTargets[#maladyTargets + 1] = args.destName
 		self:Unschedule(showMaladyWarning)
 		self:Schedule(0.3, showMaladyWarning)
-	elseif args:IsSpellID(90170) then
+	elseif args.spellId == 90170 then
 		warnMalice:Show()
 		specWarnMalice:Show()
 		timerMalice:Start()
@@ -74,9 +74,9 @@ end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(74846) then
+	if args.spellId == 74846 then
 		timerBleedingWound:Cancel(args.destName)
-	elseif args:IsSpellID(74837) then
+	elseif args.spellId == 74837 then
 		maladyCount = maladyCount - 1
 		if maladyCount == 0 then
 			timerMalady:Cancel()
@@ -85,7 +85,7 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(74634) then
+	if args.spellId == 74634 then
 		timerGroundSiege:Start()
 	end
 end

@@ -29,16 +29,16 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(74134) then--74365?
+	if args.spellId == 74134 then--74365?
 		warnAstralRain:Show()
 		timerAstralRain:Start()
-	elseif args:IsSpellID(74133) then
+	elseif args.spellId == 74133 then
 		warnVeilSky:Show()
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(74136) then
+	if args.spellId == 74136 then
 		warnSupernova:Show()
 		timerSupernova:Start()
 	end

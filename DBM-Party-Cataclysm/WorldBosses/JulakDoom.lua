@@ -45,7 +45,7 @@ local function showMC()
 end
 
 function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(93610) then
+	if args.spellId == 93610 then
 		warnShockwave:Show()
 		specWarnShockwave:Show()
 		timerShockwaveCD:Start()
@@ -53,7 +53,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(93621) then
+	if args.spellId == 93621 then
 		warnMCTargets[#warnMCTargets + 1] = args.destName
 		timerMCCD:Start()
 		if self.Options.SetIconOnMC then
@@ -70,7 +70,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(93621) and self.Options.SetIconOnMC then
+	if args.spellId == 93621 and self.Options.SetIconOnMC then
 		self:SetIcon(args.destName, 0)
 	end
 end
