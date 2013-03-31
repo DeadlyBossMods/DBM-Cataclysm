@@ -122,7 +122,6 @@ local elementalsGUID = {}
 local elementalsSpawned = 0
 local meteorSpawned = 0
 local sonsLeft = 8
-local scansDone = 0
 local phase = 1
 local prewarnedPhase2 = false
 local prewarnedPhase3 = false
@@ -239,48 +238,6 @@ function mod:LivingMeteorTarget(targetname)
 	end
 end
 
-local function isTank(unit)
-	-- 1. check blizzard tanks first
-	-- 2. check blizzard roles second
-	-- 3. check boss1's highest threat target
-	if GetPartyAssignment("MAINTANK", unit, 1) then
-		return true
-	end
-	if UnitGroupRolesAssigned(unit) == "TANK" then
-		return true
-	end
-	if UnitExists("boss1target") and UnitDetailedThreatSituation(unit, "boss1") then
-		return true
-	end
-	return false
-end
-
-function mod:TargetScanner(SpellID, Force)
-	scansDone = scansDone + 1
-	local targetname, uId = self:GetBossTarget(52409)
-	if UnitExists(targetname) then--Check if target exists.
-		if isTank(uId) and not Force then--He's targeting his highest threat target.
-			if scansDone < 12 then--Make sure no infinite loop.
-				self:ScheduleMethod(0.025, "TargetScanner", SpellID)--Check multiple times to be sure it's not on something other then tank.
-			else
-				if SpellID == 98164 then return end--Magma Traps don't get cast on tanks
-				self:TargetScanner(SpellID, true)--It's still on tank, force true isTank and activate else rule and Meteor is on tank.
-			end
-		else--He's not targeting highest threat target (or isTank was set to true after 12 scans) so this has to be right target.
-			self:UnscheduleMethod("TargetScanner")--Unschedule all checks just to be sure none are running, we are done.
-			if SpellID == 98164 then
-				self:MagmaTrapTarget(targetname)
-			else
-				self:LivingMeteorTarget(targetname)
-			end
-		end
-	else--target was nil, lets schedule a rescan here too.
-		if scansDone < 12 then--Make sure not to infinite loop here as well.
-			self:ScheduleMethod(0.025, "TargetScanner", SpellID)
-		end
-	end
-end
-
 local function warnSeeds()
 	warnMoltenSeed:Show()
 	specWarnMoltenSeed:Show()
@@ -301,7 +258,6 @@ function mod:OnCombatStart(delay)
 	elementalsSpawned = 0
 	meteorSpawned = 0
 	sonsLeft = 8
-	scansDone = 0
 	phase = 1
 	firstSmash = false
 	prewarnedPhase2 = false
@@ -459,9 +415,8 @@ function mod:SPELL_CAST_SUCCESS(args)
 		timerHandRagnaros:Start()
 	elseif args.spellId == 98164 then	--98164 confirmed
 		magmaTrapSpawned = magmaTrapSpawned + 1
-		scansDone = 0
 		timerMagmaTrap:Start()
-		self:TargetScanner(98164)
+		self:BossTargetScanner(98164, "MagmaTrapTarget", 0.025, 12)
 		if self.Options.InfoHealthFrame and not DBM.InfoFrame:IsShown() then
 			DBM.InfoFrame:SetHeader(L.HealthInfo)
 			DBM.InfoFrame:Show(5, "health", 100000)
@@ -502,8 +457,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 	elseif args.spellId == 99268 then
 		meteorSpawned = meteorSpawned + 1
 		if meteorSpawned == 1 or meteorSpawned % 2 == 0 then--Spam filter, announce at 1, 2, 4, 6, 8, 10 etc. The way that they spawn
-			scansDone = 0
-			self:TargetScanner(99268)
+			self:BossTargetScanner(99268, "LivingMeteorTarget", 0.025, 12)
 			timerLivingMeteorCD:Start(45, meteorSpawned+1)--Start new one with new count.
 			countdownMeteor:Start(45)
 			warnLivingMeteorSoon:Schedule(35)
