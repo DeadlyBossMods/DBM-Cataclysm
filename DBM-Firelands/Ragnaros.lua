@@ -416,7 +416,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 	elseif args.spellId == 98164 then	--98164 confirmed
 		magmaTrapSpawned = magmaTrapSpawned + 1
 		timerMagmaTrap:Start()
-		self:BossTargetScanner(98164, "MagmaTrapTarget", 0.025, 12)
+		self:BossTargetScanner(52409, "MagmaTrapTarget", 0.025, 12)
 		if self.Options.InfoHealthFrame and not DBM.InfoFrame:IsShown() then
 			DBM.InfoFrame:SetHeader(L.HealthInfo)
 			DBM.InfoFrame:Show(5, "health", 100000)
@@ -457,7 +457,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 	elseif args.spellId == 99268 then
 		meteorSpawned = meteorSpawned + 1
 		if meteorSpawned == 1 or meteorSpawned % 2 == 0 then--Spam filter, announce at 1, 2, 4, 6, 8, 10 etc. The way that they spawn
-			self:BossTargetScanner(99268, "LivingMeteorTarget", 0.025, 12)
+			self:BossTargetScanner(52409, "LivingMeteorTarget", 0.025, 12)
 			timerLivingMeteorCD:Start(45, meteorSpawned+1)--Start new one with new count.
 			countdownMeteor:Start(45)
 			warnLivingMeteorSoon:Schedule(35)
