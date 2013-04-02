@@ -13,6 +13,7 @@
 ## RequiredDeps: DBM-Core
 ## SavedVariablesPerCharacter: DBMBastionTwilight_SavedVars, DBMBastionTwilight_SavedStats
 ## X-DBM-Mod: 1
+## X-DBM-Mod-Type: RAID
 ## X-DBM-Mod-Category: CATA
 ## X-DBM-Mod-Name: Bastion of Twilight
 ## X-DBM-Mod-Name-deDE: Die Bastion des Zwielichts

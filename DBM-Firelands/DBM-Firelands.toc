@@ -14,6 +14,7 @@
 ## RequiredDeps: DBM-Core
 ## SavedVariablesPerCharacter: DBMFirelands_SavedVars, DBMFirelands_SavedStats
 ## X-DBM-Mod: 1
+## X-DBM-Mod-Type: RAID
 ## X-DBM-Mod-Category: CATA
 ## X-DBM-Mod-Name: Firelands
 ## X-DBM-Mod-Name-deDE: Feuerlande

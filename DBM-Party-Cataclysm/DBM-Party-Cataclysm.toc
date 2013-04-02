@@ -14,6 +14,7 @@
 ## RequiredDeps: DBM-Core
 ## SavedVariablesPerCharacter: DBMPartyCataclysm_SavedVars, DBMPartyCataclysm_SavedStats
 ## X-DBM-Mod: 1
+## X-DBM-Mod-Type: PARTY
 ## X-DBM-Mod-Category: CATA
 ## X-DBM-Mod-SubCategories: Blackrock Caverns, Deadmines, Grim Batol, Halls of Origination, Lost City of the Tol'vir, Shadowfang Keep, The Stonecore, The Vortex Pinnacle, Throne of Tides, Zul'Aman (Party), Zul'Gurub (Party), End Time, Well of Eternity, Hour of Twilight, World Bosses (Cataclysm)
 ## X-DBM-Mod-SubCategories-deDE: Schwarzfelshöhlen, Todesminen, Grim Batol, Hallen des Ursprungs, Die verlorene Stadt der Tol'vir, Burg Schattenfang, Der Steinerne Kern, Der Vortexgipfel, Thron der Gezeiten, Zul'Aman (Gruppe), Zul'Gurub (Gruppe), Endzeit, Brunnen der Ewigkeit, Stunde des Zwielichts, Weltbosse (Cataclysm)

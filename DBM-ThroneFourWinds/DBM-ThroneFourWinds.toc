@@ -13,6 +13,7 @@
 ## RequiredDeps: DBM-Core
 ## SavedVariablesPerCharacter: DBMThroneFourWinds_SavedVars, DBMThroneFourWinds_SavedStats
 ## X-DBM-Mod: 1
+## X-DBM-Mod-Type: RAID
 ## X-DBM-Mod-Category: CATA
 ## X-DBM-Mod-Name: Throne of the Four Winds
 ## X-DBM-Mod-Name-deDE: Thron der Vier Winde
