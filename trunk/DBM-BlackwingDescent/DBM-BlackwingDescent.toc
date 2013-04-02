@@ -13,6 +13,7 @@
 ## RequiredDeps: DBM-Core
 ## SavedVariablesPerCharacter: DBMBlackwingDescent_SavedVars, DBMBlackwingDescent_SavedStats
 ## X-DBM-Mod: 1
+## X-DBM-Mod-Type: RAID
 ## X-DBM-Mod-Category: CATA
 ## X-DBM-Mod-Name: Blackwing Descent
 ## X-DBM-Mod-Name-deDE: Pechschwingenabstieg
