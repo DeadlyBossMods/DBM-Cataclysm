@@ -161,7 +161,7 @@ L:SetMiscLocalization({
 	TransitionEnded2	= "Sulfuras wird Euer Ende sein.",
 	TransitionEnded3	= "Auf die Knie, Sterbliche! Das ist das Ende.",
 	Defeat				= "Zu früh!… Ihr kommt zu früh...",
-	Phase4				= "Zu früh!…" --needs to be verified (wowhead-captured translation)
+	Phase4				= "Zu früh!…"
 })
 
 -----------------------
