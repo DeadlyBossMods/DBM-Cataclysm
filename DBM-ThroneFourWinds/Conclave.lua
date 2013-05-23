@@ -67,14 +67,14 @@ local windBlastCounter = 0
 local poisonCounter = 0
 local breezeCounter = 0
 local scansDone = 0
-local GatherStrengthwarned = false
+local deadBoss = {}
 
 function mod:OnCombatStart(delay)
 	windBlastCounter = 0
 	breezeCounter = 0
 	poisonCounter = 0
 	scansDone = 0
-	GatherStrengthwarned = false
+	table.wipe(deadBoss)
 	warnSpecialSoon:Schedule(80-delay)
 	timerSpecial:Start(90-delay)
 	enrageTimer:Start(-delay)
@@ -121,11 +121,11 @@ function mod:SPELL_AURA_APPLIED(args)
 			warnSpecialSoon:Cancel()
 			warnSpecialSoon:Schedule(85)
 			timerSpecial:Start()
-			if self:GetUnitCreatureId("target") == 45870 or self:GetUnitCreatureId("focus") == 45870 or self:GetUnitCreatureId("target") == 45812 or not self.Options.OnlyWarnforMyTarget then--Anshal and his flowers
+			if (self:GetUnitCreatureId("target") == 45870 or self:GetUnitCreatureId("focus") == 45870 or self:GetUnitCreatureId("target") == 45812 or not self.Options.OnlyWarnforMyTarget) and not deadBoss[Anshal] then--Anshal and his flowers
 				timerSoothingBreezeCD:Start(16)
 				timerNurture:Start()
 			end
-			if self:GetUnitCreatureId("target") == 45872 or self:GetUnitCreatureId("focus") == 45872 or not self.Options.OnlyWarnforMyTarget then--Rohash
+			if (self:GetUnitCreatureId("target") == 45872 or self:GetUnitCreatureId("focus") == 45872 or not self.Options.OnlyWarnforMyTarget) and self:IsDifficulty("heroic10", "heroic25") and not deadBoss[Rohash] then--Rohash
 				timerStormShieldCD:Start()
 			end
 		end
@@ -138,11 +138,11 @@ function mod:SPELL_AURA_REMOVED(args)
 		warnSpecialSoon:Cancel()
 		warnSpecialSoon:Schedule(85)
 		timerSpecial:Start()
-		if self:GetUnitCreatureId("target") == 45870 or self:GetUnitCreatureId("focus") == 45870 or self:GetUnitCreatureId("target") == 45812 or not self.Options.OnlyWarnforMyTarget then--Anshal and his flowers
+		if (self:GetUnitCreatureId("target") == 45870 or self:GetUnitCreatureId("focus") == 45870 or self:GetUnitCreatureId("target") == 45812 or not self.Options.OnlyWarnforMyTarget) and not deadBoss[Anshal] then--Anshal and his flowers
 			timerSoothingBreezeCD:Start(16)
 			timerNurture:Start()
 		end
-		if self:GetUnitCreatureId("target") == 45872 or self:GetUnitCreatureId("focus") == 45872 or not self.Options.OnlyWarnforMyTarget then--Rohash
+		if (self:GetUnitCreatureId("target") == 45872 or self:GetUnitCreatureId("focus") == 45872 or not self.Options.OnlyWarnforMyTarget) and self:IsDifficulty("heroic10", "heroic25") and not deadBoss[Rohash] then--Rohash
 			timerStormShieldCD:Start()
 		end
 	end
@@ -191,7 +191,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 		timerSpecialActive:Start()
 		poisonCounter = 0
 		breezeCounter = 0
-		if self:GetUnitCreatureId("target") == 45871 or self:GetUnitCreatureId("focus") == 45871 or not self.Options.OnlyWarnforMyTarget then--Nezir
+		if (self:GetUnitCreatureId("target") == 45871 or self:GetUnitCreatureId("focus") == 45871 or not self.Options.OnlyWarnforMyTarget) and not deadBoss[Nezir] then--Nezir
 			timerPermaFrostCD:Start(15)--This is gonna slap you in face the instance special ends.
 		end
 	elseif args:IsSpellID(93059, 95865) then-- Storm Shield Warning (Heroic mode skill)
@@ -244,16 +244,21 @@ function mod:RAID_BOSS_EMOTE(msg, boss)
 	end
 end
 
+local function bossRevive(boss)
+	if not boss then return end
+	deadBoss[boss] = false
+end
+
 function mod:OnSync(msg, boss)
 	if msg == "GatherStrength" and self:IsInCombat() then
+		deadBoss[boss or ""] = true
 		warnGatherStrength:Show(boss)
-		if not GatherStrengthwarned then
-			if self:IsDifficulty("heroic10", "heroic25") then
-				timerGatherStrength:Start(boss)
-			else
-				timerGatherStrength:Start(120, boss)--2 minutes on normal as of 4.2
-			end
-			GatherStrengthwarned = true
+		if self:IsDifficulty("heroic10", "heroic25") then
+			timerGatherStrength:Start(nil, boss)
+			self:Schedule(60, bossRevive, boss)
+		else
+			timerGatherStrength:Start(120, boss)--2 minutes on normal as of 4.2
+			self:Schedule(120, bossRevive, boss)
 		end
 	end
 end
