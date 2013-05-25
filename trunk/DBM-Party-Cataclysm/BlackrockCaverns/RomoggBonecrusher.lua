@@ -10,7 +10,8 @@ mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED",
-	"SPELL_CAST_START"
+	"SPELL_CAST_START",
+	"UNIT_HEALTH"
 )
 
 local warnWoundingStrike	= mod:NewTargetAnnounce(75571, 2)

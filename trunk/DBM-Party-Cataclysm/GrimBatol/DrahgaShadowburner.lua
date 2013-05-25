@@ -14,7 +14,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_SUMMON",
 	"CHAT_MSG_MONSTER_YELL",
 	"RAID_BOSS_EMOTE",
-	"UNIT_AURA"
+	"UNIT_AURA_UNFILTERED"
 )
 
 local warnFlame					= mod:NewSpellAnnounce(75321, 3)
@@ -76,7 +76,7 @@ function mod:RAID_BOSS_EMOTE(msg)
 	end
 end
 
-function mod:UNIT_AURA(uId)
+function mod:UNIT_AURA_UNFILTERED(uId)
 	if UnitDebuff(uId, flamingFixate) and not fixateWarned then--This spams every 0.5 seconds if not throttled, debuff has unlimited duration so you can't really use a timed function.
 		warnFlamingFixate:Show(DBM:GetUnitFullName(uId))
 		if uId == "player" then

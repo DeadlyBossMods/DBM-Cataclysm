@@ -15,7 +15,7 @@ mod:RegisterEvents(
 	"SPELL_CAST_START",
 	"SPELL_DAMAGE",
 	"SPELL_MISSED",
-	"UNIT_HEALTH"
+	"UNIT_HEALTH boss1"
 )
 
 local warnConsuming			= mod:NewTargetAnnounce(88954, 3)
