@@ -227,7 +227,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		timerTerrorCD:Start(35.5)
 		if self:IsDifficulty("heroic10", "heroic25") then--Only register on heroic, we don't need on normal.
 			self:RegisterShortTermEvents(
-				"UNIT_HEALTH_FREQUENT"
+				"UNIT_HEALTH_FREQUENT boss1"
 			)
 		end
 	elseif args.spellId == 106400 then
@@ -361,18 +361,16 @@ function mod:OnSync(msg)
 end
 
 function mod:UNIT_HEALTH_FREQUENT(uId)
-	if uId == "boss1" then
-		local hp = UnitHealth(uId) / UnitHealthMax(uId) * 100
-		if hp > 15 and hp < 16.5 and warnedCount == 0 then
-			warnedCount = 1
-			warnCongealingBloodSoon:Show()
-		elseif hp > 10 and hp < 11.5 and warnedCount == 1 then
-			warnedCount = 2
-			warnCongealingBloodSoon:Show()
-		elseif hp > 5 and hp < 6.5 and warnedCount == 2 then
-			warnedCount = 3
-			warnCongealingBloodSoon:Show()
-			self:UnregisterShortTermEvents()
-		end
+	local hp = UnitHealth(uId) / UnitHealthMax(uId) * 100
+	if hp > 15 and hp < 16.5 and warnedCount == 0 then
+		warnedCount = 1
+		warnCongealingBloodSoon:Show()
+	elseif hp > 10 and hp < 11.5 and warnedCount == 1 then
+		warnedCount = 2
+		warnCongealingBloodSoon:Show()
+	elseif hp > 5 and hp < 6.5 and warnedCount == 2 then
+		warnedCount = 3
+		warnCongealingBloodSoon:Show()
+		self:UnregisterShortTermEvents()
 	end
 end

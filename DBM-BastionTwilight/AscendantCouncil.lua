@@ -20,8 +20,8 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START",
 	"SPELL_CAST_SUCCESS",
 	"RAID_BOSS_EMOTE",
-	"UNIT_SPELLCAST_SUCCEEDED",
-	"UNIT_HEALTH"
+	"UNIT_SPELLCAST_SUCCEEDED boss1 boss2 boss3 boss4",
+	"UNIT_HEALTH boss1 boss2 boss3 boss4"
 )
 
 --Feludius

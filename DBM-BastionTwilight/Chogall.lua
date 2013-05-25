@@ -19,8 +19,8 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_SUCCESS",
 	"SPELL_DAMAGE",
 	"SPELL_MISSED",
-	"UNIT_HEALTH",
-	"UNIT_AURA",
+	"UNIT_HEALTH boss1",
+	"UNIT_AURA player",
 	"UNIT_DIED"
 )
 

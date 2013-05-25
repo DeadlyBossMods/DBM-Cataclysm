@@ -19,7 +19,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_SUCCESS",
 	"SPELL_INTERRUPT",
 	"RAID_BOSS_EMOTE",
-	"UNIT_HEALTH"
+	"UNIT_HEALTH boss1"
 )
 
 local isDispeller = select(2, UnitClass("player")) == "MAGE"

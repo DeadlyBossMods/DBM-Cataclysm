@@ -19,7 +19,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_SUCCESS",
 	"UNIT_DIED",
 	"CHAT_MSG_MONSTER_YELL",
-	"UNIT_AURA"
+	"UNIT_AURA player"
 )
 
 local warnSonarPulse		= mod:NewSpellAnnounce(77672, 3)
@@ -157,7 +157,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 end
 
 function mod:UNIT_AURA(uId)
-	if uId ~= "player" or pesteredWarned then return end
+	if pesteredWarned then return end
 	if UnitDebuff("player", pestered) then
 		pesteredWarned = true--This aura is a periodic trigger, so we don't want to spam warn for it.
 		specWarnPestered:Show()

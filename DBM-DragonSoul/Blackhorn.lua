@@ -23,7 +23,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_MISSED",
 	"RAID_BOSS_EMOTE",
 	"UNIT_DIED",
-	"UNIT_SPELLCAST_SUCCEEDED"
+	"UNIT_SPELLCAST_SUCCEEDED boss1"
 )
 
 local warnDrakesLeft				= mod:NewAddsLeftAnnounce("ej4192", 2, 61248)

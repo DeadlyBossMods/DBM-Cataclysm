@@ -20,7 +20,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_MISSED",
 	"CHAT_MSG_MONSTER_YELL",
 	"RAID_BOSS_EMOTE",
-	"UNIT_HEALTH",
+	"UNIT_HEALTH boss1",
 	"UNIT_DIED"
 )
 
