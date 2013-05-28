@@ -50,10 +50,10 @@ local ohganDiedOnce = false
 mod:RegisterOnUpdateHandler(function(self)
 	if self.Options.SetIconOnOhgan and ohganGUID then
 		for uId in DBM:GetGroupMembers() do
-			uId = uId .. "target"
-			local guid = UnitGUID(uId)
+			local unitID = uId .. "target"
+			local guid = UnitGUID(unitID)
 			if guid == ohganGUID then
-				SetRaidTarget(uId, 8)
+				SetRaidTarget(unitID, 8)
 				ohganGUID = nil
 			end
 		end

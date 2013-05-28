@@ -35,10 +35,10 @@ local eagleGUID = nil
 mod:RegisterOnUpdateHandler(function(self)
 	if self.Options.SetIconOnEagle and eagleGUID then
 		for uId in DBM:GetGroupMembers() do
-			uId = uId .. "target"
-			local guid = UnitGUID(uId)
+			local unitid = uId.."target"
+			local guid = UnitGUID(unitid)
 			if guid == eagleGUID then
-				SetRaidTarget(uId, 8)
+				SetRaidTarget(unitid, 8)
 				eagleGUID = nil
 			end
 		end
