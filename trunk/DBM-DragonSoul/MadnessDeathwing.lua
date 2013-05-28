@@ -116,9 +116,9 @@ end
 function mod:ScanParasite()
 	local unitID
 	local founded = false
-	for i = 1, DBM:GetNumGroupMembers() do
-		if UnitName("raid"..i.."target") == parasite then
-			unitID = "raid"..i.."target"
+	for uId in DBM:GetGroupMembers() do
+		if UnitName(uId.."target") == parasite then
+			unitID = uId.."target"
 			founded = true
 			break
 		end
