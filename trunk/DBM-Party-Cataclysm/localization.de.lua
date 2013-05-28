@@ -411,9 +411,9 @@ L:SetOptionLocalization{
 L= DBM:GetModLocalization(186)
 
 L:SetOptionLocalization{
-	StormIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97300),
+	StormIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43648),
 	RangeFrame	= "Zeige Abstandsfenster (10m)",
-	StormArrow	= "Zeige DBM-Pfeil für $spell:97300",
+	StormArrow	= "Zeige DBM-Pfeil für $spell:43648",
 	SetIconOnEagle	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97318)
 }
 

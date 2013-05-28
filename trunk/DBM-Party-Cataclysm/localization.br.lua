@@ -404,9 +404,9 @@ L= DBM:GetModLocalization(104)
 L= DBM:GetModLocalization(186)
 
 L:SetOptionLocalization{
-	StormIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97300),
+	StormIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43648),
 	RangeFrame	= "Exibir medidor de distância (10 metros)",
-	StormArrow	= "Exibir seta do DBM para $spell:97300",
+	StormArrow	= "Exibir seta do DBM para $spell:43648",
 	SetIconOnEagle	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97318)
 }
 
