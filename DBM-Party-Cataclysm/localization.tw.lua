@@ -411,9 +411,9 @@ L:SetOptionLocalization{
 L= DBM:GetModLocalization(186)
 
 L:SetOptionLocalization{
-	StormIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97300),
+	StormIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43648),
 	RangeFrame	= "顯示距離框",
-	StormArrow	= "為$spell:97300顯示BDM箭頭",
+	StormArrow	= "為$spell:43648顯示BDM箭頭",
 	SetIconOnEagle	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97318)
 }
 

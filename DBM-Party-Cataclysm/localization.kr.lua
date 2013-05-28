@@ -412,7 +412,7 @@ L= DBM:GetModLocalization(186)
 L:SetOptionLocalization{
 	StormIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43648),
 	RangeFrame		= "거리 창 보기(10m)",
-	StormArrow		= "$spell:97300 시전시 DBM 화살표 보기",
+	StormArrow		= "$spell:43648 시전시 DBM 화살표 보기",
 	SetIconOnEagle	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97318)
 }
 
