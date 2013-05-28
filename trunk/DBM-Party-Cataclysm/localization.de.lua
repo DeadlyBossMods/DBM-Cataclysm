@@ -228,7 +228,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization{
-	specWarnPhase2Soon	= "Zeige Spezialwarnung für baldige Phase 2 (5 Sekunden)",
+	specWarnPhase2Soon	= "Spezialwarnung für baldige Phase 2 (5 Sekunden)",
 	timerPhase2 		= "Zeige Timer für den Beginn von Phase 2"
 }
 
@@ -272,7 +272,7 @@ L:SetWarningLocalization{
 }
 
 L:SetOptionLocalization{
-	RedLightGreenLight	= "Zeige Spezialwarnungen für Bewegungen bei Rot/Grün"
+	RedLightGreenLight	= "Spezialwarnungen für Bewegungen bei Rot/Grün"
 }
 
 ------------------
@@ -327,7 +327,7 @@ L:SetOptionLocalization({
 	WarnGroundphase			= "Zeige Warnung, wenn Plattenhaut landet",
 	TimerAirphase			= "Zeige Zeit bis nächste Luftphase",
 	TimerGroundphase		= "Zeige Zeit bis nächste Bodenphase",
-	specWarnCrystalStorm	= "Zeige Spezialwarnung für $spell:92265"
+	specWarnCrystalStorm	= "Spezialwarnung für $spell:92265"
 })
 
 -----------
@@ -366,7 +366,7 @@ L:SetOptionLocalization({
 L= DBM:GetModLocalization(116)
 
 L:SetOptionLocalization({
-	SpecWarnStaticCling	= "Zeige Spezialwarnung für $spell:87618"
+	SpecWarnStaticCling	= "Spezialwarnung für $spell:87618"
 })
 
 L:SetWarningLocalization({
@@ -588,7 +588,7 @@ L:SetWarningLocalization{
 }
 
 L:SetOptionLocalization{
-	SpecWarnToxic	= "Zeige Spezialwarnung, wenn dir der $spell:96328 Buff fehlt",
+	SpecWarnToxic	= "Spezialwarnung, wenn dir der $spell:96328 Buff fehlt",
 	InfoFrame		= "Zeige Infofenster für Spieler, denen der $spell:96328 Buff fehlt",
 	SetIconOnGaze	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(96342)
 }

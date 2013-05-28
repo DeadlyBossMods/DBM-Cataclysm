@@ -82,7 +82,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	ResetShardsinThrees	= "Neustart der $spell:99259 Zählung in 3er-Gruppen (25 Spieler)\nbzw. 2er-Gruppen (10 Spieler)",
+	ResetShardsinThrees	= "Neustart der $spell:99259 Zählung in 3er-Gruppen (25 Spieler) bzw. 2er-Gruppen (10 Spieler)",
 	warnStrike			= "Zeige Warnungen für $spell:99353 / $spell:101002",
 	timerStrike			= "Zeit bis nächster $spell:99353 / $spell:101002 anzeigen",
 	TimerBladeActive	= "Dauer der aktiven Klinge anzeigen",
@@ -137,14 +137,14 @@ L:SetOptionLocalization({
 	warnSplittingBlow			= "Zeige Warnungen für Position des $spell:98951",
 	warnEngulfingFlame			= "Zeige Warnungen für Position der $spell:99171 auf Normal",
 	warnEngulfingFlameHeroic	= "Zeige Warnungen für Position der $spell:99171 auf Heroisch",
-	warnSeedsLand				= "Zeige Warnung/Timer für Landung der $spell:98520\n(anstatt Erzeugung)",
+	warnSeedsLand				= "Zeige Warnung/Timer für Landung der $spell:98520 (anstatt Erzeugung)",
 	warnEmpoweredSulf			= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(100604),
 	timerRageRagnaros			= DBM_CORE_AUTO_TIMER_OPTIONS.cast:format(101109),
 	TimerPhaseSons				= "Dauer des Phasenübergangs (\"Söhne der Flamme\") anzeigen",
 	RangeFrame					= "Zeige Abstandsfenster",
 	InfoHealthFrame				= "Zeige Infofenster für Gesundheit (<100k Lebenspunkte)",
 	MeteorFrame					= "Zeige Infofenster für Ziele von $spell:99849",
-	AggroFrame					= "Zeige Infofenster für Spieler, die keine Aggro während\n$journal:2647 haben",
+	AggroFrame					= "Zeige Infofenster für Spieler, die keine Aggro während $journal:2647 haben",
 	BlazingHeatIcons			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(100460)
 })
 

@@ -19,7 +19,7 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	warnSpecial			= "Zeige Warnung, wenn Hurrikan/Zephyr/Graupelsturm gewirkt werden",
-	specWarnSpecial		= "Zeige Spezialwarnung, wenn Spezialfähigkeiten gewirkt werden",
+	specWarnSpecial		= "Spezialwarnung, wenn Spezialfähigkeiten gewirkt werden",
 	timerSpecial		= "Zeige Abklingzeit für Spezialfähigkeiten",
 	timerSpecialActive	= "Dauer der Spezialfähigkeiten anzeigen",
 	warnSpecialSoon		= "Zeige Vorwarnung 10 Sekunden vor den Spezialfähigkeiten",

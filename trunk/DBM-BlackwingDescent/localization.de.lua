@@ -23,8 +23,8 @@ L:SetOptionLocalization({
 	timerArcaneLockout			= "Zeige Zeit, in der $spell:79710 nicht gewirkt werden kann",
 	timerArcaneBlowbackCast		= "Zeige Zeit bis $spell:91879 gewirkt wird",
 	timerNefAblity				= "Zeige Abklingzeit für heroische Fähigkeitsverbesserungen",
-	SpecWarnActivated			= "Zeige Spezialwarnung, wenn ein neuer Boss aktiviert wird",
-	specWarnGenerator			= "Zeige Spezialwarnung, wenn ein Boss von $spell:79629 profitiert",
+	SpecWarnActivated			= "Spezialwarnung, wenn ein neuer Boss aktiviert wird",
+	specWarnGenerator			= "Spezialwarnung, wenn ein Boss von $spell:79629 profitiert",
 	AcquiringTargetIcon			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(79501),
 	ConductorIcon				= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(79888),
 	ShadowConductorIcon			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(92053),
@@ -45,7 +45,7 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
-	SpecWarnInferno	= "Zeige Spezialvorwarnung für $spell:92154 (~4s)",
+	SpecWarnInferno	= "Spezialvorwarnung für $spell:92154 (~4s)",
 	RangeFrame		= "Zeige Abstandsfenster in Phase 2 (5m)"
 })
 
@@ -102,7 +102,7 @@ L:SetOptionLocalization({
 	WarnPhase			= "Verkünde welche Phase als Nächstes kommt",
 	TimerPhase			= "Zeige Zeit bis nächste Phase",
 	RangeFrame			= "Zeige Abstandsfenster (6m) während der blauen Phase",
-	SetTextures			= "Automatische Deaktivierung der Grafikeinstellung 'Projizierte Texturen' in\nder dunklen Phase (wird nach Verlassen der Phase autom. wieder aktiviert)",
+	SetTextures			= "Automatische Deaktivierung der Grafikeinstellung 'Projizierte Texturen' in der dunklen Phase (wird nach Verlassen der Phase autom. wieder aktiviert)",
 	FlashFreezeIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77699),
 	BitingChillIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77760),
 	ConsumingFlamesIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77786)
@@ -142,19 +142,19 @@ L:SetOptionLocalization({
 	NefTailSwipe			= "Zeige Warnung für Nefarians $spell:77827",
 	OnyBreath				= "Zeige Warnung für Onyxias $spell:77826",
 	NefBreath				= "Zeige Warnung für Nefarians $spell:77826",
-	specWarnCinderMove		= "Zeige Spezialwarnung zum Weglaufen, wenn du von $spell:79339\nbetroffen bist (5s vor Explosion)",
-	warnShadowblazeSoon		= "Zeige Vorwarnungscountdown für $spell:81031 (5s zuvor)\n(aus Genauigkeitsgründen erst nach Synchronisierung mit erstem Ausruf)",
-	specWarnShadowblazeSoon	= "Zeige Spezialvorwarnung für $spell:81031 (aus Genauigkeits-\ngründen zu Beginn 5s Vorwarnung, 1s Vorwarnung nach erstem Ausruf)",
+	specWarnCinderMove		= "Spezialwarnung zum Weglaufen, wenn du von $spell:79339 betroffen bist (5s vor Explosion)",
+	warnShadowblazeSoon		= "Zeige Vorwarnungscountdown für $spell:81031 (5s zuvor)<br/>(aus Genauigkeitsgründen erst nach Synchronisierung mit erstem Ausruf)",
+	specWarnShadowblazeSoon	= "Spezialvorwarnung für $spell:81031 (aus Genauigkeitsgründen<br/>zu Beginn 5s Vorwarnung, 1s Vorwarnung nach erstem Ausruf)",
 	timerNefLanding			= "Zeige Zeit bis Nefarian landet",
 	OnySwipeTimer			= "Zeige Abklingzeit für Onyxias $spell:77827",
 	NefSwipeTimer			= "Zeige Abklingzeit für Nefarians $spell:77827",
 	OnyBreathTimer			= "Zeige Abklingzeit für Onyxias $spell:77826",
 	NefBreathTimer			= "Zeige Abklingzeit für Nefarians $spell:77826",
 	InfoFrame				= "Zeige Infofenster für $journal:3284",
-	SetWater				= "Automatische Deaktivierung der Kameraeinstellung 'Wasserkollision' bei\nKampfbeginn (wird nach Kampfende automatisch wieder aktiviert)",
+	SetWater				= "Automatische Deaktivierung der Kameraeinstellung 'Wasserkollision'\nbei Kampfbeginn (wird nach Kampfende automatisch wieder aktiviert)",
 	TankArrow				= "Zeige DBM-Pfeil für den Kiter von 'Belebter Knochenkrieger'\n(abgestimmt auf eine Kiter-Taktik)",--npc 41918
 	SetIconOnCinder			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(79339),
-	RangeFrame				= "Zeige Abstandsfenster (10m) für $spell:79339\n(zeigt jeden, falls du den Debuff hast; sonst nur betroffene Spieler)"
+	RangeFrame				= "Zeige Abstandsfenster (10m) für $spell:79339 (zeigt jeden, falls du den Debuff hast; sonst nur betroffene Spieler)"
 })
 
 L:SetMiscLocalization({
