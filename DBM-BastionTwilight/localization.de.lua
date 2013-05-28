@@ -45,12 +45,12 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	specWarnBossLow			= "Zeige Spezialwarnung, wenn Bosse unter 30% Lebenspunkten sind",
-	SpecWarnGrounded		= "Zeige Spezialwarnung, falls dir der $spell:83581 Buff fehlt\n(~10 Sekunden vor dem Wirken von $spell:83067)",
-	SpecWarnSearingWinds	= "Zeige Spezialwarnung, falls dir der $spell:83500 Buff fehlt\n(~10 Sekunden vor dem Wirken von $spell:83565)",
+	specWarnBossLow			= "Spezialwarnung, wenn Bosse unter 30% Lebenspunkten sind",
+	SpecWarnGrounded		= "Spezialwarnung, falls dir der $spell:83581 Buff fehlt<br/>(~10 Sekunden vor dem Wirken von $spell:83067)",
+	SpecWarnSearingWinds	= "Spezialwarnung, falls dir der $spell:83500 Buff fehlt<br/>(~10 Sekunden vor dem Wirken von $spell:83565)",
 	timerTransition			= "Dauer des Phasenübergangs anzeigen",
 	RangeFrame				= "Zeige Abstandsfenster automatisch bei Bedarf",
-	yellScrewed				= "Schreie, wenn du gleichzeitig von $spell:83099 und $spell:92307\nbetroffen bist",
+	yellScrewed				= "Schreie, wenn du gleichzeitig von $spell:83099 und $spell:92307 betroffen bist",
 	InfoFrame				= "Zeige Infofenster für Spieler ohne $spell:83581 bzw. $spell:83500",
 	HeartIceIcon			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(82665),
 	BurningBloodIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(82660),
@@ -107,8 +107,8 @@ L:SetOptionLocalization({
 	WarnOrbSoon			= "Zeige Vorwarnung für Schattenkugeln (5s zuvor, sekündlich)\n(voraussichtlich, kann ungenau sein, kann spammen)",
 	warnWrackJump		= "Verkünde Sprungziele von $spell:89421",
 	warnAggro			= "Verkünde Spieler mit Aggro, wenn Schattenkugeln erscheinen\n(mögliches Ziel der Schattenkugeln)",
-	SpecWarnAggroOnYou	= "Zeige Spezialwarnung, falls du Aggro hast, wenn Schattenkugeln\nerscheinen (mögliches Ziel der Schattenkugeln)",
-	SpecWarnOrbs		= "Zeige Spezialwarnung, wenn Schattenkugeln erscheinen (voraussichtlich)",
+	SpecWarnAggroOnYou	= "Spezialwarnung, falls du Aggro hast, wenn Schattenkugeln erscheinen (mögliches Ziel der Schattenkugeln)",
+	SpecWarnOrbs		= "Spezialwarnung, wenn Schattenkugeln erscheinen (voraussichtlich)",
 	TimerEggWeakening	= "Zeige Timer, wenn $spell:87654 zerfällt",
 	TimerEggWeaken		= "Dauer der Erneuerung des $spell:87654 anzeigen",
 	TimerOrbs			= "Zeige Zeit bis nächste Schattenkugeln erscheinen\n(voraussichtlich, kann ungenau sein)",

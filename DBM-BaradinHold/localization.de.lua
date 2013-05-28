@@ -25,5 +25,5 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	TimerFirstSpecial		= "Zeige Zeit bis erste Spezialfähigkeit nach $spell:105738 (erste Spezialfähigkeit\nist zufällig, entweder $spell:105067 oder $spell:104936)"
+	TimerFirstSpecial		= "Zeige Zeit bis erste Spezialfähigkeit nach $spell:105738 (erste Spezialfähigkeit ist zufällig, entweder $spell:105067 oder $spell:104936)"
 })
