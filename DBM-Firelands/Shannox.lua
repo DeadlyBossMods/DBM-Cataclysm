@@ -114,23 +114,23 @@ function mod:CrystalTrapTarget(targetname)
 end
 
 local function getBossuId()
-	local uId
+	local UnitID
 	if UnitExists("boss1") or UnitExists("boss2") or UnitExists("boss3") then
 		for i = 1, 3 do
 			if UnitName("boss"..i) == L.name then
-				uId = "boss"..i
+				UnitID = "boss"..i
 				break
 			end
 		end
 	else
-		for i = 1, DBM:GetNumGroupMembers() do
-			if UnitName("raid"..i.."target") == L.name and not UnitIsPlayer("raid"..i.."target") then
-				uId = "raid"..i.."target"
+		for uId in DBM:GetGroupMembers() do
+			if UnitName(uId.."target") == L.name and not UnitIsPlayer(uId.."target") then
+				UnitID = uId.."target"
 				break
 			end			
 		end
 	end
-	return uId
+	return UnitID
 end
 
 local function isTank(unit)
