@@ -93,7 +93,7 @@ L:SetOptionLocalization({
 	warnFrostTombCast		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(109325),
-	SpecialCount			= "Spiele Countdown-Sound für $spell:105256 bzw. $spell:105465",
+	SpecialCount			= "Spiele akustischen Countdown für $spell:105256 bzw. $spell:105465",
 	SetBubbles				= "Automatische Deaktivierung d. 'Sprechblasen' bevor $spell:104451 gewirkt wird<br/>(wird nach dem Kampfende auf die vorherige Einstellung zurückgesetzt)"
 })
 
