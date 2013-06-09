@@ -16,7 +16,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED_DOSE",
 	"SPELL_AURA_REMOVED",
 	"CHAT_MSG_ADDON",
-	"UNIT_SPELLCAST_SUCCEEDED",
+	"UNIT_SPELLCAST_SUCCEEDED boss1",
 	"UNIT_DIED"
 )
 
@@ -200,7 +200,7 @@ function mod:UNIT_DIED(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, _, _, spellId)
-	if oozeColors[spellId] and self:AntiSpam() then
+	if oozeColors[spellId] then
 		table.wipe(oozesHitTable)
 		specWarnOozes:Show()
 		timerVoidBoltCD:Start(42)

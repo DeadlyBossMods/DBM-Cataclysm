@@ -19,7 +19,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_REMOVED",
 	"SPELL_SUMMON",
 	"UNIT_DIED",
-	"UNIT_SPELLCAST_SUCCEEDED"
+	"UNIT_SPELLCAST_SUCCEEDED boss1 target"--Target needed for bolt died detection
 )
 
 local warnMutated					= mod:NewSpellAnnounce("ej4112", 3, 61618)
@@ -332,19 +332,19 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, _, _, spellId)
 	if spellId == 110663 and self:AntiSpam(2, 3) then--Elementium Meteor Transform (apparently this doesn't fire UNIT_DIED anymore, need to use this alternate method)
 		self:SendSync("BoltDied")--Send sync because Elementium bolts do not have a bossN arg, which means event only fires if it's current target/focus.
 	-- Actually i have a pretty good idea what problem is now. thinking about it, with no uId filter, it's triggering off a rogue in raid (also have hemorrhage spell)
-	elseif spellId == 105863 and self:AntiSpam(2, 2) then
+	elseif spellId == 105863 then
 		warnHemorrhage:Show()
 		specWarnHemorrhage:Show()
-	elseif spellId == 105551 and self:AntiSpam(2, 2) then--Spawn Blistering Tentacles
+	elseif spellId == 105551 then--Spawn Blistering Tentacles
 		if not UnitBuff("player", GetSpellInfo(106028)) then--Check for Alexstrasza's Presence
 			warnTentacle:Show()
 			specWarnTentacle:Show()
 		end
-	elseif spellId == 106775 and self:AntiSpam(2, 2) then--Summon Impaling Tentacle (Fragments summon)
+	elseif spellId == 106775 then--Summon Impaling Tentacle (Fragments summon)
 		warnFragments:Show()
 		specWarnFragments:Show()
 		timerFragmentsCD:Start()
-	elseif spellId == 106765 and self:AntiSpam(2, 2) then--Summon Elementium Terror (Big angry add)
+	elseif spellId == 106765 then--Summon Elementium Terror (Big angry add)
 		activateTetanusTimers = false
 		warnTerror:Show()
 		specWarnTerror:Show()
