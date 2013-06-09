@@ -14,7 +14,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED_DOSE",
 	"SPELL_AURA_REMOVED",
 	"SPELL_CAST_START",
-	"UNIT_SPELLCAST_SUCCEEDED"
+	"UNIT_SPELLCAST_SUCCEEDED boss1"
 )
 
 --Classes that can drop stacks of acid rain, but only if they can time AMS/bubble right, they use it wrong and they do no good.
@@ -60,11 +60,6 @@ mod:AddBoolOption("RangeFrame", true)
 
 local phase2Started = false
 local strikeStarted = false
-local squallName = GetSpellInfo(91129)
-local iceName = GetSpellInfo(88239)
-local stormlingName = GetSpellInfo(88272)
-local acidName = GetSpellInfo(88290)
-local cloudsName = GetSpellInfo(89639)
 
 function mod:CloudRepeat()
 	self:UnscheduleMethod("CloudRepeat")
@@ -182,9 +177,9 @@ function mod:SPELL_PERIODIC_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
 end
 mod.SPELL_PERIODIC_MISSED = mod.SPELL_PERIODIC_DAMAGE
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(uId, spellName, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, _, _, spellId)
 --	"<42.5> [CAST_SUCCEEDED] Al'Akir:Possible Target<Erej>:boss1:Squall Line::0:91129", -- [870]
-	if spellName == squallName and self:AntiSpam(2, 3) then -- Squall Line (Tornados)
+	if spellId == 91129 and self:AntiSpam(2, 3) then -- Squall Line (Tornados)
 		warnSquallLine:Show()
 		if not phase2Started then
 			timerSquallLineCD:Start(30)--Seems like a longer CD in phase 1? That or had some electrocute and windburst delays, need more data.
@@ -192,15 +187,15 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(uId, spellName, _, _, spellId)
 			timerSquallLineCD:Start()
 		end
 --	"<37.6> [CAST_SUCCEEDED] Al'Akir:Possible Target<Erej>:boss1:Ice Storm::0:88239", -- [462]
-	elseif spellName == iceName and self:AntiSpam(2, 4) then -- Ice Storm (Phase 1)
+	elseif spellId == 88239 and self:AntiSpam(2, 4) then -- Ice Storm (Phase 1)
 		warnIceStorm:Show()
 		timerIceStormCD:Start()
 --	"<94.2> [CAST_SUCCEEDED] Al'Akir:Possible Target<Erej>:boss1:Stormling::0:88272", -- [5155]
-	elseif spellName == stormlingName and self:AntiSpam(2, 4) then -- Summon Stormling (Phase 2 add)
+	elseif spellId == 88272 and self:AntiSpam(2, 4) then -- Summon Stormling (Phase 2 add)
 		warnAdd:Show()
 		timerAddCD:Start()
 --	"<83.2> [CAST_SUCCEEDED] Al'Akir:Possible Target<Erej>:boss1:Acid Rain::0:101452", -- [4307]
-	elseif spellName == acidName and self:AntiSpam(2, 5) then -- Acid Rain
+	elseif spellId == 101452 and self:AntiSpam(2, 5) then -- Acid Rain
 		if self:IsDifficulty("normal10", "normal25") then
 			timerAcidRainStack:Start(20)
 		else
@@ -222,7 +217,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(uId, spellName, _, _, spellId)
 		timerAcidRainStack:Cancel()
 		self:UnregisterShortTermEvents()
 --	"<244.5> [CAST_SUCCEEDED] Al'Akir:Possible Target<nil>:boss1:Lightning Clouds::0:93304", -- [19368]
-	elseif spellName == cloudsName and self:AntiSpam(2, 3) then -- Phase 3 Lightning cloud trigger (only cast once)
+	elseif spellId == 93304 and self:AntiSpam(2, 3) then -- Phase 3 Lightning cloud trigger (only cast once)
 		self:CloudRepeat()
 		--Only needed in phase 2
 		self:RegisterShortTermEvents(

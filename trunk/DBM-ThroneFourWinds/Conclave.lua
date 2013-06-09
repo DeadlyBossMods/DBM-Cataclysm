@@ -25,7 +25,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_MISSED",
 	"SPELL_CAST_START",
 	"SPELL_CAST_SUCCESS",
-	"UNIT_POWER",
+	"UNIT_POWER_FREQUENT boss1 boss2 boss3",
 	"RAID_BOSS_EMOTE"
 )
 
@@ -228,7 +228,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 end
 
 -- Posion Toxic can do casts during stun, so if Poison Toxic cancelled, Next Poision Toxic timer known by boss`s power.
-function mod:UNIT_POWER(uId)
+function mod:UNIT_POWER_FREQUENT(uId)
 	if self:GetUnitCreatureId(uId) == 45870 and UnitPower(uId) == 62 and poisonCounter == 0 and self:IsDifficulty("heroic10", "heroic25") then
 		if self:GetUnitCreatureId("target") == 45870 or self:GetUnitCreatureId("focus") == 45870 or self:GetUnitCreatureId("target") == 45812 or not self.Options.OnlyWarnforMyTarget then
 			timerPoisonToxicCD:Start(10)
