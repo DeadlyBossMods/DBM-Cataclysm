@@ -16,16 +16,8 @@
 ## X-DBM-Mod-Type: RAID
 ## X-DBM-Mod-Category: CATA
 ## X-DBM-Mod-No-Heroic: 1
-## X-DBM-Mod-Name: Baradin Hold
-## X-DBM-Mod-Name-deDE: Baradinfestung
-## X-DBM-Mod-Name-esES: Bastión Baradin
-## X-DBM-Mod-Name-koKR: 바라딘 요새
-## X-DBM-Mod-Name-ruRU: Крепость Барадин
-## X-DBM-Mod-Name-zhTW: 巴拉丁堡
-## X-DBM-Mod-Name-zhCN: 巴拉丁监狱
-## X-DBM-Mod-Name-ptBR: Guarnição Baradin
+## X-DBM-Mod-MapID: 757
 ## X-DBM-Mod-Sort: 102
-## X-DBM-Mod-LoadZoneID: 752
 localization.en.lua
 localization.de.lua
 localization.es.lua

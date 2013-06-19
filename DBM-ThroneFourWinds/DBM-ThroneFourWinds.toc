@@ -15,16 +15,8 @@
 ## X-DBM-Mod: 1
 ## X-DBM-Mod-Type: RAID
 ## X-DBM-Mod-Category: CATA
-## X-DBM-Mod-Name: Throne of the Four Winds
-## X-DBM-Mod-Name-deDE: Thron der Vier Winde
-## X-DBM-Mod-Name-esES: Trono de los Cuatro Vientos
-## X-DBM-Mod-Name-koKR: 네 바람의 왕좌
-## X-DBM-Mod-Name-ruRU: Трон Четырех Ветров
-## X-DBM-Mod-Name-zhTW: 四風王座
-## X-DBM-Mod-Name-zhCN: 风神王座
-## X-DBM-Mod-Name-ptBR: Trono dos Quatro Ventos
+## X-DBM-Mod-MapID: 754
 ## X-DBM-Mod-Sort: 105
-## X-DBM-Mod-LoadZoneID: 773
 localization.en.lua
 localization.de.lua
 localization.es.lua

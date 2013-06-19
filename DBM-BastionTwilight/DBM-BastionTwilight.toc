@@ -15,16 +15,8 @@
 ## X-DBM-Mod: 1
 ## X-DBM-Mod-Type: RAID
 ## X-DBM-Mod-Category: CATA
-## X-DBM-Mod-Name: Bastion of Twilight
-## X-DBM-Mod-Name-deDE: Die Bastion des Zwielichts
-## X-DBM-Mod-Name-esES: Bastión del Crepúsculo
-## X-DBM-Mod-Name-koKR: 황혼의 요새
-## X-DBM-Mod-Name-ruRU: Сумеречный бастион
-## X-DBM-Mod-Name-zhTW: 暮光堡壘
-## X-DBM-Mod-Name-zhCN: 暮光堡垒
-## X-DBM-Mod-Name-ptBR: Bastião do Crepúsculo
+## X-DBM-Mod-MapID: 671
 ## X-DBM-Mod-Sort: 103
-## X-DBM-Mod-LoadZoneID: 758
 localization.en.lua
 localization.de.lua
 localization.es.lua

@@ -15,16 +15,8 @@
 ## X-DBM-Mod: 1
 ## X-DBM-Mod-Type: RAID
 ## X-DBM-Mod-Category: CATA
-## X-DBM-Mod-Name: Blackwing Descent
-## X-DBM-Mod-Name-deDE: Pechschwingenabstieg
-## X-DBM-Mod-Name-esES: Descenso de Alanegra
-## X-DBM-Mod-Name-koKR: 검은날개 강림지
-## X-DBM-Mod-Name-ruRU: Твердыня Крыла Тьмы
-## X-DBM-Mod-Name-zhTW: 黑翼陷窟
-## X-DBM-Mod-Name-zhCN: 黑翼血环
-## X-DBM-Mod-Name-ptBR: Descenso do Asa Negra
+## X-DBM-Mod-MapID: 669
 ## X-DBM-Mod-Sort: 104
-## X-DBM-Mod-LoadZoneID: 754
 localization.en.lua
 localization.de.lua
 localization.es.lua
