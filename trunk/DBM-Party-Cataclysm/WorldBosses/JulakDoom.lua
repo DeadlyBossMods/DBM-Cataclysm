@@ -5,11 +5,10 @@ mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(50089)
 mod:SetModelID(24301)
 mod:SetUsedIcons(8, 7)
-mod:SetZone(770, 700)--Twilight highlands (both versions of it)
 
 mod:RegisterCombat("combat")
 
-mod:RegisterEvents(
+mod:RegisterEventsInCombat(
 	"SPELL_CAST_START",
 	"SPELL_AURA_APPLIED",
 	"SPELL_AURA_REMOVED",

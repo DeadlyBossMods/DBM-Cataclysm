@@ -4,7 +4,6 @@ local L		= mod:GetLocalizedStrings()
 mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(50009)
 mod:SetModelID(37338)
-mod:SetZone(614, 613)--Abyssal depths, or Vashjir Main map
 
 mod:RegisterCombat("combat")
 
