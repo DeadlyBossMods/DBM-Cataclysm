@@ -4,7 +4,7 @@ local L		= mod:GetLocalizedStrings()
 mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(50009)
 mod:SetModelID(37338)
-mod:SetZone(DBM_DISABLE_ZONE_DETECTION)
+mod:SetZone()
 
 mod:RegisterCombat("combat")
 
