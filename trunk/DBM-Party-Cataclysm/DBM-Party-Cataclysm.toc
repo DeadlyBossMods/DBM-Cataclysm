@@ -35,7 +35,7 @@
 ## X-DBM-Mod-Name-esMX: Mazmorras (Cataclysm)
 ## X-DBM-Mod-Name-ptBR: Masmorras (Cataclysm)
 ## X-DBM-Mod-Sort: 125
-## X-DBM-Mod-LoadZoneID: 747,753,756,757,759,764,767,768,769,697,793,781,820,819,816
+## X-DBM-Mod-MapID: 755,645,36,670,644,33,643,725,657,309,859,568,938,940,939
 localization.en.lua
 localization.de.lua
 localization.es.lua

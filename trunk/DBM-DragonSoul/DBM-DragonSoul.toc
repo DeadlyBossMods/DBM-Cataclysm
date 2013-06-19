@@ -17,17 +17,8 @@
 ## X-DBM-Mod-Type: RAID
 ## X-DBM-Mod-Category: CATA
 ## X-DBM-Mod-Has-LFR : 1
-## X-DBM-Mod-Name: Dragon Soul
-## X-DBM-Mod-Name-deDE: Drachenseele
-## X-DBM-Mod-Name-esES: El Alma de Dragón
-## X-DBM-Mod-Name-koKR: 용의 영혼
-## X-DBM-Mod-Name-ruRU: Душа Дракона
-## X-DBM-Mod-Name-zhTW: 巨龍之魂
-## X-DBM-Mod-Name-zhCN: 巨龙之魂
-## X-DBM-Mod-Name-frFR: L’Âme des dragons
-## X-DBM-Mod-Name-ptBR: Alma Dragônica
+## X-DBM-Mod-MapID: 967
 ## X-DBM-Mod-Sort: 100
-## X-DBM-Mod-LoadZoneID: 824
 localization.en.lua
 localization.de.lua
 localization.ru.lua
