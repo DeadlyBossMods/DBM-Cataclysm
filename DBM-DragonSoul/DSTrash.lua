@@ -47,6 +47,10 @@ local function drakeDied(GUID)
 end
 
 function mod:BoulderTarget(sGUID)
+	if not IsInGroup() then--you are ALWAYS target
+		specWarnBoulder:Show()
+		return
+	end
 	local targetname = nil
 	for uId in DBM:GetGroupMembers() do
 		if UnitGUID(uId.."target") == sGUID then
@@ -54,7 +58,7 @@ function mod:BoulderTarget(sGUID)
 			break
 		end
 	end
-	if targetname and self:AntiSpam(2, targetname) then--Anti spam using targetname as an identifier, will prevent same target being announced double/tripple but NOT prevent multiple targets being announced at once :)
+	if targetname and self:AntiSpam(1, targetname) then--Anti spam using targetname as an identifier, will prevent same target being announced double/tripple but NOT prevent multiple targets being announced at once :)
 		warnBoulder:Show(targetname)
 		if targetname == UnitName("player") then
 			specWarnBoulder:Show()
