@@ -65,12 +65,13 @@ function mod:SPELL_AURA_APPLIED_DOSE(args)
 	if args.spellId == 87683 then
 		warnVengeance:Show()
 	elseif args.spellId == 83908 then
+		local amount = args.amount or 1
 		timerMalevolentStrike:Start(args.destName)
-		if args.amount % 4 == 0 or args.amount >= 10 then		-- warn every 4th stack and every stack if 10 or more
-			warnMalevolentStrike:Show(args.destName, args.amount)
+		if amount % 4 == 0 or amount >= 10 then		-- warn every 4th stack and every stack if 10 or more
+			warnMalevolentStrike:Show(args.destName, amount)
 		end
-		if args:IsPlayer() and (args.amount or 1) >= 8 then
-			specWarnMalevolent:Show(args.amount)
+		if args:IsPlayer() and amount >= 8 then
+			specWarnMalevolent:Show(amount)
 		end
 	end
 end
