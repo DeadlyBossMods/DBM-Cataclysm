@@ -24,7 +24,7 @@ L:SetOptionLocalization({
 	timerSpecial		= "Mostrar cooldown de habilidades especiales",
 	timerSpecialActive	= "Mostrar tiempo de duración de habilidades especiales",
 	warnSpecialSoon		= "Mostrar pre-aviso 10 segundos antes de las habilidades especiales",
-	OnlyWarnforMyTarget	= "Solo mostrar avisos/tiempos para el objetivo y foco actual\n(Oculta el resto. ¡ESTO INCLUYE AL PULLEAR!)"
+	OnlyWarnforMyTarget	= "Solo mostrar avisos/tiempos para el objetivo y foco actual<br/>(Oculta el resto. ¡ESTO INCLUYE AL PULLEAR!)"
 })
 
 L:SetMiscLocalization({

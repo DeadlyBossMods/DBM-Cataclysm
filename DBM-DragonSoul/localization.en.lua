@@ -28,7 +28,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(324)
 
 L:SetOptionLocalization({
-	ShadowYell			= "Yell when you are affected by $spell:103434\n(Heroic difficulty only)",
+	ShadowYell			= "Yell when you are affected by $spell:103434<br/>(Heroic difficulty only)",
 	CustomRangeFrame	= "Range Frame options (Heroic only)",
 	Never				= "Disabled",
 	Normal				= "Normal Range Frame",
@@ -58,7 +58,7 @@ L:SetOptionLocalization({
 	warnOozesHit		= "Announce what oozes hit the boss",
 	timerOozesActive	= "Show timer for when Oozes become attackable",
 	timerOozesReach		= "Show timer for when Oozes reach Yor'sahj",
-	RangeFrame			= "Show range frame (4) for $spell:104898\n(Normal+ difficulty)"
+	RangeFrame			= "Show range frame (4) for $spell:104898<br/>(Normal+ difficulty)"
 })
 
 L:SetMiscLocalization({
@@ -88,12 +88,12 @@ L:SetOptionLocalization({
 	WarnPillars				= "Announce how many $journal:3919 or $journal:4069 are left",
 	TimerSpecial			= "Show timer for first special ability cast",
 	RangeFrame				= "Show range frame: (3) for $spell:105269, (10) for $journal:4327",
-	AnnounceFrostTombIcons	= "Announce icons for $spell:104451 targets to raid chat\n(requires raid leader)",
+	AnnounceFrostTombIcons	= "Announce icons for $spell:104451 targets to raid chat<br/>(requires raid leader)",
 	warnFrostTombCast		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(109325),
 	SpecialCount			= "Play countdown sound for $spell:105256 or $spell:105465",
-	SetBubbles				= "Automatically disable chat bubbles when $spell:104451 available\n(restores them when combat ends)"
+	SetBubbles				= "Automatically disable chat bubbles when $spell:104451 available<br/>(restores them when combat ends)"
 })
 
 L:SetMiscLocalization({
@@ -147,7 +147,7 @@ L:SetOptionLocalization({
 	TimerCombatStart	= "Show timer for start of combat",
 	TimerAdd			= "Show timer for next Twilight Elites spawn",
 	SpecWarnElites		= "Show special warning for new Twilight Elites",
-	SetTextures			= "Automatically disable projected textures in phase 1\n(returns it to enabled in phase 2)"
+	SetTextures			= "Automatically disable projected textures in phase 1<br/>(returns it to enabled in phase 2)"
 })
 
 L:SetMiscLocalization({
@@ -189,7 +189,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(333)
 
 L:SetOptionLocalization({
-	RangeFrame			= "Show dynamic range frame based on player debuff status for\n$spell:108649 on Heroic difficulty",
+	RangeFrame			= "Show dynamic range frame based on player debuff status for<br/>$spell:108649 on Heroic difficulty",
 	SetIconOnParasite	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(108649)
 })
 

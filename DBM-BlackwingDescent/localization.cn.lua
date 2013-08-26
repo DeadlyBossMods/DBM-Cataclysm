@@ -148,7 +148,7 @@ L:SetOptionLocalization({
 	NefBreath				= "警报：奈法利安的$spell:94124",
 	specWarnCinderMove		= "特殊警报：当你受到$spell:79339影响需要移动时（爆炸前5秒）",
 	warnShadowblazeSoon		= "提前警报：$spell:81031（5秒）（为保证精确性，仅当暗影爆燃时间同步后才会显示确切时间警报）",
-	specWarnShadowblazeSoon	= "特殊警报：$spell:81031即将施放（为保证精确性，第一次\n提前5秒，在暗影爆燃时间同步后提前1秒警报）",
+	specWarnShadowblazeSoon	= "特殊警报：$spell:81031即将施放（为保证精确性，第一次<br/>提前5秒，在暗影爆燃时间同步后提前1秒警报）",
 	timerNefLanding			= "计时条：奈法利安着陆",
 	OnySwipeTimer			= "计时条：奥妮克希亚的$spell:77827冷却时间",
 	NefSwipeTimer			= "计时条：奈法利安的$spell:77827冷却时间",

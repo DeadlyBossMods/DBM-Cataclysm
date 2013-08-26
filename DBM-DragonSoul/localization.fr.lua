@@ -34,7 +34,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	ShadowYell			= "Yell when you are affected by $spell:104600\n(Heroic difficulty only)",
+	ShadowYell			= "Yell when you are affected by $spell:104600<br/>(Heroic difficulty only)",
 	CustomRangeFrame	= "Range Frame options",
 	Never				= "Disabled",
 	Normal				= "Normal Range Frame",
@@ -60,7 +60,7 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	timerOozesActive	= "Délai avant que les gelées ne soient attaquables après leur apparition",
-	RangeFrame			= "Cadre des portées (4) pour $spell:104898\n(difficulté Normal+)"
+	RangeFrame			= "Cadre des portées (4) pour $spell:104898<br/>(difficulté Normal+)"
 })
 
 L:SetMiscLocalization({
@@ -88,7 +88,7 @@ L:SetTimerLocalization({
 L:SetOptionLocalization({
 	TimerSpecial			= "Délai avant la première incantation d'une technique spéciale",
 	RangeFrame				= "Cadre des portées (3) pour $spell:105269",
-	AnnounceFrostTombIcons	= "Annonce des icônes des cibles de $spell:104451 au canal Raid\n(nécessite d'être le chef du raid)",
+	AnnounceFrostTombIcons	= "Annonce des icônes des cibles de $spell:104451 au canal Raid<br/>(nécessite d'être le chef du raid)",
 	warnFrostTombCast		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(109325)

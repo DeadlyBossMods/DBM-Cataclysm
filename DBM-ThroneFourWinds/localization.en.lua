@@ -22,7 +22,7 @@ L:SetOptionLocalization({
 	timerSpecial		= "Show timer for special abilities cooldown",
 	timerSpecialActive	= "Show timer for special abilities duration",
 	warnSpecialSoon		= "Show pre-warning 10 seconds before special abilities",
-	OnlyWarnforMyTarget	= "Only show warnings/timers for current & focus targets\n(Hides the rest. THIS INCLUDES PULL)"
+	OnlyWarnforMyTarget	= "Only show warnings/timers for current & focus targets<br/>(Hides the rest. THIS INCLUDES PULL)"
 })
 
 L:SetMiscLocalization({

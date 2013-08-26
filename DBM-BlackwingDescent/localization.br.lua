@@ -103,7 +103,7 @@ L:SetOptionLocalization({
 	WarnPhase			= "Exibir aviso indicando qual será a próxima fase",
 	TimerPhase			= "Exibir cronógrafo para a próxima fase",
 	RangeFrame			= "Exibir medidor de distância (6) durante a fase azul",
-	SetTextures			= "Automaticamente desabilitar texturas projetadas durante a fase escura\n(habilita novamente ao término da fase)",
+	SetTextures			= "Automaticamente desabilitar texturas projetadas durante a fase escura<br/>(habilita novamente ao término da fase)",
 	FlashFreezeIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(92979),
 	BitingChillIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77760),
 	ConsumingFlamesIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77786)
@@ -143,19 +143,19 @@ L:SetOptionLocalization({
 	NefTailSwipe			= "Exibir aviso para $spell:77827 de Nefarian",
 	OnyBreath				= "Exibir aviso para $spell:94124 de Onyxia",
 	NefBreath				= "Exibir aviso para $spell:94124 de Nefarian",
-	specWarnCinderMove		= "Exibir aviso especial para afastar-se quando você está sob efeito de\n $spell:79339 (5s antes da explosão)",
-	warnShadowblazeSoon		= "Exibir aviso antecipado para $spell:81031 (5s antes)\n(Funciona apenas após o cronógrafo estar sincronizado, para garantir a precisão)",
-	specWarnShadowblazeSoon	= "Exibir aviso antecipado para $spell:81031\n(Primeiro aviso 5s antes. Segundo aviso 1s antes, após sincronia, para garantir precisão)",
+	specWarnCinderMove		= "Exibir aviso especial para afastar-se quando você está sob efeito de<br/> $spell:79339 (5s antes da explosão)",
+	warnShadowblazeSoon		= "Exibir aviso antecipado para $spell:81031 (5s antes)<br/>(Funciona apenas após o cronógrafo estar sincronizado, para garantir a precisão)",
+	specWarnShadowblazeSoon	= "Exibir aviso antecipado para $spell:81031<br/>(Primeiro aviso 5s antes. Segundo aviso 1s antes, após sincronia, para garantir precisão)",
 	timerNefLanding			= "Exibir cronógrafo para quando Nefarian pousa",
 	OnySwipeTimer			= "Exibir cronógrafo para recarga de $spell:77827 (Onyxia)",
 	NefSwipeTimer			= "Exibir cronógrafo para recarga de $spell:77827 (Nefarian)",
 	OnyBreathTimer			= "Exibir cronógrafo para recarga de $spell:94124 (Onyxia)",
 	NefBreathTimer			= "Exibir cronógrafo para recarga de $spell:94124 (Nefarian)",
 	InfoFrame				= "Exibir quadro de informações da Energia Elétrica de Onyxia",
-	SetWater				= "Automaticamente desabilitar colisão com a água, ao entrar em combate\n(habilita novamente, ao sair de combate)",
-	TankArrow				= "Exibe seta do DBM para o kiter dos Guerreiros Animados de Osso\n(utilizado em stratégia de um kiter)",--npc 41918
+	SetWater				= "Automaticamente desabilitar colisão com a água, ao entrar em combate<br/>(habilita novamente, ao sair de combate)",
+	TankArrow				= "Exibe seta do DBM para o kiter dos Guerreiros Animados de Osso<br/>(utilizado em stratégia de um kiter)",--npc 41918
 	SetIconOnCinder			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(79339),
-	RangeFrame				= "Exibir medidor de distância (10) para $spell:79339\n(Mostra todo mundo se você tiver o debuff, caso contrário, apenas jogadores com ícones)"
+	RangeFrame				= "Exibir medidor de distância (10) para $spell:79339<br/>(Mostra todo mundo se você tiver o debuff, caso contrário, apenas jogadores com ícones)"
 })
 
 L:SetMiscLocalization({

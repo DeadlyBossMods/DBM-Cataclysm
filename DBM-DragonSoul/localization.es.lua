@@ -29,7 +29,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(324)
 
 L:SetOptionLocalization({
-	ShadowYell			= "Gritar cuando te afecte $spell:104600\n(Solo dificultad Heroica)",
+	ShadowYell			= "Gritar cuando te afecte $spell:104600<br/>(Solo dificultad Heroica)",
 	CustomRangeFrame	= "Opciones de marco de distancia",
 	Never				= "Deshabilitado",
 	Normal				= "Distancia normal",
@@ -59,7 +59,7 @@ L:SetOptionLocalization({
 	warnOozesHit		= "Anunciar los mocos que absorbió el Boss",
 	timerOozesActive	= "Mostrar tiempo para que los mocos se pueden atacar",
 	timerOozesReach		= "Mostrar tiempo para que los mocos lleguen a Yor'sahj",
-	RangeFrame			= "Mostrar distancia (4) para $spell:104898\n(Dificultad normal o superior)"
+	RangeFrame			= "Mostrar distancia (4) para $spell:104898<br/>(Dificultad normal o superior)"
 })
 
 L:SetMiscLocalization({
@@ -90,12 +90,12 @@ L:SetOptionLocalization({
 	WarnPillars				= "Anunciar cuantas $journal:3919 o $journal:4069 quedan",
 	TimerSpecial			= "Mostrar tiempo para casteo de la primera habilidad especial",
 	RangeFrame				= "Mostrar distancia (3) para $spell:105269, (10) para $journal:4327",
-	AnnounceFrostTombIcons	= "Anunciar iconos de los objetivos de $spell:104451 a la banda\n(requiere líder)",
+	AnnounceFrostTombIcons	= "Anunciar iconos de los objetivos de $spell:104451 a la banda<br/>(requiere líder)",
 	warnFrostTombCast		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(109325),
 	SpecialCount			= "Reproducir sonido de cuenta atrás para $spell:105256 o $spell:105465",
-	SetBubbles				= "Desactivar los bocadillos de chat automaticamente cuando haya $spell:104451\n(se restauran una vez el combate termina)"
+	SetBubbles				= "Desactivar los bocadillos de chat automaticamente cuando haya $spell:104451<br/>(se restauran una vez el combate termina)"
 })
 
 
@@ -191,7 +191,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(333)
 
 L:SetOptionLocalization({
-	RangeFrame			= "Mostrar distancia dinamica basada en el estado del debuff\n$spell:108649 en dificultad Heroica",
+	RangeFrame			= "Mostrar distancia dinamica basada en el estado del debuff<br/>$spell:108649 en dificultad Heroica",
 	SetIconOnParasite	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(108649)
 })
 

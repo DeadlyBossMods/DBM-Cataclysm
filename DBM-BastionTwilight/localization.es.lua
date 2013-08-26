@@ -47,8 +47,8 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	specWarnBossLow			= "Mostrar un aviso especial cuando los Bosses estén por debajo del 30% de vida",
-	SpecWarnGrounded	= "Mostrar aviso especial cuando estes a punto de perder el debufo de $spell:83581\n(~10seg antes de castear)",
-	SpecWarnSearingWinds	= "Mostrar aviso especial cuando estes a punto de perder el debufo de $spell:83500\n(~10seg antes de castear)",
+	SpecWarnGrounded	= "Mostrar aviso especial cuando estes a punto de perder el debufo de $spell:83581<br/>(~10seg antes de castear)",
+	SpecWarnSearingWinds	= "Mostrar aviso especial cuando estes a punto de perder el debufo de $spell:83500<br/>(~10seg antes de castear)",
 	timerTransition		= "Mostrar tiempo para transición de fase",
 	RangeFrame			= "Mostrar distancia cuando sea necesario",
 	yellScrewed				= "Gritar cuando tengas $spell:83099 y $spell:92307 a la vez",
@@ -105,14 +105,14 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	WarnOrbSoon			= "Mostrar pre-aviso para $spell:92954 (5s antes, cada segundo)\n(Puede ser impreciso. Puede spamear.)",
+	WarnOrbSoon			= "Mostrar pre-aviso para $spell:92954 (5s antes, cada segundo)<br/>(Puede ser impreciso. Puede spamear.)",
 	warnWrackJump		= "Anunciar los objetivos del salto de $spell:89421",
-	warnAggro			= "Anunciar jugadores que tienen Aggro cuando salen Orbes\n(Pueden ser objetivos de orbes)",
-	SpecWarnAggroOnYou	= "Mostrar aviso especial si TU tienes aggro cuando Orbes\n(Puedes ser objetivo de orbes)",
-	SpecWarnOrbs		= "Mostrar aviso especial para $spell:92954\n(Puede ser impreciso.)",
+	warnAggro			= "Anunciar jugadores que tienen Aggro cuando salen Orbes<br/>(Pueden ser objetivos de orbes)",
+	SpecWarnAggroOnYou	= "Mostrar aviso especial si TU tienes aggro cuando Orbes<br/>(Puedes ser objetivo de orbes)",
+	SpecWarnOrbs		= "Mostrar aviso especial para $spell:92954<br/>(Puede ser impreciso.)",
 	TimerEggWeakening	= "Mostrar tiempo para eliminación de $spell:87654",
 	TimerEggWeaken		= "Mostrar tiempo para regeneración de $spell:87654",
-	TimerOrbs			= "Mostrar tiempo para siguientes Orbes\n(Tiempo esperado. puede no ser preciso)",
+	TimerOrbs			= "Mostrar tiempo para siguientes Orbes<br/>(Tiempo esperado. puede no ser preciso)",
 	SetIconOnOrbs		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(92954),
 	OrbsCountdown		= "Reproducir sonido de cuenta atrás para Orbes",
 	InfoFrame			= "Mostrar información de jugadores que tienen aggro"

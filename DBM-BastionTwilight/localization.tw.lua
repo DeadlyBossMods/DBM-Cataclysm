@@ -8,7 +8,7 @@ local L
 L= DBM:GetModLocalization(156)
 
 L:SetOptionLocalization({
-	ShowDrakeHealth		= "顯示已被釋放的小龍血量\n(需要先開啟首領血量)"
+	ShowDrakeHealth		= "顯示已被釋放的小龍血量<br/>(需要先開啟首領血量)"
 })
 
 ---------------------------
@@ -47,8 +47,8 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	specWarnBossLow			= "當首領血量低於30%時顯示特別警告",
-	SpecWarnGrounded		= "當你缺少$spell:83581時顯示特別警告\n(大約施放前10秒內)",
-	SpecWarnSearingWinds	= "當你缺少$spell:83500時顯示特別警告\n(大約施放前10秒內)",
+	SpecWarnGrounded		= "當你缺少$spell:83581時顯示特別警告<br/>(大約施放前10秒內)",
+	SpecWarnSearingWinds	= "當你缺少$spell:83500時顯示特別警告<br/>(大約施放前10秒內)",
 	timerTransition			= "顯示階段轉換計時器",
 	RangeFrame	 			= "當需要時自動顯示距離框",
 	yellScrewed				= "當你同時有$spell:83099和$spell:92307時大喊",
@@ -105,10 +105,10 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	WarnOrbSoon			= "提前警告暗影寶珠(5秒前, 每1秒)\n(猜測的時間，可能不準確)",
+	WarnOrbSoon			= "提前警告暗影寶珠(5秒前, 每1秒)<br/>(猜測的時間，可能不準確)",
 	warnWrackJump		= "提示$spell:89421的目標",
 	warnAggro			= "提示玩家暗影寶珠的目標(可能的目標)",
-	SpecWarnAggroOnYou	= "顯示特別警告當你是暗影寶珠的目標時\n(可能的目標)",
+	SpecWarnAggroOnYou	= "顯示特別警告當你是暗影寶珠的目標時<br/>(可能的目標)",
 	SpecWarnOrbs		= "顯示特別警告暗影寶珠施放(猜測的警告)",
 	TimerEggWeakening	= "顯示$spell:87654消散的計時器",
 	TimerEggWeaken		= "顯示$spell:87654重生的計時器",

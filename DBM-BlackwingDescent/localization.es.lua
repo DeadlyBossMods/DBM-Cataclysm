@@ -103,7 +103,7 @@ L:SetOptionLocalization({
 	WarnPhase		= "Mostrar aviso de la fase que viene",
 	TimerPhase		= "Mostrar tiempo para la siguiente fase",	
 	RangeFrame		= "Mostrar distancia (6 yardas) durante la fase azul",
-	SetTextures			= "Desactivar las texturas proyectadas automáticamente en fase oscura\n(se reactivan al cambiar de fase)",
+	SetTextures			= "Desactivar las texturas proyectadas automáticamente en fase oscura<br/>(se reactivan al cambiar de fase)",
 	FlashFreezeIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77699),
 	BitingChillIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77760),
 	ConsumingFlamesIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77786)
@@ -143,8 +143,8 @@ L:SetOptionLocalization({
 	NefTailSwipe		= "Mostrar aviso para el $spell:77827 de Nefarian",
 	OnyBreath			= "Mostrar aviso para el $spell:77826 de Onyxia",
 	NefBreath			= "Mostrar aviso para el $spell:77826 de Nefarian",	
-	specWarnCinderMove		= "Mostrar aviso especial para moverte si te afecta\n $spell:79339 (5s antes de la explosión)",	
-	warnShadowblazeSoon		= "Mostrar pre-aviso de cuenta atrás para $spell:81031 (5s before)\n(Solo después que el contador se haya sincronizado para asegurar precisión)",
+	specWarnCinderMove		= "Mostrar aviso especial para moverte si te afecta<br/> $spell:79339 (5s antes de la explosión)",	
+	warnShadowblazeSoon		= "Mostrar pre-aviso de cuenta atrás para $spell:81031 (5s before)<br/>(Solo después que el contador se haya sincronizado para asegurar precisión)",
 	specWarnShadowblazeSoon	= "Mostrar pre-aviso especial para $spell:81031 (~5s)",
 	timerNefLanding		= "Mostrar tiempo para que Nefarian aterrice",
 	OnySwipeTimer		= "Mostrar tiempo de cooldown de $spell:77827 de Onyxia",
@@ -152,8 +152,8 @@ L:SetOptionLocalization({
 	OnyBreathTimer		= "Mostrar tiempo de cooldown de $spell:77826 de Onyxia",
 	NefBreathTimer		= "Mostrar tiempo de cooldown de $spell:77826 de Nefarian",
 	InfoFrame			= "Mostrar información sobre la carga eléctrica de Onyxia",
-	SetWater			= "Desactivar la colisión con el agua automáticamente al pullear\n(se reactiva al abandonar el combate)",
-	TankArrow			= "Mostrar flecha para el kiteador de Guerrero Hueso animado\n(diseñado para estrategia de kiteo)",--npc 41918
+	SetWater			= "Desactivar la colisión con el agua automáticamente al pullear<br/>(se reactiva al abandonar el combate)",
+	TankArrow			= "Mostrar flecha para el kiteador de Guerrero Hueso animado<br/>(diseñado para estrategia de kiteo)",--npc 41918
 	SetIconOnCinder		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(79339),
 	RangeFrame			= "Mostrar distancia (10 yardas) cuando tengas $spell:79339"
 })
