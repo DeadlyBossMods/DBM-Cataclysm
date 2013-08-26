@@ -23,7 +23,7 @@ L:SetOptionLocalization({
 	timerSpecial		= "Zeige Abklingzeit für Spezialfähigkeiten",
 	timerSpecialActive	= "Dauer der Spezialfähigkeiten anzeigen",
 	warnSpecialSoon		= "Zeige Vorwarnung 10 Sekunden vor den Spezialfähigkeiten",
-	OnlyWarnforMyTarget	= "Zeige Warnungen und Timer nur für aktuelles Ziel und Fokusziel\n(Versteckt den Rest. Dies beinhaltet den PULL!)"
+	OnlyWarnforMyTarget	= "Zeige Warnungen und Timer nur für aktuelles Ziel und Fokusziel<br/>(Versteckt den Rest. Dies beinhaltet den PULL!)"
 })
 
 L:SetMiscLocalization({

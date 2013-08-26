@@ -8,7 +8,7 @@ local L
 L = DBM:GetModLocalization(156)
 
 L:SetOptionLocalization({
-	ShowDrakeHealth		= "Mostrar vida dos dragonetes soltos.\n(Requer quadro de vida habilitado)"
+	ShowDrakeHealth		= "Mostrar vida dos dragonetes soltos.<br/>(Requer quadro de vida habilitado)"
 })
 
 ---------------------------
@@ -47,8 +47,8 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	specWarnBossLow			= "Ebibir aviso especial quando os chefes tiverem menos de 30% de vida",
-	SpecWarnGrounded		= "Exibir aviso especial quando você estiver sem o efeito de $spell:83581\n(~10seg antes do lançamento)",
-	SpecWarnSearingWinds	= "Exibir aviso especial quando você estiver sem o efeito de $spell:83500\n(~10seg antes do lançamento)",
+	SpecWarnGrounded		= "Exibir aviso especial quando você estiver sem o efeito de $spell:83581<br/>(~10seg antes do lançamento)",
+	SpecWarnSearingWinds	= "Exibir aviso especial quando você estiver sem o efeito de $spell:83500<br/>(~10seg antes do lançamento)",
 	timerTransition			= "Exibir cronógrafo de transição de fase",
 	RangeFrame				= "Exibir medidor de distância automaticamente, quando necessário",
 	yellScrewed				= "Gritar quando você tiver $spell:83099 e $spell:92307 ao mesmo tempo",
@@ -105,15 +105,15 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	WarnOrbSoon			= "Exibir aviso antecipado para orbes ( 5s antes, a cada 1s)\n(Pode não ser correto. Pode causar spam.)",
+	WarnOrbSoon			= "Exibir aviso antecipado para orbes ( 5s antes, a cada 1s)<br/>(Pode não ser correto. Pode causar spam.)",
 	warnWrackJump		= "Anunciar quando $spell:92955 saltar de alvo",
 	warnAggro			= "Anunciar jogadores que tem Ameaça quando os orbes surgirem (podem ser alvo dos orbes)",
-	SpecWarnAggroOnYou	= "Exibir aviso especial se você tiver Ameaça quando os orbes surgirem\n(você pode ser o alvo dos orbes)",
+	SpecWarnAggroOnYou	= "Exibir aviso especial se você tiver Ameaça quando os orbes surgirem<br/>(você pode ser o alvo dos orbes)",
 	SpecWarnOrbs		= "Exibir aviso especial quando orbes surgirem (Aviso esperado)",
 	TimerEggWeakening	= "Exibir cronógrafo para quando $spell:87654 desvanescer",
 	TimerEggWeaken		= "Exibir cronógrafo para regeneração de $spell:87654",
 	TimerOrbs			= "Exibir cronógrafo para os próximos orbes (Tempo esperado, Pode não ser correto)",
-	SetIconOnOrbs		= "Colocar ícones em jogadores que tenham Ameaça quando Orbes surgirem\n(possíveis alvos dos Orbes)",
+	SetIconOnOrbs		= "Colocar ícones em jogadores que tenham Ameaça quando Orbes surgirem<br/>(possíveis alvos dos Orbes)",
 	OrbsCountdown		= "Tocar som de contagem regressiva para Orbes",
 	InfoFrame			= "Exibir quadro de informações para jogadores que tem ameaça"
 })

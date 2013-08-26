@@ -30,7 +30,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(324)
 
 L:SetOptionLocalization({
-    ShadowYell	= "Gritar ao ser afetado por $spell:104600\n(Apenas modo heróico)",
+    ShadowYell	= "Gritar ao ser afetado por $spell:104600<br/>(Apenas modo heróico)",
 	CustomRangeFrame	= "Opções do medidor de distância",
 	Never				= "Desabilitado",
 	Normal				= "Medidor Normal",
@@ -58,7 +58,7 @@ L:SetTimerLocalization({
 L:SetOptionLocalization({
 	warnOozesHit		= "Anunciar quais glóbulos atingem o chefe",
 	timerOozesActive	= "Exibir cronógrafo para quando os Glóbulos se tornam atacáveis",
-	RangeFrame			= "Exibir medidor de distância (4) para $spell:104898\n(Modo Normal+)"
+	RangeFrame			= "Exibir medidor de distância (4) para $spell:104898<br/>(Modo Normal+)"
 })
 
 L:SetMiscLocalization({
@@ -88,12 +88,12 @@ L:SetOptionLocalization({
 	WarnPillars				= "Anunciar quantos $journal:3919 ou $journal:4069 restam",
 	TimerSpecial			= "Exibir cronógrafo para lançamento da primeira habilidade",
     RangeFrame				= "Exibir medidor de distância: (3) para $spell:105269, (10) para $journal:4327",
-	AnnounceFrostTombIcons	= "Anunciar no chat da raide, ícones para alvos de $spell:104451\n(requer liderança)",
+	AnnounceFrostTombIcons	= "Anunciar no chat da raide, ícones para alvos de $spell:104451<br/>(requer liderança)",
 	warnFrostTombCast		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(109325),
 	SpecialCount			= "Tocar som de contagem regressiva para $spell:105256 ou $spell:105465",
-	SetBubbles				= "Automaticamente desabilitar balões de voz quando $spell:104451 está disponível\n(Voltando ao normal ao fim do combate)"
+	SetBubbles				= "Automaticamente desabilitar balões de voz quando $spell:104451 está disponível<br/>(Voltando ao normal ao fim do combate)"
 })
 
 L:SetMiscLocalization({
@@ -147,7 +147,7 @@ L:SetOptionLocalization({
 	TimerCombatStart	= "Exibir cronógrafo para o início do combate",
 	TimerAdd			= "Exibir cronógrafo para o surgimento de próximos Elites do Crepúsculo!",
 	SpecWarnElites		= "Exibir aviso especial para novos Elites do Crepúsculo",
-	SetTextures			= "Automaticamente desabilitar texturas projetadas durante a fase 1\n(Habilita novamente na fase 2)"
+	SetTextures			= "Automaticamente desabilitar texturas projetadas durante a fase 1<br/>(Habilita novamente na fase 2)"
 })
 
 L:SetMiscLocalization({
@@ -187,7 +187,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(333)
 
 L:SetOptionLocalization({
-	RangeFrame			= "Exibir medidor de distância dinâmico baseado nas penalidades do jogador para\n$spell:108649 na dificuldade heróica",
+	RangeFrame			= "Exibir medidor de distância dinâmico baseado nas penalidades do jogador para<br/>$spell:108649 na dificuldade heróica",
 	SetIconOnParasite	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(108649)
 })
 

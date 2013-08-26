@@ -29,7 +29,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(324)
 
 L:SetOptionLocalization({
-	ShadowYell			= "Urla quando sei afflitto da $spell:103434\n(Solo in Eroico)",
+	ShadowYell			= "Urla quando sei afflitto da $spell:103434<br/>(Solo in Eroico)",
 	CustomRangeFrame	= "Opzioni del Radar di Prossimita' (Solo Eroico)",
 	Never				= "Disabilitato",
 	Normal				= "Radar di Prossimita' Normale",
@@ -59,7 +59,7 @@ L:SetOptionLocalization({
 	warnOozesHit		= "Annuncia quale Globulo colpisce il boss",
 	timerOozesActive	= "Visualizza un timer per quando i Globuli diventano Attaccabili",
 	timerOozesReach		= "Visualizza un timer per quando i Globuli raggiungeranno Yor'sahj",
-	RangeFrame			= "Visualizza il Radar di prossimita'(4mt) per $spell:104898\n(difficolta' eroica)"
+	RangeFrame			= "Visualizza il Radar di prossimita'(4mt) per $spell:104898<br/>(difficolta' eroica)"
 })
 
 L:SetMiscLocalization({
@@ -89,12 +89,12 @@ L:SetOptionLocalization({
 	WarnPillars				= "Annuncia quanti $journal:3919 o $journal:4069 sono rimasti",
 	TimerSpecial			= "Visualizza un Timer per il lancio della prima abilita' speciale",
 	RangeFrame				= "Visualizza Radar di Prossimita'(3mt) per $spell:105269, (10) per $journal:4327",
-	AnnounceFrostTombIcons	= "Elenca in Chat le Icone per i bersagli di $spell:104451 \n(Richiede CapoIncursione)",
+	AnnounceFrostTombIcons	= "Elenca in Chat le Icone per i bersagli di $spell:104451 <br/>(Richiede CapoIncursione)",
 	warnFrostTombCast		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(109325),
 	SpecialCount			= "Fai Conto alla Rovescia per $spell:105256 o $spell:105465",
-	SetBubbles				= "Disabilita le vignette della chat automaticamente quando e' disponibile $spell:104451 \n(Ripristinale alla fine del combattimento)"
+	SetBubbles				= "Disabilita le vignette della chat automaticamente quando e' disponibile $spell:104451 <br/>(Ripristinale alla fine del combattimento)"
 })
 
 L:SetMiscLocalization({
@@ -148,7 +148,7 @@ L:SetOptionLocalization({
 	TimerCombatStart	= "Timer per l'inizio del Combattimento",
 	TimerAdd			= "Timer per i prossimi CavalcaDraghi",
 	SpecWarnElites		= "Avviso Speciale per i nuovi CavalcaDraghi",
-	SetTextures			= "Disabilita la Proiezione delle texture automaticamente in Fase1\n(riabilitale in Fase2)"
+	SetTextures			= "Disabilita la Proiezione delle texture automaticamente in Fase1<br/>(riabilitale in Fase2)"
 })
 
 L:SetMiscLocalization({
@@ -188,7 +188,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(333)
 
 L:SetOptionLocalization({
-	RangeFrame			= "Visualizza il radar di prossimita' per i giocatori afflitti da\n$spell:108649 in Eroico",
+	RangeFrame			= "Visualizza il radar di prossimita' per i giocatori afflitti da<br/>$spell:108649 in Eroico",
 	SetIconOnParasite	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(108649)
 })
 

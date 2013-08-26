@@ -29,7 +29,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	TimerFirstSpecial		= "计时条：$spell:105738后的第一次特殊技能\n（第一次特殊技能是随机的，$spell:105067或$spell:104936）"
+	TimerFirstSpecial		= "计时条：$spell:105738后的第一次特殊技能<br/>（第一次特殊技能是随机的，$spell:105067或$spell:104936）"
 })
 
 L:SetMiscLocalization({

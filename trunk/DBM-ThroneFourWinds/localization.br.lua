@@ -24,7 +24,7 @@ L:SetOptionLocalization({
 	timerSpecial		= "Exibir cronógrafo para recarga de habilidades especiais",
 	timerSpecialActive	= "Exibir cronógrafo para duração de habilidades especiais",
 	warnSpecialSoon		= "Exibit aviso antecipado 10 segundos antes de habilidades especiais",
-	OnlyWarnforMyTarget	= "Exibir avisos/cronógrafos apenas para o alvo e foco atuais\n(Esconde o resto. ISSO INCLUI O AVISO PARA PUXAR)"
+	OnlyWarnforMyTarget	= "Exibir avisos/cronógrafos apenas para o alvo e foco atuais<br/>(Esconde o resto. ISSO INCLUI O AVISO PARA PUXAR)"
 })
 
 L:SetMiscLocalization({

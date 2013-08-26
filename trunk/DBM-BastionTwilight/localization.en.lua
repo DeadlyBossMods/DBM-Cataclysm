@@ -6,7 +6,7 @@ local L
 L = DBM:GetModLocalization(156)
 
 L:SetOptionLocalization({
-	ShowDrakeHealth		= "Show the health of released drakes\n(Requires Boss Health enabled)"
+	ShowDrakeHealth		= "Show the health of released drakes<br/>(Requires Boss Health enabled)"
 })
 
 ---------------------------
@@ -45,8 +45,8 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	specWarnBossLow			= "Show special warning when Bosses are below 30% HP",
-	SpecWarnGrounded		= "Show special warning when you are missing $spell:83581 debuff\n(~10sec before cast)",
-	SpecWarnSearingWinds	= "Show special warning when you are missing $spell:83500 debuff\n(~10sec before cast)",
+	SpecWarnGrounded		= "Show special warning when you are missing $spell:83581 debuff<br/>(~10sec before cast)",
+	SpecWarnSearingWinds	= "Show special warning when you are missing $spell:83500 debuff<br/>(~10sec before cast)",
 	timerTransition			= "Show Phase transition timer",
 	RangeFrame				= "Show range frame automatically when needed",
 	yellScrewed				= "Yell when you have $spell:83099 & $spell:92307 at same time",
@@ -103,15 +103,15 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	WarnOrbSoon			= "Show pre-warning for Orbs (Before 5s, Every 1s)\n(Expected warning. may not be accurate. Can be spammy.)",
+	WarnOrbSoon			= "Show pre-warning for Orbs (Before 5s, Every 1s)<br/>(Expected warning. may not be accurate. Can be spammy.)",
 	warnWrackJump		= "Announce $spell:89421 jump targets",
 	warnAggro			= "Announce players who have Aggro when Orbs spawn (Can be target of Orbs)",
-	SpecWarnAggroOnYou	= "Show special warning if you have Aggro when Orbs spawn\n(Can be target of Orbs)",
+	SpecWarnAggroOnYou	= "Show special warning if you have Aggro when Orbs spawn<br/>(Can be target of Orbs)",
 	SpecWarnOrbs		= "Show special warning when Orbs spawn (Expected warning)",
 	TimerEggWeakening	= "Show timer for when $spell:87654 dissipates",
 	TimerEggWeaken		= "Show timer for $spell:87654 regeneration",
 	TimerOrbs			= "Show timer for next Orbs (Expected timer. may not be accurate)",
-	SetIconOnOrbs		= "Set icons on players who have Aggro when Orbs spawn\n(Can be target of Orbs)",
+	SetIconOnOrbs		= "Set icons on players who have Aggro when Orbs spawn<br/>(Can be target of Orbs)",
 	OrbsCountdown		= "Play countdown sound for Orbs",
 	InfoFrame			= "Show info frame for players who have aggro"
 })

@@ -7,7 +7,7 @@ local L
 L= DBM:GetModLocalization(156)
 
 L:SetOptionLocalization({
-	ShowDrakeHealth		= "풀려난 용의 체력 바 보기\n(우두머리 체력 바 보기가 활성화 되어 있어야 함)"
+	ShowDrakeHealth		= "풀려난 용의 체력 바 보기<br/>(우두머리 체력 바 보기가 활성화 되어 있어야 함)"
 })
 
 ---------------------------
@@ -104,15 +104,15 @@ L:SetTimerLocalization({
 })	
 
 L:SetOptionLocalization({
-	WarnOrbSoon			= "구슬 초읽기 알림 보기(5초 전부터, 1초 마다)\n(예상 경보이며, 정확하지 않을 수 있습니다.)",
+	WarnOrbSoon			= "구슬 초읽기 알림 보기(5초 전부터, 1초 마다)<br/>(예상 경보이며, 정확하지 않을 수 있습니다.)",
 	warnWrackJump		= "$spell:89421 전이 알림 보기",
 	warnAggro			= "구슬 생성시 위협 수준이 있는 대상(구슬 예상 대상자) 알림 보기",
-	SpecWarnAggroOnYou	= "구슬 생성시 위협 수준을 획득한 경우 특수 경고 보기\n(구슬 대상자일 가능성이 높습니다.)",
+	SpecWarnAggroOnYou	= "구슬 생성시 위협 수준을 획득한 경우 특수 경고 보기<br/>(구슬 대상자일 가능성이 높습니다.)",
 	SpecWarnOrbs		= "구슬 생성 특수 경고 보기(예상 경보이며, 정확하지 않을 수 있습니다.)",
 	TimerEggWeakening  	= "$spell:87654 효과 사라짐 바 표시",
 	TimerEggWeaken		= "$spell:87654 재생성 까지 남은시간 바 보기",
 	TimerOrbs			= "구슬 대기시간 바 표시(예상 시간이며, 정확하지 않을 수 있습니다.)",
-	SetIconOnOrbs		= "구슬 생성시 위협 수준이 있는 대상에게 전술 목표 아이콘 설정\n(구슬 대상자일 가능성이 높습니다.)",
+	SetIconOnOrbs		= "구슬 생성시 위협 수준이 있는 대상에게 전술 목표 아이콘 설정<br/>(구슬 대상자일 가능성이 높습니다.)",
 	OrbsCountdown		= "구슬 생성전 초읽기 소리 듣기",
 	InfoFrame			= "위협 수준 획득 대상 정보 창 보기(구슬 대상자)"
 })

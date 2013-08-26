@@ -104,15 +104,15 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	WarnOrbSoon			= "Zeige Vorwarnung für Schattenkugeln (5s zuvor, sekündlich)\n(voraussichtlich, kann ungenau sein, kann spammen)",
+	WarnOrbSoon			= "Zeige Vorwarnung für Schattenkugeln (5s zuvor, sekündlich)<br/>(voraussichtlich, kann ungenau sein, kann spammen)",
 	warnWrackJump		= "Verkünde Sprungziele von $spell:89421",
-	warnAggro			= "Verkünde Spieler mit Aggro, wenn Schattenkugeln erscheinen\n(mögliches Ziel der Schattenkugeln)",
+	warnAggro			= "Verkünde Spieler mit Aggro, wenn Schattenkugeln erscheinen<br/>(mögliches Ziel der Schattenkugeln)",
 	SpecWarnAggroOnYou	= "Spezialwarnung, falls du Aggro hast, wenn Schattenkugeln erscheinen (mögliches Ziel der Schattenkugeln)",
 	SpecWarnOrbs		= "Spezialwarnung, wenn Schattenkugeln erscheinen (voraussichtlich)",
 	TimerEggWeakening	= "Zeige Timer, wenn $spell:87654 zerfällt",
 	TimerEggWeaken		= "Dauer der Erneuerung des $spell:87654 anzeigen",
-	TimerOrbs			= "Zeige Zeit bis nächste Schattenkugeln erscheinen\n(voraussichtlich, kann ungenau sein)",
-	SetIconOnOrbs		= "Setze Zeichen auf Spieler mit Aggro, wenn Schattenkugeln erscheinen\n(mögliches Ziel der Schattenkugeln)",
+	TimerOrbs			= "Zeige Zeit bis nächste Schattenkugeln erscheinen<br/>(voraussichtlich, kann ungenau sein)",
+	SetIconOnOrbs		= "Setze Zeichen auf Spieler mit Aggro, wenn Schattenkugeln erscheinen<br/>(mögliches Ziel der Schattenkugeln)",
 	OrbsCountdown		= "Spiele akustischen Countdown für Schattenkugeln",
 	InfoFrame			= "Zeige Infofenster für Spieler mit Aggro"
 })

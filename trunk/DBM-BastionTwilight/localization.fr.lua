@@ -68,8 +68,8 @@ L:SetMiscLocalization({
 
 L:SetOptionLocalization({
 	specWarnBossLow	= "Alerte spéciale lorsque les Boss sont en dessous de 30% de PV",
-	SpecWarnGrounded	= "Alerte spéciale lorsque vous manquez l'amélioration $spell:83581 \n(~10sec avant le lancement du sort)",
-	SpecWarnSearingWinds	= "Alerte spéciale lorsque vous manquez l'amélioration  $spell:83500 \n(~10sec avant le lancement du sort)",
+	SpecWarnGrounded	= "Alerte spéciale lorsque vous manquez l'amélioration $spell:83581 <br/>(~10sec avant le lancement du sort)",
+	SpecWarnSearingWinds	= "Alerte spéciale lorsque vous manquez l'amélioration  $spell:83500 <br/>(~10sec avant le lancement du sort)",
 	timerTransition		= "Affiche le temps pour: Changement de phase",
 	RangeFrame		= "Affiche automatiquement la fenêtre de portée lorsque c'est nécessaire",
 	HeartIceIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(82665),

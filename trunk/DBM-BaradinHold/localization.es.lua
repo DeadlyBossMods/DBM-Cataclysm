@@ -26,7 +26,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	TimerFirstSpecial		= "Mostrar tiempo para el primer especial después de $spell:105738\n(El primer especial es aleatorio. Puede ser $spell:105067 o $spell:104936)"
+	TimerFirstSpecial		= "Mostrar tiempo para el primer especial después de $spell:105738<br/>(El primer especial es aleatorio. Puede ser $spell:105067 o $spell:104936)"
 })
 
 

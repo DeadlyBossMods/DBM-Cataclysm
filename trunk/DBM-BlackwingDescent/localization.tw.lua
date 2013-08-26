@@ -103,7 +103,7 @@ L:SetOptionLocalization({
 	WarnPhase				= "為哪個階段即將到來顯示警告",
 	TimerPhase				= "為下一階段顯示計時器",
 	RangeFrame				= "藍色階段時顯示距離框 (6碼)",
-	SetTextures				= "自動在黑暗階段停用投影材質\n(離開黑暗階段後回到啟用)",
+	SetTextures				= "自動在黑暗階段停用投影材質<br/>(離開黑暗階段後回到啟用)",
 	FlashFreezeIcon			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77699),
 	BitingChillIcon			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77760),
 	ConsumingFlamesIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77786)
@@ -144,7 +144,7 @@ L:SetOptionLocalization({
 	OnyBreath				= "為奧妮克希亞的$spell:77826顯示警告",
 	NefBreath				= "為奈法利安的$spell:77826顯示警告",
 	specWarnCinderMove		= "為$spell:79339顯示特殊警告提示你離開(爆炸前5秒)",
-	warnShadowblazeSoon		= "為$spell:81031顯示提前警告\n(只在計時器與第一次大喊台詞同步後顯示, 以確保準確)",
+	warnShadowblazeSoon		= "為$spell:81031顯示提前警告<br/>(只在計時器與第一次大喊台詞同步後顯示, 以確保準確)",
 	specWarnShadowblazeSoon	= "為$spell:94085顯示預先特別警告(約5秒)",
 	timerNefLanding			= "為奈法利安落地顯示計時器",
 	OnySwipeTimer			= "為奧妮克希亞的$spell:77827的冷卻時間顯示計時器",
@@ -152,10 +152,10 @@ L:SetOptionLocalization({
 	OnyBreathTimer			= "為奧妮克希亞的$spell:77826的冷卻時間顯示計時器",
 	NefBreathTimer			= "為奈法利安的$spell:77826的冷卻時間顯示計時器",
 	InfoFrame				= "為$journal:3284顯示資訊框架",
-	SetWater				= "進入戰鬥後自動停用水體細節\n(離開戰鬥後回到啟用)",
-	TankArrow				= "為風箏復生的白骨戰士的人顯示DBM箭頭\n(設計為只有一個風箏坦)",--npc 41918
+	SetWater				= "進入戰鬥後自動停用水體細節<br/>(離開戰鬥後回到啟用)",
+	TankArrow				= "為風箏復生的白骨戰士的人顯示DBM箭頭<br/>(設計為只有一個風箏坦)",--npc 41918
 	SetIconOnCinder			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(79339),
-	RangeFrame				= "為$spell:79339顯示距離框(10碼)\n(當你中減益時顯示所有人, 否則只顯示中的人)"
+	RangeFrame				= "為$spell:79339顯示距離框(10碼)<br/>(當你中減益時顯示所有人, 否則只顯示中的人)"
 })
 
 L:SetMiscLocalization({

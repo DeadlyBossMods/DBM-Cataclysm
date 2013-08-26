@@ -23,7 +23,7 @@ L:SetOptionLocalization({
 	timerSpecial			= "다음 궁극의 힘 바 표시",
 	timerSpecialActive		= "궁극의 힘 유지시간 바 표시",
 	warnSpecialSoon			= "궁국의 힘 사전 알림 보기(~10초 전)",	
-	OnlyWarnforMyTarget		= "대상/주시대상으로 선택한 우두머리에 관련된 알림/바만 보기\n(선택한 우두머리외 다른 알림/바는 숨김)"
+	OnlyWarnforMyTarget		= "대상/주시대상으로 선택한 우두머리에 관련된 알림/바만 보기<br/>(선택한 우두머리외 다른 알림/바는 숨김)"
 })
 
 L:SetMiscLocalization({
