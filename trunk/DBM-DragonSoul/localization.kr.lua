@@ -173,7 +173,7 @@ L:SetOptionLocalization({
 	SpecWarnTendril			= "$spell:105563 약화 효과가 없을 경우 특수 경고 보기",
 	InfoFrame				= "$spell:105563 약화 효과 없음에 대한 정보 창 보기",
 	SetIconOnGrip			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(105490),
-	ShowShieldInfo			= "우두머리 체력 바 대신 $spell:105479 주문 흡수량 바 보기"
+	ShowShieldInfo			= "$spell:105479 주문 흡수량 바 보기<br/>(우두머리 체력 바 설정 무시)"
 })
 
 L:SetMiscLocalization({
