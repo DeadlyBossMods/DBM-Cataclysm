@@ -170,7 +170,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("FirelandsTrash")
 
 L:SetGeneralLocalization({
-	name = "불의 땅 일반구간"
+	name = "불의 땅: 일반구간"
 })
 
 ----------------
