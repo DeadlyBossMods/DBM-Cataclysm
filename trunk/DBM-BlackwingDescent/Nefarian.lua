@@ -190,7 +190,7 @@ function mod:SPELL_CAST_START(args)
 			timerNefBreathCD:Start()
 		end
 	elseif args.spellId == 80734 then
-		if not DBM.BossHealth:HasBoss(args.sourceGUID) then
+		if not DBM.BossHealth:HasBoss(args.sourceGUID) and DBM.BossHealth:IsShown() then
 			DBM.BossHealth:AddBoss(args.sourceGUID, args.sourceName)
 		end
 		if args.sourceGUID == UnitGUID("target") then--Only show warning/timer for your own target.
@@ -347,9 +347,9 @@ end
 
 function mod:UNIT_DIED(args)
 	local cid = self:GetCIDFromGUID(args.destGUID)
-	if cid == 41948 then--Also remove from boss health when they die based on GUID
+	if cid == 41948 and DBM.BossHealth:IsShown() then--Also remove from boss health when they die based on GUID
 		DBM.BossHealth:RemoveBoss(args.destGUID)
-	elseif cid == 41270 then
+	elseif cid == 41270 and DBM.BossHealth:IsShown() then
 		DBM.BossHealth:RemoveBoss(cid)
 	end
 end

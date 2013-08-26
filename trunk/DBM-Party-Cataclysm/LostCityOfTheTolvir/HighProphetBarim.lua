@@ -37,7 +37,7 @@ local HarbringerDarkness = EJ_GetSectionInfo(2473)
 
 function mod:OnCombatStart(delay)
 	spamSIS = 0
-	if self.Options.BossHealthAdds then
+	if DBM.BossHealth:IsShown() and self.Options.BossHealthAdds then
 		DBM.BossHealth:AddBoss(48906, BlazeHeavens)
 	end
 end
@@ -52,7 +52,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif args.spellId == 82320 and args.destName == L.name then
 		warnRepentance:Show()
 		spamSIS = GetTime()
-		if self.Options.BossHealthAdds then
+		if self.Options.BossHealthAdds and DBM.BossHealth:IsShown() then
 			DBM.BossHealth:AddBoss(43927, HarbringerDarkness)
 			DBM.BossHealth:RemoveBoss(48906)
 		end
@@ -82,7 +82,7 @@ function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
 end
 
 function mod:UNIT_DIED(args)
-	if self:GetCIDFromGUID(args.destGUID) == 43927 and self.Options.BossHealthAdds then
+	if self:GetCIDFromGUID(args.destGUID) == 43927 and self.Options.BossHealthAdds and DBM.BossHealth:IsShown() then
 		DBM.BossHealth:RemoveBoss(43927)
 		DBM.BossHealth:AddBoss(48906, BlazeHeavens)
 	end

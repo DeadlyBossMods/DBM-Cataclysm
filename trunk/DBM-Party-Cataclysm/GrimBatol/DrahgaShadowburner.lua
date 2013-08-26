@@ -39,7 +39,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 75328 then
+	if args.spellId == 75328 and DBM.BossHealth:IsShown() then
 		DBM.BossHealth:RemoveBoss(40320)
 	elseif args.spellId == 75317 and args:IsPlayer() then
 		specWarnSeepingTwilight:Show()
@@ -65,7 +65,7 @@ function mod:SPELL_SUMMON(args)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if msg == L.ValionaYell or msg:find(L.ValionaYell) then
+	if msg == L.ValionaYell or msg:find(L.ValionaYell) and DBM.BossHealth:IsShown() then
 		DBM.BossHealth:AddBoss(40320, Valiona)
 	end
 end

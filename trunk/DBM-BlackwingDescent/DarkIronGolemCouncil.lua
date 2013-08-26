@@ -194,8 +194,10 @@ function mod:OnCombatStart(delay)
 	if self:IsDifficulty("heroic10", "heroic25") then
 		berserkTimer:Start(-delay)
 	end
-	DBM.BossHealth:Clear()
-	DBM.BossHealth:AddBoss(42180, 42178, 42179, 42166, L.name)
+	if DBM.BossHealth:IsShown() then
+		DBM.BossHealth:Clear()
+		DBM.BossHealth:AddBoss(42180, 42178, 42179, 42166, L.name)
+	end
 end
 
 function mod:OnCombatEnd()

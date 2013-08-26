@@ -54,7 +54,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		warnParalysis:Show()
 		timerParalysis:Start()
 		timerParalysisCD:Start()
-	elseif args:IsSpellID(83601, 83603, 83611) and self.Options.ShowDrakeHealth then
+	elseif args:IsSpellID(83601, 83603, 83611) and self.Options.ShowDrakeHealth and DBM.BossHealth:IsShown() then
 		DBM.BossHealth:AddBoss(self:GetCIDFromGUID(args.sourceGUID), args.sourceName)
 	elseif args:IsSpellID(83908, 86158, 86157, 86159) then
 		timerMalevolentStrike:Start(args.destName)
@@ -93,14 +93,14 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args.spellId == 83612 then
+	if args.spellId == 83612 and self.Options.ShowDrakeHealth and DBM.BossHealth:IsShown() then
 		DBM.BossHealth:AddBoss(self:GetCIDFromGUID(args.sourceGUID), args.sourceName)
 	end
 end
 
 function mod:UNIT_DIED(args)
 	local cid = self:GetCIDFromGUID(args.destGUID)
-	if self.Options.ShowDrakeHealth and (cid == 44652 or cid == 44645 or cid == 44797 or cid == 44650) then
+	if self.Options.ShowDrakeHealth and (cid == 44652 or cid == 44645 or cid == 44797 or cid == 44650) and DBM.BossHealth:IsShown() then
 		DBM.BossHealth:RemoveBoss(cid)
 	end
 end

@@ -193,15 +193,17 @@ local function checkSearingWinds()
 end
 
 local function updateBossFrame()
-	DBM.BossHealth:Clear()
-	if phase == 1 then
-		DBM.BossHealth:AddBoss(43687, Feludius)
-		DBM.BossHealth:AddBoss(43686, Ignacious)
-	elseif phase == 2 then
-		DBM.BossHealth:AddBoss(43688, Arion)
-		DBM.BossHealth:AddBoss(43689, Terrastra)
-	elseif phase == 3 then
-		DBM.BossHealth:AddBoss(43735, Monstrosity)
+	if DBM.BossHealth:IsShown() then
+		DBM.BossHealth:Clear()
+		if phase == 1 then
+			DBM.BossHealth:AddBoss(43687, Feludius)
+			DBM.BossHealth:AddBoss(43686, Ignacious)
+		elseif phase == 2 then
+			DBM.BossHealth:AddBoss(43688, Arion)
+			DBM.BossHealth:AddBoss(43689, Terrastra)
+		elseif phase == 3 then
+			DBM.BossHealth:AddBoss(43735, Monstrosity)
+		end
 	end
 end
 
@@ -340,8 +342,10 @@ function mod:SPELL_AURA_APPLIED(args)
 		local shieldname = GetSpellInfo(82631)
 		warnAegisFlame:Show()
 		specWarnAegisFlame:Show()
-		showShieldHealthBar(self, args.destGUID, shieldname)
-		self:Schedule(20, hideShieldHealthBar)
+		if DBM.BossHealth:IsShown() then
+			showShieldHealthBar(self, args.destGUID, shieldname)
+			self:Schedule(20, hideShieldHealthBar)
+		end
 	elseif args.spellId == 82762 and args:IsPlayer() then
 		specWarnWaterLogged:Show()
 	elseif args.spellId == 84948 then
@@ -528,7 +532,9 @@ function mod:SPELL_AURA_REMOVED(args)
 		end
 	elseif args.spellId == 82631 then	-- Shield Removed
 		self:Unschedule(hideShieldHealthBar)
-		hideShieldHealthBar()
+		if DBM.BossHealth:IsShown() then
+			hideShieldHealthBar()
+		end
 		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43686 or self:GetUnitCreatureId("focus") == 43686) or not self:IsMelee() then
 			specWarnRisingFlames:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
 		end
