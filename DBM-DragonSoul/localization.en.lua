@@ -172,7 +172,7 @@ L:SetOptionLocalization({
 	SpecWarnTendril			= "Show special warning when you are missing $spell:105563 debuff",
 	InfoFrame				= "Show info frame for players without $spell:105563",
 	SetIconOnGrip			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(105490),
-	ShowShieldInfo			= "Show boss health with a health bar for $spell:105479"
+	ShowShieldInfo			= "Show absorb bar for $spell:105479<br/>(Ignores boss health frame option)"
 })
 
 L:SetMiscLocalization({

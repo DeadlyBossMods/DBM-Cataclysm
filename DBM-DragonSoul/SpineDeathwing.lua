@@ -50,7 +50,6 @@ local countdownGrip			= mod:NewCountdown(32, 105490, false)--Can get confusing i
 
 local soundNuclearBlast		= mod:NewSound(105845, nil, mod:IsMelee())
 
-mod:RemoveOption("HealthFrame")
 mod:AddBoolOption("InfoFrame", true)
 mod:AddBoolOption("SetIconOnGrip", true)
 mod:AddBoolOption("ShowShieldInfo", false)--on 25 man this is quite frankly a spammy nightmare, especially on heroic. off by default since it's really only sensible in 10 man. Besides I may be adding an alternate frame option for "grip damage needed"
@@ -113,6 +112,7 @@ do
 	mod.SPELL_PERIODIC_HEAL = mod.SPELL_HEAL
 
 	local function updatePlasmaTargets()
+		if not mod.Options.ShowShieldInfo then return end
 		local maxAbsorb =	mod:IsDifficulty("heroic25") and 420000 or
 							mod:IsDifficulty("heroic10") and 280000 or
 							mod:IsDifficulty("normal25") and 300000 or
