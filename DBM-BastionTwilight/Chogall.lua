@@ -213,7 +213,7 @@ function mod:SPELL_CAST_START(args)
 			creatureIcon = creatureIcon - 1
 		end
 	elseif args.spellId == 81713 then
-		if not DBM.BossHealth:HasBoss(args.sourceGUID) then--Check if added to boss health
+		if not DBM.BossHealth:HasBoss(args.sourceGUID) and DBM.BossHealth:IsShown() then--Check if added to boss health
 			DBM.BossHealth:AddBoss(args.sourceGUID, args.sourceName)--And add if not.
 		end
 		if args.sourceGUID == UnitGUID("target") then--Only show warning for your own target.
@@ -274,7 +274,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 			timerFlamingDestructionCD:Start(10.8)--Half the time on normal since you don't actually have to kill elementals plus the only thing worth showing on normal.
 		end
 	elseif args.spellId == 81685 then
-		if not DBM.BossHealth:HasBoss(args.sourceGUID) then--Check if added to boss health
+		if not DBM.BossHealth:HasBoss(args.sourceGUID) and DBM.BossHealth:IsShown() then--Check if added to boss health
 			DBM.BossHealth:AddBoss(args.sourceGUID, args.sourceName)--And add if not.
 		end
 		self:ScheduleMethod(0.2, "CorruptingCrashTarget", args.sourceGUID)
@@ -313,7 +313,7 @@ end
 
 function mod:UNIT_DIED(args)
 	local cid = self:GetCIDFromGUID(args.destGUID)
-	if cid == 43622 then--Also remove from boss health when they die based on GUID
+	if cid == 43622 and DBM.BossHealth:IsShown() then--Also remove from boss health when they die based on GUID
 		DBM.BossHealth:RemoveBoss(args.destGUID)
 	end
 end
