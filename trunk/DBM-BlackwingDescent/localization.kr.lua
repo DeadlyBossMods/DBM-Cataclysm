@@ -172,5 +172,5 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("BWDTrash")
 
 L:SetGeneralLocalization({
-	name = "검은날개 강림지 일반구간"
+	name = "검은날개 강림지: 일반구간"
 })

@@ -204,7 +204,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("DSTrash")
 
 L:SetGeneralLocalization({
-	name =	"용의 영혼 일반구간"
+	name =	"용의 영혼: 일반구간"
 })
 
 L:SetWarningLocalization({

@@ -129,5 +129,5 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("BoTrash")
 
 L:SetGeneralLocalization({
-	name =	"황혼의 요새 일반구간"
+	name =	"황혼의 요새: 일반구간"
 })
