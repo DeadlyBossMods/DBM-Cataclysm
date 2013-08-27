@@ -49,7 +49,7 @@ L:SetOptionLocalization({
 	SpecWarnSearingWinds	= "Show special warning when you are missing $spell:83500 debuff<br/>(~10sec before cast)",
 	timerTransition			= "Show Phase transition timer",
 	RangeFrame				= "Show range frame automatically when needed",
-	yellScrewed				= "Yell when you have $spell:83099 & $spell:92307 at same time",
+	yellScrewed				= "Yell when you have $spell:83099 &amp; $spell:92307 at same time",
 	InfoFrame				= "Show info frame for players without $spell:83581 or $spell:83500",
 	HeartIceIcon			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(82665),
 	BurningBloodIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(82660),
