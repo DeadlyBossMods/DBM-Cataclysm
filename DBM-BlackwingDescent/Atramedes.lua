@@ -3,7 +3,6 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(41442)
-mod:SetModelID(34547)
 mod:SetZone()
 mod:SetUsedIcons(8)
 mod:SetModelSound("Sound\\Creature\\Nefarian\\VO_BD_Nefarian_AtramedesIntro.wav", "Sound\\Creature\\Atramedes\\VO_BD_Atramedes_Event03.wav")

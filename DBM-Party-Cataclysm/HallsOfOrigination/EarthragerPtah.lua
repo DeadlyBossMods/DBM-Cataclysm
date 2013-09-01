@@ -3,7 +3,6 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(39428, 99999)--Combat log shows him as dying when he borrows, wtf?
-mod:SetModelID(31450)
 mod:SetZone()
 
 mod:RegisterCombat("combat")

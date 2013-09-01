@@ -3,7 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(40792)--42172 is Ozumat, but we need Neptulon for engage trigger.
-mod:SetModelID(35100)--32911Looks like crap, definitely doesn't scale well. so just use one of his tenticles instead
+--mod:SetModelID(35100)--32911Looks like crap, definitely doesn't scale well. so just use one of his tenticles instead
 mod:SetZone()
 
 mod:RegisterCombat("combat")

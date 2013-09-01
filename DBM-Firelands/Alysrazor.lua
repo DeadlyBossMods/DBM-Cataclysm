@@ -3,9 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(52530)
-mod:SetModelID(38446)
 mod:SetZone()
-mod:SetUsedIcons()
 mod:SetModelSound("Sound\\Creature\\ALYSRAZOR\\VO_FL_ALYSRAZOR_AGGRO.wav", "Sound\\Creature\\ALYSRAZOR\\VO_FL_ALYSRAZOR_TRANSITION_02.wav")
 --Long: I serve a new master now, mortals!
 --Short: Reborn in Flame!
