@@ -5,7 +5,6 @@ local Onyxia	= EJ_GetSectionInfo(3283)
 
 mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(41376, 41270)
-mod:SetModelID(32716)
 mod:SetZone()
 mod:SetModelSound("Sound\\Creature\\Nefarian\\VO_BD_Nefarian_Event09.wav", "Sound\\Creature\\Nefarian\\VO_BD_Nefarian_Event13.wav")
 --"Ha ha ha ha ha! The heroes have made it to the glorious finale. I take it you are in good spirits? Prepared for the final battle? Then gaze now upon my ultimate creation! RISE, SISTER!" = "Nefarian\\VO_BD_Nefarian_Event01",

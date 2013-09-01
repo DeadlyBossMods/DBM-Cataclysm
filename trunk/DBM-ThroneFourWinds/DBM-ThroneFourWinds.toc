@@ -26,6 +26,5 @@ localization.ru.lua
 localization.tw.lua
 localization.cn.lua
 localization.br.lua
-MapSizes.lua
 Conclave.lua
 AlAkir.lua

@@ -19,7 +19,7 @@ local warnFrostBlades			= mod:NewSpellAnnounce(101339, 3)
 local specWarnFlarecore			= mod:NewSpecialWarningSpell(101927, nil, nil, nil, true)
 
 local timerFlarecore			= mod:NewCDTimer(20, 101927)
-local timerFlarecoreDetonate	= mod:NewTimer(10, "TimerFlarecoreDetonate")
+local timerFlarecoreDetonate	= mod:NewTimer(10, "TimerFlarecoreDetonate", 101927)
 local timerFrostBlades			= mod:NewNextTimer(25, 101339)
 
 function mod:OnCombatStart(delay)
