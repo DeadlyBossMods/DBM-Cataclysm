@@ -61,11 +61,6 @@ L:SetMiscLocalization({
 -------------
 L= DBM:GetModLocalization(195)
 
-L:SetOptionLocalization({
-	SetIconOnFaceRage	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(99945),
-	SetIconOnRage		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(100415)
-})
-
 -------------
 -- Baleroc --
 -------------
@@ -87,8 +82,6 @@ L:SetOptionLocalization({
 	timerStrike			= "為下一次虐殺/煉獄之刃顯示計時器",
 	TimerBladeActive	= "為目前虐殺/煉獄之刃顯示持續時間",
 	TimerBladeNext		= "為下一次巴勒羅克之刃顯示計時器",
-	SetIconOnCountdown	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(99516),
-	SetIconOnTorment	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(99256),
 	ArrowOnCountdown	= "當你中了$spell:99516時顯示DBM箭頭",
 	InfoFrame			= "為$spell:99262堆疊顯示訊息框",
 	RangeFrame			= "為$spell:99404顯示距離框(5碼)"
@@ -108,11 +101,11 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	timerNextSpecial			= "為下一次特殊技能顯示計時器",
-	RangeFrameSeeds				= "為$spell:98450顯示距離框(12碼)",
-	RangeFrameCat				= "為$spell:98374顯示距離框(10碼)",
-	LeapArrow					= "當$spell:98476在附近時顯示DBM箭頭",
-	IconOnLeapingFlames			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(98476)
+	timerNextSpecial	= "為下一次特殊技能顯示計時器",
+	RangeFrameSeeds		= "為$spell:98450顯示距離框(12碼)",
+	RangeFrameCat		= "為$spell:98374顯示距離框(10碼)",
+	LeapArrow			= "當$spell:98476在附近時顯示DBM箭頭",
+	IconOnLeapingFlames	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(98476)
 })
 
 --------------
@@ -133,19 +126,15 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	warnRageRagnarosSoon		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.prewarn:format(101109),
 	warnSplittingBlow			= "為$spell:98951的位置顯示警告",
 	warnEngulfingFlame			= "為$spell:99171的位置顯示警告",
 	WarnEngulfingFlameHeroic	= "為$spell:99171的位置顯示警告(英雄模式)",
 	warnSeedsLand				= "為$spell:98520落地而非熔岩晶粒施放顯示警告/計時器",
-	warnEmpoweredSulf			= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(100604),
-	timerRageRagnaros			= DBM_CORE_AUTO_TIMER_OPTIONS.cast:format(101109),
 	TimerPhaseSons				= "顯示烈焰之子階段的持續時間計時器",
 	RangeFrame					= "顯示距離框",
 	InfoHealthFrame				= "顯示生命值框架 (低於十萬生命值)",
 	MeteorFrame					= "顯示$spell:99849的目標的訊息框",
-	AggroFrame					= "顯示沒有熔岩煉獄的仇恨的團員的訊息框",
-	BlazingHeatIcons			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(100460)
+	AggroFrame					= "顯示沒有熔岩煉獄的仇恨的團員的訊息框"
 })
 
 L:SetMiscLocalization({

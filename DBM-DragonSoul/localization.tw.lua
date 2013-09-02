@@ -78,7 +78,7 @@ L= DBM:GetModLocalization(317)
 
 L:SetWarningLocalization({
 	WarnPillars				= "%s:剩餘%d",
-	warnFrostTombCast		= "%s 在八秒後"
+	warnFrostTombCast		= "%s在八秒後"
 })
 
 L:SetTimerLocalization({
@@ -90,9 +90,6 @@ L:SetOptionLocalization({
 	TimerSpecial			= "為第一次特別技能$spell:105256或$spell:105465施放顯示計時器<br/>(第一次施放根據首領手中的武器的附魔)",
 	RangeFrame				= "為$spell:105269(3碼),$journal:4327(10碼)顯示距離框",
 	AnnounceFrostTombIcons	= "為$spell:104451的目標發佈圖示至團隊頻道<br/>(需要團隊隊長)",
-	warnFrostTombCast		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
-	SetIconOnFrostTomb		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(104451),
-	SetIconOnFrostflake		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(109325),
 	SpecialCount			= "為$spell:105256或$spell:105465播放倒數計時音效",
 	SetBubbles				= "自動地為$spell:104451關閉對話氣泡功能<br/>(當戰鬥結束後還原功能)"
 })
@@ -107,7 +104,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(331)
 
 L:SetWarningLocalization({
-	specWarnHourofTwilightN		= "%s (%d)在5秒後"--spellname Count
+	specWarnHourofTwilightN		= "%s (%d)在5秒後"
 })
 
 L:SetTimerLocalization({
@@ -116,7 +113,7 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	TimerCombatStart	= "為戰鬥開始時間顯示計時器",
-	ResetHoTCounter		= "重置暮光之時計數",--$spell doesn't work in this function apparently so use typed spellname for now.
+	ResetHoTCounter		= "重置暮光之時計數",
 	Never				= "不使用",
 	ResetDynamic		= "每三次/兩次重置計數(英雄/普通)",
 	Reset3Always		= "總是每三次重置計數",
@@ -164,14 +161,14 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(318)
 
 L:SetWarningLocalization({
+	warnSealArmor			= "%s",
 	SpecWarnTendril			= "已被安全抓住!"
 })
 
 L:SetOptionLocalization({
 	SpecWarnTendril			= "當你身上沒有$spell:105563減益時顯示特別警告",
 	InfoFrame				= "為沒有$spell:105563的玩家顯示訊息框",
-	SetIconOnGrip			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(105490),
-	ShowShieldInfo			= "為$spell:105479顯示生命條"
+	ShowShieldInfo			= "為$spell:105479顯示生命條<br/>(忽略首領血量框架選項)"
 })
 
 L:SetMiscLocalization({
@@ -188,8 +185,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(333)
 
 L:SetOptionLocalization({
-	RangeFrame			= "根據玩家減益顯示動態的距離框以對應英雄模式的$spell:108649",
-	SetIconOnParasite	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(108649)
+	RangeFrame			= "根據玩家減益顯示動態的距離框以對應英雄模式的$spell:108649"
 })
 
 L:SetMiscLocalization({
@@ -206,11 +202,11 @@ L:SetGeneralLocalization({
 })
 
 L:SetWarningLocalization({
-	DrakesLeft			= "暮光猛擊者剩餘:%d"
+	DrakesLeft			= "暮光猛擊者剩下:%d"
 })
 
 L:SetTimerLocalization({
-	TimerDrakes			= "%s"--spellname from mod
+	TimerDrakes			= "%s"
 })
 
 L:SetOptionLocalization({
