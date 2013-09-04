@@ -6,10 +6,6 @@ local L
 ----------------
 L= DBM:GetModLocalization(139)
 
-L:SetOptionLocalization({
-	SetIconOnConsuming		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(88954)
-})
-
 -----------------
 --  Occu'thar  --
 -----------------
@@ -21,9 +17,9 @@ L= DBM:GetModLocalization(140)
 L= DBM:GetModLocalization(339)
 
 L:SetTimerLocalization({
-	TimerFirstSpecial		= "다음 증오/꼬챙이"
+	TimerFirstSpecial	= "다음 증오/꼬챙이"
 })
 
 L:SetOptionLocalization({
-	TimerFirstSpecial		= "$spell:105738 시전 후 다음 특수 공격에 대한 바 표시<br/>(첫번째 특수 공격은 $spell:105067 와 $spell:104936 중 무작위로 결정됩니다.)"
+	TimerFirstSpecial	= "$spell:105738 후 다음 특수 공격에 대한 바 보기<br/>(첫번째 특수 공격은 $spell:105067 와 $spell:104936 중 무작위로 결정됩니다.)"
 })

@@ -42,7 +42,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(170)
 
 L:SetWarningLocalization({
-	SpecWarnInferno	= "Ensamblaje osario llameante pronto (~4s)",
+	SpecWarnInferno	= "Ensamblaje osario llameante pronto (~4s)"
 })
 
 L:SetOptionLocalization({

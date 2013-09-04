@@ -11,7 +11,7 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	KohcromCD		= "寇魔的%s",
+	KohcromCD		= "寇魔的%s"
 })
 
 L:SetOptionLocalization({

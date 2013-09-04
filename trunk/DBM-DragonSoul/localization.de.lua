@@ -11,7 +11,7 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	KohcromCD		= "Kohcrom imitiert %s",
+	KohcromCD		= "Kohcrom imitiert %s"
 })
 
 L:SetOptionLocalization({

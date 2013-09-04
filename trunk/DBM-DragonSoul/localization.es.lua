@@ -218,7 +218,7 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	DrakesLeft			= "Anunciar cuantos Acometedores Crepusculares quedan",
-	TimerDrakes			= "Mostrar tiempo para Fuga Crepuscular	de los Asaltantes Crepusculares",
+	TimerDrakes			= "Mostrar tiempo para Fuga Crepuscular	de los Asaltantes Crepusculares"
 })
 
 L:SetMiscLocalization({

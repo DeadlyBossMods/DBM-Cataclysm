@@ -10,7 +10,7 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	KohcromCD		= "Kohcrom mimicks %s",
+	KohcromCD		= "Kohcrom mimicks %s"
 })
 
 L:SetOptionLocalization({
@@ -132,11 +132,11 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	TimerCombatStart	= "Début du combat",
+	TimerCombatStart	= "Début du combat"
 })
 
 L:SetOptionLocalization({
-	TimerCombatStart	= "Délai avant le début du combat",
+	TimerCombatStart	= "Délai avant le début du combat"
 })
 
 L:SetMiscLocalization({

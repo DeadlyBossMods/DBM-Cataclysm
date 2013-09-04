@@ -7,20 +7,17 @@ local L
 L= DBM:GetModLocalization(311)
 
 L:SetWarningLocalization({
-	KohcromWarning	= "%s: %s"--Bossname, spellname. At least with this we can get boss name from casts in this one, unlike a timer started off the previous bosses casts.
+	KohcromWarning	= "%s: %s"
 })
 
 L:SetTimerLocalization({
-	KohcromCD		= "크초르모 시전: %s",--Universal single local timer used for all of his mimick timers
+	KohcromCD		= "크초르모 시전: %s"
 })
 
 L:SetOptionLocalization({
-	KohcromWarning	= "$journal:4262가 사용하는 주문 알림 보기(영웅 난이도)",
-	KohcromCD		= "$journal:4262가 사용할 주문 바 표시(영웅 난이도)",
+	KohcromWarning	= "$journal:4262가 사용한 주문 알림 보기(영웅 난이도)",
+	KohcromCD		= "$journal:4262가 사용할 주문 바 보기(영웅 난이도)",
 	RangeFrame		= "거리 창 보기(5m, 업적 용도)"
-})
-
-L:SetMiscLocalization({
 })
 
 ---------------------
@@ -29,16 +26,16 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(324)
 
 L:SetOptionLocalization({
-	ShadowYell			= "$spell:103434 주문의 영향을 받은 경우 대화로 알리기(영웅 난이도)",
-	CustomRangeFrame	= "교란의 그림자 주문에 대한 거리 창 설정(영웅 난이도)",
+	ShadowYell			= "$spell:103434 대상이 된 경우 대화로 알리기(영웅 난이도)",
+	CustomRangeFrame	= "교란의 그림자 관련 거리 창 설정(영웅 난이도)",
 	Never				= "거리 창 사용안함",
 	Normal				= "일반 거리 창",
-	DynamicPhase2		= "고라스의 검은 피 도중에만 필터링 사용",
-	DynamicAlways		= "항상 디버프 필터링 사용"
+	DynamicPhase2		= "고라스의 검은 피 도중에만 숨기기 사용",
+	DynamicAlways		= "항상 약화효과 숨기기 사용"
 })
 
 L:SetMiscLocalization({
-	voidYell	= "굴카와스 언고브 느조스."--Start translating the yell he does for Void of the Unmaking cast, the latest logs from DS indicate blizz removed the UNIT_SPELLCAST_SUCCESS event that detected casts. sigh.
+	voidYell	= "굴카와스 언고브 느조스."
 })
 
 -----------------------------
@@ -56,10 +53,10 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	warnOozesHit		= "요르사지에게 흡수된 핏방울에 대한 알림 보기",
-	timerOozesActive	= "핏방울이 소환된 후 공격 가능하기까지 남은시간 바 표시",
-	timerOozesReach		= "소환된 핏방울이 보스에게 도착하기까지 남은시간 바 표시",
-	RangeFrame			= "$spell:104898 주문이 활성화 된 경우 거리 창 보기(4m)<br/>(일반 난이도 이상)"
+	warnOozesHit		= "흡수된 핏방울 알림 보기",
+	timerOozesActive	= "핏방울 공격 가능 바 보기",
+	timerOozesReach		= "핏방울 도착 바 보기",
+	RangeFrame			= "$spell:104898 활성화 중에 거리 창 보기(4m)(일반 난이도 이상)"
 })
 
 L:SetMiscLocalization({
@@ -86,15 +83,12 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	WarnPillars				= "$journal:3919 또는 $journal:4069 남은 횟수 알림 보기",
-	TimerSpecial			= "다음 $spell:105256 또는 $spell:105465 까지 남은시간 바 표시",
-	RangeFrame				= "$spell:105269(3m), $journal:4327(10m) 주문의 영향을 받은 경우 거리 창 보기",
+	WarnPillars				= "$journal:3919 또는 $journal:4069 남은횟수 알림 보기",
+	TimerSpecial			= "다음 $spell:105256 또는 $spell:105465 바 보기",
+	RangeFrame				= "$spell:105269(3m), $journal:4327(10m) 대상이 된 경우 거리 창 보기",
 	AnnounceFrostTombIcons	= "$spell:104451 대상을 공격대 대화로 알리기(승급 권한 필요)",
-	warnFrostTombCast		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
-	SetIconOnFrostTomb		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(104451),
-	SetIconOnFrostflake		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(109325),
-	SpecialCount			= "$spell:105256 또는 $spell:105465 주문의 초읽기 소리 듣기",
-	SetBubbles				= "$spell:104451 시전이 가능할 때 대화 말풍선을 표시하지 않음<br/>(전투 종료 후 원래대로 복구됨)"
+	SpecialCount			= "$spell:105256 또는 $spell:105465 이전에 소리 듣기",
+	SetBubbles				= "$spell:104451이 가능할 때 대화 말풍선을 숨김<br/>(전투 종료 후 원상태로 복구됨)"
 })
 
 L:SetMiscLocalization({
@@ -115,15 +109,15 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	TimerCombatStart	= "울트락시온 활성화 바 표시",
-	ResetHoTCounter		= "황혼의 시간 시전 횟수 재시작 설정",--$spell doesn't work in this function apparently so use typed spellname for now.
+	TimerCombatStart	= "울트락시온 활성화 바 보기",
+	ResetHoTCounter		= "황혼의 시간 횟수 재시작 설정",
 	Never				= "사용 안함",
 	ResetDynamic		= "일반 2회, 영웅 3회 단위로 재시작",
 	Reset3Always		= "난이도 구분 없이 3회 단위로 재시작",
-	SpecWarnHoTN		= "황혼의 시간 5초 전 특수 경고 설정(시전 횟수 재시작 설정에 영향 받음)",
-	One					= "시전 횟수가 1일때 보기(또는 1, 4, 7 일때)",
-	Two					= "시전 횟수가 2일때 보기(또는 2, 5 일때)",
-	Three				= "시전 횟수가 3일때 보기(또는 3, 6 일때)"
+	SpecWarnHoTN		= "황혼의 시간 5초 전 특수 경고 설정(횟수 재시작 설정 필요)",
+	One					= "횟수가 1일때 보기(또는 1, 4, 7 일때)",
+	Two					= "횟수가 2일때 보기(또는 2, 5 일때)",
+	Three				= "횟수가 3일때 보기(또는 3, 6 일때)"
 })
 
 L:SetMiscLocalization({
@@ -145,8 +139,8 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	TimerCombatStart	= "전투 시작 바 표시",
-	TimerAdd			= "다음 황혼의 정예병 등장 바 표시",
+	TimerCombatStart	= "전투 시작 바 보기",
+	TimerAdd			= "다음 황혼의 정예병 등장 바 보기",
 	SpecWarnElites		= "황혼의 정예병 등장시 특수 경고 보기",
 	SetTextures			= "1 단계 진행 도중 텍스쳐 투영 효과 끄기<br/>(2 단계에서 다시 활성화 됩니다.)"
 })
@@ -169,11 +163,9 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
-	warnSealArmor			= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(105847),
-	SpecWarnTendril			= "$spell:105563 약화 효과가 없을 경우 특수 경고 보기",
-	InfoFrame				= "$spell:105563 약화 효과 없음에 대한 정보 창 보기",
-	SetIconOnGrip			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(105490),
-	ShowShieldInfo			= "$spell:105479 주문 흡수량 바 보기<br/>(우두머리 체력 바 설정 무시)"
+	SpecWarnTendril			= "$spell:105563 효과가 없을 경우 특수 경고 보기",
+	InfoFrame				= "$spell:105563 없는 대상을 정보 창으로 보기",
+	ShowShieldInfo			= "$spell:105479 흡수량 바 보기(우두머리 체력 바 설정 무시)"
 })
 
 L:SetMiscLocalization({
@@ -190,8 +182,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(333)
 
 L:SetOptionLocalization({
-	RangeFrame			= "$spell:108649 약화 효과 상태에 따른 거리 창 보기(영웅 난이도)",
-	SetIconOnParasite	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(108649)
+	RangeFrame			= "$spell:108649 효과에 맞추어 거리 창 보기(영웅 난이도)"
 })
 
 L:SetMiscLocalization({
@@ -212,12 +203,12 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	TimerDrakes			= "%s"--spellname from mod
+	TimerDrakes			= "%s"
 })
 
 L:SetOptionLocalization({
-	DrakesLeft			= "황혼의 습격자 남은 횟수 알림 보기",
-	TimerDrakes			= "황혼의 습격자가 $spell:109904 시전까지 남은시간 바 표시"
+	DrakesLeft			= "황혼의 습격자 남은횟수 알림 보기",
+	TimerDrakes			= "$spell:109904까지 남은시간 바 보기"
 })
 
 L:SetMiscLocalization({

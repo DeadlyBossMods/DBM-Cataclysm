@@ -9,7 +9,7 @@ L = DBM:GetModLocalization(169)
 
 L:SetWarningLocalization({
 	SpecWarnActivated			= "轉換目標到 %s!",
-	specWarnGenerator			= "發電機 - 拉開%s!",
+	specWarnGenerator			= "發電機 - 拉開%s!"
 })
 
 L:SetTimerLocalization({
@@ -119,7 +119,7 @@ L:SetWarningLocalization({
 	OnyBreath				= "暗影焰息 (奧妮克希亞)",
 	NefBreath				= "暗影焰息 (奈法利安)",
 	specWarnShadowblazeSoon	= "%s",
-	warnShadowblazeSoon		= "%s",
+	warnShadowblazeSoon		= "%s"
 })
 
 L:SetTimerLocalization({
