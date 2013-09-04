@@ -42,7 +42,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(170)
 
 L:SetWarningLocalization({
-	SpecWarnInferno	= "Появляется Пыляющее костяное создание! (~4сек)",
+	SpecWarnInferno	= "Появляется Пыляющее костяное создание! (~4сек)"
 })
 
 L:SetOptionLocalization({

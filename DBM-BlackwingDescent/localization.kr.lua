@@ -8,7 +8,7 @@ L = DBM:GetModLocalization(169)
 
 L:SetWarningLocalization({
 	SpecWarnActivated			= "%s 활성화 - 대상 전환!",
-	specWarnGenerator			= "%s이 동력 증폭장 영향을 받음!"
+	specWarnGenerator			= "%s이 동력 증폭장 바닥을 밟음 - 이동시키세요!"
 })
 
 L:SetTimerLocalization({
@@ -19,15 +19,12 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	timerShadowConductorCast	= "$spell:92053 시전 바 표시",
-	timerArcaneLockout			= "$spell:79710 대기시간 바 표시",
-	timerArcaneBlowbackCast		= "$spell:91879 시전 바 표시",
-	timerNefAblity				= "영웅 난이도에서 골렘 스킬 강화 대기시간 바 표시",
+	timerShadowConductorCast	= "$spell:92053 시전 바 보기",
+	timerArcaneLockout			= "$spell:79710 대기시간 바 보기",
+	timerArcaneBlowbackCast		= "$spell:91879 시전 바 보기",
+	timerNefAblity				= "영웅 난이도에서 골렘 스킬 강화 대기시간 바 보기",
 	SpecWarnActivated			= "새로운 우두머리가 활성화 될 때 대상 전환 특수 경고 보기",
-	specWarnGenerator			= "우두머리가 $spell:79629 주문의 영향을 받은 경우 특수 경고 보기",
-	AcquiringTargetIcon			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(79501),
-	ConductorIcon				= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(79888),
-	ShadowConductorIcon			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(92053),
+	specWarnGenerator			= "우두머리가 $spell:79629 바닥을 밟은 경우 특수 경고 보기",
 	SetIconOnActivated			= "활성화된 우두머리에게 전술 목표 아이콘 설정"
 })
 
@@ -41,11 +38,11 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(170)
 
 L:SetWarningLocalization({
-	SpecWarnInferno	= "곧 해골 소환 - 바닥 확인!",
+	SpecWarnInferno	= "곧 해골 소환 - 바닥 확인!"
 })
 
 L:SetOptionLocalization({
-	SpecWarnInferno	= "$spell:92154 사전 특수 경고 보기(~4초 전)",
+	SpecWarnInferno	= "$spell:92154 이전에 특수 경고 보기(~4초 전)",
 	RangeFrame		= "2 단계에서 거리 창 보기(5m)"
 })
 
@@ -61,8 +58,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(171)
 
 L:SetOptionLocalization({
-	InfoFrame				= "$journal:3072 정보 창 보기",
-	TrackingIcon			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(78092)
+	InfoFrame				= "$journal:3072 정보를 정보 창으로 보기"
 })
 
 L:SetMiscLocalization({
@@ -77,8 +73,7 @@ L = DBM:GetModLocalization(172)
 
 L:SetOptionLocalization({
 	RangeFrame		= "거리 창 보기(6m)",
-	SetIconOnSlime	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(82935),
-	InfoFrame		= "체력 정보 창 보기"
+	InfoFrame		= "체력이 낮은 대상을 정보 창으로 보기(1만 미만)"
 })
 
 L:SetMiscLocalization({
@@ -100,12 +95,9 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	WarnPhase			= "단계 전환 알림 보기",
-	TimerPhase			= "다음 단계 전환 바 표시",
+	TimerPhase			= "다음 단계 바 보기",
 	RangeFrame			= "푸른색 단계에서 거리 창 보기(6m)",
-	SetTextures			= "암흑 단계에서 텍스쳐 투영 효과 자동으로 끄기<br/>(암흑 단계가 종료 되면 원상태로 복구됨)",
-	FlashFreezeIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77699),
-	BitingChillIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77760),
-	ConsumingFlamesIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77786)
+	SetTextures			= "암흑 단계에서 텍스쳐 투영 효과 자동으로 끄기<br/>(암흑 단계가 종료 되면 원상태로 복구됨)"
 })
 
 L:SetMiscLocalization({
@@ -142,19 +134,18 @@ L:SetOptionLocalization({
 	NefTailSwipe			= "네파리안의 $spell:77827 알림 보기",
 	OnyBreath				= "오닉시아의 $spell:77826 알림 보기",
 	NefBreath				= "네파리안의 $spell:77826 알림 보기",
-	specWarnCinderMove		= "$spell:79339 약화 효과가 5초 남았을 때 특수 경고 보기(이동)",
-	warnShadowblazeSoon		= "$spell:81031 사전 알림 보기(~5초 전/정확성을 위해 동기화 후에만 작동됨)",
-	specWarnShadowblazeSoon	= "$spell:81031 사전 특수 경고 보기<br/>(처음에는 5초 전에 알림. 동기화 후에는 1초 전에 알림)",
-	timerNefLanding			= "네파리안 착지 바 표시",
-	OnySwipeTimer			= "오닉시아의 $spell:77827 대기시간 바 표시",
-	NefSwipeTimer			= "네파리안의 $spell:77827 대기시간 바 표시",
-	OnyBreathTimer			= "오닉시아의 $spell:77826 대기시간 바 표시",
-	NefBreathTimer			= "네파리안의 $spell:77826 대기시간 바 표시",
-	InfoFrame				= "$journal:3284 정보 창 보기",
+	specWarnCinderMove		= "$spell:79339 효과가 5초 남았을 때 이동 특수 경고 보기",
+	warnShadowblazeSoon		= "$spell:81031 이전에 알림 보기(~5초 전/정확성을 위해 동기화 후에만 작동됨)",
+	specWarnShadowblazeSoon	= "$spell:81031 이전에 특수 경고 보기(처음에는 5초 전에 알림. 동기화 후에는 1초 전에 알림)",
+	timerNefLanding			= "네파리안 착지 바 보기",
+	OnySwipeTimer			= "오닉시아의 $spell:77827 대기시간 바 보기",
+	NefSwipeTimer			= "네파리안의 $spell:77827 대기시간 바 보기",
+	OnyBreathTimer			= "오닉시아의 $spell:77826 대기시간 바 보기",
+	NefBreathTimer			= "네파리안의 $spell:77826 대기시간 바 보기",
+	InfoFrame				= "$journal:3284 정보를 정보 창으로 보기",
 	SetWater				= "전투 시작시 수면 자동 시점 옵션을 자동으로 끄기<br/>(전투가 종료 되면 원상태로 복구됨)",
 	TankArrow				= "살아난 뼈다귀 전사 탱커 방향으로 DBM 화살표 보기<br/>(한 명의 탱커를 사용하는 경우에만 정상 작동)",--npc 41918
-	SetIconOnCinder			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(79339),
-	RangeFrame				= "$spell:79339 주문의 영향을 받은 경우 거리 창(10m) 보기<br/>(대상자는 범위내 모든 사람 보임. 대상자가 아닌 경우 대상자와 아이콘만 보임)"
+	RangeFrame				= "$spell:79339 대상이 된 경우 거리 창(10m) 보기<br/>(대상자는 범위내 모든 사람 보임. 대상자가 아닌 경우 대상자와 아이콘만 보임)"
 })
 
 L:SetMiscLocalization({

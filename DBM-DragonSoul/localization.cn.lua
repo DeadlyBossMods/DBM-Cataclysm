@@ -217,10 +217,10 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	DrakesLeft			= "警报：暮光突袭者剩余数量",
-	TimerDrakes			= "计时条：暮光突袭者何时$spell:109904",
+	TimerDrakes			= "计时条：暮光突袭者何时$spell:109904"
 })
 
 L:SetMiscLocalization({
 	EoEEvent			= "这没有用，巨龙之魂的力量太强大了。",--Partial
-	UltraxionTrash		= "重逢真令我高兴，阿莱克斯塔萨。分开之后，我可是一直很忙。",
+	UltraxionTrash		= "重逢真令我高兴，阿莱克斯塔萨。分开之后，我可是一直很忙。"
 })

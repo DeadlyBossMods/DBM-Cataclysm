@@ -36,7 +36,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(155)
 
 L:SetTimerLocalization({
-	TimerFeedback 	= "Rückkopplung (%d)",
+	TimerFeedback 	= "Rückkopplung (%d)"
 })
 
 L:SetOptionLocalization({

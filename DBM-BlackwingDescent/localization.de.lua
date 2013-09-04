@@ -41,7 +41,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(170)
 
 L:SetWarningLocalization({
-	SpecWarnInferno	= "Loderndes Knochenkonstrukt bald (~4s)",
+	SpecWarnInferno	= "Loderndes Knochenkonstrukt bald (~4s)"
 })
 
 L:SetOptionLocalization({

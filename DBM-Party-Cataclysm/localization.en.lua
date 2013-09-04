@@ -766,7 +766,7 @@ L:SetGeneralLocalization{
 L = DBM:GetModLocalization("Garr")
 
 L:SetGeneralLocalization{
-	name = "Garr (Cata)"
+	name = "Garr"
 }
 
 ----------------

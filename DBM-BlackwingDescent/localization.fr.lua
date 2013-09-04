@@ -32,7 +32,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(170)
 
 L:SetWarningLocalization({
-	SpecWarnInferno	= "Assemblage d'os flamboyant Imminent (~4s)",
+	SpecWarnInferno	= "Assemblage d'os flamboyant Imminent (~4s)"
 })
 
 L:SetMiscLocalization({

@@ -441,7 +441,7 @@ L:SetOptionLocalization{
 	WarnNormalSoon	= "Zeige Vorwarnung für Normalform",
 	TimerBear		= "Zeige Zeit bis Bärform",
 	TimerNormal		= "Zeige Zeit bis Normalform",
-	InfoFrame		= "Zeige Infofenster für Spieler, welche von $spell:42402 betroffen sind",
+	InfoFrame		= "Zeige Infofenster für Spieler, welche von $spell:42402 betroffen sind"
 }
 
 L:SetMiscLocalization{

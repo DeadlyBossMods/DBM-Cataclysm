@@ -31,7 +31,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	TimerSuperheated	= "$spell:75846 효과 바 표시"
+	TimerSuperheated	= "$spell:75846 바 보기"
 })
 
 ------------
@@ -45,7 +45,7 @@ L= DBM:GetModLocalization(108)
 L= DBM:GetModLocalization(109)
 
 L:SetOptionLocalization({
-	SetIconOnBoss	= "$spell:76200 시전 후 본체에게 전술 목표 아이콘 표시 "
+	SetIconOnBoss	= "$spell:76200 후 본체에게 전술 목표 아이콘 설정 "
 })
 
 ---------------------
@@ -64,10 +64,6 @@ L= DBM:GetModLocalization(90)
 -- Foe Reaper 5000 --
 ---------------------
 L= DBM:GetModLocalization(91)
-
-L:SetOptionLocalization{
-	HarvestIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(88495)
-}
 
 ----------------------
 -- Admiral Ripsnarl --
@@ -96,7 +92,7 @@ L:SetTimerLocalization({
 L= DBM:GetModLocalization(131)
 
 L:SetOptionLocalization{
-	PingBlitz	= "$spell:74670 대상이 될 경우 미니맵에 위치 표시"
+	PingBlitz	= "$spell:74670 대상이 된 경우 미니맵에 위치 보기"
 }
 
 L:SetMiscLocalization{
@@ -162,7 +158,7 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
-	WarnSplitSoon	= "분리 사전 알림 보기"
+	WarnSplitSoon	= "분리 이전에 알림 보기"
 })
 
 -------------
@@ -224,12 +220,12 @@ L:SetWarningLocalization{
 }
 
 L:SetTimerLocalization({
-	timerPhase2 		= "2 단계 시작"
+	timerPhase2 		= "2 단계"
 })
 
 L:SetOptionLocalization{
-	specWarnPhase2Soon	= "2 단계 시작 특수 경고 보기(5초 전)",
-	timerPhase2 		= "2 단계 시작 바 표시"
+	specWarnPhase2Soon	= "2 단계 이전에 특수 경고 보기",
+	timerPhase2 		= "2 단계 바 보기"
 }
 
 -----------------------
@@ -254,7 +250,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization{
-	TimerAdds		= "다음 유령 소환 바 표시"
+	TimerAdds		= "다음 유령 소환 바 보기"
 }
 
 L:SetMiscLocalization{
@@ -300,9 +296,9 @@ L:SetTimerLocalization({
 L:SetOptionLocalization({
 	WarnEmerge		= "등장 알림 보기",
 	WarnSubmerge	= "잠수 알림 보기",
-	TimerEmerge		= "다음 등장 바 표시",
-	TimerSubmerge	= "다음 잠수 바 표시",
-	CrystalArrow	= "$spell:81634 대상이 근처에 있을 경우 DBM 화살표 보기",
+	TimerEmerge		= "다음 등장 바 보기",
+	TimerSubmerge	= "다음 잠수 바 보기",
+	CrystalArrow	= "$spell:81634 대상이 가까이 있을 경우 DBM 화살표 보기",
 	RangeFrame		= "거리 창 보기(5m)"
 })
 
@@ -325,8 +321,8 @@ L:SetTimerLocalization({
 L:SetOptionLocalization({
 	WarnAirphase				= "공중 단계 알림 보기",
 	WarnGroundphase				= "지상 단계 알림 보기",
-	TimerAirphase				= "다음 공중 단계 바 표시",
-	TimerGroundphase			= "다음 지상 단계 바 표시",
+	TimerAirphase				= "다음 공중 단계 바 보기",
+	TimerGroundphase			= "다음 지상 단계 바 보기",
 	specWarnCrystalStorm		= "$spell:92265 특수 경고 보기"
 })
 
@@ -355,10 +351,6 @@ L:SetMiscLocalization{
 -- Altairus --
 -------------- 
 L= DBM:GetModLocalization(115)
-
-L:SetOptionLocalization({
-	BreathIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(88308)
-})
 
 -----------
 -- Asaad --
@@ -400,7 +392,7 @@ L:SetTimerLocalization{
 }
 
 L:SetOptionLocalization{
-	TimerPhase		= "2 단계까지 남은시간 바 표시"
+	TimerPhase		= "2 단계 바 보기"
 }
 ----------------
 --  Zul'Aman  --
@@ -410,10 +402,8 @@ L:SetOptionLocalization{
 L= DBM:GetModLocalization(186)
 
 L:SetOptionLocalization{
-	StormIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43648),
 	RangeFrame		= "거리 창 보기(10m)",
-	StormArrow		= "$spell:43648 시전시 DBM 화살표 보기",
-	SetIconOnEagle	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97318)
+	StormArrow		= "$spell:43648 활성화 중에 DBM 화살표 보기"
 }
 
 ---------------
@@ -435,12 +425,12 @@ L:SetTimerLocalization{
 
 L:SetOptionLocalization{
 	WarnBear		= "곰 형상 알림 보기",
-	WarnBearSoon	= "곰 형상 사전 알림 보기",
+	WarnBearSoon	= "곰 형상 이전에 알림 보기",
 	WarnNormal		= "인간 형상 알림 보기",
-	WarnNormalSoon	= "인간 형상 사전 알림 보기",
-	TimerBear		= "다음 곰 형상 바 표시",
-	TimerNormal		= "다음 인간 형상 바 표시",
-	InfoFrame		= "$spell:42402 효과에 대한 정보 창 보기"
+	WarnNormalSoon	= "인간 형상 이전에 알림 보기",
+	TimerBear		= "다음 곰 형상 바 보기",
+	TimerNormal		= "다음 인간 형상 바 보기",
+	InfoFrame		= "$spell:42402 대상을 정보 창으로 보기"
 }
 
 L:SetMiscLocalization{
@@ -453,10 +443,6 @@ L:SetMiscLocalization{
 --  Jan'alai --
 ---------------
 L= DBM:GetModLocalization(188)
-
-L:SetOptionLocalization{
-	FlameIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43140)
-}
 
 L:SetMiscLocalization{
 	YellBomb		= "태워버리겠다!",
@@ -494,7 +480,7 @@ L:SetTimerLocalization{
 }
 
 L:SetOptionLocalization{
-	TimerSiphon	= "$spell:43501 바 표시"
+	TimerSiphon	= "$spell:43501 바 보기"
 }
 
 L:SetMiscLocalization{
@@ -511,10 +497,8 @@ L:SetTimerLocalization{
 }
 
 L:SetOptionLocalization{
-	timerNextForm	= "형상 변환 바 표시",
-	InfoFrame		= "$spell:42402 효과에 대한 정보 창 보기",
-	ThrowIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43093),
-	ClawRageIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43150)
+	timerNextForm	= "형상 변환 바 보기",
+	InfoFrame		= "$spell:42402 대상을 정보 창으로 보기"
 }
 
 L:SetMiscLocalization{
@@ -529,8 +513,7 @@ L:SetMiscLocalization{
 L= DBM:GetModLocalization(175)
 
 L:SetOptionLocalization{
-	SetIconOnToxicLink	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(96477),
-	LinkArrow			= "$spell:96477 주문의 영향을 받은 경우 DBM 화살표 보기"
+	LinkArrow			= "$spell:96477 대상이 된 경우 DBM 화살표 보기"
 }
 
 ------------------------
@@ -544,7 +527,7 @@ L:SetWarningLocalization{
 }
 
 L:SetOptionLocalization{
-	WarnRevive		= "영혼 부활 남은 횟수 알림 보기",
+	WarnRevive		= "영혼 부활 남은횟수 알림 보기",
 	SpecWarnOhgan	= "되살아난 오간이 공격 가능 할때 특수 경고 보기",
 	SetIconOnOhgan	= "되살아난 오간에게 전술 목표 아이콘 설정"
 }
@@ -588,8 +571,7 @@ L:SetWarningLocalization{
 
 L:SetOptionLocalization{
 	SpecWarnToxic	= "$spell:96328 효과가 없을 경우 특수 경고 보기",
-	InfoFrame		= "$spell:96328 효과 없음에 대한 정보 창 보기",
-	SetIconOnGaze	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(96342)
+	InfoFrame		= "$spell:96328 없는 대상을 정보 창으로 보기"
 }
 
 L:SetMiscLocalization{
@@ -606,8 +588,7 @@ L:SetWarningLocalization{
 }
 
 L:SetOptionLocalization{
-	WarnBarrierDown	= "학카르의 사슬 보호막이 사라질 때 알림 보기",
-	BodySlamIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97198)
+	WarnBarrierDown	= "학카르의 사슬 보호막이 사라질 때 알림 보기"
 }
 
 L:SetMiscLocalization{
@@ -631,7 +612,7 @@ L:SetTimerLocalization{
 }
 
 L:SetOptionLocalization{
-	TimerFlarecoreDetonate	= "$spell:101927 폭발 까지 남은시간 바 표시"
+	TimerFlarecoreDetonate	= "$spell:101927 폭발 바 보기"
 }
 
 ----------------------
@@ -679,7 +660,7 @@ L:SetTimerLocalization{
 
 L:SetOptionLocalization{
 	WarnAdds	= "새로운 부하가 소환될 때 알림 보기",
-	TimerAdds	= "다음 부하 소환 바 표시"
+	TimerAdds	= "다음 부하 소환 바 보기"
 }
 
 L:SetMiscLocalization{
@@ -696,7 +677,7 @@ L:SetTimerLocalization{
 }
 
 L:SetOptionLocalization{
-	TimerTyrandeHelp	= "티란데 도움요청 까지 남은시간 바 표시"
+	TimerTyrandeHelp	= "티란데 도움요청까지 남은시간 바 보기"
 }
 
 L:SetMiscLocalization{
@@ -715,7 +696,7 @@ L:SetTimerLocalization{
 }
 
 L:SetOptionLocalization{
-	TimerCombatStart	= "전투 시작 바 표시"
+	TimerCombatStart	= "전투 시작 바 보기"
 }
 
 L:SetMiscLocalization{
@@ -742,7 +723,7 @@ L:SetTimerLocalization{
 }
 
 L:SetOptionLocalization{
-	TimerCombatStart	= "전투 시작 바 표시"
+	TimerCombatStart	= "전투 시작 바 보기"
 }
 
 L:SetMiscLocalization{
@@ -766,7 +747,7 @@ L:SetGeneralLocalization{
 L = DBM:GetModLocalization("Garr")
 
 L:SetGeneralLocalization{
-	name = "가르(대격변)"
+	name = "가르"
 }
 
 ----------------
@@ -776,10 +757,6 @@ L = DBM:GetModLocalization("JulakDoom")
 
 L:SetGeneralLocalization{
 	name = "줄락둠"
-}
-
-L:SetOptionLocalization{
-	SetIconOnMC	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(93621)
 }
 
 -----------
