@@ -131,6 +131,10 @@ end
 function mod:SPELL_AURA_APPLIED_DOSE(args)
 	if args.spellId == 99844 and args:IsDestTypePlayer() then
 		timerBlazingClaw:Start(args.destName)
+	elseif args.spellId == 98619 and args:IsPlayer() then
+		timerWingsofFlame:Start()
+		countdownWingsofFlame:Cancel()
+		countdownWingsofFlame:Start()
 	end
 end
 
