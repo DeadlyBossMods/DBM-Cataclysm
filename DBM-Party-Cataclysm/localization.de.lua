@@ -65,10 +65,6 @@ L= DBM:GetModLocalization(90)
 ---------------------
 L= DBM:GetModLocalization(91)
 
-L:SetOptionLocalization{
-	HarvestIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(88495)
-}
-
 ----------------------
 -- Admiral Ripsnarl --
 ----------------------
@@ -356,10 +352,6 @@ L:SetMiscLocalization{
 -------------- 
 L= DBM:GetModLocalization(115)
 
-L:SetOptionLocalization({
-	BreathIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(88308)
-})
-
 -----------
 -- Asaad --
 -----------
@@ -411,10 +403,8 @@ L:SetOptionLocalization{
 L= DBM:GetModLocalization(186)
 
 L:SetOptionLocalization{
-	StormIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43648),
 	RangeFrame	= "Zeige Abstandsfenster (10m)",
-	StormArrow	= "Zeige DBM-Pfeil für $spell:43648",
-	SetIconOnEagle	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97318)
+	StormArrow	= "Zeige DBM-Pfeil für $spell:43648"
 }
 
 --------------
@@ -454,10 +444,6 @@ L:SetMiscLocalization{
 -- Jan'alai --
 --------------
 L= DBM:GetModLocalization(188)
-
-L:SetOptionLocalization{
-	FlameIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43140)
-}
 
 L:SetMiscLocalization{
 	YellBomb	= "Jetzt sollt ihr brennen!",
@@ -513,9 +499,7 @@ L:SetTimerLocalization{
 
 L:SetOptionLocalization{
 	timerNextForm	= "Zeige Zeit bis Formwechsel",
-	InfoFrame		= "Zeige Infofenster für Spieler, welche von $spell:42402 betroffen sind",
-	ThrowIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43093),
-	ClawRageIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43150)
+	InfoFrame		= "Zeige Infofenster für Spieler, welche von $spell:42402 betroffen sind"
 }
 
 L:SetMiscLocalization{
@@ -530,7 +514,6 @@ L:SetMiscLocalization{
 L= DBM:GetModLocalization(175)
 
 L:SetOptionLocalization{
-	SetIconOnToxicLink	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(96477),
 	LinkArrow			= "Zeige DBM-Pfeil, wenn du von $spell:96477 betroffen bist"
 }
 
@@ -589,8 +572,7 @@ L:SetWarningLocalization{
 
 L:SetOptionLocalization{
 	SpecWarnToxic	= "Spezialwarnung, wenn dir der $spell:96328 Buff fehlt",
-	InfoFrame		= "Zeige Infofenster für Spieler, denen der $spell:96328 Buff fehlt",
-	SetIconOnGaze	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(96342)
+	InfoFrame		= "Zeige Infofenster für Spieler, denen der $spell:96328 Buff fehlt"
 }
 
 L:SetMiscLocalization{
@@ -607,8 +589,7 @@ L:SetWarningLocalization{
 }
 
 L:SetOptionLocalization{
-	WarnBarrierDown	= "Verkünde Zerstörung der Schilde von Hakkars Ketten",
-	BodySlamIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97198)
+	WarnBarrierDown	= "Verkünde Zerstörung der Schilde von Hakkars Ketten"
 }
 
 L:SetMiscLocalization{
@@ -767,7 +748,7 @@ L:SetGeneralLocalization{
 L = DBM:GetModLocalization("Garr")
 
 L:SetGeneralLocalization{
-	name = "Garr (Cataclysm)"
+	name = "Garr"
 }
 
 ----------------
@@ -777,10 +758,6 @@ L = DBM:GetModLocalization("JulakDoom")
 
 L:SetGeneralLocalization{
 	name = "Julak-Doom"
-}
-
-L:SetOptionLocalization{
-	SetIconOnMC	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(93621)
 }
 
 -----------
