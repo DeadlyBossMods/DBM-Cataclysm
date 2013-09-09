@@ -25,9 +25,6 @@ L:SetOptionLocalization({
 	timerNefAblity				= "Zeige Abklingzeit für heroische Fähigkeitsverbesserungen",
 	SpecWarnActivated			= "Spezialwarnung, wenn ein neuer Boss aktiviert wird",
 	specWarnGenerator			= "Spezialwarnung, wenn ein Boss von $spell:79629 profitiert",
-	AcquiringTargetIcon			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(79501),
-	ConductorIcon				= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(79888),
-	ShadowConductorIcon			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(92053),
 	SetIconOnActivated			= "Setze ein Zeichen auf den zuletzt aktivierten Boss"
 })
 
@@ -61,8 +58,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(171)
 
 L:SetOptionLocalization({
-	InfoFrame				= "Zeige Infofenster für $journal:3072",
-	TrackingIcon			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(78092)
+	InfoFrame				= "Zeige Infofenster für $journal:3072"
 })
 
 L:SetMiscLocalization({
@@ -77,8 +73,7 @@ L = DBM:GetModLocalization(172)
 
 L:SetOptionLocalization({
 	RangeFrame		= "Zeige Abstandsfenster (6m)",
-	SetIconOnSlime	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(82935),
-	InfoFrame		= "Zeige Infofenster für Gesundheit (<10k Lebenspunkte)"
+	InfoFrame		= "Zeige Infofenster für Gesundheit (weniger als 10k Lebenspunkte)"
 })
 
 L:SetMiscLocalization({
@@ -102,10 +97,7 @@ L:SetOptionLocalization({
 	WarnPhase			= "Verkünde welche Phase als Nächstes kommt",
 	TimerPhase			= "Zeige Zeit bis nächste Phase",
 	RangeFrame			= "Zeige Abstandsfenster (6m) während der blauen Phase",
-	SetTextures			= "Automatische Deaktivierung der Grafikeinstellung 'Projizierte Texturen' in der dunklen Phase (wird nach Verlassen der Phase autom. wieder aktiviert)",
-	FlashFreezeIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77699),
-	BitingChillIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77760),
-	ConsumingFlamesIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(77786)
+	SetTextures			= "Automatische Deaktivierung der Grafikeinstellung 'Projizierte Texturen' in der dunklen Phase (wird nach Verlassen der Phase autom. wieder aktiviert)"
 })
 
 L:SetMiscLocalization({
@@ -152,8 +144,7 @@ L:SetOptionLocalization({
 	NefBreathTimer			= "Zeige Abklingzeit für Nefarians $spell:77826",
 	InfoFrame				= "Zeige Infofenster für $journal:3284",
 	SetWater				= "Automatische Deaktivierung der Kameraeinstellung 'Wasserkollision'<br/>bei Kampfbeginn (wird nach Kampfende automatisch wieder aktiviert)",
-	TankArrow				= "Zeige DBM-Pfeil für den Kiter von 'Belebter Knochenkrieger'<br/>(abgestimmt auf eine Kiter-Taktik)",--npc 41918
-	SetIconOnCinder			= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(79339),
+	TankArrow				= "Zeige DBM-Pfeil für den Kiter von 'Belebter Knochenkrieger'<br/>(abgestimmt auf eine Kiter-Taktik)",
 	RangeFrame				= "Zeige Abstandsfenster (10m) für $spell:79339 (zeigt jeden, falls du den Debuff hast; sonst nur betroffene Spieler)"
 })
 

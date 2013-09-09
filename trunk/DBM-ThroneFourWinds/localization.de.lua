@@ -40,7 +40,6 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	LightningRodIcon= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(89668),
 	TimerFeedback	= "Dauer von $spell:87904 anzeigen",
 	RangeFrame		= "Zeige Abstandsfenster (20m), wenn du von $spell:89668 betroffen bist"
 })
