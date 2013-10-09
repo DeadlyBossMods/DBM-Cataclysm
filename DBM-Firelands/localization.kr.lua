@@ -32,12 +32,10 @@ L:SetWarningLocalization({
 L:SetTimerLocalization({
 	TimerPhaseChange	= "%d 단계",
 	TimerHatchEggs		= "녹아내린 알 부화",
-	timerNextInitiate	= "다음 수습생 (%s)",
-	TimerCombatStart	= "전투 시작"
+	timerNextInitiate	= "다음 수습생 (%s)"
 })
 
 L:SetOptionLocalization({
-	TimerCombatStart	= "전투 시작 바 보기",
 	WarnPhase			= "단계 전환 알림 보기",
 	WarnNewInitiate		= "타오르는 발톱 수습생 알림 보기",
 	timerNextInitiate	= "다음 타오르는 발톱 수습생 등장 바 보기",

@@ -33,12 +33,10 @@ L:SetWarningLocalization({
 L:SetTimerLocalization({
 	TimerPhaseChange	= "Fase %d",
 	TimerHatchEggs		= "Próx. Ovos",
-	timerNextInitiate	= "Próx. Novato (%s)",
-	TimerCombatStart	= "Combate inicia"
+	timerNextInitiate	= "Próx. Novato (%s)"
 })
 
 L:SetOptionLocalization({
-	TimerCombatStart	= "Exibir cronógrafo para o início do combate",
 	WarnPhase			= "Exibir aviso para cada mudança de fase",
 	WarnNewInitiate		= "Exibir aviso quando Novato do Gadanho Flamejante surge",
 	timerNextInitiate	= "Exibir cronógrafo para o próximo Novato do Gadanho Flamejante",

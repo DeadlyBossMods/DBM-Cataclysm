@@ -50,12 +50,10 @@ L:SetWarningLocalization({
 L:SetTimerLocalization({
 	TimerPhaseChange	= "Фаза %d",
 	TimerHatchEggs		= "Вылупление яиц",
-	timerNextInitiate	= "Следующий друид (%s)",
-	TimerCombatStart	= "Начало боя"
+	timerNextInitiate	= "Следующий друид (%s)"
 })
 
 L:SetOptionLocalization({
-	TimerCombatStart	= "Отсчет времени до начала боя",
 	WarnPhase			= "Предупреждение о смене фаз",
 	WarnNewInitiate		= "Предупреждение о появлении нового друида-огнеястреба",
 	timerNextInitiate	= "Отсчет времени до появления нового друида-огнеястреба",

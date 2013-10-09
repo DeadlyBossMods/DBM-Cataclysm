@@ -54,12 +54,10 @@ L:SetWarningLocalization({
 L:SetTimerLocalization({
 	TimerPhaseChange	= "第%d阶段",
 	TimerHatchEggs		= "下一波蛋",
-	timerNextInitiate	= "下一个新兵（%s）",
-	TimerCombatStart	= "战斗即将开始"
+	timerNextInitiate	= "下一个新兵（%s）"
 })
 
 L:SetOptionLocalization({
-	TimerCombatStart	= "计时条：战斗开始",
 	WarnPhase			= "警报：每次阶段转换",
 	WarnNewInitiate		= "警报：新的炽炎之爪新兵",
 	timerNextInitiate	= "计时条：下一个炽炎之爪新兵",
