@@ -31,12 +31,10 @@ L:SetWarningLocalization({
 L:SetTimerLocalization({
 	TimerPhaseChange	= "Phase %d",
 	TimerHatchEggs		= "Next Eggs",
-	timerNextInitiate	= "Next Initiate (%s)",
-	TimerCombatStart	= "Combat starts"
+	timerNextInitiate	= "Next Initiate (%s)"
 })
 
 L:SetOptionLocalization({
-	TimerCombatStart	= "Show timer for start of combat",
 	WarnPhase			= "Show a warning for each phase change",
 	WarnNewInitiate		= "Show a warning for new Blazing Talon Initiate",
 	timerNextInitiate	= "Show a timer for next Blazing Talon Initiate",
