@@ -49,10 +49,8 @@ local timerNextInitiate			= mod:NewTimer(32, "timerNextInitiate", 61131)
 local timerTantrum				= mod:NewBuffActiveTimer(10, 99362, nil, mod:IsTank())
 local timerSatiated				= mod:NewBuffActiveTimer(15, 99359, nil, mod:IsTank())
 local timerBlazingClaw			= mod:NewTargetTimer(15, 99844, nil, false)
-local timerWingsofFlame			= mod:NewBuffActiveTimer(30, 98619)
 
 local countdownFirestorm		= mod:NewCountdown(83, 100744)
-local countdownWingsofFlame		= mod:NewCountdownFades(29, 98619, nil, nil, nil, nil, true)
 
 mod:AddBoolOption("InfoFrame", false)
 
@@ -121,20 +119,12 @@ function mod:SPELL_AURA_APPLIED(args)
 		warnPhase:Show(3)
 	elseif args.spellId == 99844 and args:IsDestTypePlayer() then
 		timerBlazingClaw:Start(args.destName)
-	elseif args.spellId == 98619 and args:IsPlayer() then
-		timerWingsofFlame:Start()
-		countdownWingsofFlame:Cancel()
-		countdownWingsofFlame:Start()
 	end
 end
 
 function mod:SPELL_AURA_APPLIED_DOSE(args)
 	if args.spellId == 99844 and args:IsDestTypePlayer() then
 		timerBlazingClaw:Start(args.destName)
-	elseif args.spellId == 98619 and args:IsPlayer() then
-		timerWingsofFlame:Start()
-		countdownWingsofFlame:Cancel()
-		countdownWingsofFlame:Start()
 	end
 end
 
@@ -145,10 +135,6 @@ function mod:SPELL_AURA_REFRESH(args)
 		else
 			timerSatiated:Start()
 		end
-	elseif args.spellId == 98619 and args:IsPlayer() then
-		timerWingsofFlame:Start()
-		countdownWingsofFlame:Cancel()
-		countdownWingsofFlame:Start()
 	end
 end
 
@@ -168,9 +154,6 @@ function mod:SPELL_AURA_REMOVED(args)
 		timerSatiated:Cancel()
 	elseif args.spellId == 101731 then
 		timerBlazingClaw:Cancel(args.destName)
-	elseif args.spellId == 98619 and args:IsPlayer() then
-		timerWingsofFlame:Cancel()
-		countdownWingsofFlame:Cancel()
 	end
 end
 
