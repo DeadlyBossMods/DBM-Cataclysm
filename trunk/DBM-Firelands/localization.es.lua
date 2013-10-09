@@ -32,12 +32,10 @@ L:SetWarningLocalization({
 L:SetTimerLocalization({
 	TimerPhaseChange	= "Fase %d",
 	TimerHatchEggs		= "Siguientes huevos",
-	timerNextInitiate	= "Siguiente Iniciado",
-	TimerCombatStart	= "Empieza el combate"
+	timerNextInitiate	= "Siguiente Iniciado"
 })
 
 L:SetOptionLocalization({
-	TimerCombatStart	= "Mostrar tiempo para el inicio del combate",
 	WarnPhase		= "Mostrar un aviso para cada cambio de fase",
 	WarnNewInitiate		= "Mostrar aviso para nuevo Iniciado de Garfas Llameantes",
 	timerNextInitiate	= "Mostrar tiempo para siguiente Iniciado de Garfas Llameantes",

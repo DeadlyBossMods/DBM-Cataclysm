@@ -32,12 +32,10 @@ L:SetWarningLocalization({
 L:SetTimerLocalization({
 	TimerPhaseChange	= "Phase %d",
 	TimerHatchEggs		= "Eierausschlüpfen",
-	timerNextInitiate	= "Nächste Initianden (%s)",
-	TimerCombatStart	= "Kampfbeginn"
+	timerNextInitiate	= "Nächste Initianden (%s)"
 })
 
 L:SetOptionLocalization({
-	TimerCombatStart	= "Zeige Zeit bis Kampfbeginn",
 	WarnPhase			= "Zeige Warnung für jeden Phasenwechsel",
 	WarnNewInitiate		= "Zeige Warnung für neue Lodernde Kralleninitianden",
 	timerNextInitiate	= "Zeige Zeit bis nächste Lodernde Kralleninitianden",

@@ -49,12 +49,10 @@ L:SetWarningLocalization({
 L:SetTimerLocalization({
 	TimerPhaseChange	= "Phase %d",
 	TimerHatchEggs		= "Prochains œufs",
-	timerNextInitiate	= "Prochain initié (%s)",
-	TimerCombatStart	= "Début du combat"
+	timerNextInitiate	= "Prochain initié (%s)"
 })
 
 L:SetOptionLocalization({
-	TimerCombatStart	= "Délai avant le début du combat",
 	WarnPhase			= "Alerte à chaque changement de phase",
 	WarnNewInitiate		= "Alerte lors de l'arrivée d'un nouvel Initié de la Serre flamboyante",
 	timerNextInitiate	= "Délai avant l'arrivée d'un nouvel Initié de la Serre flamboyante",

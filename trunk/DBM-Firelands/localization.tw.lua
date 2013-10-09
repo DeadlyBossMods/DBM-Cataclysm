@@ -32,12 +32,10 @@ L:SetWarningLocalization({
 L:SetTimerLocalization({
 	TimerPhaseChange	= "第%d階段",
 	TimerHatchEggs		= "下次熔岩蛋",
-	timerNextInitiate	= "下次熾炎爪擊啟動",
-	TimerCombatStart	= "戰鬥開始"
+	timerNextInitiate	= "下次熾炎爪擊啟動"
 })
 
 L:SetOptionLocalization({
-	TimerCombatStart	= "為戰鬥開始顯示時間",
 	WarnPhase			= "為每次轉換階段顯示警告",
 	WarnNewInitiate		= "為新的熾炎猛禽學徒顯示警告",
 	timerNextInitiate	= "為下一次熾炎猛禽學徒顯示計時器",
