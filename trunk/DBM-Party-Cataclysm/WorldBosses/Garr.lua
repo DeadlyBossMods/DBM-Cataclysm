@@ -21,7 +21,7 @@ local specWarnMassiveEruption	= mod:NewSpecialWarningSpell(93508, mod:IsMelee())
 local timerMassiveEruptionCD	= mod:NewNextTimer(30, 93508)
 local timerAntiMagicPulseCD		= mod:NewCDTimer(16, 93506)--Every 17-25 seconds. So only a CD bar usuable here.
 
-local soundMassiveEruption		= mod:NewSound(93508, nil, mod:IsMelee())
+local soundMassiveEruption		= mod:NewSound(93508, mod:IsMelee())
 
 function mod:OnCombatStart(delay)
 	timerMassiveEruptionCD:Start(-delay)

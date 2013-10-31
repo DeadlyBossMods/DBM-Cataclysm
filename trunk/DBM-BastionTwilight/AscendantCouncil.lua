@@ -114,7 +114,7 @@ local timerStaticOverloadCD	= mod:NewNextTimer(20, 92067)--Heroic Phase 1 ablity
 local timerFlameStrikeCD	= mod:NewNextTimer(20, 92212)--Heroic Phase 2 ablity
 local timerFrostBeaconCD	= mod:NewNextTimer(20, 92307)--Heroic Phase 2 ablity
 
-local soundGlaciate			= mod:NewSound(82746, nil, mod:IsTank())
+local soundGlaciate			= mod:NewSound(82746, mod:IsTank())
 local soundLightingRod		= mod:NewSound(83099)
 local soundBeacon			= mod:NewSound(92307)
 
