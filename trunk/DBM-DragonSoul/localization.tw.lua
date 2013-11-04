@@ -137,12 +137,10 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	TimerCombatStart	= "戰鬥開始",
 	TimerAdd			= "下一次精英暮光"
 })
 
 L:SetOptionLocalization({
-	TimerCombatStart	= "為戰鬥開始時間顯示計時器",
 	TimerAdd			= "為下一次精英暮光顯示計時器",
 	SpecWarnElites		= "為新一波的精英暮光顯示特別警告",
 	SetTextures			= "在第一階段時自動的關閉投影材質特效<br/>(第二階段時還原為開啟)"
