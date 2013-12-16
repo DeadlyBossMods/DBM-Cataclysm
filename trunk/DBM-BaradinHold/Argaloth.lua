@@ -83,7 +83,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(88954, 95173) then
+	if args.spellId == 88954 then
 		consuming = consuming - 1--Count raid members who had it dispelled
 		if self.Options.SetIconOnConsuming then
 			self:SetIcon(args.destName, 0)
@@ -106,8 +106,8 @@ function mod:SPELL_CAST_START(args)
 	end
 end
 
-function mod:SPELL_DAMAGE(sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, spellId)
-	if (spellId == 89000 or spellId == 95177) and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then -- Flames on ground from Firestorm
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
+	if spellId == 89000 and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then -- Flames on ground from Firestorm
 		specWarnFirestorm:Show()
 	end
 end

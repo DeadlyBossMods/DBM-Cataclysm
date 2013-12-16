@@ -149,6 +149,13 @@ local Arion = EJ_GetSectionInfo(3128)
 local Terrastra = EJ_GetSectionInfo(3135)
 local Monstrosity = EJ_GetSectionInfo(3145)
 
+local shieldHealth = {
+	["heroic25"] = 2000000,
+	["heroic10"] = 700000,
+	["normal25"] = 1500000,
+	["normal10"] = 500000
+}
+
 local function showFrozenWarning()
 	warnFrozen:Show(table.concat(frozenTargets, "<, >"))
 	timerFrozen:Start()
@@ -203,46 +210,6 @@ local function updateBossFrame()
 		elseif phase == 3 then
 			DBM.BossHealth:AddBoss(43735, Monstrosity)
 		end
-	end
-end
-
-local showShieldHealthBar, hideShieldHealthBar
-do
-	local frame = CreateFrame("Frame") -- using a separate frame avoids the overhead of the DBM event handlers which are not meant to be used with frequently occuring events like all damage events...
-	local shieldedMob
-	local absorbRemaining = 0
-	local maxAbsorb = 0
-	local function getShieldHP()
-		return math.max(1, math.floor(absorbRemaining / maxAbsorb * 100))
-	end
-	frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-	frame:SetScript("OnEvent", function(self, event, timestamp, subEvent, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, ...)
-		if shieldedMob == destGUID then
-			local absorbed
-			if subEvent == "SWING_MISSED" then 
-				absorbed = select( 3, ... ) 
-			elseif subEvent == "RANGE_MISSED" or subEvent == "SPELL_MISSED" or subEvent == "SPELL_PERIODIC_MISSED" then 
-				absorbed = select( 6, ... )
-			end
-			if absorbed then
-				absorbRemaining = absorbRemaining - absorbed
-			end
-		end
-	end)
-	
-	function showShieldHealthBar(self, mob, shieldName)
-		shieldedMob = mob
-		maxAbsorb = mod:IsDifficulty("heroic25") and 2000000 or
-					mod:IsDifficulty("heroic10") and 700000 or
-					mod:IsDifficulty("normal25") and 1500000 or
-					mod:IsDifficulty("normal10") and 500000 or 0
-		absorbRemaining = maxAbsorb
-		DBM.BossHealth:RemoveBoss(getShieldHP)
-		DBM.BossHealth:AddBoss(getShieldHP, shieldName)
-	end
-	
-	function hideShieldHealthBar()
-		DBM.BossHealth:RemoveBoss(getShieldHP)
 	end
 end
 
@@ -338,12 +305,11 @@ function mod:SPELL_AURA_APPLIED(args)
 			warnFlameTorrent:Show()
 		end
 	elseif args.spellId == 82631 then--Aegis of Flame
-		local shieldname = GetSpellInfo(82631)
 		warnAegisFlame:Show()
 		specWarnAegisFlame:Show()
 		if DBM.BossHealth:IsShown() then
-			showShieldHealthBar(self, args.destGUID, shieldname)
-			self:Schedule(20, hideShieldHealthBar)
+			self:ShowShieldHealthBar(args.destGUID, args.spellName, shieldHealth(DBM:GetCurrentInstanceDifficulty()))
+			self:ScheduleMethod(20, "RemoveShieldHealthBar", args.destGUID)
 		end
 	elseif args.spellId == 82762 and args:IsPlayer() then
 		specWarnWaterLogged:Show()
@@ -530,10 +496,8 @@ function mod:SPELL_AURA_REMOVED(args)
 			self:SetIcon(args.destName, 0)
 		end
 	elseif args.spellId == 82631 then	-- Shield Removed
-		self:Unschedule(hideShieldHealthBar)
-		if DBM.BossHealth:IsShown() then
-			hideShieldHealthBar()
-		end
+		self:UnscheduleMethod("RemoveShieldHealthBar", args.destGUID)
+		self:RemoveShieldHealthBar(args.destGUID)
 		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43686 or self:GetUnitCreatureId("focus") == 43686) or not self:IsMelee() then
 			specWarnRisingFlames:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
 		end

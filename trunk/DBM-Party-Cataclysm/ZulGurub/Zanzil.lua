@@ -58,7 +58,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 96388 then
+	if args.spellId == 96338 then
 		timerZanzilGas:Start()
 	elseif args.spellId == 96316 then
 		warnZanzilElixir:Show()

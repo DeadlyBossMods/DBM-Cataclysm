@@ -22,8 +22,8 @@ mod:RegisterEventsInCombat(
 )
 
 local warnBreath			= mod:NewSpellAnnounce(90125, 3)
-local warnOrbSoon			= mod:NewAnnounce("WarnOrbSoon", 3, 92954, true, nil, true)--Still on by default but no longer plays it's own sounds
-local warnOrbs				= mod:NewAnnounce("warnAggro", 4, 92954)
+local warnOrbSoon			= mod:NewAnnounce("WarnOrbSoon", 3, 92852, true, nil, true)--Still on by default but no longer plays it's own sounds
+local warnOrbs				= mod:NewAnnounce("warnAggro", 4, 92852)
 local warnWrack				= mod:NewTargetAnnounce(89421, 4)
 local warnWrackJump			= mod:NewAnnounce("warnWrackJump", 3, 89421, false)--Not spammy at all (unless you're dispellers are retarded and make it spammy). Useful for a raid leader to coordinate quicker, especially on 10 man with low wiggle room.
 local warnDragon			= mod:NewSpellAnnounce("ej3231", 3, 69002)
@@ -40,7 +40,7 @@ local specWarnEggWeaken		= mod:NewSpecialWarningSwitch("ej3238", mod:IsRanged())
 local specWarnIndomitable	= mod:NewSpecialWarningDispel(90045, mod:CanRemoveEnrage())
 
 local timerBreathCD			= mod:NewCDTimer(21, 90125)
-local timerOrbs				= mod:NewTimer(28, "TimerOrbs", 92954)
+local timerOrbs				= mod:NewTimer(28, "TimerOrbs", 92852)
 local timerWrack			= mod:NewNextTimer(61, 89421)
 local timerExtinction		= mod:NewCastTimer(16, 86227)
 local timerEggWeakening		= mod:NewTimer(4, "TimerEggWeakening", 61357)
@@ -49,7 +49,7 @@ local timerDragon			= mod:NewNextTimer(50, "ej3231", nil, nil,nil, 69002)
 local timerRedEssenceCD		= mod:NewNextTimer(22, 87946)--21-23 seconds after red egg dies
 local timerRedEssence		= mod:NewBuffFadesTimer(180, 87946)
 
-local countdownOrbs			= mod:NewCountdown(28, 92954, nil, "OrbsCountdown")
+local countdownOrbs			= mod:NewCountdown(28, 92852, nil, "OrbsCountdown")
 
 mod:AddBoolOption("SetIconOnOrbs", true)
 mod:AddBoolOption("InfoFrame", false)--Does not filter tanks. not putting ugly hack in info frame, its simpley an aggro tracker
@@ -203,7 +203,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(90045, 92946) then
+	if args.spellId == 90045 then
 		specWarnIndomitable:Show()
 	elseif args.spellId == 89421 then--Cast wracks (10,25)
 		warnWrack:Show(args.destName)
@@ -255,7 +255,7 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_DAMAGE(_, _, _, _, _, _, _, _, spellId)
-	if spellId == 92954 and not orbWarned then
+	if spellId == 92852 and not orbWarned then
 		orbWarned = true
 		showOrbWarning("damage")
 	end

@@ -55,7 +55,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		timerParalysisCD:Start()
 	elseif args:IsSpellID(83601, 83603, 83611) and self.Options.ShowDrakeHealth and DBM.BossHealth:IsShown() then
 		DBM.BossHealth:AddBoss(self:GetCIDFromGUID(args.sourceGUID), args.sourceName)
-	elseif args:IsSpellID(83908, 86158, 86157, 86159) then
+	elseif args.spellId == 83908 then
 		timerMalevolentStrike:Start(args.destName)
 	end
 end

@@ -288,11 +288,11 @@ function mod:SPELL_AURA_APPLIED(args)
 			specWarnBurningWound:Show(args.amount)
 		end
 		timerBurningWound:Start(args.destName)
-	elseif args:IsSpellID(100594, 100915) and args:IsPlayer() then
+	elseif args.spellId == 100594 and args:IsPlayer() then
 		if (args.amount or 0) >= 12 and args.amount % 4 == 0 then
 			specWarnSuperheated:Show(args.amount)
 		end
-	elseif args:IsSpellID(100171, 100190) then--World of Flames, heroic version for engulfing flames.
+	elseif args.spellId == 100171 then--World of Flames, heroic version for engulfing flames.
 		specWarnWorldofFlames:Show()
 		if phase == 3 then
 			timerFlamesCD:Start(30)--30 second CD in phase 3

@@ -391,7 +391,7 @@ function mod:SPELL_INTERRUPT(args)
 	if (type(args.extraSpellId) == "number" and args.extraSpellId == 79710) and self:AntiSpam(2, 2) then
 		if args.spellId == 2139 then															--Counterspell
 			timerArcaneLockout:Start(7.5)
-		elseif args:IsSpellID(72, 19647) then													--Shield Bash (will be removed in 4.1), Spell Lock (Fel Hunter)
+		elseif args.spellId == 19647 then													--Shield Bash (will be removed in 4.1), Spell Lock (Fel Hunter)
 			timerArcaneLockout:Start(6.5)--Shield bash verified, spell lock assumed since it's same lockout duration.
 		elseif args:IsSpellID(96231, 6552, 47528, 1766) or args:IsSpellID(80964, 80965)  then	--Rebuke, Pummel, Mind Freeze, Kick, Skull Bash (feral and bear)
 			timerArcaneLockout:Start(5)--4 out of 6 verified, skull bash needs logs to review for certainty.

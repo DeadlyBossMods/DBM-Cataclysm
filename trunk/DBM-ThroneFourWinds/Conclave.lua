@@ -111,7 +111,7 @@ function mod:BreezeTarget()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args:IsSpellID(86182, 93057, 93058) then -- not confirmed. temp mop changes.
+	if args.spellId == 86182 then
 		if args:IsPlayer() then
 			timerSlicingGale:Start()
 		end
@@ -133,7 +133,7 @@ end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(84644, 84643) and self:AntiSpam(3, 1) then--Sleet Storm, Hurricane.
+	if args:IsSpellID(84638, 84643, 84644) and self:AntiSpam(3, 1) then--Sleet Storm, Hurricane.
 		warnSpecialSoon:Cancel()
 		warnSpecialSoon:Schedule(85)
 		timerSpecial:Start()
@@ -193,7 +193,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 		if (self:GetUnitCreatureId("target") == 45871 or self:GetUnitCreatureId("focus") == 45871 or not self.Options.OnlyWarnforMyTarget) and not deadBoss[Nezir] then--Nezir
 			timerPermaFrostCD:Start(15)--This is gonna slap you in face the instance special ends.
 		end
-	elseif args:IsSpellID(93059, 95865) then-- Storm Shield Warning (Heroic mode skill)
+	elseif args.spellId == 93059 then-- Storm Shield Warning (Heroic mode skill)
 		if self:GetUnitCreatureId("target") == 45872 or self:GetUnitCreatureId("focus") == 45872 or not self.Options.OnlyWarnforMyTarget then--Rohash
 			warnStormShield:Show()
 			specWarnShield:Show()
@@ -207,7 +207,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 		if poisonCounter < 1 then
 			poisonCounter = 1
 		end
-	elseif args:IsSpellID(84645, 93123, 93124, 93125) then
+	elseif args.spellId == 84645 then
 		if self:GetUnitCreatureId("target") == 45871 or self:GetUnitCreatureId("focus") == 45871 or not self.Options.OnlyWarnforMyTarget then--Nezir
 			timerWindChill:Start()
 		end
