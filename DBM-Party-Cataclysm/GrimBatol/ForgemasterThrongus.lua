@@ -34,7 +34,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif args.spellId == 75007 then
 		warnEncumbered:Show()
 		timerEncumbered:Start()
-	elseif args:IsSpellID(74908, 76481) then
+	elseif args.spellId == 74908 then
 		warnPhalanx:Show()
 		timerPhalanx:Start()
 	elseif args.spellId == 75056 then

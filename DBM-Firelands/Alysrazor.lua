@@ -152,7 +152,7 @@ function mod:SPELL_AURA_REMOVED(args)
 		timerTantrum:Cancel()
 	elseif args.spellId == 99359 and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and args.sourceGUID == UnitGUID("targettarget")) then--^^ Same as above only with diff spell
 		timerSatiated:Cancel()
-	elseif args.spellId == 101731 then
+	elseif args.spellId == 99844 then
 		timerBlazingClaw:Cancel(args.destName)
 	end
 end

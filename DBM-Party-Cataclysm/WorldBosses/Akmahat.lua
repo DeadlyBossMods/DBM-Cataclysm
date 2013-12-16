@@ -33,45 +33,6 @@ mod:AddBoolOption("HealthFrame", true)
 local sandsTargets = {}
 local sandsDebuffs = 0
 
-local showShieldHealthBar, hideShieldHealthBar
-do
-	local frame = CreateFrame("Frame") -- using a separate frame avoids the overhead of the DBM event handlers which are not meant to be used with frequently occuring events like all damage events...
-	local shieldedMob
-	local absorbRemaining = 0
-	local maxAbsorb = 0
-	local function getShieldHP()
-		return math.max(1, math.floor(absorbRemaining / maxAbsorb * 100))
-	end
-	frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-	frame:SetScript("OnEvent", function(self, event, timestamp, subEvent, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, ...)
-		if shieldedMob == destGUID then
-			local absorbed
-			if subEvent == "SWING_MISSED" then 
-				absorbed = select( 3, ... ) 
-			elseif subEvent == "RANGE_MISSED" or subEvent == "SPELL_MISSED" or subEvent == "SPELL_PERIODIC_MISSED" then 
-				absorbed = select( 6, ... )
-			end
-			if absorbed then
-				absorbRemaining = absorbRemaining - absorbed
-			end
-		end
-	end)
-	
-	function showShieldHealthBar(self, mob, shieldName, absorb)
-		shieldedMob = mob
-		absorbRemaining = absorb
-		maxAbsorb = absorb
-		DBM.BossHealth:RemoveBoss(getShieldHP)
-		DBM.BossHealth:AddBoss(getShieldHP, shieldName)
-	end
-	
-	function hideShieldHealthBar()
-		if DBM.BossHealth:IsShown() then
-			DBM.BossHealth:RemoveBoss(getShieldHP)
-		end
-	end
-end
-
 local function showSandsgWarning()
 	warnSandsofTime:Show(table.concat(sandsTargets, "<, >"))
 	table.wipe(sandsTargets)
@@ -102,9 +63,8 @@ end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 93561 and DBM.BossHealth:IsShown() then
-		local shieldname = GetSpellInfo(93561)
-		showShieldHealthBar(self, args.destGUID, shieldname, 500000)
-		self:Schedule(60, hideShieldHealthBar)
+		self:ShowShieldHealthBar(args.destGUID, args.spellName, 500000)
+		self:ScheduleMethod(60, "RemoveShieldHealthBar", args.destGUID)
 	elseif args.spellId == 93578 then
 		sandsTargets[#sandsTargets + 1] = args.destName
 		sandsDebuffs = sandsDebuffs + 1
@@ -117,8 +77,8 @@ end
 
 function mod:SPELL_AURA_REMOVED(args)
 	if args.spellId == 93561 then
-		self:Unschedule(hideShieldHealthBar)
-		hideShieldHealthBar()
+		self:UnscheduleMethod("RemoveShieldHealthBar", args.destGUID)
+		self:RemoveShieldHealthBar(args.destGUID)
 	elseif args.spellId == 93578 then
 		sandsDebuffs = sandsDebuffs - 1
 		if sandsDebuffs == 0 then

@@ -107,9 +107,9 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
-	if spellId == 96685 and self:AntiSpam(3, 1) and destGUID == UnitGUID("player") then -- unconirmed in mop
+	if spellId == 96685 and self:AntiSpam(3, 1) and destGUID == UnitGUID("player") then
 		specWarnEffusion:Show()
-	elseif spellId == 92521 and self:AntiSpam(3, 2) and destGUID == UnitGUID("player") then -- unconirmed in mop
+	elseif spellId == 96521 and self:AntiSpam(3, 2) and destGUID == UnitGUID("player") then
 		specWarnPoolAcridTears:Show()
 	end
 end
