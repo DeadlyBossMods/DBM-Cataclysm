@@ -156,7 +156,7 @@ function mod:OnCombatStart(delay)
 	end
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:SetHeader(Charge)
-		DBM.InfoFrame:Show(2, "enemypower", 5, ALTERNATE_POWER_INDEX)
+		DBM.InfoFrame:Show(2, "enemypower", 2, ALTERNATE_POWER_INDEX)
 	end
 	if self.Options.SetWater and GetCVarBool("cameraWaterCollision") then
 		CVAR = true--Cvar was true on pull so we remember that.
