@@ -211,7 +211,6 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, _, _, spellId)
 		timerAddCD:Cancel()
 		timerSquallLineCD:Cancel()
 		timerAcidRainStack:Cancel()
---	"<244.5> [CAST_SUCCEEDED] Al'Akir:Possible Target<nil>:boss1:Lightning Clouds::0:93304", -- [19368]
 	elseif spellId == 89639 and self:AntiSpam(2, 3) then -- Phase 3 Lightning cloud trigger (only cast once)
 		self:CloudRepeat()
 		self:RegisterShortTermEvents(
