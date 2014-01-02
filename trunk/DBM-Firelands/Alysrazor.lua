@@ -39,7 +39,7 @@ local specWarnGushingWoundSelf	= mod:NewSpecialWarningYou(99308, false)
 local specWarnTantrum			= mod:NewSpecialWarningSpell(99362, mod:IsTank())
 local specWarnGushingWoundOther	= mod:NewSpecialWarningTarget(99308, false)
 
-local timerCombatStart			= mod:NewCombatTimer(35.5)
+local timerCombatStart			= mod:NewCombatTimer(34)
 local timerFieryVortexCD		= mod:NewNextTimer(179, 99794)
 local timerMoltingCD			= mod:NewNextTimer(60, 99464)
 local timerCataclysm			= mod:NewCastTimer(5, 102111)--Heroic
