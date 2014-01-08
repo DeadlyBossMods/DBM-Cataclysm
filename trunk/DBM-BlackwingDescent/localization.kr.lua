@@ -113,20 +113,20 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(174)
 
 L:SetWarningLocalization({
-	OnyTailSwipe			= "꼬리 채찍 (오닉시아)",
-	NefTailSwipe			= "꼬리 채찍 (네파리안)",
-	OnyBreath				= "암흑불길 숨결 (오닉시아)",
-	NefBreath				= "암흑불길 숨결 (네파리안)",
+	OnyTailSwipe			= "꼬리 채찍 : 오닉시아",
+	NefTailSwipe			= "꼬리 채찍 : 네파리안",
+	OnyBreath				= "암흑불길 숨결 : 오닉시아",
+	NefBreath				= "암흑불길 숨결 : 네파리안",
 	specWarnShadowblazeSoon	= "%s",
 	warnShadowblazeSoon		= "%s"
 })
 
 L:SetTimerLocalization({
 	timerNefLanding		= "네파리안 착지",
-	OnySwipeTimer		= "오닉 꼬리 채찍 가능",
-	NefSwipeTimer		= "네파 꼬리 채찍 가능",
-	OnyBreathTimer		= "오닉 브레스 가능",
-	NefBreathTimer		= "네파 브레스 가능"
+	OnySwipeTimer		= "꼬리 채찍 가능: 오닉시아",
+	NefSwipeTimer		= "꼬리 채찍 가능: 네파리안",
+	OnyBreathTimer		= "숨결 가능: 오닉시아",
+	NefBreathTimer		= "숨결 가능: 네파리안"
 })
 
 L:SetOptionLocalization({
