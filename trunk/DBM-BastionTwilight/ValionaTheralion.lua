@@ -227,7 +227,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			specWarnBlackout:Show()
 		end
 		if self.Options.BlackoutShieldFrame and DBM.BossHealth:IsShown() then
-			self:ShowAbsorbedHealHealthBar(args.destGUID, L.BlackoutTarget:format(args.destName), absorbHealth(DBM:GetCurrentInstanceDifficulty()))
+			self:ShowAbsorbedHealHealthBar(args.destGUID, L.BlackoutTarget:format(args.destName), absorbHealth[(DBM:GetCurrentInstanceDifficulty())])
 			self:ScheduleMethod(15, "RemoveAbsorbedHealHealthBar", args.destGUID)
 		end
 	elseif args.spellId == 86622 then
@@ -277,8 +277,8 @@ function mod:SPELL_AURA_REMOVED(args)
 			self:SetIcon(args.destName, 0)
 		end
 		blackoutActive = false
-		self:UnscheduleMethod(15, "RemoveAbsorbedHealHealthBar", args.destGUID)
 		if self.Options.BlackoutShieldFrame and DBM.BossHealth:IsShown() then
+			self:UnscheduleMethod("RemoveAbsorbedHealHealthBar", args.destGUID)
 			self:RemoveAbsorbedHealHealthBar(args.destGUID)
 		end
 	elseif args.spellId == 86622 then

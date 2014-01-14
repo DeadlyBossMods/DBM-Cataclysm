@@ -97,6 +97,14 @@ local function checkOozeResurrect(GUID)
 	end
 end
 
+local function countCorruptionActive()
+	local count = 0
+	for i, v in pairs(corruptionActive) do
+		count = count + 1
+	end
+	return count
+end
+
 local clearPlasmaTarget, setPlasmaTarget, clearPlasmaVariables
 do
 	local plasmaTargets = {}
@@ -184,12 +192,12 @@ function mod:SPELL_CAST_START(args)
 			corruptionActive[args.sourceGUID] = 0
 			if self:IsDifficulty("normal25", "heroic25") then
 				timerGripCD:Start(16, args.sourceGUID)
-				if #corruptionActive < 2 then--because using countdowns with more then 1 will be noisy not informative.
+				if countCorruptionActive() < 2 then--because using countdowns with more then 1 will be noisy not informative.
 					countdownGrip:Start(16, nil, args.sourceGUID)
 				end
 			else
 				timerGripCD:Start(nil, args.sourceGUID)
-				if #corruptionActive < 2 then--because using countdowns with more then 1 will be noisy not informative.
+				if countCorruptionActive() < 2 then--because using countdowns with more then 1 will be noisy not informative.
 					countdownGrip:Start(32, nil, args.sourceGUID)
 				end
 			end

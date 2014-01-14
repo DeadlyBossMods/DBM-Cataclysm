@@ -309,7 +309,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		warnAegisFlame:Show()
 		specWarnAegisFlame:Show()
 		if DBM.BossHealth:IsShown() then
-			self:ShowShieldHealthBar(args.destGUID, args.spellName, shieldHealth(DBM:GetCurrentInstanceDifficulty()))
+			self:ShowShieldHealthBar(args.destGUID, args.spellName, shieldHealth[(DBM:GetCurrentInstanceDifficulty())])
 			self:ScheduleMethod(20, "RemoveShieldHealthBar", args.destGUID)
 		end
 	elseif args.spellId == 82762 and args:IsPlayer() then
