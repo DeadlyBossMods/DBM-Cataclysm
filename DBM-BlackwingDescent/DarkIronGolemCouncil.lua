@@ -3,6 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(42180, 42178, 42179, 42166)
+mod:SetEncounterID(1027)
 mod:SetZone()
 mod:SetUsedIcons(1, 3, 6, 7, 8)
 mod:SetModelSound("Sound\\Creature\\Nefarian\\VO_BD_Nefarian_OmnitronIntro01.wav", "Sound\\Creature\\Council\\VO_BD_Council_Event01.wav")
