@@ -6,6 +6,8 @@ local Rohash	= EJ_GetSectionInfo(3172)
 
 mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(45870, 45871, 45872)
+mod:SetEncounterID(1035)
+mod:DisableEEKillDetection()
 mod:SetZone()
 
 mod:SetBossHealthInfo(
