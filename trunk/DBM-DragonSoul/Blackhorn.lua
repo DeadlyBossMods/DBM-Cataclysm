@@ -13,12 +13,12 @@ mod:RegisterCombat("combat")
 mod:SetMinCombatTime(20)
 
 mod:RegisterEventsInCombat(
-	"SPELL_CAST_START",
-	"SPELL_CAST_SUCCESS",
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_APPLIED_DOSE",
-	"SPELL_AURA_REMOVED",
-	"SPELL_SUMMON",
+	"SPELL_CAST_START 107588 108046 110212 108039",
+	"SPELL_CAST_SUCCESS 108044 108042 107558",
+	"SPELL_AURA_APPLIED 108043 108038 108040 110214",
+	"SPELL_AURA_APPLIED_DOSE 108043",
+	"SPELL_AURA_REMOVED 108043",
+	"SPELL_SUMMON 108051",
 	"SPELL_DAMAGE",
 	"SPELL_MISSED",
 	"RAID_BOSS_EMOTE",
@@ -163,50 +163,54 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_START(args)
-	if args.spellId == 107588 then
+	local spellId = args.spellId
+	if spellId == 107588 then
 		twilightOnslaughtCount = twilightOnslaughtCount + 1
 		warnTwilightOnslaught:Show(twilightOnslaughtCount)
 		specWarnTwilightOnslaught:Show()
 		timerTwilightOnslaught:Start()
 		timerTwilightOnslaughtCD:Start(nil, twilightOnslaughtCount + 1)
 		countdownTwilightOnslaught:Start()
-	elseif args.spellId == 108046 then
+	elseif spellId == 108046 then
 		self:ScheduleMethod(0.2, "ShockwaveTarget")
 		timerShockwaveCD:Start()
-	elseif args.spellId == 110212 then
+	elseif spellId == 110212 then
 		warnTwilightBreath:Show()
 		timerTwilightBreath:Start()
-	elseif args.spellId == 108039 then
+	elseif spellId == 108039 then
 		warnReloading:Show()
 		timerReloadingCast:Start(args.sourceGUID)
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args.spellId == 108044 then
+	local spellId = args.spellId
+	if spellId == 108044 then
 		warnRoar:Show()
 		timerRoarCD:Start()
-	elseif args.spellId == 108042 then
+	elseif spellId == 108042 then
 		timerDevastateCD:Start()
-	elseif args.spellId == 107558 then
+	elseif spellId == 107558 then
 		timerDegenerationCD:Start(args.sourceGUID)
 	end
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 108043 then
-		warnSunder:Show(args.destName, args.amount or 1)
+	local spellId = args.spellId
+	if spellId == 108043 then
+		local amount = args.amount or 1
+		warnSunder:Show(args.destName, amount)
 		timerSunder:Start(args.destName)
 		if args:IsPlayer() then
-			if (args.amount or 1) >= 3 then
-				specWarnSunder:Show(args.amount)
+			if amount >= 3 then
+				specWarnSunder:Show(amount)
 			end
 		else
-			if (args.amount or 1) >= 2 and not UnitDebuff("player", GetSpellInfo(108043)) and not UnitIsDeadOrGhost("player") then
+			if amount >= 2 and not UnitDebuff("player", GetSpellInfo(108043)) and not UnitIsDeadOrGhost("player") then
 				specWarnSunderOther:Show(args.destName)
 			end
 		end
-	elseif args.spellId == 108038 then
+	elseif spellId == 108038 then
 		if self:AntiSpam(5, 1) then -- Use time check for harpooning warning. It can be avoid bad casts also.
 			warnHarpoon:Show(args.destName)
 			specWarnHarpoon:Show(args.destName)
@@ -217,7 +221,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		elseif self:IsDifficulty("normal10", "normal25") then
 			timerHarpoonActive:Start(25, args.destGUID)
 		end
-	elseif args.spellId == 108040 and not phase2Started then--Goriona is being shot by the ships Artillery Barrage (phase 2 trigger)
+	elseif spellId == 108040 and not phase2Started then--Goriona is being shot by the ships Artillery Barrage (phase 2 trigger)
 		timerTwilightOnslaughtCD:Cancel()
 		countdownTwilightOnslaught:Cancel()
 		timerBroadsideCD:Cancel()
@@ -228,7 +232,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		if DBM.BossHealth:IsShown() then
 			DBM.BossHealth:AddBoss(56427, L.name)
 		end
-	elseif args.spellId == 110214 then
+	elseif spellId == 110214 then
 		warnConsumingShroud:Show(args.destName)
 		timerConsumingShroud:Start()
 	end
@@ -236,13 +240,15 @@ end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args.spellId == 108043 then
+	local spellId = args.spellId
+	if spellId == 108043 then
 		timerSunder:Cancel(args.destName)
 	end
 end
 
 function mod:SPELL_SUMMON(args)
-	if args.spellId == 108051 then
+	local spellId = args.spellId
+	if spellId == 108051 then
 		warnTwilightFlames:Show()
 		timerTwilightFlamesCD:Start()
 	end

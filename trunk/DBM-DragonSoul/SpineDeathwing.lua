@@ -11,11 +11,11 @@ mod:SetModelSound("sound\\CREATURE\\Deathwing\\VO_DS_DEATHWING_BACKEVENT_01.OGG"
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_CAST_START",
-	"SPELL_CAST_SUCCESS",
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_APPLIED_DOSE",
-	"SPELL_AURA_REMOVED",
+	"SPELL_CAST_START 105845 105847 105848 109379 ",
+	"SPELL_CAST_SUCCESS 105219 105248",
+	"SPELL_AURA_APPLIED 105248 105490 105479",
+	"SPELL_AURA_APPLIED_DOSE 105248",
+	"SPELL_AURA_REMOVED 105490 105479",
 	"SPELL_HEAL",
 	"SPELL_PERIODIC_HEAL",
 	"SPELL_DAMAGE",
@@ -33,8 +33,8 @@ local warnNuclearBlast		= mod:NewCastAnnounce(105845, 4)
 local warnSealArmor			= mod:NewAnnounce("warnSealArmor", 4, 105847)
 local warnAmalgamation		= mod:NewSpellAnnounce("ej4054", 3, 106005)--Amalgamation spawning, give temp icon.
 
-local specWarnRoll			= mod:NewSpecialWarningSpell("ej4050", nil, nil, nil, true)--The actual roll
-local specWarnTendril		= mod:NewSpecialWarning("SpecWarnTendril")--A personal warning for you only if you're not gripped 3 seconds after roll started
+local specWarnRoll			= mod:NewSpecialWarningSpell("ej4050", nil, nil, nil, 2)--The actual roll
+local specWarnTendril		= mod:NewSpecialWarning("SpecWarnTendril", nil, nil, nil, 3)--A personal warning for you only if you're not gripped 3 seconds after roll started
 local specWarnGrip			= mod:NewSpecialWarningSpell(105490, mod:IsDps())
 local specWarnNuclearBlast	= mod:NewSpecialWarningRun(105845, mod:IsMelee())
 local specWarnSealArmor		= mod:NewSpecialWarningSpell(105847, mod:IsDps())
@@ -176,7 +176,8 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_START(args)
-	if args.spellId == 105845 then
+	local spellId = args.spellId
+	if spellId == 105845 then
 		warnNuclearBlast:Show()
 		specWarnNuclearBlast:Show()
 		soundNuclearBlast:Play()
@@ -188,7 +189,7 @@ function mod:SPELL_CAST_START(args)
 		else
 			timerSealArmor:Start()
 		end
-	elseif args.spellId == 109379 then
+	elseif spellId == 109379 then
 		if not corruptionActive[args.sourceGUID] then
 			corruptionActive[args.sourceGUID] = 0
 			if self:IsDifficulty("normal25", "heroic25") then
@@ -214,13 +215,14 @@ end
 
 -- not needed guid check. This is residue creation step.
 function mod:SPELL_CAST_SUCCESS(args)
-	if args.spellId == 105219 then 
+	local spellId = args.spellId
+	if spellId == 105219 then 
 		residueNum = residueNum + 1
 		diedOozeGUIDS[args.sourceGUID] = GetTime()
 		self:Unschedule(warningResidue)
 		self:Schedule(1.25, warningResidue)
 		if residueDebug then print("created", residueNum) end
-	elseif args.spellId == 105248 and diedOozeGUIDS[args.sourceGUID] then
+	elseif spellId == 105248 and diedOozeGUIDS[args.sourceGUID] then
 		residueNum = residueNum - 1
 		diedOozeGUIDS[args.sourceGUID] = nil
 		self:Unschedule(warningResidue)
@@ -229,26 +231,12 @@ function mod:SPELL_CAST_SUCCESS(args)
 	end
 end
 
---Damage event that indicates an ooze is taking damage
---we check its GUID to see if it's a resurrected ooze and if so remove it from table.
---for WoW 5.x priest spell, Shadow Word: Pain (spellid = 124464) fires spell_damage event. (this is damage over time spell, but combat log records this spell as SPELL_DAMAGE event. not SPELL_PERIODIC_DAMAGE)
---this cause bad revive check, so only source SPELL_DAMAGE (fires when ooze dies again) and SWING_DAMAGE event will resolve this.
---although this change causes slow revive check, it will be better than shows bad residue count.
-function mod:SPELL_DAMAGE(sourceGUID, _, _, _, destGUID)
-	checkOozeResurrect(sourceGUID)
-end
-mod.SPELL_MISSED = mod.SPELL_DAMAGE
-
-function mod:SWING_DAMAGE(sourceGUID, _, _, _, destGUID)
-	checkOozeResurrect(sourceGUID)
-end
-mod.SWING_MISSED = mod.SWING_DAMAGE
-
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 105248 then
+	local spellId = args.spellId
+	if spellId == 105248 then
 		warnAbsorbedBlood:Cancel()--Just a little anti spam
 		warnAbsorbedBlood:Schedule(1.25, args.destName, 1)
-	elseif args.spellId == 105490 then
+	elseif spellId == 105490 then
 		gripTargets[#gripTargets + 1] = args.destName
 		timerGripCD:Cancel(args.sourceGUID)
 		countdownGrip:Cancel(args.sourceGUID)
@@ -264,7 +252,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 		self:Unschedule(showGripWarning)
 		self:Schedule(0.3, showGripWarning)
-	elseif args.spellId == 105479 then
+	elseif spellId == 105479 then
 		if self.Options.ShowShieldInfo then
 			setPlasmaTarget(args.destGUID, args.destName)
 		end
@@ -272,7 +260,8 @@ function mod:SPELL_AURA_APPLIED(args)
 end		
 
 function mod:SPELL_AURA_APPLIED_DOSE(args)
-	if args.spellId == 105248 then
+	local spellId = args.spellId
+	if spellId == 105248 then
 		warnAbsorbedBlood:Cancel()--Just a little anti spam
 		if args.amount == 9 then
 			warnAbsorbedBlood:Show(args.destName, 9)
@@ -283,16 +272,32 @@ function mod:SPELL_AURA_APPLIED_DOSE(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args.spellId == 105490 then
+	local spellId = args.spellId
+	if spellId == 105490 then
 		if self.Options.SetIconOnGrip then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args.spellId == 105479 then
+	elseif spellId == 105479 then
 		if self.Options.ShowShieldInfo then
 			clearPlasmaTarget(args.destGUID, args.destName)
 		end
 	end
 end	
+
+--Damage event that indicates an ooze is taking damage
+--we check its GUID to see if it's a resurrected ooze and if so remove it from table.
+--for WoW 5.x priest spell, Shadow Word: Pain (spellid = 124464) fires spell_damage event. (this is damage over time spell, but combat log records this spell as SPELL_DAMAGE event. not SPELL_PERIODIC_DAMAGE)
+--this cause bad revive check, so only source SPELL_DAMAGE (fires when ooze dies again) and SWING_DAMAGE event will resolve this.
+--although this change causes slow revive check, it will be better than shows bad residue count.
+function mod:SPELL_DAMAGE(sourceGUID, _, _, _, destGUID)
+	checkOozeResurrect(sourceGUID)
+end
+mod.SPELL_MISSED = mod.SPELL_DAMAGE
+
+function mod:SWING_DAMAGE(sourceGUID, _, _, _, destGUID)
+	checkOozeResurrect(sourceGUID)
+end
+mod.SWING_MISSED = mod.SWING_DAMAGE
 
 function mod:RAID_BOSS_EMOTE(msg)
 	if msg == L.DRoll or msg:find(L.DRoll) then
