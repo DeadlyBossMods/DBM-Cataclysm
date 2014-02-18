@@ -11,12 +11,12 @@ mod:SetModelSound("sound\\CREATURE\\MORCHOK\\VO_DS_MORCHOK_EVENT_04.OGG", "sound
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_APPLIED_DOSE",
-	"SPELL_AURA_REMOVED",
-	"SPELL_CAST_START",
-	"SPELL_SUMMON",
-	"SPELL_CAST_SUCCESS",
+	"SPELL_AURA_APPLIED 103687 103846",
+	"SPELL_AURA_APPLIED_DOSE 103687",
+	"SPELL_AURA_REMOVED 103851",
+	"SPELL_CAST_START 103414 103851",
+	"SPELL_SUMMON 103639 109017",
+	"SPELL_CAST_SUCCESS 103821",
 	"SPELL_DAMAGE"
 )
 
@@ -30,13 +30,13 @@ local warnKohcrom			= mod:NewSpellAnnounce(109017, 4)
 local KohcromWarning		= mod:NewAnnounce("KohcromWarning", 2, 55342)--Mirror image icon. use different color for easlier distingush.
 
 local specwarnCrushArmor	= mod:NewSpecialWarningStack(103687, mod:IsTank(), 3)
-local specwarnVortex		= mod:NewSpecialWarningSpell(103821, nil, nil, nil, true)
+local specwarnVortex		= mod:NewSpecialWarningSpell(103821, nil, nil, nil, 2)
 local specwarnBlood			= mod:NewSpecialWarningMove(103785)
 local specwarnCrystal		= mod:NewSpecialWarningTarget(103639, false)
 
 local timerCrushArmor		= mod:NewTargetTimer(20, 103687, nil, mod:IsTank())
 local timerCrystal			= mod:NewCDTimer(12, 103640)	-- 12-14sec variation (is also time till 'detonate')
-local timerStomp 			= mod:NewCDTimer(12, 103414)	-- 12-14sec variation
+local timerStomp 			= mod:NewCDTimer(11, 103414)	-- 12-14sec variation
 local timerVortexNext		= mod:NewCDTimer(74, 103821)--96~97 sec after last vortex. must subtract blood 17 + vortex buff 5 sec. 74 sec left
 local timerBlood			= mod:NewBuffActiveTimer(17, 103851)
 local timerKohcromCD		= mod:NewTimer(6, "KohcromCD", 55342)--Enable when we have actual timing for any of his abilies
@@ -68,23 +68,27 @@ function mod:OnCombatEnd()
 	if self.Options.RangeFrame and not self:IsDifficulty("lfr25") then
 		DBM.RangeCheck:Hide()
 	end
+	self:UnregisterShortTermEvents()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 103687 then
-		warnCrushArmor:Show(args.destName, args.amount or 1)
+	local spellId = args.spellId
+	if spellId == 103687 then
+		local amount = args.amount
+		warnCrushArmor:Show(args.destName, amount)
 		timerCrushArmor:Start(args.destName)
-		if (args.amount or 1) > 3 then
-			specwarnCrushArmor:Show(args.amount or 1)
+		if amount > 3 then
+			specwarnCrushArmor:Show(amount)
 		end
-	elseif args.spellId == 103846 and self:AntiSpam(3, 1) then
+	elseif spellId == 103846 and self:AntiSpam(3, 1) then
 		warnFurious:Show()
 	end
 end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args.spellId == 103851 and self:AntiSpam(3, 1) then--Filter twin here, they vortex together but we don't want to trigger everything twice needlessly.
+	local spellId = args.spellId
+	if spellId == 103851 and self:AntiSpam(3, 1) then--Filter twin here, they vortex together but we don't want to trigger everything twice needlessly.
 		stompCount = 0
 		crystalCount = 0
 		timerStomp:Start(19)
@@ -96,11 +100,13 @@ function mod:SPELL_AURA_REMOVED(args)
 		if self:IsDifficulty("heroic10", "heroic25") then
 			kohcromSkip = 1
 		end
+		self:UnregisterShortTermEvents()
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args.spellId == 103414 then
+	local spellId = args.spellId
+	if spellId == 103414 then
 		if args:GetSrcCreatureID() == 55265 then
 			stompCount = stompCount + 1
 			warnStomp:Show()
@@ -123,7 +129,7 @@ function mod:SPELL_CAST_START(args)
 		else
 			KohcromWarning:Show(args.sourceName, args.spellName)
 		end
-	elseif args.spellId == 103851 then
+	elseif spellId == 103851 then
 		if args:GetSrcCreatureID() == 55265 then
 			warnBlood:Show()
 			timerBlood:Start()
@@ -132,7 +138,8 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_SUMMON(args)
-	if args.spellId == 103639 then
+	local spellId = args.spellId
+	if spellId == 103639 then
 		if self:GetUnitCreatureId("target") == self:GetCIDFromGUID(args.sourceGUID) or self:GetUnitCreatureId("focus") == self:GetCIDFromGUID(args.sourceGUID) then
 			specwarnCrystal:Show(args.sourceName)
 		end
@@ -158,7 +165,7 @@ function mod:SPELL_SUMMON(args)
 		else
 			KohcromWarning:Show(args.sourceName, args.spellName)
 		end
-	elseif args.spellId == 109017 then
+	elseif spellId == 109017 then
 		warnKohcrom:Show()
 		-- when Kohcrom summoning, Stomp and Crystal timer restarts.
 		if kohcromSkip == 1 then -- next is Crystal, Crystal will be skipped.
@@ -176,7 +183,8 @@ function mod:SPELL_SUMMON(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args.spellId == 103821 and self:AntiSpam(3, 1) then
+	local spellId = args.spellId
+	if spellId == 103821 and self:AntiSpam(3, 1) then
 		crystalCount = 0
 		timerStomp:Cancel()
 		timerCrystal:Cancel()
@@ -186,6 +194,12 @@ function mod:SPELL_CAST_SUCCESS(args)
 		if self.Options.RangeFrame and not self:IsDifficulty("lfr25") then
 			DBM.RangeCheck:Show(5)
 		end
+		if not self:IsTrivial(90) then--Only register damage events during vortex (when black blood is out) and only if it's not trivial
+			self:RegisterShortTermEvents(
+				"SPELL_DAMAGE",
+				"SPELL_MISSED"
+			)
+		end
 	end
 end
 
@@ -194,3 +208,4 @@ function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
 		specwarnBlood:Show()
 	end
 end
+mod.SPELL_MISSED = mod.SPELL_DAMAGE

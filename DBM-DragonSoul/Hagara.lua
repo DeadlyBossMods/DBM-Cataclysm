@@ -11,12 +11,12 @@ mod:SetModelSound("sound\\CREATURE\\HAGARA\\VO_DS_HAGARA_INTRO_01.OGG", "sound\\
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_APPLIED_DOSE",
-	"SPELL_AURA_REMOVED",
-	"SPELL_CAST_START",
-	"SPELL_CAST_SUCCESS",
-	"SPELL_SUMMON"
+	"SPELL_AURA_APPLIED 104451 107851 110317 109325",
+	"SPELL_AURA_APPLIED_DOSE 105316",
+	"SPELL_AURA_REMOVED 104451 105256 105311 105482 105409",
+	"SPELL_CAST_START 104448 105256 105409 105289",
+	"SPELL_CAST_SUCCESS 109557",
+	"SPELL_SUMMON 105297"
 )
 
 local warnAssault			= mod:NewCountAnnounce(107851, 4, nil, mod:IsHealer() or mod:IsTank())
@@ -155,7 +155,8 @@ local function warnTombTargets()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 104451 then
+	local spellId = args.spellId
+	if spellId == 104451 then
 		tombTargets[#tombTargets + 1] = args.destName
 		if self.Options.SetIconOnFrostTomb then
 			table.insert(tombIconTargets, DBM:GetRaidUnitId(args.destName))
@@ -174,7 +175,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			self:Schedule(0.3, warnTombTargets)
 		end
-	elseif args.spellId == 107851 then
+	elseif spellId == 107851 then
 		assaultCount = assaultCount + 1
 		warnAssault:Show(assaultCount)
 		specWarnAssault:Show()
@@ -182,9 +183,9 @@ function mod:SPELL_AURA_APPLIED(args)
 		if (firstPhase and assaultCount < 2) or (not firstPhase and assaultCount < 3) then
 			timerAssaultCD:Start(nil, assaultCount+1)
 		end
-	elseif args.spellId == 110317 and args:IsPlayer() then
+	elseif spellId == 110317 and args:IsPlayer() then
 		specWarnWatery:Show()
-	elseif args.spellId == 109325 then
+	elseif spellId == 109325 then
 		warnFrostflake:Show(args.destName)
 		timerFrostFlakeCD:Start()
 		if args:IsPlayer() then
@@ -198,7 +199,8 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_APPLIED_DOSE(args)
-	if args.spellId == 105316 then
+	local spellId = args.spellId
+	if spellId == 105316 and not self:IsTrivial(90) then
 		if ((self:IsDifficulty("lfr25") and args.amount % 6 == 0) or (not self:IsDifficulty("lfr25") and args.amount % 3 == 0)) and args:IsPlayer() then--Warn every 3 stacks (6 stacks in LFR), don't want to spam TOO much.
 			specWarnIceLance:Show(args.amount)
 		end
@@ -206,9 +208,10 @@ function mod:SPELL_AURA_APPLIED_DOSE(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args.spellId == 104451 and self.Options.SetIconOnFrostTomb then
+	local spellId = args.spellId
+	if spellId == 104451 and self.Options.SetIconOnFrostTomb then
 		self:SetIcon(args.destName, 0)
-	elseif args.spellId == 105256 then--Tempest
+	elseif spellId == 105256 then--Tempest
 		if self.Options.SetBubbles and GetCVarBool("chatBubbles") then
 			SetCVar("chatBubbles", 0)
 			CVAR = true
@@ -232,13 +235,13 @@ function mod:SPELL_AURA_REMOVED(args)
 		if self.Options.RangeFrame and not self:IsDifficulty("lfr25") then
 			DBM.RangeCheck:Show(3)
 		end
-	elseif args.spellId == 105311 then--Frost defeated.
+	elseif spellId == 105311 then--Frost defeated.
 		pillarsRemaining = pillarsRemaining - 1
 		warnPillars:Show(frostPillar, pillarsRemaining)
-	elseif args.spellId == 105482 then--Lighting defeated.
+	elseif spellId == 105482 then--Lighting defeated.
 		pillarsRemaining = pillarsRemaining - 1
 		warnPillars:Show(lightningPillar, pillarsRemaining)
-	elseif args.spellId == 105409 then--Water Shield
+	elseif spellId == 105409 then--Water Shield
 		if self.Options.SetBubbles and GetCVarBool("chatBubbles") then
 			SetCVar("chatBubbles", 0)
 			CVAR = true
@@ -266,11 +269,12 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args.spellId == 104448 then
+	local spellId = args.spellId
+	if spellId == 104448 then
 		warnFrostTombCast:Show(args.spellName)
 		specWarnFrostTombCast:Show()
 		timerFrostTomb:Start()
-	elseif args.spellId == 105256 then--Tempest
+	elseif spellId == 105256 then--Tempest
 		if self.Options.SetBubbles and not GetCVarBool("chatBubbles") and CVAR then--Only turn them back on if they are off now, but were on when we pulled
 			SetCVar("chatBubbles", 1)
 			CVAR = false
@@ -288,7 +292,7 @@ function mod:SPELL_CAST_START(args)
 		if self.Options.RangeFrame and not self:IsDifficulty("lfr25") then
 			DBM.RangeCheck:Hide()
 		end
-	elseif args.spellId == 105409 then--Water Shield
+	elseif spellId == 105409 then--Water Shield
 		if self.Options.SetBubbles and not GetCVarBool("chatBubbles") and CVAR then--Only turn them back on if they are off now, but were on when we pulled
 			SetCVar("chatBubbles", 1)
 			CVAR = false
@@ -310,20 +314,22 @@ function mod:SPELL_CAST_START(args)
 		if self.Options.RangeFrame and not self:IsDifficulty("lfr25") then
 			DBM.RangeCheck:Show(10)
 		end
-	elseif args.spellId == 105289 then
+	elseif spellId == 105289 then
 		self:ScheduleMethod(0.2, "ShatteredIceTarget")
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args.spellId == 109557 then
+	local spellId = args.spellId
+	if spellId == 109557 then
 		warnStormPillars:Show()
 		timerStormPillarCD:Start()
 	end
 end
 
 function mod:SPELL_SUMMON(args)
-	if args.spellId == 105297 then
+	local spellId = args.spellId
+	if spellId == 105297 then
 		lanceTargets[#lanceTargets + 1] = args.sourceName
 		self:Unschedule(warnLanceTargets)
 		self:Schedule(0.5, warnLanceTargets)
