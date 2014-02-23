@@ -74,7 +74,7 @@ end
 function mod:SPELL_AURA_APPLIED(args)
 	local spellId = args.spellId
 	if spellId == 103687 then
-		local amount = args.amount
+		local amount = args.amount or 1
 		warnCrushArmor:Show(args.destName, amount)
 		timerCrushArmor:Start(args.destName)
 		if amount > 3 then

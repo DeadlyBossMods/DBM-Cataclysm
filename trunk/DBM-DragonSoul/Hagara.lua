@@ -201,8 +201,9 @@ end
 function mod:SPELL_AURA_APPLIED_DOSE(args)
 	local spellId = args.spellId
 	if spellId == 105316 and not self:IsTrivial(90) then
-		if ((self:IsDifficulty("lfr25") and args.amount % 6 == 0) or (not self:IsDifficulty("lfr25") and args.amount % 3 == 0)) and args:IsPlayer() then--Warn every 3 stacks (6 stacks in LFR), don't want to spam TOO much.
-			specWarnIceLance:Show(args.amount)
+		local amount = args.amount
+		if ((self:IsDifficulty("lfr25") and amount % 6 == 0) or (not self:IsDifficulty("lfr25") and amount % 3 == 0)) and args:IsPlayer() then--Warn every 3 stacks (6 stacks in LFR), don't want to spam TOO much.
+			specWarnIceLance:Show(amount)
 		end
 	end
 end
