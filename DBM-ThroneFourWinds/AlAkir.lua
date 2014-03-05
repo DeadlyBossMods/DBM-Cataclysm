@@ -127,7 +127,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			end
 		end
 		if self.Options.LightningRodIcon then
-			self:SetIcon(args.destName, 8)
+			self:SetIcon(args.destName, 8, 5)
 		end
 	end
 end
