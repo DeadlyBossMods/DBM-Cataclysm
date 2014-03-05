@@ -228,7 +228,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		self:Schedule(10, Phase2Delay)--seems to only sapper comes even phase2 started. so delays only sapper stuff.
 		phase2Started = true
 		warnPhase2:Show()--We still warn phase 2 here though to get into position, especially since he can land on deck up to 5 seconds before his yell.
-		timerCombatStart:Start(5)--5-8 seems variation, we use shortest.
+		--timerCombatStart:Start(5)--5-8 seems variation, we use shortest.
 		if DBM.BossHealth:IsShown() then
 			DBM.BossHealth:AddBoss(56427, L.name)
 		end
