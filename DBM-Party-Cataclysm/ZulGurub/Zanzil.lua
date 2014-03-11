@@ -27,7 +27,7 @@ local timerZanzilElixir		= mod:NewCDTimer(30, 96316)
 
 local soundGaze				= mod:NewSound(96342)
 
-mod:AddBoolOption("SetIconOnGaze")
+mod:AddBoolOption("SetIconOnGaze", false)
 mod:AddBoolOption("InfoFrame", mod:IsHealer())--on by default for healers, so they know what numpties to heal through gas
 
 function mod:GazeTarget()

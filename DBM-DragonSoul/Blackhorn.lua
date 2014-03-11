@@ -6,7 +6,6 @@ mod:SetCreatureID(56598)--56427 is Boss, but engage trigger needs the ship which
 --mod:SetEncounterID(1298)--Fires when ship get actual engage. need to adjust timer.
 mod:SetMainBossID(56427)
 mod:SetZone()
-mod:SetUsedIcons()
 mod:SetModelSound("sound\\CREATURE\\WarmasterBlackhorn\\VO_DS_BLACKHORN_INTRO_01.OGG", "sound\\CREATURE\\WarmasterBlackhorn\\VO_DS_BLACKHORN_SLAY_01.OGG")
 
 mod:RegisterCombat("combat")

@@ -49,7 +49,7 @@ local timerFailureNext		= mod:NewNextTimer(25, 88853)
 local berserkTimer			= mod:NewBerserkTimer(450)--Heroic
 
 mod:AddBoolOption("RangeFrame")
-mod:AddBoolOption("SetIconOnSlime")
+mod:AddBoolOption("SetIconOnSlime", false)
 mod:AddBoolOption("InfoFrame", mod:IsHealer())
 
 local prewarnedPhase2 = false
