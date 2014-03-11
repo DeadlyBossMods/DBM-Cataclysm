@@ -65,8 +65,8 @@ local timerFaceRageCD			= mod:NewCDTimer(27, 99947, nil, false)--Has a 27-30 sec
 
 local berserkTimer				= mod:NewBerserkTimer(600)
 
-mod:AddBoolOption("SetIconOnFaceRage")
-mod:AddBoolOption("SetIconOnRage")
+mod:AddBoolOption("SetIconOnFaceRage", false)
+mod:AddBoolOption("SetIconOnRage", false)
 
 local prewarnedPhase2 = false
 local ripLimbDead = false

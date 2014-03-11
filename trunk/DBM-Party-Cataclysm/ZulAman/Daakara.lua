@@ -35,7 +35,7 @@ local timerSurgeCD			= mod:NewNextTimer(8.5, 42402)--Bear Form Ability, same mec
 local timerLightningTotemCD	= mod:NewNextTimer(17, 97930)--Eagle Form Ability.
 
 mod:AddBoolOption("ThrowIcon", false)
-mod:AddBoolOption("ClawRageIcon", true)
+mod:AddBoolOption("ClawRageIcon", false)
 mod:AddBoolOption("InfoFrame")
 
 function mod:OnCombatEnd()
