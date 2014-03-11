@@ -13,13 +13,13 @@ mod:SetModelSound("Sound\\Creature\\RAGNAROS\\VO_FL_RAGNAROS_AGGRO.wav", "Sound\
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_APPLIED_DOSE",
-	"SPELL_AURA_REMOVED",
-	"SPELL_CAST_START",
-	"SPELL_CAST_SUCCESS",
-	"SPELL_DAMAGE",
-	"SPELL_MISSED",
+	"SPELL_AURA_APPLIED 99399 100594 100171 100604",
+	"SPELL_AURA_APPLIED_DOSE 99399 100594",
+	"SPELL_AURA_REMOVED 99399",
+	"SPELL_CAST_START 98710 98951 98952 98953 99172 99235 99236 100646 100479",
+	"SPELL_CAST_SUCCESS 98237 98164 98263 100460 99268 100714 101110",
+	"SPELL_DAMAGE 98518 98175 98870 99144 100941 98981",
+	"SPELL_MISSED 98518 98175 98870 99144 100941 98981",
 	"CHAT_MSG_MONSTER_YELL",
 	"RAID_BOSS_EMOTE",
 	"RAID_BOSS_WHISPER",
@@ -135,6 +135,7 @@ local staffDebuff = GetSpellInfo(101109)
 local seedCast = GetSpellInfo(98333)
 local deluge = GetSpellInfo(100713)
 local dreadFlameTimer = 45
+local UnitDebuff = UnitDebuff
 
 local function showRangeFrame()
 	if UnitDebuff("player", staffDebuff) then return end--Staff debuff, don't change their range finder from 8.
@@ -283,24 +284,25 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 99399 then
+	local spellId = args.spellId
+	if spellId == 99399 then
 		warnBurningWound:Show(args.destName, args.amount or 1)
 		if (args.amount or 0) >= 4 and args:IsPlayer() then
 			specWarnBurningWound:Show(args.amount)
 		end
 		timerBurningWound:Start(args.destName)
-	elseif args.spellId == 100594 and args:IsPlayer() then
+	elseif spellId == 100594 and args:IsPlayer() then
 		if (args.amount or 0) >= 12 and args.amount % 4 == 0 then
 			specWarnSuperheated:Show(args.amount)
 		end
-	elseif args.spellId == 100171 then--World of Flames, heroic version for engulfing flames.
+	elseif spellId == 100171 then--World of Flames, heroic version for engulfing flames.
 		specWarnWorldofFlames:Show()
 		if phase == 3 then
 			timerFlamesCD:Start(30)--30 second CD in phase 3
 		else
 			timerFlamesCD:Start(60)--60 second CD in phase 2
 		end
-	elseif args.spellId == 100604 then
+	elseif spellId == 100604 then
 		warnEmpoweredSulf:Show(args.spellName)
 		specWarnEmpoweredSulf:Show()
 		soundEmpoweredSulf:Play()
@@ -313,13 +315,15 @@ end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args.spellId == 99399 then
+	local spellId = args.spellId
+	if spellId == 99399 then
 		timerBurningWound:Cancel(args.destName)
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args.spellId == 98710 then
+	local spellId = args.spellId
+	if spellId == 98710 then
 		firstSmash = true
 		warnSulfurasSmash:Show()
 		specWarnSulfurasSmash:Show()
@@ -371,11 +375,11 @@ function mod:SPELL_CAST_START(args)
 		specWarnSplittingBlow:Show()
 		timerInvokeSons:Start()
 		timerLavaBoltCD:Start(17.3)--9.3 seconds + cast time for splitting blow
-		if args.spellId == 98951 then--West
+		if spellId == 98951 then--West
 			warnSplittingBlow:Show(args.spellName, L.West)
-		elseif args.spellId == 98952 then--Middle
+		elseif spellId == 98952 then--Middle
 			warnSplittingBlow:Show(args.spellName, L.Middle)
-		elseif args.spellId == 98953 then--East
+		elseif spellId == 98953 then--East
 			warnSplittingBlow:Show(args.spellName, L.East)
 		end
 	elseif args:IsSpellID(99172, 99235, 99236) then--Another scripted spell with a ton of spellids based on location of room.
@@ -387,33 +391,34 @@ function mod:SPELL_CAST_START(args)
 		--North: 99172
 		--Middle: 99235
 		--South: 99236
-		if args.spellId == 99172 then--North
+		if spellId == 99172 then--North
 			if not self.Options.WarnEngulfingFlameHeroic and self:IsDifficulty("heroic10", "heroic25") then return end
 			warnEngulfingFlame:Show(args.spellName, L.North)
 			if self:IsMelee() or seedsActive then--Always warn melee classes if it's in melee (duh), warn everyone if seeds are active since 90% of strats group up in melee
 				specWarnEngulfing:Show()
 			end
-		elseif args.spellId == 99235 then--Middle
+		elseif spellId == 99235 then--Middle
 			if not self.Options.WarnEngulfingFlameHeroic and self:IsDifficulty("heroic10", "heroic25") then return end
 			warnEngulfingFlame:Show(args.spellName, L.Middle)
-		elseif args.spellId == 99236 then--South
+		elseif spellId == 99236 then--South
 			if not self.Options.WarnEngulfingFlameHeroic and self:IsDifficulty("heroic10", "heroic25") then return end
 			warnEngulfingFlame:Show(args.spellName, L.South)
 		end
-	elseif args.spellId == 100646 then
+	elseif spellId == 100646 then
 		warnEntrappingRoots:Show()
 		timerEntrapingRootsCD:Start()
-	elseif args.spellId == 100479 then
+	elseif spellId == 100479 then
 		warnBreadthofFrost:Show()
 		timerBreadthofFrostCD:Start()
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args.spellId == 98237 and not args:IsSrcTypePlayer() then -- can be stolen which triggers a new SPELL_CAST_SUCCESS event...
+	local spellId = args.spellId
+	if spellId == 98237 and not args:IsSrcTypePlayer() then -- can be stolen which triggers a new SPELL_CAST_SUCCESS event...
 		warnHandRagnaros:Show()
 		timerHandRagnaros:Start()
-	elseif args.spellId == 98164 then	--98164 confirmed
+	elseif spellId == 98164 then	--98164 confirmed
 		magmaTrapSpawned = magmaTrapSpawned + 1
 		timerMagmaTrap:Start()
 		self:BossTargetScanner(52409, "MagmaTrapTarget", 0.025, 12)
@@ -421,7 +426,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 			DBM.InfoFrame:SetHeader(L.HealthInfo)
 			DBM.InfoFrame:Show(5, "health", 100000)
 		end
-	elseif args.spellId == 98263 and self:AntiSpam(4, 1) then
+	elseif spellId == 98263 and self:AntiSpam(4, 1) then
 		warnWrathRagnaros:Show()
 		--Wrath of Ragnaros has a 25 second cd if 2 happen before first smash, otherwise it's 30.
 		--In this elaborate function we count the wraths before first smash
@@ -438,7 +443,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 				timerWrathRagnaros:Start(36)--First smash didn't happen yet, and first wrath happened later then 5 seconds into pull, 2nd smash will be delayed by sulfuras smash.
 			end
 		end
-	elseif args.spellId == 100460 then	-- Blazing heat
+	elseif spellId == 100460 then	-- Blazing heat
 		warnBlazingHeat:Show(args.destName)
 		timerBlazingHeatCD:Start(args.sourceGUID)--args.sourceGUID is to support multiple cds when more then 1 is up at once
 		if args:IsPlayer() then
@@ -454,7 +459,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 				blazingHeatIcon = 2
 			end
 		end
-	elseif args.spellId == 99268 then
+	elseif spellId == 99268 then
 		meteorSpawned = meteorSpawned + 1
 		if meteorSpawned == 1 or meteorSpawned % 2 == 0 then--Spam filter, announce at 1, 2, 4, 6, 8, 10 etc. The way that they spawn
 			self:BossTargetScanner(52409, "LivingMeteorTarget", 0.025, 12)
@@ -466,9 +471,9 @@ function mod:SPELL_CAST_SUCCESS(args)
 			DBM.InfoFrame:SetHeader(L.MeteorTargets)
 			DBM.InfoFrame:Show(6, "playerbaddebuff", 99849)--If you get more then 6 chances are you're screwed unless it's normal mode and he's at like 11%. Really anything more then 4 is chaos and wipe waiting to happen.
 		end
-	elseif args.spellId == 100714 then
+	elseif spellId == 100714 then
 		warnCloudBurst:Show()
-	elseif args.spellId == 101110 then
+	elseif spellId == 101110 then
 		warnRageRagnaros:Show(args.destName)
 		if self.Options.RangeFrame and args:IsPlayer() then
 			DBM.RangeCheck:Show(8)
