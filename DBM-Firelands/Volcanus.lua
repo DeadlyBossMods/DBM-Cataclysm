@@ -13,7 +13,7 @@ mod:SetMinCombatTime(15)
 mod:SetWipeTime(40)--You leave combat for about 35 seconds. we do 40 for good measure.
 
 mod:RegisterEvents(
-	"SPELL_CAST_START",
+	"SPELL_CAST_START 100146",
 	"RAID_BOSS_EMOTE"
 )
 

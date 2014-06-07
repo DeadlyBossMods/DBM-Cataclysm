@@ -13,11 +13,11 @@ mod:SetModelSound("Sound\\Creature\\ALYSRAZOR\\VO_FL_ALYSRAZOR_AGGRO.wav", "Soun
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_APPLIED_DOSE",
-	"SPELL_AURA_REFRESH",
-	"SPELL_AURA_REMOVED",
-	"SPELL_CAST_SUCCESS",
+	"SPELL_AURA_APPLIED 99362 99359 99308 99432 99844",
+	"SPELL_AURA_APPLIED_DOSE 99844",
+	"SPELL_AURA_REFRESH 99359",
+	"SPELL_AURA_REMOVED 100744 99432 99362 99359 99844",
+	"SPELL_CAST_SUCCESS 99464",
 	"RAID_BOSS_EMOTE",
 	"CHAT_MSG_MONSTER_YELL"
 )
@@ -53,6 +53,7 @@ local timerSatiated				= mod:NewBuffActiveTimer(15, 99359, nil, mod:IsTank())
 local timerBlazingClaw			= mod:NewTargetTimer(15, 99844, nil, false)
 
 local countdownFirestorm		= mod:NewCountdown(83, 100744)
+local countdownCataclysm		= mod:NewCountdown("Alt31", 102111)
 
 mod:AddBoolOption("InfoFrame", false)
 
@@ -76,6 +77,7 @@ function mod:OnCombatStart(delay)
 	if self:IsDifficulty("heroic10", "heroic25") then
 		timerFieryVortexCD:Start(243-delay)--Probably not right.
 		timerCataclysmCD:Start(32-delay)
+		countdownCataclysm:Start(32-delay)
 		timerHatchEggs:Start(42-delay)
 		timerFirestormCD:Start(94-delay)
 		countdownFirestorm:Start(94-delay)--Perhaps some tuning.
@@ -103,35 +105,38 @@ function mod:OnCombatEnd()
 end 
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 99362 and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and (args.sourceGUID == UnitGUID("targettarget") or args.sourceGUID == UnitGUID("focustargettarget"))) then--Only give warning if it's mob you're targeting and you're a tank, or you're targeting the tank it's on and he's targeting the bird.
+	local spellId = args.spellId
+	if spellId == 99362 and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and (args.sourceGUID == UnitGUID("targettarget") or args.sourceGUID == UnitGUID("focustargettarget"))) then--Only give warning if it's mob you're targeting and you're a tank, or you're targeting the tank it's on and he's targeting the bird.
 		specWarnTantrum:Show()
 		timerTantrum:Show()
-	elseif args.spellId == 99359 and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and (args.sourceGUID == UnitGUID("targettarget") or args.sourceGUID == UnitGUID("focustargettarget"))) then--^^ Same as above only with diff spell
+	elseif spellId == 99359 and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and (args.sourceGUID == UnitGUID("targettarget") or args.sourceGUID == UnitGUID("focustargettarget"))) then--^^ Same as above only with diff spell
 		if self:IsDifficulty("heroic10", "heroic25") then
 			timerSatiated:Start(10)
 		else
 			timerSatiated:Start()
 		end
-	elseif args.spellId == 99308 then--Gushing Wound
+	elseif spellId == 99308 then--Gushing Wound
 		specWarnGushingWoundOther:Show(args.destName)
 		if args:IsPlayer() then
 			specWarnGushingWoundSelf:Show()
 		end
-	elseif args.spellId == 99432 then--Burnout applied (0 energy)
+	elseif spellId == 99432 then--Burnout applied (0 energy)
 		warnPhase:Show(3)
-	elseif args.spellId == 99844 and args:IsDestTypePlayer() then
+	elseif spellId == 99844 and args:IsDestTypePlayer() then
 		timerBlazingClaw:Start(args.destName)
 	end
 end
 
 function mod:SPELL_AURA_APPLIED_DOSE(args)
-	if args.spellId == 99844 and args:IsDestTypePlayer() then
+	local spellId = args.spellId
+	if spellId == 99844 and args:IsDestTypePlayer() then
 		timerBlazingClaw:Start(args.destName)
 	end
 end
 
 function mod:SPELL_AURA_REFRESH(args)
-	if args.spellId == 99359 and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and args.sourceGUID == UnitGUID("targettarget")) then--^^ Same as above only with diff spell
+	local spellId = args.spellId
+	if spellId == 99359 and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and args.sourceGUID == UnitGUID("targettarget")) then--^^ Same as above only with diff spell
 		if self:IsDifficulty("heroic10", "heroic25") then
 			timerSatiated:Start(10)
 		else
@@ -141,26 +146,30 @@ function mod:SPELL_AURA_REFRESH(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args.spellId == 100744 then--Firestorm removed from boss. No reason for a heroic check here, this shouldn't happen on normal.
+	local spellId = args.spellId
+	if spellId == 100744 then--Firestorm removed from boss. No reason for a heroic check here, this shouldn't happen on normal.
 		timerHatchEggs:Start(16)
 		if cataCast < 3 then
 			timerCataclysmCD:Start(10)--10 seconds after first firestorm ends
+			countdownCataclysm:Start(10)
 		else
 			timerCataclysmCD:Start(20)--20 seconds after second one ends. (or so i thought, my new logs show only 4 cataclysms not 5. wtf. I hate inconsistencies
+			countdownCataclysm:Start(20)
 		end
-	elseif args.spellId == 99432 and self:IsInCombat() then--Burnout removed (50 energy)
+	elseif spellId == 99432 and self:IsInCombat() then--Burnout removed (50 energy)
 		warnPhase:Show(4)
-	elseif args.spellId == 99362 and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and args.sourceGUID == UnitGUID("targettarget")) then
+	elseif spellId == 99362 and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and args.sourceGUID == UnitGUID("targettarget")) then
 		timerTantrum:Cancel()
-	elseif args.spellId == 99359 and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and args.sourceGUID == UnitGUID("targettarget")) then--^^ Same as above only with diff spell
+	elseif spellId == 99359 and ((args.sourceGUID == UnitGUID("target") and self:IsTank()) or not self:IsTank() and args.sourceGUID == UnitGUID("targettarget")) then--^^ Same as above only with diff spell
 		timerSatiated:Cancel()
-	elseif args.spellId == 99844 then
+	elseif spellId == 99844 then
 		timerBlazingClaw:Cancel(args.destName)
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args.spellId == 101223 then
+	local spellId = args.spellId
+	if spellId == 101223 then
 		if args.sourceGUID == UnitGUID("target") then
 			specWarnFieroblast:Show(args.sourceName)
 		end
@@ -170,8 +179,9 @@ function mod:SPELL_CAST_START(args)
 		timerCataclysm:Start()
 		if cataCast == 1 or cataCast == 3 then--Cataclysm is cast 5 times, but there is a firestorm in middle them affecting CD on 2nd and 4th, so you only want to start 30 sec bar after first and third
 			timerCataclysmCD:Start()
+			countdownCataclysm:Start()
 		end
-	elseif args.spellId == 100744 then
+	elseif spellId == 100744 then
 		warnFirestorm:Show()
 		specWarnFirestorm:Show()
 		if cataCast < 3 then--Firestorm is only cast 2 times per phase. This essencially makes cd bar only start once.
@@ -180,13 +190,14 @@ function mod:SPELL_CAST_START(args)
 			warnFirestormSoon:Cancel()--Just in case it's wrong. WoL may not be perfect, i'll have full transcriptor logs soon.
 			warnFirestormSoon:Schedule(73)
 		end
-	elseif args.spellId == 100559 then--Roots from the first pull RP
+	elseif spellId == 100559 then--Roots from the first pull RP
 		timerCombatStart:Start()
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args.spellId == 99464 and self:IsDifficulty("normal10", "normal25") then
+	local spellId = args.spellId
+	if spellId == 99464 and self:IsDifficulty("normal10", "normal25") then
 		warnMolting:Show()
 		if moltCast < 2 then
 			timerMoltingCD:Start()
@@ -246,6 +257,7 @@ function mod:RAID_BOSS_EMOTE(msg)
 			timerFieryVortexCD:Start(225)
 			timerHatchEggs:Start(22)
 			timerCataclysmCD:Start(18)
+			countdownCataclysm:Start(18)
 			timerFirestormCD:Start(70)
 			countdownFirestorm:Start(70)
 			warnFirestormSoon:Schedule(60)

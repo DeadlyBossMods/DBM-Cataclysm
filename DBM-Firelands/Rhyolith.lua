@@ -13,11 +13,11 @@ mod:SetModelSound("Sound\\Creature\\RHYOLITH\\VO_FL_RHYOLITH_AGGRO.wav", "Sound\
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_APPLIED_DOSE",
-	"SPELL_CAST_START",
-	"SPELL_CAST_SUCCESS",
-	"SPELL_SUMMON",
+	"SPELL_AURA_APPLIED 99846",
+	"SPELL_AURA_APPLIED_DOSE 98255",
+	"SPELL_CAST_START 98034 97282",
+	"SPELL_CAST_SUCCESS 98493 97225",
+	"SPELL_SUMMON 98136 98552",
 	"UNIT_HEALTH boss1"
 )
 
@@ -68,7 +68,8 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 99846 and not phase2Started then
+	local spellId = args.spellId
+	if spellId == 99846 and not phase2Started then
 		phase2Started = true
 		warnPhase2:Show()
 		if timerFlameStomp:GetTime() > 0 then--This only happens if it was still on CD going into phase
@@ -83,16 +84,18 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_APPLIED_DOSE(args)
-	if args.spellId == 98255 and self:GetCIDFromGUID(args.destGUID) == 52558 and args.amount > 10 and self:AntiSpam(5, 1) then
+	local spellId = args.spellId
+	if spellId == 98255 and self:GetCIDFromGUID(args.destGUID) == 52558 and args.amount > 10 and self:AntiSpam(5, 1) then
 		warnMoltenArmor:Show(args.destName, args.amount)
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args.spellId == 98034 then
+	local spellId = args.spellId
+	if spellId == 98034 then
 		warnDrinkMagma:Show()
 		timerMoltenSpew:Start()
-	elseif args.spellId == 97282 then
+	elseif spellId == 97282 then
 		warnFlameStomp:Show()
 		specWarnFlameStomp:Show()
 		if not phase2Started then
@@ -106,14 +109,15 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args.spellId == 98493 then
+	local spellId = args.spellId
+	if spellId == 98493 then
 		warnHeatedVolcano:Show()
 		if self:IsDifficulty("heroic10", "heroic25") then
 			timerHeatedVolcano:Start()
 		else
 			timerHeatedVolcano:Start(40)
 		end
-	elseif args.spellId == 97225 then
+	elseif spellId == 97225 then
 		warnMagmaFlow:Show()
 		specWarnMagmaFlow:Show()
 		timerMagmaFlowActive:Start()
@@ -121,7 +125,8 @@ function mod:SPELL_CAST_SUCCESS(args)
 end
 
 function mod:SPELL_SUMMON(args)
-	if args.spellId == 98136 and self:AntiSpam(5, 2) then
+	local spellId = args.spellId
+	if spellId == 98136 and self:AntiSpam(5, 2) then
 		fragmentCount = fragmentCount + 1
 		warnFragments:Show()
 		if fragmentCount < 2 then
@@ -130,7 +135,7 @@ function mod:SPELL_SUMMON(args)
 			fragmentCount = 0
 			timerSparkCD:Start(22.5, sparkCount+1)
 		end
-	elseif args.spellId == 98552 then
+	elseif spellId == 98552 then
 		sparkCount = sparkCount + 1
 		warnShard:Show(sparkCount)
 		timerFragmentCD:Start()

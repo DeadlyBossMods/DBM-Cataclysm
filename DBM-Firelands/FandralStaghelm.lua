@@ -14,11 +14,11 @@ mod:SetModelSound("Sound\\Creature\\FandralFlameDruid\\VO_FL_FANDRAL_GATE_INTRO_
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_APPLIED_DOSE",
-	"SPELL_AURA_REMOVED",
-	"SPELL_CAST_START",
-	"SPELL_CAST_SUCCESS"
+	"SPELL_AURA_APPLIED 98374 98379 97238 97235 98535 98584 98450",
+	"SPELL_AURA_APPLIED_DOSE 97238 97235 98584",
+	"SPELL_AURA_REMOVED 98450",
+	"SPELL_CAST_START 98451",
+	"SPELL_CAST_SUCCESS 98476"
 )
 
 local warnAdrenaline			= mod:NewStackAnnounce(97238, 3)
@@ -163,7 +163,8 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 98374 then		-- Cat Form (99574? maybe the form id for druids with staff)
+	local spellId = args.spellId
+	if spellId == 98374 then		-- Cat Form
 		kitty = true
 		abilityCount = 0
 		timerNextSpecial:Cancel()
@@ -171,7 +172,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		if self.Options.RangeFrameCat then
 			DBM.RangeCheck:Show(10)
 		end
-	elseif args.spellId == 98379 then	-- Scorpion Form
+	elseif spellId == 98379 then	-- Scorpion Form
 		kitty = false
 		abilityCount = 0
 		timerNextSpecial:Cancel()
@@ -179,7 +180,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		if self.Options.RangeFrameCat and not UnitDebuff("player", seedsDebuff) then--Only hide range finder if you do not have seed.
 			DBM.RangeCheck:Hide()
 		end
-	elseif args.spellId == 97238 then
+	elseif spellId == 97238 then
 		abilityCount = (args.amount or 1)--This should change your ability account to his current stack, which is disconnect friendly.
 		warnAdrenaline:Show(args.destName, args.amount or 1)
 		if kitty then
@@ -187,16 +188,16 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			timerNextSpecial:Start(abilityTimers[abilityCount] or 3.7, swipe, abilityCount+1)
 		end
-	elseif args.spellId == 97235 then
+	elseif spellId == 97235 then
 		warnFury:Show(args.destName, args.amount or 1)
-	elseif args.spellId == 98535 and args:IsPlayer() and not recentlyJumped then
+	elseif spellId == 98535 and args:IsPlayer() and not recentlyJumped then
 		specWarnLeapingFlames:Show()--You stood in the fire!
-	elseif args.spellId == 98584 and args:IsPlayer() then
+	elseif spellId == 98584 and args:IsPlayer() then
 		if (args.amount or 1) >= 4 then
 			specWarnOrb:Show(args.amount)--You stood in the fire!
 		end
 		timerOrb:Start()
-	elseif args.spellId == 98450 and args:IsPlayer() then
+	elseif spellId == 98450 and args:IsPlayer() then
 		local _, _, _, _, _, duration, expires, _, _ = UnitDebuff("player", args.spellName)--Find out what our specific seed timer is
 		specWarnSearingSeed:Schedule(expires - GetTime() - 5)	-- Show "move away" warning 5secs before explode
 		soundSeed:Schedule(expires - GetTime() - 5)
@@ -209,7 +210,8 @@ end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args.spellId == 98450 and args:IsPlayer() then
+	local spellId = args.spellId
+	if spellId == 98450 and args:IsPlayer() then
 		specWarnSearingSeed:Cancel()
 		soundSeed:Cancel()
 		timerSearingSeed:Cancel()
@@ -220,14 +222,16 @@ function mod:SPELL_AURA_REMOVED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args.spellId == 98451 then
+	local spellId = args.spellId
+	if spellId == 98451 then
 		warnOrbs:Show()
 		timerOrbActive:Start()
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args.spellId == 98476 then
+	local spellId = args.spellId
+	if spellId == 98476 then
 		targetScansDone = 0
 		self:TargetScanner()
 	end
