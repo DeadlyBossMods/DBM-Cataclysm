@@ -74,6 +74,8 @@ local timerConsumingShroud			= mod:NewCDTimer(30, 110214)
 local timerTwilightBreath			= mod:NewCDTimer(20.5, 110212, nil, mod:IsTank() or mod:IsHealer())
 
 local countdownTwilightOnslaught	= mod:NewCountdown(35, 107588)
+local countdownSapper				= mod:NewCountdown("Alt10", "ej4200")
+
 local berserkTimer					= mod:NewBerserkTimer(240)
 
 mod:AddBoolOption("SetTextures", false)--Disable projected textures in phase 1, because no harmful spells use them in phase 1, but friendly spells make the blade rush lines harder to see.
@@ -87,6 +89,7 @@ local CVAR = false
 local function Phase2Delay()
 	mod:UnscheduleMethod("AddsRepeat")
 	timerSapperCD:Cancel()
+	countdownSapper:Cancel()
 	timerRoarCD:Start(10)
 	timerTwilightFlamesCD:Start(12)
 	timerShockwaveCD:Start(13)--13-16 second variation
@@ -143,6 +146,7 @@ function mod:OnCombatStart(delay)
 	end
 	if not self:IsDifficulty("lfr25") then--No sappers in LFR
 		timerSapperCD:Start(69-delay)
+		countdownSapper:Start(69-delay)
 	end
 	if DBM.BossHealth:IsShown() then
 		local shipname = EJ_GetSectionInfo(4202)
@@ -265,6 +269,7 @@ mod.SPELL_MISSED = mod.SPELL_DAMAGE
 function mod:RAID_BOSS_EMOTE(msg)
 	if msg == L.SapperEmote or msg:find(L.SapperEmote) then
 		timerSapperCD:Start()
+		countdownSapper:Start()
 		specWarnSapper:Show()
 	elseif msg == L.Broadside or msg:find(L.Broadside) then
 		timerBroadsideCD:Start()

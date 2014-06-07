@@ -14,12 +14,12 @@ mod:SetModelSound("Sound\\Creature\\BALEROC\\VO_FL_BALEROC_AGGRO.wav", "Sound\\C
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_REFRESH",
-	"SPELL_AURA_REMOVED",
+	"SPELL_AURA_APPLIED 99516 99256 99263 99352 99350 99257",
+	"SPELL_AURA_REFRESH 99257",
+	"SPELL_AURA_REMOVED 99352 99352 99256 99257",
 	"SPELL_DAMAGE",
 	"SPELL_MISSED",
-	"SPELL_CAST_START"
+	"SPELL_CAST_START 99352 99350 99259"
 )
 
 local warnDecimationBlade	= mod:NewSpellAnnounce(99352, 4, nil, mod:IsTank() or mod:IsHealer())
@@ -111,7 +111,8 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 99516 then
+	local spellId = args.spellId
+	if spellId == 99516 then
 		countdownTargets[#countdownTargets + 1] = args.destName
 		timerCountdown:Start()
 		timerCountdownCD:Start()
@@ -132,14 +133,14 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 		self:Unschedule(showCountdownWarning)
 		self:Schedule(0.5, showCountdownWarning)
-	elseif args.spellId == 99256 then--Torment
+	elseif spellId == 99256 then--Torment
 		if self.Options.SetIconOnTorment then
 			self:SetIcon(args.destName, tormentIcon)
 			tormentIcon = tormentIcon - 1
 		end
-	elseif args.spellId == 99263 and args:IsPlayer() then
+	elseif spellId == 99263 and args:IsPlayer() then
 		timerVitalFlame:Start()
-	elseif args.spellId == 99352 then--Decimation Blades
+	elseif spellId == 99352 then--Decimation Blades
 		bladesName = GetSpellInfo(99353)
 		lastStrike = GetTime()--Set last strike here too
 		strikeCount = 0--Reset count.
@@ -148,12 +149,12 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			timerStrikeCD:Start(6, bladesName)--6 seconds on 10 man
 		end
-	elseif args.spellId == 99350 then--Inferno Blades
+	elseif spellId == 99350 then--Inferno Blades
 		bladesName = GetSpellInfo(99351)
 		lastStrike = GetTime()--Set last strike here too
 		strikeCount = 0--Reset count.
 		timerStrikeCD:Start(2.5, bladesName)
-	elseif args.spellId == 99257 then--Tormented
+	elseif spellId == 99257 then--Tormented
 		if args:IsPlayer() then
 			warnTormented:Show()
 			specWarnTormented:Show()
@@ -174,7 +175,8 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REFRESH(args)
-	if args.spellId == 99257 then--Tormented
+	local spellId = args.spellId
+	if spellId == 99257 then--Tormented
 		if args:IsPlayer() then
 			if self:IsDifficulty("normal10") then--The very first timer is subject to inaccuracis do to variation. But they are minor, usually within 0.5sec
 				timerTormented:Start(20)
@@ -190,14 +192,15 @@ function mod:SPELL_AURA_REFRESH(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args:IsSpellID(99352, 99350) then--Decimation Blade/Inferno blade
+	local spellId = args.spellId
+	if args:IsSpellID(99352, 99352) then--Decimation Blade/Inferno blade
 		timerBladeNext:Start()--30 seconds after last blades FADED
 		timerStrikeCD:Cancel()
-	elseif args.spellId == 99256 then--Torment
+	elseif spellId == 99256 then--Torment
 		if self.Options.SetIconOnTorment then
 			self:SetIcon(args.destName, 0)
 		end
-	elseif args.spellId == 99257 then--Tormented
+	elseif spellId == 99257 then--Tormented
 		if args:IsPlayer() then
 			timerTormented:Cancel()
 			if self.Options.RangeFrame and self:IsDifficulty("heroic10", "heroic25") and self:IsInCombat() then
@@ -251,14 +254,15 @@ end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE--Dodge/parried decimation strikes show as SPELL_MISSED
 
 function mod:SPELL_CAST_START(args)
-	if args.spellId == 99352 then
+	local spellId = args.spellId
+	if spellId == 99352 then
 		warnDecimationBlade:Show()
 		specWarnDecimation:Show()
 		timerBladeActive:Start(args.spellName)
-	elseif args.spellId == 99350 then
+	elseif spellId == 99350 then
 		warnInfernoBlade:Show()
 		timerBladeActive:Start(args.spellName)
-	elseif args.spellId == 99259 then
+	elseif spellId == 99259 then
 		shardCount = shardCount + 1
 		tormentIcon = 8
 		warnShardsTorment:Show(shardCount)
