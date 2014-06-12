@@ -74,7 +74,7 @@ local timerConsumingShroud			= mod:NewCDTimer(30, 110214)
 local timerTwilightBreath			= mod:NewCDTimer(20.5, 110212, nil, mod:IsTank() or mod:IsHealer())
 
 local countdownTwilightOnslaught	= mod:NewCountdown(35, 107588)
-local countdownSapper				= mod:NewCountdown("Alt10", "ej4200")
+local countdownSapper				= mod:NewCountdown("Alt40", "ej4200")
 
 local berserkTimer					= mod:NewBerserkTimer(240)
 
