@@ -16,7 +16,7 @@
 ## X-DBM-Mod-Type: RAID
 ## X-DBM-Mod-Category: CATA
 ## X-DBM-Mod-MapID: 754
-## X-DBM-Mod-Sort: 105
+## X-DBM-Mod-Sort: 305
 localization.en.lua
 localization.de.lua
 localization.es.lua
