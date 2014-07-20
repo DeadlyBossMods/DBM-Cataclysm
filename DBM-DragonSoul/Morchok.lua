@@ -15,8 +15,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_REMOVED 103851",
 	"SPELL_CAST_START 103414 103851",
 	"SPELL_SUMMON 103639 109017",
-	"SPELL_CAST_SUCCESS 103821",
-	"SPELL_DAMAGE"
+	"SPELL_CAST_SUCCESS 103821"
 )
 
 local warnCrushArmor		= mod:NewStackAnnounce(103687, 3, nil, mod:IsTank() or mod:IsHealer())
@@ -195,8 +194,8 @@ function mod:SPELL_CAST_SUCCESS(args)
 		end
 		if not self:IsTrivial(90) then--Only register damage events during vortex (when black blood is out) and only if it's not trivial
 			self:RegisterShortTermEvents(
-				"SPELL_DAMAGE",
-				"SPELL_MISSED"
+				"SPELL_DAMAGE 103785",
+				"SPELL_MISSED 103785"
 			)
 		end
 	end
