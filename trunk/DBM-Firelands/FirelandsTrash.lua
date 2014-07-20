@@ -91,8 +91,8 @@ function mod:SPELL_CAST_START(args)
 		timerRaiseLavaCD:Start()
 		if not lavaRunning then
 			self:RegisterShortTermEvents(
-				"SPELL_DAMAGE",
-				"SPELL_MISSED"
+				"SPELL_DAMAGE 99510",
+				"SPELL_MISSED 99510"
 			)
 			lavaRunning = true
 		end
