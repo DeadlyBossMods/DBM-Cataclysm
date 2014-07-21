@@ -59,7 +59,6 @@ local gripTargets = {}
 local gripIcon = 6
 local corruptionActive = {}
 local residueNum = 0
-local residueDebug = false
 local diedOozeGUIDS = {}
 
 local function checkTendrils()
@@ -93,7 +92,6 @@ local function checkOozeResurrect(GUID)
 		diedOozeGUIDS[GUID] = nil
 		mod:Unschedule(warningResidue)
 		mod:Schedule(1.25, warningResidue)
-		if residueDebug then print("revived", residueNum) end
 	end
 end
 
@@ -220,13 +218,11 @@ function mod:SPELL_CAST_SUCCESS(args)
 		diedOozeGUIDS[args.sourceGUID] = GetTime()
 		self:Unschedule(warningResidue)
 		self:Schedule(1.25, warningResidue)
-		if residueDebug then print("created", residueNum) end
 	elseif spellId == 105248 and diedOozeGUIDS[args.sourceGUID] then
 		residueNum = residueNum - 1
 		diedOozeGUIDS[args.sourceGUID] = nil
 		self:Unschedule(warningResidue)
 		self:Schedule(1.25, warningResidue)
-		if residueDebug then print("absorbed", residueNum) end
 	end
 end
 
