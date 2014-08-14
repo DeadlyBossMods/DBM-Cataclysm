@@ -18,6 +18,7 @@ mod:RegisterEventsInCombat(
 mod:RegisterEvents(
 	"CHAT_MSG_MONSTER_SAY"
 )
+mod.onlyHeroic = true
 
 local warnRighteousShear		= mod:NewTargetAnnounce(103151, 2)
 local warnPurifyingLight		= mod:NewSpellAnnounce(103565, 3)

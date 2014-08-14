@@ -15,6 +15,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_PERIODIC_DAMAGE",
 	"SPELL_PERIODIC_MISSED"
 )
+mod.onlyHeroic = true
 
 --Warriors and warlocks can too but only with right spec/pet. So they are not in the defaults.
 local isDispeller = select(2, UnitClass("player")) == "PRIEST"

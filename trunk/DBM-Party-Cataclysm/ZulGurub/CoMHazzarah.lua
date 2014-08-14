@@ -10,4 +10,5 @@ mod:RegisterCombat("combat")
 mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED"
 )
+mod.onlyHeroic = true
 

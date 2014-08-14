@@ -13,6 +13,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START",
 	"CHAT_MSG_MONSTER_YELL"
 )
+mod.onlyHeroic = true
 
 local warnTotemWater	= mod:NewSpellAnnounce(97499, 3)
 local warnTotemLighting	= mod:NewSpellAnnounce(43302, 3)

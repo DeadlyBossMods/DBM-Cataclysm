@@ -21,6 +21,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_HEAL",
 	"UNIT_DIED"
 )
+mod.onlyHeroic = true
 
 local warnDecapitate		= mod:NewTargetAnnounce(96684, 2)
 local warnBloodletting		= mod:NewTargetAnnounce(96776, 3)

@@ -21,6 +21,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_MISSED",
 	"UNIT_DIED"
 )
+mod.onlyHeroic = true
 
 local warnBreath			= mod:NewSpellAnnounce(90125, 3)
 local warnOrbSoon			= mod:NewAnnounce("WarnOrbSoon", 3, 92852, true, nil, true)--Still on by default but no longer plays it's own sounds

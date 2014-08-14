@@ -16,6 +16,7 @@ mod:RegisterEventsInCombat(
 	"UNIT_POWER",
 	"UNIT_SPELLCAST_SUCCEEDED"
 )
+mod.onlyNormal = true
 
 local warnTwilightZone			= mod:NewSpellAnnounce(93553, 2)--Used for protection against UnleashedMagic
 local warnTwilightFissure		= mod:NewTargetAnnounce(93546, 3)--Typical void zone.

@@ -13,6 +13,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_INTERRUPT",
 	"SPELL_CAST_SUCCESS"
 )
+mod.onlyHeroic = true
 
 local warnTears			= mod:NewSpellAnnounce(96435, 3)
 local warnLash			= mod:NewTargetAnnounce(96423, 3)

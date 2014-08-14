@@ -13,6 +13,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED",
 	"SPELL_CAST_START"
 )
+mod.onlyHeroic = true
 
 local specWarnFelStorm		= mod:NewSpecialWarningRun(103888)
 

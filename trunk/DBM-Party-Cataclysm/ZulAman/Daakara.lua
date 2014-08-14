@@ -14,6 +14,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_DAMAGE",
 	"SPELL_MISSED"
 )
+mod.onlyHeroic = true
 
 local warnThrow				= mod:NewTargetAnnounce(43093, 3)
 local warnWhirlwind			= mod:NewSpellAnnounce(17207, 3)

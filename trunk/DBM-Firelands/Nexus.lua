@@ -13,6 +13,7 @@ mod:RegisterEvents(
 	"SPELL_AURA_APPLIED 99392",
 	"SPELL_AURA_REMOVED 99392"
 )
+mod.noStatistics = true
 
 local warnBreath				= mod:NewSpellAnnounce(99502, 4)
 local specwarnBreath			= mod:NewSpecialWarningCast(99502)

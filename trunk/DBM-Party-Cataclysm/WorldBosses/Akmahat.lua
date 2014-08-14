@@ -13,6 +13,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED",
 	"SPELL_AURA_REMOVED"
 )
+mod.onlyNormal = true
 
 local warnShockwave			= mod:NewSpellAnnounce(94968, 2, nil, mod:IsTank() or mod:IsHealer())
 local warnSandsofTime		= mod:NewTargetAnnounce(93578, 2)

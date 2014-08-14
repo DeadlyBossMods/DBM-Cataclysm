@@ -11,6 +11,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_SUCCESS",
 	"CHAT_MSG_MONSTER_EMOTE"
 )
+mod.onlyHeroic = true
 
 local warnPursuit				= mod:NewTargetAnnounce(96306, 4)
 local warnRupture				= mod:NewTargetAnnounce(96619, 3)

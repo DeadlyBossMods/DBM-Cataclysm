@@ -11,6 +11,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED",
 	"CHAT_MSG_MONSTER_YELL"
 )
+mod.onlyHeroic = true
 
 local warnBear			= mod:NewAnnounce("WarnBear", 4, 39414)
 local warnBearSoon		= mod:NewAnnounce("WarnBearSoon", 3, 39414)
