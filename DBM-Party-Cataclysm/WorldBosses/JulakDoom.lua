@@ -16,6 +16,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_DAMAGE",
 	"SPELL_MISSED"
 )
+mod.onlyNormal = true
 
 local warnShockwave			= mod:NewCastAnnounce(93610, 3)
 local warnMC				= mod:NewTargetAnnounce(93621, 4)

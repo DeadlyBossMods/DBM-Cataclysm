@@ -12,6 +12,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED",
 	"SPELL_CAST_START"
 )
+mod.onlyHeroic = true
 
 local warnBlast			= mod:NewSpellAnnounce(102381, 3)
 local warnBreath		= mod:NewSpellAnnounce(102569, 4)

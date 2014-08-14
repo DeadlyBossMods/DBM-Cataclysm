@@ -12,6 +12,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_SUCCESS",
 	"SPELL_DAMAGE"
 )
+mod.onlyHeroic = true
 
 local warnFlarecore				= mod:NewSpellAnnounce(101927, 4)
 local warnFrostBlades			= mod:NewSpellAnnounce(101339, 3)

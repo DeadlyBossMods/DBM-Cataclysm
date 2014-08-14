@@ -15,6 +15,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START",
 	"SPELL_CAST_SUCCESS"
 )
+mod.onlyHeroic = true
 
 local warnDeadzone				= mod:NewSpellAnnounce(97170, 3)
 local warnShadowsOfHakkar		= mod:NewCastAnnounce(97172, 4)

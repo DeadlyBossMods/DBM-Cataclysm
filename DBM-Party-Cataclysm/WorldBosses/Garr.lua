@@ -12,6 +12,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START",
 	"SPELL_CAST_SUCCESS"
 )
+mod.onlyNormal = true
 
 local warnAntiMagicPulse		= mod:NewSpellAnnounce(93506, 2)--An attack that one shots anyone not in a twilight zone.
 local warnMassiveEruption		= mod:NewSpellAnnounce(93508, 4)--An attack that one shots anyone not in a twilight zone.

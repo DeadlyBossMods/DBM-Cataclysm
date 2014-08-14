@@ -11,6 +11,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START",
 	"SPELL_AURA_APPLIED"
 )
+mod.onlyHeroic = true
 
 local warnVanish			= mod:NewSpellAnnounce(96639, 3)
 local warnBlades			= mod:NewSpellAnnounce(96646, 4)

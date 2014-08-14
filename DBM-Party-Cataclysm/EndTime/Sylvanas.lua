@@ -12,6 +12,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_REMOVED",
 	"SPELL_CAST_SUCCESS"
 )
+mod.onlyHeroic = true
 
 local warnShriek		= mod:NewTargetAnnounce(101412, 3, nil, false)
 local warnCalling		= mod:NewSpellAnnounce(100686, 4)

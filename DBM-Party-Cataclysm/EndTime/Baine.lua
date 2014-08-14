@@ -14,6 +14,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_SUCCESS",
 	"SPELL_SUMMON"
 )
+mod.onlyHeroic = true
 
 -- Just adding all I can find, no idea how usefull they will be on Live :)
 

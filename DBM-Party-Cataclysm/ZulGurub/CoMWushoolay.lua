@@ -11,6 +11,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START",
 	"SPELL_AURA_APPLIED"
 )
+mod.onlyHeroic = true
 
 local warnRush			= mod:NewCastAnnounce(96697, 3)
 local warnRod			= mod:NewCastAnnounce(96698, 4)

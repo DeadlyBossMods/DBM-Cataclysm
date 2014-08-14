@@ -14,6 +14,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED",
 	"SPELL_AURA_REMOVED"
 )
+mod.onlyHeroic = true
 
 local warnFelFlames			= mod:NewTargetAnnounce(108141, 3)
 local warnDecay				= mod:NewTargetAnnounce(105544, 3, nil, mod:IsHealer())

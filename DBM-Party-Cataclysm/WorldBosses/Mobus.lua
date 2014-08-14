@@ -12,6 +12,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START",
 	"SPELL_AURA_APPLIED"
 )
+mod.onlyNormal = true
 
 local warnAlgae				= mod:NewTargetAnnounce(93491, 2)
 local warnRam				= mod:NewCastAnnounce(93492, 3)

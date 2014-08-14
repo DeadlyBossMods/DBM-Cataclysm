@@ -18,6 +18,7 @@ mod:RegisterEvents(
 	"SPELL_AURA_APPLIED",
 	"SPELL_AURA_REMOVED"
 )
+mod.onlyHeroic = true
 
 local warnWordHethiss		= mod:NewSpellAnnounce(96560, 2)
 local warnWhisperHethiss	= mod:NewTargetAnnounce(96466, 3)

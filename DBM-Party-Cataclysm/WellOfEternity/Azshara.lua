@@ -12,6 +12,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START",
 	"UNIT_SPELLCAST_SUCCEEDED"
 )
+mod.onlyHeroic = true
 
 local warnServant		= mod:NewSpellAnnounce(102334, 4)
 local warnObedience		= mod:NewSpellAnnounce(103241, 4)
