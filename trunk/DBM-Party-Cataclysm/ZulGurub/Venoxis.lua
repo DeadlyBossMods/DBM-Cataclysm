@@ -9,9 +9,7 @@ mod:SetUsedIcons(7, 8)
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_CAST_START",
-	"SPELL_DAMAGE",
-	"SPELL_MISSED"
+	"SPELL_CAST_START"
 )
 
 mod:RegisterEvents(
@@ -53,6 +51,12 @@ function mod:OnCombatStart(delay)
 	timerToxicLinkCD:Start(12-delay)
 	toxicLinkIcon = 8
 	table.wipe(toxicLinkTargets)
+	if not self:IsTrivial(90) then--Only warning that uses these events is remorseless winter and that warning is completely useless spam for level 90s.
+		self:RegisterShortTermEvents(
+			"SPELL_DAMAGE",
+			"SPELL_MISSED"
+		)
+	end
 end
 
 function mod:SPELL_AURA_APPLIED(args)
