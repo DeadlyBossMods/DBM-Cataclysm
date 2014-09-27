@@ -50,7 +50,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 86881 then
+	if args.spellId == 86881 and not self:IsTrivial(90) then
 		if args:IsPlayer() then
 			specWarnCrystalBarrage:Show()
 		else

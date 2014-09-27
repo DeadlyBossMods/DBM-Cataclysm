@@ -10,8 +10,6 @@ mod:RegisterCombat("combat")
 mod:RegisterEventsInCombat(
 	"SPELL_CAST_START",
 	"SPELL_CAST_SUCCESS",
-	"SPELL_DAMAGE",
-	"SPELL_MISSED",
 	"UNIT_SPELLCAST_SUCCEEDED"
 )
 
@@ -46,6 +44,12 @@ function mod:OnCombatStart(delay)
 --	timerFissureCD:Start(-delay)
 	timerAirphase:Start(12.5-delay)
 	self:ScheduleMethod(12.5-delay, "airphase")
+	if not self:IsTrivial(90) then
+		self:RegisterShortTermEvents(
+			"SPELL_DAMAGE",
+			"SPELL_MISSED"
+		)
+	end
 end
 
 function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
