@@ -170,7 +170,7 @@ function mod:OnSync(msg, GUID)
 		timerDrakes:Cancel()
 	elseif msg == "FirstRP" then
 		timerRoleplay:Start()
-	elseif msg == "secondRP" then
+	elseif msg == "SecondRP" then
 		timerRoleplay:Start(32)
 		if not drakeRunning then
 			self:RegisterShortTermEvents(
