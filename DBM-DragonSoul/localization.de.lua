@@ -204,6 +204,7 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
+	timerRoleplay		= GUILD_INTEREST_RP,
 	TimerDrakes			= "%s"
 })
 
@@ -213,7 +214,7 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	EoEEvent			= "Es ist sinnlos, die Macht der Drachenseele ist zu gewaltig",--Partial
+	firstRP				= "Preiset die Titanen, sie sind zurückgekehrt!",
 	UltraxionTrash		= "Es tut gut, Euch wiederzusehen, Alexstrasza. Während meiner Abwesenheit war ich fleißig.",
 	UltraxionTrashEnded = "Sie waren bloß Welpen, Experimente, Mittel zu einem Zweck. Ihr werdet sehen, was meine Forschung hervorgebracht hat."
 })
