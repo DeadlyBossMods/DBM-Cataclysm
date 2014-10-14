@@ -148,12 +148,7 @@ function mod:FabFlamesTarget()
 		lastFab = GetTime()--Trigger the anti spam here so when we pre warn it thrown at them we don't double warn them again for taking 1 tick of it when it lands.
 	else
 		if uId then
-			local x, y = GetPlayerMapPosition(uId)
-			if x == 0 and y == 0 then
-				SetMapToCurrentZone()
-				x, y = GetPlayerMapPosition(uId)
-			end
-			local inRange = DBM.RangeCheck:GetDistance("player", x, y)
+			local inRange = DBM.RangeCheck:GetDistance("player", uId)
 			if inRange and inRange < 11 then--What's exact radius of this circle?
 				specWarnFabulousFlamesNear:Show(targetname)
 			end
@@ -171,15 +166,11 @@ function mod:TwilightBlastTarget()
 		else
 			local uId = DBM:GetRaidUnitId(targetname)
 			if uId then
-				local x, y = GetPlayerMapPosition(uId)
-				if x == 0 and y == 0 then
-					SetMapToCurrentZone()
-					x, y = GetPlayerMapPosition(uId)
-				end
-				local inRange = DBM.RangeCheck:GetDistance("player", x, y)
+				local inRange = DBM.RangeCheck:GetDistance("player", uId)
 				if inRange and inRange < 9 then
 					specWarnTwilightBlastNear:Show(targetname)
 					if self.Options.TwilightBlastArrow then
+						local x, y = UnitPosition(uId)
 						DBM.Arrow:ShowRunAway(x, y, 8, 5)
 					end
 				end

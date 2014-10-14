@@ -242,7 +242,7 @@ function mod:CHAT_MSG_ADDON(prefix, message, channel, sender)
 	if cmd == "CLEAR" then
 		DBM.Arrow:Hide()
 	elseif oozePos[cmd] then
-		DBM.Arrow:ShowRunTo(oozePos[cmd][1]/100,oozePos[cmd][2]/100,nil,20)
+		DBM.Arrow:ShowRunTo(oozePos[cmd][1],oozePos[cmd][2],nil,20,true)
 	end
 end
 
