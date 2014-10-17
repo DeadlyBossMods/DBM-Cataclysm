@@ -203,6 +203,7 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
+	timerRoleplay		= "이벤트 진행",
 	TimerDrakes			= "%s"
 })
 
