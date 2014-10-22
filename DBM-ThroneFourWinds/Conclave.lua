@@ -9,6 +9,7 @@ mod:SetCreatureID(45870, 45871, 45872)
 mod:SetEncounterID(1035)
 mod:DisableEEKillDetection()
 mod:SetZone()
+mod:SetBossHPInfoToHighest()
 
 mod:SetBossHealthInfo(
 	45870, Anshal,
