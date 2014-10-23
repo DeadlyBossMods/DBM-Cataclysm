@@ -158,7 +158,7 @@ L:SetWarningLocalization({
 	warnRageRagnarosSoon	= "%s на %s через 5 секунд",--Spellname on targetname
 	warnSplittingBlow		= "%s %s",--Spellname in Location
 	warnEngulfingFlame		= "%s %s",--Spellname in Location
-	warnEmpoweredSulf		= "%s черещ 5 секунд"--The spell has a 5 second channel, but tooltip doesn't reflect it so cannot auto localize
+	warnEmpoweredSulf		= "%s через 5 секунд"--The spell has a 5 second channel, but tooltip doesn't reflect it so cannot auto localize
 })
 
 L:SetTimerLocalization({
@@ -194,8 +194,8 @@ L:SetMiscLocalization({
 	TransitionEnded1	= "Довольно! Пора покончить с этим.",--More reliable then adds method.
 	TransitionEnded2	= "Сульфурас уничтожит вас!",--More reliable then adds method.
 	TransitionEnded3	= "На колени, смертные!",
-	Defeat				= "Слишком рано!.. Вы пришли слишком рано…",
-	Phase4				= "Too soon..."
+	Defeat				= "Слишком рано!.. Вы пришли слишком рано...",
+	Phase4				= "Слишком рано..."
 })
 
 -----------------------
