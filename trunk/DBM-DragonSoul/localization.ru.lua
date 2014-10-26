@@ -30,11 +30,11 @@ L= DBM:GetModLocalization(324)
 
 L:SetOptionLocalization({
 	ShadowYell			= "Кричать, когда на вас $spell:103434<br/>(Героический уровень сложности)",
-	CustomRangeFrame	= "Range Frame options (Героический уровень сложности)",
-	Never				= "Disabled",
-	Normal				= "Normal Range Frame",
-	DynamicPhase2		= "Phase2 Debuff Filtering",
-	DynamicAlways		= "Always Debuff Filtering"
+	CustomRangeFrame	= "Настройки окна проверки дистанции (Героический уровень сложности)",
+	Never				= "Отключено",
+	Normal				= "Обычное",
+	DynamicPhase2		= "Фильтрация дебафов (фаза 2)",
+	DynamicAlways		= "Фильтрация дебафов (всегда)"
 })
 
 L:SetMiscLocalization({
@@ -47,19 +47,19 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(325)
 
 L:SetWarningLocalization({
-	warnOozesHit	= "%s absorbed %s"
+	warnOozesHit	= "%s поглотил %s"
 })
 
 L:SetTimerLocalization({
 	timerOozesActive	= "Появление капель крови",
-	timerOozesReach		= "Oozes Reach Boss"
+	timerOozesReach		= "Капли достигнут босса"
 })
 
 L:SetOptionLocalization({
-	warnOozesHit		= "Announce what oozes hit the boss",
+	warnOozesHit		= "Объявлять какие капли достигли босса",
 	timerOozesActive	= "Отсчет времени спавна капель крови",
-	timerOozesReach		= "Show timer for when Oozes reach Yor'sahj",
-	RangeFrame			= "Show range frame (4) for $spell:104898<br/>(Normal+ difficulty)"
+	timerOozesReach		= "Отсчет времени до достижения каплями босса",
+	RangeFrame			= "Окно проверки дистанции (4) для $spell:104898<br/>(Сложность Обычная+)"
 })
 
 L:SetMiscLocalization({
@@ -86,15 +86,15 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	WarnPillars				= "Announce how many $journal:3919 or $journal:4069 are left",
+	WarnPillars				= "Объявлять сколько $journal:3919 или $journal:4069 осталось",
 	TimerSpecial			= "Отсчет времени до первой особой способности",
 	RangeFrame				= "Показывать окно проверки дистанции: (3м) для $spell:105269 и<br/>(10м) для $journal:4327",
 	AnnounceFrostTombIcons	= "Дублировать рейдовые иконки на целях $spell:104451 в рейд-чат<br/>(Необходимы права лидера или помощника)",
 	warnFrostTombCast		= DBM_CORE_AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(109325),
-	SpecialCount			= "Play countdown sound for $spell:105256 or $spell:105465",
-	SetBubbles				= "Automatically disable chat bubbles when $spell:104451 available<br/>(restores them when combat ends)"
+	SpecialCount			= "Звуковой отсчет для $spell:105256 или $spell:105465",
+	SetBubbles				= "Автоматически отключать сообщения в облачках когда $spell:104451 доступен<br/>(возвращает их в исходное после боя)"
 })
 
 L:SetMiscLocalization({
@@ -116,14 +116,14 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	TimerCombatStart	= "Отсчет времени до приземления Ультраксиона",
-	ResetHoTCounter		= "Restart Hour of Twilight counter",--$spell doesn't work in this function apparently so use typed spellname for now.
-	Never				= "Never",
-	ResetDynamic		= "Reset in sets of 3/2 (heroic/normal)",
-	Reset3Always		= "Always Reset in sets of 3",
-	SpecWarnHoTN		= "Special warn 5s before Hour of Twilight. If counter reset is Never, this follows 3set rule",
-	One					= "1 (ie 1 4 7)",
-	Two					= "2 (ie 2 5)",
-	Three				= "3 (ie 3 6)"
+	ResetHoTCounter		= "Сброс счетчика \"Время сумерек\"",--$spell doesn't work in this function apparently so use typed spellname for now.
+	Never				= "Никогда",
+	ResetDynamic		= "Сброс на 3/2 (гер./обыч.)",
+	Reset3Always		= "Сброс на 3 всегда",
+	SpecWarnHoTN		= "Спец-предупреждение за 5 сек до \"Время сумерек\". Если сброс счетчика \"Никогда\", используется правило на 3",
+	One					= "1 (т.е. 1 4 7)",
+	Two					= "2 (т.е. 2 5)",
+	Three				= "3 (т.е. 3 6)"
 })
 
 L:SetMiscLocalization({
@@ -136,7 +136,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(332)
 
 L:SetWarningLocalization({
-	SpecWarnElites	= "Twilight Elites!"
+	SpecWarnElites	= "Сумеречные Элитки!"
 })
 
 L:SetTimerLocalization({
@@ -145,8 +145,8 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	TimerAdd			= "Отсчет времени до появления следующих помощников",
-	SpecWarnElites		= "Show special warning for new Twilight Elites",
-	SetTextures			= "Automatically disable projected textures in phase 1<br/>(returns it to enabled in phase 2)"
+	SpecWarnElites		= "Спец-предупреждение для новых Сумеречных Элиток",
+	SetTextures			= "Автоматически отключать проэцирование текстур на 1 фазе<br/>(возвращает в исходное на 2 фазе)"
 })
 
 L:SetMiscLocalization({
@@ -188,7 +188,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(333)
 
 L:SetOptionLocalization({
-	RangeFrame			= "Show dynamic range frame based on player debuff status for<br/>$spell:108649 on Heroic difficulty",
+	RangeFrame			= "Динамическое окно проверки дистанции используя статус дебафа<br/>$spell:108649 на героическом уровне сложности",
 	SetIconOnParasite	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(108649)
 })
 
@@ -215,7 +215,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	DrakesLeft			= "Announce how many Twilight Assaulters remain",
+	DrakesLeft			= "Объявлять сколько Сумеречных агрессоров осталось",
 	TimerDrakes			= "Отсчет времени при применении $spell:109904 Сумеречными агрессорами"
 })
 
