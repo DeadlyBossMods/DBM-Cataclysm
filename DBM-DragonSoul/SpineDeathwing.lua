@@ -41,11 +41,11 @@ local specWarnSealArmor		= mod:NewSpecialWarningSpell(105847, mod:IsDps())
 local specWarnAmalgamation	= mod:NewSpecialWarningSpell("ej4054", false)
 
 local timerSealArmor		= mod:NewCastTimer(23, 105847)
-local timerBarrelRoll		= mod:NewCastTimer(10, "ej4050")
+local timerBarrelRoll		= mod:NewCastTimer(5, "ej4050")
 local timerGripCD			= mod:NewNextTimer(32, 105490)
 local timerDeathCD			= mod:NewCDTimer(8.5, 106199)--8.5-10sec variation.
 
-local countdownRoll			= mod:NewCountdown(10, "ej4050")
+local countdownRoll			= mod:NewCountdown(5, "ej4050")
 local countdownGrip			= mod:NewCountdown("Alt32", 105490, not mod:IsTank())--Can get confusing if used with roll countdown. This is off by default but can be turned on by someone willing to sort out the confusion on their own.
 
 local soundNuclearBlast		= mod:NewSound(105845, mod:IsMelee())
