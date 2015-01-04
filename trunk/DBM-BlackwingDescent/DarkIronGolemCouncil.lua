@@ -49,13 +49,13 @@ local warnActivated				= mod:NewTargetAnnounce(78740, 3)
 
 --Magmatron
 local specWarnBarrier			= mod:NewSpecialWarningSpell(79582, not mod:IsHealer())
-local specWarnAcquiringTarget	= mod:NewSpecialWarningYou(79501)
+local specWarnAcquiringTarget	= mod:NewSpecialWarningMoveAway(79501)
 local yellAcquiringTarget		= mod:NewYell(79501)
 local specWarnEncasingShadows	= mod:NewSpecialWarningTarget(92023, false)--Heroic Ability
 local yellEncasingShadows		= mod:NewYell(92023, L.YellTargetLock)
 --Electron
 local specWarnUnstableShield	= mod:NewSpecialWarningSpell(79900, not mod:IsHealer())
-local specWarnConductor			= mod:NewSpecialWarningYou(79888)
+local specWarnConductor			= mod:NewSpecialWarningMoveAway(79888)
 local yellLightConductor		= mod:NewYell(79888)
 local specWarnShadowConductor	= mod:NewSpecialWarningTarget(92053)--Heroic Ability
 local yellShadowConductor		= mod:NewYell(92053)
@@ -66,7 +66,7 @@ local yellFixate				= mod:NewYell(80094, nil, false)
 local specWarnPoisonProtocol	= mod:NewSpecialWarningSpell(80053, not mod:IsHealer())
 local specWarnChemicalCloud		= mod:NewSpecialWarningMove(80161)
 local yellChemicalCloud			= mod:NewYell(80161)--May Return false tank yells
-local specWarnGrip				= mod:NewSpecialWarningSpell(91849, nil, nil, nil, true)--Heroic Ability
+local specWarnGrip				= mod:NewSpecialWarningSpell(91849, nil, nil, nil, 2)--Heroic Ability
 --Arcanotron
 local specWarnConversion		= mod:NewSpecialWarningSpell(79729, not mod:IsHealer())
 local specWarnGenerator			= mod:NewSpecialWarning("specWarnGenerator", mod:IsTank())
@@ -99,9 +99,6 @@ local timerNextActivate			= mod:NewNextTimer(45, 78740)				--Activations are eve
 local timerNefAbilityCD			= mod:NewTimer(30, "timerNefAblity", 92048)--Huge variation on this, but shortest CD i've observed is 30.
 
 local berserkTimer				= mod:NewBerserkTimer(600)
-
-local soundLightningConductor	= mod:NewSound(79888)
-local soundFixate				= mod:NewSound(80094)
 
 mod:AddBoolOption("AcquiringTargetIcon")
 mod:AddBoolOption("ConductorIcon")
@@ -247,7 +244,6 @@ function mod:SPELL_AURA_APPLIED(args)
 		warnLightningConductor:Show(args.destName)
 		if args:IsPlayer() then
 			specWarnConductor:Show()
-			soundLightningConductor:Play()
 			yellLightConductor:Yell()
 		end
 		if self.Options.ConductorIcon then
@@ -264,7 +260,6 @@ function mod:SPELL_AURA_APPLIED(args)
 		warnFixate:Show(args.destName)
 		if args:IsPlayer() then
 			specWarnBombTarget:Show()
-			soundFixate:Play()
 			yellFixate:Yell()
 		end
 	elseif args.spellId == 80161 and args:IsPlayer() and GetTime() - cloudSpam > 4 then

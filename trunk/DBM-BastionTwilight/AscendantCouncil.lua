@@ -55,7 +55,7 @@ local warnFrostBeacon		= mod:NewTargetAnnounce(92307, 4)--Heroic Phase 2 ablity
 
 --Feludius
 local specWarnHeartIce		= mod:NewSpecialWarningYou(82665, false)
-local specWarnGlaciate		= mod:NewSpecialWarningRun(82746, mod:IsMelee())
+local specWarnGlaciate		= mod:NewSpecialWarningRun(82746, mod:IsMelee(), nil, nil, 4)
 local specWarnWaterLogged	= mod:NewSpecialWarningYou(82762)
 local specWarnHydroLance	= mod:NewSpecialWarningInterrupt(82752, mod:IsMelee())
 --Ignacious
@@ -69,14 +69,14 @@ local specWarnHardenedSkin	= mod:NewSpecialWarningInterrupt(83718, mod:IsMelee()
 --Arion
 local specWarnGrounded		= mod:NewSpecialWarning("SpecWarnGrounded")
 local specWarnLightningBlast= mod:NewSpecialWarningInterrupt(83070, false)
-local specWarnLightningRod	= mod:NewSpecialWarningYou(83099)
+local specWarnLightningRod	= mod:NewSpecialWarningMoveAway(83099)
 local yellLightningRod		= mod:NewYell(83099)
 --Heroic
 local specWarnGravityCore	= mod:NewSpecialWarningYou(92075)--Heroic
 local yellGravityCore		= mod:NewYell(92075)
 local specWarnStaticOverload= mod:NewSpecialWarningYou(92067)--Heroic
 local yellStaticOverload	= mod:NewYell(92067)
-local specWarnFrostBeacon	= mod:NewSpecialWarningYou(92307)--Heroic
+local specWarnFrostBeacon	= mod:NewSpecialWarningYou(92307, nil, nil, nil, 3)--Heroic
 local yellFrostbeacon		= mod:NewYell(92307)
 local yellScrewed			= mod:NewYell(92307, L.blizzHatesMe, true, "yellScrewed", "YELL")--Amusing but effective.
 
@@ -114,10 +114,6 @@ local timerGravityCoreCD	= mod:NewNextTimer(20, 92075)--Heroic Phase 1 ablity
 local timerStaticOverloadCD	= mod:NewNextTimer(20, 92067)--Heroic Phase 1 ablity
 local timerFlameStrikeCD	= mod:NewNextTimer(20, 92212)--Heroic Phase 2 ablity
 local timerFrostBeaconCD	= mod:NewNextTimer(20, 92307)--Heroic Phase 2 ablity
-
-local soundGlaciate			= mod:NewSound(82746, mod:IsTank())
-local soundLightingRod		= mod:NewSound(83099)
-local soundBeacon			= mod:NewSound(92307)
 
 mod:AddBoolOption("HealthFrame", true)
 mod:AddBoolOption("HeartIceIcon")
@@ -281,7 +277,6 @@ function mod:SPELL_AURA_APPLIED(args)
 		if args:IsPlayer() then
 			isRod = true
 			specWarnLightningRod:Show()
-			soundLightingRod:Play()
 			if isBeacon then--You have lighting rod and frost beacon at same time.
 				yellScrewed:Yell()
 			else--You only have rod so do normal yell
@@ -332,7 +327,6 @@ function mod:SPELL_AURA_APPLIED(args)
 		if args:IsPlayer() then
 			isBeacon = true
 			specWarnFrostBeacon:Show()
-			soundBeacon:Play()
 			if isRod then--You have lighting rod and frost beacon at same time.
 				yellScrewed:Yell()
 			else--You only have beacon so do normal yell
@@ -379,7 +373,6 @@ function mod:SPELL_AURA_REFRESH(args)--We do not combine refresh with applied ca
 		if args:IsPlayer() then
 			isRod = true
 			specWarnLightningRod:Show()
-			soundLightingRod:Play()
 			if isBeacon then--You have lighting rod and frost beacon at same time.
 				yellScrewed:Yell()
 			else--You only have rod so do normal yell
@@ -419,7 +412,6 @@ function mod:SPELL_AURA_REFRESH(args)--We do not combine refresh with applied ca
 		if args:IsPlayer() then
 			isBeacon = true
 			specWarnFrostBeacon:Show()
-			soundBeacon:Play()
 			if isRod then--You have lighting rod and frost beacon at same time.
 				yellScrewed:Yell()
 			else--You only have beacon so do normal yell
@@ -511,7 +503,6 @@ function mod:SPELL_CAST_START(args)
 		if self:GetUnitCreatureId("target") == 43687 then--Only warn if targeting/tanking this boss.
 			warnGlaciate:Show()
 			specWarnGlaciate:Show()
-			soundGlaciate:Play()
 		end
 	elseif args.spellId == 82752 then
 		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43687 or self:GetUnitCreatureId("focus") == 43687) or not self:IsMelee() then

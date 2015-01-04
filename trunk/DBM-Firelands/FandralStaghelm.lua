@@ -30,7 +30,7 @@ local yellLeapingFlames			= mod:NewYell(98476)
 local specWarnLeapingFlamesCast	= mod:NewSpecialWarningYou(98476)
 local specWarnLeapingFlamesNear	= mod:NewSpecialWarningClose(98476)
 local specWarnLeapingFlames		= mod:NewSpecialWarningMove(98535)
-local specWarnSearingSeed		= mod:NewSpecialWarningMove(98450)
+local specWarnSearingSeed		= mod:NewSpecialWarningMoveAway(98450)
 local specWarnOrb				= mod:NewSpecialWarningStack(98584, true, 4)
 
 local timerOrbActive			= mod:NewBuffActiveTimer(64, 98451)
@@ -39,8 +39,6 @@ local timerSearingSeed			= mod:NewBuffFadesTimer(60, 98450)
 local timerNextSpecial			= mod:NewTimer(4, "timerNextSpecial", 97238)--This one stays localized because it's 1 timer used for two abilities
 
 local berserkTimer				= mod:NewBerserkTimer(600)
-
-local soundSeed					= mod:NewSound(98450)
 
 mod:AddBoolOption("RangeFrameSeeds", true)
 mod:AddBoolOption("RangeFrameCat", false)--Diff options for each ability cause seeds strat is pretty universal, don't blow up raid, but leaps may or may not use a stack strategy, plus melee will never want it on by default.
@@ -196,7 +194,6 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif spellId == 98450 and args:IsPlayer() then
 		local _, _, _, _, _, duration, expires, _, _ = UnitDebuff("player", args.spellName)--Find out what our specific seed timer is
 		specWarnSearingSeed:Schedule(expires - GetTime() - 5)	-- Show "move away" warning 5secs before explode
-		soundSeed:Schedule(expires - GetTime() - 5)
 		timerSearingSeed:Start(expires-GetTime())
 		if self.Options.RangeFrameSeeds then
 			DBM.RangeCheck:Show(12)
@@ -209,7 +206,6 @@ function mod:SPELL_AURA_REMOVED(args)
 	local spellId = args.spellId
 	if spellId == 98450 and args:IsPlayer() then
 		specWarnSearingSeed:Cancel()
-		soundSeed:Cancel()
 		timerSearingSeed:Cancel()
 		if self.Options.RangeFrameSeeds then
 			DBM.RangeCheck:Hide()

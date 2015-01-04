@@ -51,7 +51,7 @@ local specWarnBlastsNova		= mod:NewSpecialWarningInterrupt(80734)
 local specWarnDominion			= mod:NewSpecialWarningYou(79318)
 local specWarnStolenPower		= mod:NewSpecialWarningStack(80627, nil, 150)
 local specWarnCinder			= mod:NewSpecialWarningYou(79339)
-local specWarnCinderMove		= mod:NewSpecialWarningMove(79339, false, "specWarnCinderMove")
+local specWarnCinderMove		= mod:NewSpecialWarningMoveAway(79339, true, "specWarnCinderMove", nil, 3)
 local yellCinder				= mod:NewYell(79339)
 local specWarnShadowblaze		= mod:NewSpecialWarningMove(81007)
 local specWarnShadowblazeSoon	= mod:NewSpecialWarning("specWarnShadowblazeSoon", mod:IsTank())
@@ -71,7 +71,6 @@ local timerShadowBlazeCD		= mod:NewCDTimer(10, 81031)
 
 local berserkTimer				= mod:NewBerserkTimer(630)
 
-local soundCinder				= mod:NewSound(79339)
 local countdownShadowblaze		= mod:NewCountdown(30, 81031, mod:IsTank())
 
 mod:AddBoolOption("RangeFrame", true)
@@ -212,7 +211,6 @@ function mod:SPELL_AURA_APPLIED(args)
 		if args:IsPlayer() then
 			specWarnCinder:Show()
 			specWarnCinderMove:Schedule(3)
-			soundCinder:Schedule(3)	-- no need to move as soon as the debuff is applied
 			yellCinder:Yell()
 		end
 		if self.Options.SetIconOnCinder then

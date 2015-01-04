@@ -16,14 +16,12 @@ mod.onlyHeroic = true
 local warnPursuit				= mod:NewTargetAnnounce(96306, 4)
 local warnRupture				= mod:NewTargetAnnounce(96619, 3)
 
-local specWarnPursuit			= mod:NewSpecialWarningRun(96306)
+local specWarnPursuit			= mod:NewSpecialWarningRun("OptionVersion2", 96306, nil, nil, nil, 4)
 local specWarnRupture			= mod:NewSpecialWarningYou(96619)
 local specWarnRuptureNear		= mod:NewSpecialWarningClose(96619)
 
 local timerPursuit				= mod:NewBuffActiveTimer(15, 96306)
 local timerPursuitCD			= mod:NewCDTimer(45, 96306)--Assumed, it's a very short fight.
-
-local soundPursuit				= mod:NewSound(96306)
 
 function mod:OnCombatStart(delay)
 --	timerPursuitCD:Start(-delay)
@@ -54,7 +52,6 @@ function mod:CHAT_MSG_MONSTER_EMOTE(msg, _, _, _, target)
 			warnPursuit:Show(target)
 			if target == UnitName("player") then
 				specWarnPursuit:Show()
-				soundPursuit:Play()
 			end
 		end
 	end
