@@ -19,7 +19,7 @@ local warnBladeDance			= mod:NewSpellAnnounce(104995, 4)
 local warnSkewer				= mod:NewTargetAnnounce(104936, 4, nil, mod:IsTank() or mod:IsHealer())
 local warnSeethingHate			= mod:NewTargetAnnounce(105067, 3)
 
-local specWarnBladeDance		= mod:NewSpecialWarningRun(104995, nil, nil, true)--No sound, so it doesn't take from the glory of soundBladeDance
+local specWarnBladeDance		= mod:NewSpecialWarningRun(104995, nil, nil, nil, 4)
 local specWarnSkewer			= mod:NewSpecialWarningSpell(104936, mod:IsTank() or mod:IsHealer())
 local specWarnSeethingHate		= mod:NewSpecialWarningYou(105067, mod:IsTank())--off tank may need this warn. 
 
@@ -32,8 +32,6 @@ local timerSeethingHate			= mod:NewTargetTimer(9, 105067)
 local timerSeethingHateCD		= mod:NewNextTimer(20.5, 105067)
 
 local berserkTimer				= mod:NewBerserkTimer(300)
-
-local soundBladeDance			= mod:NewSound(104995)
 
 local firstspecial = false
 local firstskewer = true
@@ -87,9 +85,6 @@ function mod:SPELL_AURA_APPLIED(args)
 		timerBladeDance:Start()
 		if self:IsInCombat() then--Only start this on actual boss, not trash
 			timerBladeDanceCD:Start()
-			soundBladeDance:Play("Sound\\Creature\\LordMarrowgar\\IC_Marrowgar_WW01.wav")--I amuse myself on this
-		else
-			soundBladeDance:Play()--Play normal sound for the trash mobs tho
 		end
 	end
 end

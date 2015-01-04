@@ -22,15 +22,13 @@ local warnEnrage			= mod:NewSpellAnnounce(80467, 3)
 local warnEnrageSoon		= mod:NewSoonAnnounce(80467, 2)
 
 local specWarnGroundSlam	= mod:NewSpecialWarningMove(78903, mod:IsTank())
-local specWarnShatter		= mod:NewSpecialWarningRun(78807, mod:IsMelee())
+local specWarnShatter		= mod:NewSpecialWarningRun("OptionVersion2", 78807, mod:IsMelee(), nil, nil, 4)
 
 --local timerShatterCD		= mod:NewCDTimer(19, 78807)
 local timerBulwark			= mod:NewBuffActiveTimer(10, 78939)
 local timerBulwarkCD		= mod:NewCDTimer(20, 78939)
 local timerGroundSlam		= mod:NewCastTimer(3, 78903)
 local timerShatter			= mod:NewCastTimer(3, 78807)
-
-local soundShatter			= mod:NewSound(78807, mod:IsMelee())
 
 local prewarnEnrage = false
 
@@ -60,7 +58,6 @@ function mod:SPELL_CAST_START(args)
 		timerShatter:Start()
 --		timerShatterCD:Start()
 		specWarnShatter:Show()
-		soundShatter:Play()
 	elseif args.spellId == 92426 then
 		warnShatterSoon:Show()
 	elseif args.spellId == 78903 then

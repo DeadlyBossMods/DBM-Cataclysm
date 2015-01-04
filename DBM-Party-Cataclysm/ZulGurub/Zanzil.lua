@@ -18,15 +18,13 @@ local warnZanzilFire		= mod:NewSpellAnnounce(96914, 3)
 local warnZanzilGas			= mod:NewSpellAnnounce(96338, 3)
 local warnGaze				= mod:NewTargetAnnounce(96342, 3)
 
-local specWarnGaze			= mod:NewSpecialWarningYou(96342)
+local specWarnGaze			= mod:NewSpecialWarningRun(96342, nil, nil, nil, 4)
 local specWarnToxic			= mod:NewSpecialWarning("SpecWarnToxic")
 local specWarnFire			= mod:NewSpecialWarningMove(96916)
 
 local timerZanzilGas		= mod:NewBuffActiveTimer(7, 96338)
 local timerGaze				= mod:NewTargetTimer(17, 96342)
 local timerZanzilElixir		= mod:NewCDTimer(30, 96316)
-
-local soundGaze				= mod:NewSound(96342)
 
 mod:AddBoolOption("SetIconOnGaze", false)
 mod:AddBoolOption("InfoFrame", mod:IsHealer())--on by default for healers, so they know what numpties to heal through gas
@@ -41,7 +39,6 @@ function mod:GazeTarget()
 	end
 	if targetname == UnitName("player") then
 		specWarnGaze:Show()
-		soundGaze:Play()
 	end
 end
 

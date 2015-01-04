@@ -36,7 +36,7 @@ local warnAmalgamation		= mod:NewSpellAnnounce("ej4054", 3, 106005)--Amalgamatio
 local specWarnRoll			= mod:NewSpecialWarningSpell("ej4050", nil, nil, nil, 2)--The actual roll
 local specWarnTendril		= mod:NewSpecialWarning("SpecWarnTendril", nil, nil, nil, 3)--A personal warning for you only if you're not gripped 3 seconds after roll started
 local specWarnGrip			= mod:NewSpecialWarningSpell(105490, mod:IsDps())
-local specWarnNuclearBlast	= mod:NewSpecialWarningRun(105845, mod:IsMelee())
+local specWarnNuclearBlast	= mod:NewSpecialWarningRun(105845, mod:IsMelee(), nil, nil, 4)
 local specWarnSealArmor		= mod:NewSpecialWarningSpell(105847, mod:IsDps())
 local specWarnAmalgamation	= mod:NewSpecialWarningSpell("ej4054", false)
 
@@ -47,8 +47,6 @@ local timerDeathCD			= mod:NewCDTimer(8.5, 106199)--8.5-10sec variation.
 
 local countdownRoll			= mod:NewCountdown(5, "ej4050")
 local countdownGrip			= mod:NewCountdown("Alt32", 105490, not mod:IsTank())--Can get confusing if used with roll countdown. This is off by default but can be turned on by someone willing to sort out the confusion on their own.
-
-local soundNuclearBlast		= mod:NewSound(105845, mod:IsMelee())
 
 mod:AddBoolOption("InfoFrame", true)
 mod:AddBoolOption("SetIconOnGrip", true)
@@ -179,7 +177,6 @@ function mod:SPELL_CAST_START(args)
 	if spellId == 105845 then
 		warnNuclearBlast:Show()
 		specWarnNuclearBlast:Show()
-		soundNuclearBlast:Play()
 	elseif args:IsSpellID(105847, 105848) then--This still has 2 spellids, since it's locational, location based IDs did NOT get crunched.
 		warnSealArmor:Show(sealArmorText)
 		specWarnSealArmor:Show()

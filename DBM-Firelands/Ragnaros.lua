@@ -68,11 +68,11 @@ local specWarnEngulfing		= mod:NewSpecialWarningMove(99171)
 local specWarnMeteor		= mod:NewSpecialWarningMove(99268)--Spawning on you
 local specWarnMeteorNear	= mod:NewSpecialWarningClose(99268)--Spawning on you
 local yellMeteor			= mod:NewYell(99268)
-local specWarnFixate		= mod:NewSpecialWarningYou(99849)--Chasing you after it spawned
+local specWarnFixate		= mod:NewSpecialWarningRun(99849, nil, nil, nil, 4)--Chasing you after it spawned
 local yellFixate			= mod:NewYell(99849)
 local specWarnWorldofFlames	= mod:NewSpecialWarningSpell(100171, nil, nil, nil, true)
 local specWarnDreadFlame	= mod:NewSpecialWarningMove(100941)--Standing in dreadflame
-local specWarnEmpoweredSulf	= mod:NewSpecialWarningSpell(100604, mod:IsTank())--Heroic ability Asuming only the tank cares about this? seems like according to tooltip 5 seconds to hide him into roots?
+local specWarnEmpoweredSulf	= mod:NewSpecialWarningSpell(100604, mod:IsTank(), nil, nil, 3)--Heroic ability Asuming only the tank cares about this? seems like according to tooltip 5 seconds to hide him into roots?
 local specWarnSuperheated	= mod:NewSpecialWarningStack(100593, true, 12)
 
 local timerRageRagnaros		= mod:NewTimer(5, "timerRageRagnaros", 101110)
@@ -103,10 +103,6 @@ local countdownEmpoweredSulf= mod:NewCountdown(56, 100604, mod:IsTank())--56-64s
 local countoutEmpoweredSulf	= mod:NewCountout(10, 100604, mod:IsTank())--Counts out th duration of empowered sulfurus, tanks too busy running around to pay attention to a timer, hearing duration counted should be infinitely helpful.
 
 local berserkTimer			= mod:NewBerserkTimer(1080)
-
-local soundBlazingHeat		= mod:NewSound(100460)
-local soundFixate			= mod:NewSound(99849)
-local soundEmpoweredSulf	= mod:NewSound(100604, mod:IsTank())
 
 mod:AddBoolOption("RangeFrame", true)
 mod:AddBoolOption("BlazingHeatIcons", true)
@@ -295,7 +291,6 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif spellId == 100604 then
 		warnEmpoweredSulf:Show(args.spellName)
 		specWarnEmpoweredSulf:Show()
-		soundEmpoweredSulf:Play()
 		timerEmpoweredSulf:Schedule(5)--Schedule 10 second bar to start when cast ends for buff active timer.
 		countoutEmpoweredSulf:Schedule(5)
 		timerEmpoweredSulfCD:Start()
@@ -438,7 +433,6 @@ function mod:SPELL_CAST_SUCCESS(args)
 		timerBlazingHeatCD:Start(args.sourceGUID)--args.sourceGUID is to support multiple cds when more then 1 is up at once
 		if args:IsPlayer() then
 			specWarnBlazingHeat:Show()
-			soundBlazingHeat:Play()
 			yellBlazingHeat:Yell()
 		end
 		if self.Options.BlazingHeatIcons then
@@ -547,7 +541,6 @@ function mod:UNIT_AURA(uId)
 	if UnitDebuff("player", meteorTarget) and not meteorWarned then--Warn you that you have a meteor
 		specWarnFixate:Show()
 		yellFixate:Yell()
-		soundFixate:Play()
 		meteorWarned = true
 	elseif not UnitDebuff("player", meteorTarget) and meteorWarned then--reset warned status if you don't have debuff
 		meteorWarned = false
