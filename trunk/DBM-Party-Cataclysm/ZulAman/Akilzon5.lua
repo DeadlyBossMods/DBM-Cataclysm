@@ -88,7 +88,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 			self:SetIcon(args.destName, 1, 8)
 		end
 		if self.Options.StormArrow then
-			DBM.Arrow:ShowRunTo(args.destName, 0, 0, 8)
+			DBM.Arrow:ShowRunTo(args.destName, 0, 8)
 		end
 	end
 end
