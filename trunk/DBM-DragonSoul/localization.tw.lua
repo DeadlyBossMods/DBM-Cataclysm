@@ -160,7 +160,7 @@ L= DBM:GetModLocalization(318)
 
 L:SetWarningLocalization({
 	warnSealArmor			= "%s",
-	SpecWarnTendril			= "已被安全抓住!"
+	SpecWarnTendril			= "快到觸鬚上!"
 })
 
 L:SetOptionLocalization({
@@ -213,7 +213,7 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	EoEEvent			= "沒有用，巨龍之魂的力量太強了。我無法安全地使用它，它所含有的混沌力量會使我們滅亡。",
+	firstRP				= "讚美泰坦，他們回來了!",
 	UltraxionTrash		= "很高興又見到你，雅立史卓莎。我離開這段時間忙得很。",
 	UltraxionTrashEnded = "這些幼龍、實驗品，只不過是實現更偉大目標的手段罷了。你會看到研究的龍蛋有什麼成果。"
 })
