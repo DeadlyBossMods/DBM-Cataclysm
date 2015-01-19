@@ -33,7 +33,7 @@ local warnArmageddon		= mod:NewSpellAnnounce(92177, 4)
 local warnPhase2Soon		= mod:NewPrePhaseAnnounce(2, 3)--heroic
 local warnPhase2			= mod:NewPhaseAnnounce(2, 4)--heroic
 
-local specWarnPillar		= mod:NewSpecialWarningSpell(78006, "Range")
+local specWarnPillar		= mod:NewSpecialWarningSpell(78006, "Ranged")
 local specWarnIgnition		= mod:NewSpecialWarningMove(92128)
 local specWarnInfernoSoon   = mod:NewSpecialWarning("SpecWarnInferno")
 local specWarnArmageddon	= mod:NewSpecialWarningSpell(92177, nil, nil, nil, true)

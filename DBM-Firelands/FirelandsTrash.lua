@@ -27,7 +27,7 @@ local specWarnMoltenArmor	= mod:NewSpecialWarningStack(99532, "Tank", 4)
 local specWarnDruidLeap		= mod:NewSpecialWarningYou(99629)
 local yelldruidLeap			= mod:NewYell(99629)
 local specWarnDruidLeapNear	= mod:NewSpecialWarningClose(99629)
-local specWarnEarthQuake	= mod:NewSpecialWarningCast(100724, "Range")
+local specWarnEarthQuake	= mod:NewSpecialWarningCast(100724, "Ranged")
 local specWarnLava			= mod:NewSpecialWarningMove(99510)
 
 local timerMoltenArmor		= mod:NewTargetTimer(15, 99532, nil, "Tank|Healer")

@@ -32,7 +32,7 @@ mod:RegisterEventsInCombat(
 local warnRageRagnaros		= mod:NewTargetAnnounce(101110, 3)--Staff quest ability (normal only)
 local warnRageRagnarosSoon	= mod:NewAnnounce("warnRageRagnarosSoon", 4, 101109)--Staff quest ability (normal only)
 local warnHandRagnaros		= mod:NewSpellAnnounce(98237, 3, nil, "Melee")--Phase 1 only ability
-local warnWrathRagnaros		= mod:NewSpellAnnounce(98263, 3, nil, "Range")--Phase 1 only ability
+local warnWrathRagnaros		= mod:NewSpellAnnounce(98263, 3, nil, "Ranged")--Phase 1 only ability
 local warnBurningWound		= mod:NewStackAnnounce(99399, 3, nil, "Tank|Healer")
 local warnSulfurasSmash		= mod:NewSpellAnnounce(98710, 4)--Phase 1-3 ability.
 local warnMagmaTrap			= mod:NewTargetAnnounce(98164, 3)--Phase 1 ability.
@@ -80,7 +80,7 @@ local timerRageRagnarosCD	= mod:NewNextTimer(60, 101110)
 local timerMagmaTrap		= mod:NewCDTimer(25, 98164)		-- Phase 1 only ability. 25-30sec variations.
 local timerSulfurasSmash	= mod:NewNextTimer(30, 98710)		-- might even be a "next" timer
 local timerHandRagnaros		= mod:NewCDTimer(25, 98237, nil, "Melee")-- might even be a "next" timer
-local timerWrathRagnaros	= mod:NewCDTimer(30, 98263, nil, "Range")--It's always 12 seconds after smash unless delayed by magmatrap or hand of rag.
+local timerWrathRagnaros	= mod:NewCDTimer(30, 98263, nil, "Ranged")--It's always 12 seconds after smash unless delayed by magmatrap or hand of rag.
 local timerBurningWound		= mod:NewTargetTimer(20, 99399, nil, "Tank|Healer")
 local timerFlamesCD			= mod:NewNextTimer(40, 99171)
 local timerMoltenSeedCD		= mod:NewCDTimer(60, 98495)--60 seconds CD in between from seed to seed. 50 seconds using the molten inferno trigger.

@@ -54,7 +54,7 @@ local specWarnSludge			= mod:NewSpecialWarningMove(92930)
 local specWarnArcaneStorm		= mod:NewSpecialWarningInterrupt(77896, false)
 local specWarnMagmaJets			= mod:NewSpecialWarningMove(78194, "Tank")
 local specWarnEngulfingDarkness	= mod:NewSpecialWarningSpell(92754, "Tank|Healer")--Heroic Ability
-local specWarnFlashFreeze		= mod:NewSpecialWarningTarget(77699, "Range")--On Heroic it has a lot more health.
+local specWarnFlashFreeze		= mod:NewSpecialWarningTarget(77699, "Ranged")--On Heroic it has a lot more health.
 local specWarnRemedy			= mod:NewSpecialWarningDispel(77912, "MagicDispeller")
 local specWarnAdds				= mod:NewSpecialWarningSpell(77569, false)
 
