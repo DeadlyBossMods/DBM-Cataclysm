@@ -23,8 +23,8 @@ local warnSpirit		= mod:NewAnnounce("WarnSpirit", 4, 39414)
 local warnNormal		= mod:NewAnnounce("WarnNormal", 4, 39414)
 
 local specWarnTotem		= mod:NewSpecialWarningSpell(43302)
-local specWarnTotemWater= mod:NewSpecialWarningMove(97499, mod:IsTank())
-local specWarnEnrage	= mod:NewSpecialWarningDispel(43139, mod:CanRemoveEnrage())
+local specWarnTotemWater= mod:NewSpecialWarningMove(97499, "Tank")
+local specWarnEnrage	= mod:NewSpecialWarningDispel(43139, "RemoveEnrage")
 
 local timerShock		= mod:NewTargetTimer(12, 43303)
 

@@ -24,7 +24,7 @@ local warnMeteorSlash		= mod:NewSpellAnnounce(88942, 4)
 local warnFirestorm			= mod:NewSpellAnnounce(88972, 4)
 local warnFirestormSoon		= mod:NewSoonAnnounce(88972, 3)
 
-local specWarnMeteorSlash	= mod:NewSpecialWarningSpell(88942, mod:IsTank())
+local specWarnMeteorSlash	= mod:NewSpecialWarningSpell(88942, "Tank")
 local specWarnFirestormCast	= mod:NewSpecialWarningSpell(88972, nil, nil, nil, true)
 local specWarnFirestorm		= mod:NewSpecialWarningMove(89000)
 

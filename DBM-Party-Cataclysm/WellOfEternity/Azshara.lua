@@ -18,7 +18,7 @@ local warnServant		= mod:NewSpellAnnounce(102334, 4)
 local warnObedience		= mod:NewSpellAnnounce(103241, 4)
 local warnAdds			= mod:NewAnnounce("WarnAdds", 3)
 
-local specWarnServant	= mod:NewSpecialWarningSpell(102334, nil, nil, nil, true)
+local specWarnServant	= mod:NewSpecialWarningSpell(102334, nil, nil, nil, 2)
 local specWarnObedience	= mod:NewSpecialWarningInterrupt(103241)
 
 local timerServantCD	= mod:NewCDTimer(26, 102334)--Still don't have good logs, and encounter bugs a lot so i can't get any reliable timers except for first casts on engage.

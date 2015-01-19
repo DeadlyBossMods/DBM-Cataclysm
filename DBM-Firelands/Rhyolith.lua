@@ -22,8 +22,8 @@ mod:RegisterEventsInCombat(
 )
 
 local warnHeatedVolcano		= mod:NewSpellAnnounce(98493, 3)
-local warnFlameStomp		= mod:NewSpellAnnounce(97282, 3, nil, mod:IsMelee())--According to journal only hits players within 20 yards of him, so melee by default?
-local warnMoltenArmor		= mod:NewStackAnnounce(98255, 4, nil, mod:IsTank() or mod:IsHealer())	-- Would this be nice if we could show this in the infoFrame? (changed defaults to tanks/healers, if you aren't either it doesn't concern you unless you find stuff to stand in)
+local warnFlameStomp		= mod:NewSpellAnnounce(97282, 3, nil, "Melee")--According to journal only hits players within 20 yards of him, so melee by default?
+local warnMoltenArmor		= mod:NewStackAnnounce(98255, 4, nil, "Tank|Healer")	-- Would this be nice if we could show this in the infoFrame? (changed defaults to tanks/healers, if you aren't either it doesn't concern you unless you find stuff to stand in)
 local warnDrinkMagma		= mod:NewSpellAnnounce(98034, 4)	-- if you "kite" him to close to magma
 local warnFragments			= mod:NewSpellAnnounce("ej2531", 2, 98136)
 local warnShard				= mod:NewCountAnnounce("ej2532", 3, 98552)
@@ -31,7 +31,7 @@ local warnMagmaFlow			= mod:NewSpellAnnounce(97225, 4)
 local warnPhase2Soon		= mod:NewPrePhaseAnnounce(2, 2)
 local warnPhase2			= mod:NewPhaseAnnounce(2, 3)
 
-local specWarnMagmaFlow		= mod:NewSpecialWarningSpell(97225, nil, nil, nil, true)
+local specWarnMagmaFlow		= mod:NewSpecialWarningSpell(97225, nil, nil, nil, 2)
 local specWarnFlameStomp	= mod:NewSpecialWarningSpell(97282, false)
 
 local timerFragmentCD		= mod:NewNextTimer(22.5, "ej2531", nil, nil, nil, 98136)

@@ -33,7 +33,7 @@ local warnPhase3			= mod:NewPhaseAnnounce(3)
 local warnCloud				= mod:NewSpellAnnounce(89588, 3)
 local warnLightningRod		= mod:NewTargetAnnounce(89668, 4)
 
-local specWarnWindBurst		= mod:NewSpecialWarningSpell(87770, nil, nil, nil, true)
+local specWarnWindBurst		= mod:NewSpecialWarningSpell(87770, nil, nil, nil, 2)
 local specWarnIceStorm		= mod:NewSpecialWarningMove(91020)
 local specWarnCloud			= mod:NewSpecialWarningMove(89588)
 local specWarnLightningRod	= mod:NewSpecialWarningMoveAway(89668)

@@ -17,12 +17,6 @@ mod:RegisterEventsInCombat(
 )
 mod.onlyHeroic = true
 
---Warriors and warlocks can too but only with right spec/pet. So they are not in the defaults.
-local isDispeller = select(2, UnitClass("player")) == "PRIEST"
-				or select(2, UnitClass("player")) == "SHAMAN"
-				or select(2, UnitClass("player")) == "MAGE"
-				or select(2, UnitClass("player")) == "HUNTER"
-
 local warnSiphon			= mod:NewTargetAnnounce(43501, 3)
 local warnSpiritBolts		= mod:NewSpellAnnounce(43383, 3)
 local warnSpiritBoltsSoon	= mod:NewSoonAnnounce(43383, 5, 2)
@@ -36,7 +30,7 @@ local specWarnFireNovaTotem	= mod:NewSpecialWarningSpell(43436, false)
 local specWarnHolyLight		= mod:NewSpecialWarningInterrupt(43451)
 local specWarnFlashHeal		= mod:NewSpecialWarningInterrupt(43431)
 local specWarnHealingWave	= mod:NewSpecialWarningInterrupt(43548)
-local specWarnLifebloom		= mod:NewSpecialWarningDispel(43421, isDispeller)
+local specWarnLifebloom		= mod:NewSpecialWarningDispel(43421, "MagicDispeller")
 local specWarnConsecration	= mod:NewSpecialWarningMove(43429)
 local specWarnRainofFire	= mod:NewSpecialWarningMove(43440)
 local specWarnDeathNDecay	= mod:NewSpecialWarningMove(61603)

@@ -12,13 +12,15 @@
 ## Author: MysticalOS
 ## LoadOnDemand: 1
 ## RequiredDeps: DBM-Core
-## SavedVariablesPerCharacter: DBMDragonSoul_SavedVars, DBMDragonSoul_SavedStats
+## SavedVariables: DBMDragonSoul_AllSavedVars
+## SavedVariablesPerCharacter: DBMDragonSoul_SavedStats
 ## X-DBM-Mod: 1
 ## X-DBM-Mod-Type: RAID
 ## X-DBM-Mod-Category: CATA
 ## X-DBM-Mod-Has-LFR : 1
 ## X-DBM-Mod-MapID: 967
 ## X-DBM-Mod-Sort: 300
+## X-DBM-Mod-MinCoreRevision: 12473
 localization.en.lua
 localization.de.lua
 localization.ru.lua

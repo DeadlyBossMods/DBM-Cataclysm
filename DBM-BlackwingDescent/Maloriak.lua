@@ -22,10 +22,6 @@ mod:RegisterEventsInCombat(
 	"UNIT_HEALTH boss1"
 )
 
-local isDispeller = select(2, UnitClass("player")) == "MAGE"
-	    		 or select(2, UnitClass("player")) == "PRIEST"
-	    		 or select(2, UnitClass("player")) == "SHAMAN"
-
 local warnPhase					= mod:NewAnnounce("WarnPhase", 2)
 local warnReleaseAdds			= mod:NewSpellAnnounce(77569, 3)
 local warnRemainingAdds			= mod:NewAddsLeftAnnounce("ej2932", 2, 77569)
@@ -36,30 +32,30 @@ local warnArcaneStorm			= mod:NewSpellAnnounce(77896, 4)
 local warnConsumingFlames		= mod:NewTargetAnnounce(77786, 3)
 local warnScorchingBlast		= mod:NewSpellAnnounce(77679, 4)
 local warnDebilitatingSlime		= mod:NewSpellAnnounce(77615, 2)
-local warnMagmaJets				= mod:NewSpellAnnounce(78194, 4, nil, mod:IsTank())--4.0.6+ now supporting this warning.
-local warnEngulfingDarkness		= mod:NewSpellAnnounce(92754, 4, nil, mod:IsHealer() or mod:IsTank())--Heroic Ability
+local warnMagmaJets				= mod:NewSpellAnnounce(78194, 4, nil, "Tank")
+local warnEngulfingDarkness		= mod:NewSpellAnnounce(92754, 4, nil, "Tank|Healer")--Heroic Ability
 local warnPhase2Soon			= mod:NewPrePhaseAnnounce(2, 3)
 local warnPhase2				= mod:NewPhaseAnnounce(2, 4)
  
 local timerPhase				= mod:NewTimer(49, "TimerPhase", 89250)--Just some random cauldron icon not actual spellid
 local timerBitingChill			= mod:NewBuffFadesTimer(10, 77760)
 local timerFlashFreeze			= mod:NewCDTimer(14, 77699)--Varies on other abilities CDs
-local timerAddsCD				= mod:NewCDTimer(15, 77569, nil, not mod:IsHealer())--Varies on other abilities CDs
+local timerAddsCD				= mod:NewCDTimer(15, 77569, nil, "-Healer")--Varies on other abilities CDs
 local timerArcaneStormCD		= mod:NewCDTimer(14, 77896)--Varies on other abilities CDs
-local timerConsumingFlames		= mod:NewTargetTimer(10, 77786, nil, mod:IsHealer())
+local timerConsumingFlames		= mod:NewTargetTimer(10, 77786, nil, "Healer")
 local timerScorchingBlast		= mod:NewCDTimer(10, 77679)--Varies on other abilities CDs
 local timerDebilitatingSlime	= mod:NewBuffActiveTimer(15, 77615)
 local timerMagmaJetsCD			= mod:NewNextTimer(10, 78194)
-local timerEngulfingDarknessCD	= mod:NewNextTimer(12, 92754, nil, mod:IsHealer() or mod:IsTank())--Heroic Ability
+local timerEngulfingDarknessCD	= mod:NewNextTimer(12, 92754, nil, "Tank|Healer")--Heroic Ability
 
 local specWarnBitingChill		= mod:NewSpecialWarningYou(77760)
 local specWarnConsumingFlames	= mod:NewSpecialWarningYou(77786)
 local specWarnSludge			= mod:NewSpecialWarningMove(92930)
 local specWarnArcaneStorm		= mod:NewSpecialWarningInterrupt(77896, false)
-local specWarnMagmaJets			= mod:NewSpecialWarningMove(78194, mod:IsTank())
-local specWarnEngulfingDarkness	= mod:NewSpecialWarningSpell(92754, mod:IsHealer() or mod:IsTank())--Heroic Ability
-local specWarnFlashFreeze		= mod:NewSpecialWarningTarget(77699, mod:IsRanged())--On Heroic it has a lot more health.
-local specWarnRemedy			= mod:NewSpecialWarningDispel(77912, isDispeller)
+local specWarnMagmaJets			= mod:NewSpecialWarningMove(78194, "Tank")
+local specWarnEngulfingDarkness	= mod:NewSpecialWarningSpell(92754, "Tank|Healer")--Heroic Ability
+local specWarnFlashFreeze		= mod:NewSpecialWarningTarget(77699, "Range")--On Heroic it has a lot more health.
+local specWarnRemedy			= mod:NewSpecialWarningDispel(77912, "MagicDispeller")
 local specWarnAdds				= mod:NewSpecialWarningSpell(77569, false)
 
 local berserkTimer				= mod:NewBerserkTimer(420)

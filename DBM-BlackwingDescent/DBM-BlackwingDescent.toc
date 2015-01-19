@@ -11,12 +11,14 @@
 ## Author: MysticalOS
 ## LoadOnDemand: 1
 ## RequiredDeps: DBM-Core
-## SavedVariablesPerCharacter: DBMBlackwingDescent_SavedVars, DBMBlackwingDescent_SavedStats
+## SavedVariables: DBMBlackwingDescent_AllSavedVars
+## SavedVariablesPerCharacter: DBMBlackwingDescent_SavedStats
 ## X-DBM-Mod: 1
 ## X-DBM-Mod-Type: RAID
 ## X-DBM-Mod-Category: CATA
 ## X-DBM-Mod-MapID: 669
 ## X-DBM-Mod-Sort: 304
+## X-DBM-Mod-MinCoreRevision: 12473
 localization.en.lua
 localization.de.lua
 localization.es.lua

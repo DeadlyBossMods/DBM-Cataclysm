@@ -27,16 +27,16 @@ mod:RegisterEvents(
 )
 
 local warnCausticSlime		= mod:NewTargetAnnounce(82935, 3)
-local warnBreak				= mod:NewStackAnnounce(82881, 3, nil, mod:IsTank() or mod:IsHealer())
-local warnDoubleAttack		= mod:NewSpellAnnounce(88826, 4, nil, mod:IsTank() or mod:IsHealer())
+local warnBreak				= mod:NewStackAnnounce(82881, 3, nil, "Tank|Healer")
+local warnDoubleAttack		= mod:NewSpellAnnounce(88826, 4, nil, "Tank|Healer")
 local warnMassacre			= mod:NewSpellAnnounce(82848, 4)
 local warnFeud				= mod:NewSpellAnnounce(88872, 3)
 local warnPhase2Soon		= mod:NewPrePhaseAnnounce(2, 3)
 local warnPhase2			= mod:NewPhaseAnnounce(2)
 
-local specWarnFailure		= mod:NewSpecialWarningSpell(88853, nil, nil, nil, true)
-local specWarnMassacre		= mod:NewSpecialWarningSpell(82848, mod:IsHealer())
-local specWarnDoubleAttack	= mod:NewSpecialWarningSpell(88826, mod:IsTank())
+local specWarnFailure		= mod:NewSpecialWarningSpell(88853, nil, nil, nil, 2)
+local specWarnMassacre		= mod:NewSpecialWarningSpell(82848, "Healer")
+local specWarnDoubleAttack	= mod:NewSpecialWarningSpell(88826, "Tank")
 
 local timerBreak			= mod:NewTargetTimer(60, 82881)
 local timerBreakCD			= mod:NewNextTimer(15, 82881)--Also double attack CD

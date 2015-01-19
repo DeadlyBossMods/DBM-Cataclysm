@@ -41,7 +41,7 @@ local warnGatherStrength	= mod:NewTargetAnnounce(86307, 4)
 local warnSpecialSoon		= mod:NewAnnounce("warnSpecialSoon", 2, "Interface\\Icons\\INV_Enchant_EssenceMagicLarge")--Hurricane/Sleet Storm/Zephyr in single announce
 local warnSpecial			= mod:NewAnnounce("warnSpecial", 3, "Interface\\Icons\\INV_Enchant_EssenceMagicLarge")--Hurricane/Sleet Storm/Zephyr in single announce
 
-local specWarnSpecial		= mod:NewSpecialWarning("specWarnSpecial", nil, nil, nil, true)
+local specWarnSpecial		= mod:NewSpecialWarning("specWarnSpecial", nil, nil, nil, 2)
 local specWarnIcePatch      = mod:NewSpecialWarningMove(86111)
 local specWarnShield		= mod:NewSpecialWarningSpell(93059)
 local specWarnWindBlast		= mod:NewSpecialWarningSpell(86193, false)
