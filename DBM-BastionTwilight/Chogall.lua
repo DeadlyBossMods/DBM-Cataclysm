@@ -37,7 +37,7 @@ local warnPhase2					= mod:NewPhaseAnnounce(2)
 local warnPhase2Soon				= mod:NewPrePhaseAnnounce(2)
 local warnCreations					= mod:NewSpellAnnounce(82414, 3)--Phase 2
 
-local specWarnSickness				= mod:NewSpecialWarningYou(82235, mod:IsMelee())--Ranged should already be spread out and not need a special warning every sickness.
+local specWarnSickness				= mod:NewSpecialWarningYou(82235, "Melee")--Ranged should already be spread out and not need a special warning every sickness.
 local specWarnBlaze					= mod:NewSpecialWarningMove(81538)
 local specWarnWorship				= mod:NewSpecialWarningSpell(91317, false)
 local specWarnEmpoweredShadows		= mod:NewSpecialWarningSpell(81572, "Healer", nil, nil, true)

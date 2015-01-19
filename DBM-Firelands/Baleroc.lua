@@ -50,7 +50,7 @@ local berserkTimer			= mod:NewBerserkTimer(360)
 
 mod:AddBoolOption("ResetShardsinThrees", true, "announce")
 mod:AddBoolOption("RangeFrame")
-mod:AddBoolOption("InfoFrame", mod:IsHealer())
+mod:AddBoolOption("InfoFrame", "Healer")
 mod:AddBoolOption("SetIconOnCountdown")
 mod:AddBoolOption("SetIconOnTorment")
 mod:AddBoolOption("ArrowOnCountdown")
