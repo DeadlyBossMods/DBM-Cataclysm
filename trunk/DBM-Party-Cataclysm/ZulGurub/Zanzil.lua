@@ -27,7 +27,7 @@ local timerGaze				= mod:NewTargetTimer(17, 96342)
 local timerZanzilElixir		= mod:NewCDTimer(30, 96316)
 
 mod:AddBoolOption("SetIconOnGaze", false)
-mod:AddBoolOption("InfoFrame", mod:IsHealer())--on by default for healers, so they know what numpties to heal through gas
+mod:AddBoolOption("InfoFrame", "Healer")--on by default for healers, so they know what numpties to heal through gas
 
 function mod:GazeTarget()
 	local targetname = self:GetBossTarget(52054)

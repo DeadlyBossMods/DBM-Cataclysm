@@ -50,7 +50,7 @@ local berserkTimer			= mod:NewBerserkTimer(450)--Heroic
 
 mod:AddBoolOption("RangeFrame")
 mod:AddBoolOption("SetIconOnSlime", false)
-mod:AddBoolOption("InfoFrame", mod:IsHealer())
+mod:AddBoolOption("InfoFrame", "Healer")
 
 local prewarnedPhase2 = false
 local phase2 = false
