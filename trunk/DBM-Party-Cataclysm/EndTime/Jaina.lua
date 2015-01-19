@@ -17,7 +17,7 @@ mod.onlyHeroic = true
 local warnFlarecore				= mod:NewSpellAnnounce(101927, 4)
 local warnFrostBlades			= mod:NewSpellAnnounce(101339, 3)
 
-local specWarnFlarecore			= mod:NewSpecialWarningSpell(101927, nil, nil, nil, true)
+local specWarnFlarecore			= mod:NewSpecialWarningSpell(101927, nil, nil, nil, 2)
 
 local timerFlarecore			= mod:NewCDTimer(20, 101927)
 local timerFlarecoreDetonate	= mod:NewTimer(10, "TimerFlarecoreDetonate", 101927)

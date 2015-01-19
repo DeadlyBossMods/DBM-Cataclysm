@@ -21,8 +21,8 @@ local warnGroundSlam		= mod:NewCastAnnounce(78903, 4)
 local warnEnrage			= mod:NewSpellAnnounce(80467, 3)
 local warnEnrageSoon		= mod:NewSoonAnnounce(80467, 2)
 
-local specWarnGroundSlam	= mod:NewSpecialWarningMove(78903, mod:IsTank())
-local specWarnShatter		= mod:NewSpecialWarningRun("OptionVersion2", 78807, mod:IsMelee(), nil, nil, 4)
+local specWarnGroundSlam	= mod:NewSpecialWarningMove(78903, "Tank")
+local specWarnShatter		= mod:NewSpecialWarningRun("OptionVersion2", 78807, "Melee", nil, nil, 4)
 
 --local timerShatterCD		= mod:NewCDTimer(19, 78807)
 local timerBulwark			= mod:NewBuffActiveTimer(10, 78939)

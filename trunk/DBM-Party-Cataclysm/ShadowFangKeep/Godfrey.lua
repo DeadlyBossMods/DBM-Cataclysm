@@ -14,7 +14,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START"
 )
 
-local warnMortalWound			= mod:NewStackAnnounce(93675, 2, nil, mod:IsTank() or mod:IsHealer())
+local warnMortalWound			= mod:NewStackAnnounce(93675, 2, nil, "Tank|Healer")
 local warnGhouls				= mod:NewSpellAnnounce(93707, 4)
 local warnCursedBullets			= mod:NewTargetAnnounce(93629, 3)
 local warnPistolBarrage			= mod:NewSpellAnnounce(93520, 4)

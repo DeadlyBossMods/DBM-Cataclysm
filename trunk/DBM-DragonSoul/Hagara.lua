@@ -19,18 +19,18 @@ mod:RegisterEventsInCombat(
 	"SPELL_SUMMON 105297"
 )
 
-local warnAssault			= mod:NewCountAnnounce(107851, 4, nil, mod:IsHealer() or mod:IsTank())
-local warnShatteringIce		= mod:NewTargetAnnounce(105289, 3, nil, mod:IsHealer())--3 second cast, give a healer a heads up of who's about to be kicked in the face.
+local warnAssault			= mod:NewCountAnnounce(107851, 4, nil, "Tank|Healer")
+local warnShatteringIce		= mod:NewTargetAnnounce(105289, 3, nil, "Healer")--3 second cast, give a healer a heads up of who's about to be kicked in the face.
 local warnIceLance			= mod:NewTargetAnnounce(105269, 3)
 local warnFrostTombCast		= mod:NewAnnounce("warnFrostTombCast", 4, 104448)--Can't use a generic, cause it's an 8 second cast even though it says 1second in tooltip.
 local warnFrostTomb			= mod:NewTargetAnnounce(104451, 4)
 local warnTempest			= mod:NewSpellAnnounce(105256, 4)
 local warnLightningStorm	= mod:NewSpellAnnounce(105465, 4)
-local warnFrostflake		= mod:NewTargetAnnounce(109325, 3, nil, mod:IsHealer())--Spammy, only a dispeller really needs to know this, probably a healer assigned to managing it.
+local warnFrostflake		= mod:NewTargetAnnounce(109325, 3, nil, "Healer")--Spammy, only a dispeller really needs to know this, probably a healer assigned to managing it.
 local warnStormPillars		= mod:NewSpellAnnounce(109557, 3, nil, false)--Spammy, off by default (since we can't get a target anyways.
 local warnPillars			= mod:NewAnnounce("WarnPillars", 2, 105311)
 
-local specWarnAssault		= mod:NewSpecialWarningSpell(107851, mod:IsTank())
+local specWarnAssault		= mod:NewSpecialWarningSpell(107851, "Tank")
 local specWarnShattering	= mod:NewSpecialWarningYou(105289, false)
 local specWarnIceLance		= mod:NewSpecialWarningStack(105316, nil, 3)
 local specWarnFrostTombCast	= mod:NewSpecialWarningSpell(104448, nil, nil, nil, true)
@@ -40,8 +40,8 @@ local specWarnWatery		= mod:NewSpecialWarningMove(110317)
 local specWarnFrostflake	= mod:NewSpecialWarningYou(109325)
 local yellFrostflake		= mod:NewYell(109325)
 
-local timerAssault			= mod:NewBuffActiveTimer(5, 107851, nil, mod:IsTank() or mod:IsHealer())
-local timerAssaultCD		= mod:NewCDCountTimer(15, 107851, nil, mod:IsTank() or mod:IsHealer())
+local timerAssault			= mod:NewBuffActiveTimer(5, 107851, nil, "Tank|Healer")
+local timerAssaultCD		= mod:NewCDCountTimer(15, 107851, nil, "Tank|Healer")
 local timerShatteringCD		= mod:NewCDTimer(10.5, 105289)--every 10.5-15 seconds
 local timerIceLance			= mod:NewBuffActiveTimer(15, 105269)
 local timerIceLanceCD		= mod:NewNextTimer(30, 105269)

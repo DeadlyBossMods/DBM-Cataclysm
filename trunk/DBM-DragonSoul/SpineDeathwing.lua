@@ -35,9 +35,9 @@ local warnAmalgamation		= mod:NewSpellAnnounce("ej4054", 3, 106005)--Amalgamatio
 
 local specWarnRoll			= mod:NewSpecialWarningSpell("ej4050", nil, nil, nil, 2)--The actual roll
 local specWarnTendril		= mod:NewSpecialWarning("SpecWarnTendril", nil, nil, nil, 3)--A personal warning for you only if you're not gripped 3 seconds after roll started
-local specWarnGrip			= mod:NewSpecialWarningSpell(105490, mod:IsDps())
-local specWarnNuclearBlast	= mod:NewSpecialWarningRun(105845, mod:IsMelee(), nil, nil, 4)
-local specWarnSealArmor		= mod:NewSpecialWarningSpell(105847, mod:IsDps())
+local specWarnGrip			= mod:NewSpecialWarningSpell(105490, "Dps")
+local specWarnNuclearBlast	= mod:NewSpecialWarningRun(105845, "Melee", nil, nil, 4)
+local specWarnSealArmor		= mod:NewSpecialWarningSpell(105847, "Dps")
 local specWarnAmalgamation	= mod:NewSpecialWarningSpell("ej4054", false)
 
 local timerSealArmor		= mod:NewCastTimer(23, 105847)
@@ -46,7 +46,7 @@ local timerGripCD			= mod:NewNextTimer(32, 105490)
 local timerDeathCD			= mod:NewCDTimer(8.5, 106199)--8.5-10sec variation.
 
 local countdownRoll			= mod:NewCountdown(5, "ej4050")
-local countdownGrip			= mod:NewCountdown("Alt32", 105490, not mod:IsTank())--Can get confusing if used with roll countdown. This is off by default but can be turned on by someone willing to sort out the confusion on their own.
+local countdownGrip			= mod:NewCountdown("Alt32", 105490, "-Tank")--Can get confusing if used with roll countdown. This is off by default but can be turned on by someone willing to sort out the confusion on their own.
 
 mod:AddBoolOption("InfoFrame", true)
 mod:AddBoolOption("SetIconOnGrip", true)

@@ -15,7 +15,7 @@ mod:RegisterEvents(
 	"UNIT_DIED"
 )
 
-local warnMoltenArmor		= mod:NewStackAnnounce(99532, 3, nil, mod:IsTank() or mod:IsHealer())
+local warnMoltenArmor		= mod:NewStackAnnounce(99532, 3, nil, "Tank|Healer")
 local warnDruidLeap			= mod:NewTargetAnnounce(99629, 3, nil, false)--Probably spammy, more for debugging timing then anything.
 local warnRaiselava			= mod:NewSpellAnnounce(99503, 3)
 local warnMoltenBolt		= mod:NewSpellAnnounce(99579, 3)
@@ -23,14 +23,14 @@ local warnLavaSpawn			= mod:NewSpellAnnounce(99575, 3)
 local warnEarthquake		= mod:NewSpellAnnounce(100724, 3)
 
 local specWarnFieroblast	= mod:NewSpecialWarningInterrupt(100094, false)
-local specWarnMoltenArmor	= mod:NewSpecialWarningStack(99532, mod:IsTank(), 4)
+local specWarnMoltenArmor	= mod:NewSpecialWarningStack(99532, "Tank", 4)
 local specWarnDruidLeap		= mod:NewSpecialWarningYou(99629)
 local yelldruidLeap			= mod:NewYell(99629)
 local specWarnDruidLeapNear	= mod:NewSpecialWarningClose(99629)
-local specWarnEarthQuake	= mod:NewSpecialWarningCast(100724, mod:IsRanged())
+local specWarnEarthQuake	= mod:NewSpecialWarningCast(100724, "Range")
 local specWarnLava			= mod:NewSpecialWarningMove(99510)
 
-local timerMoltenArmor		= mod:NewTargetTimer(15, 99532, nil, mod:IsTank() or mod:IsHealer())
+local timerMoltenArmor		= mod:NewTargetTimer(15, 99532, nil, "Tank|Healer")
 local timerRaiseLavaCD		= mod:NewNextTimer(17, 99503)--Every 15 sec + 2 sec cast.
 local timerMoltenBoltCD		= mod:NewNextTimer(15.5, 99579)--The worm gyser things that always kill people for not moving.
 local timerLavaSpawnCD		= mod:NewNextTimer(16, 99575)--The worm gyser things that always kill people for not moving.

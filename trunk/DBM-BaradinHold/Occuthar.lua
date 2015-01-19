@@ -25,7 +25,7 @@ local timerSearingShadows		= mod:NewCDTimer(24, 96913)
 local timerEyes					= mod:NewCDTimer(57.5, 96920)
 local timerFocusedFire			= mod:NewCDTimer(16, 96884) -- 24 16 16, repeating pattern. Can vary by a couple seconds, ie be 26 18 18, but the pattern is same regardless.
 
-local specWarnSearingShadows	= mod:NewSpecialWarningSpell(96913, mod:IsTank())
+local specWarnSearingShadows	= mod:NewSpecialWarningSpell(96913, "Tank")
 local specWarnFocusedFire		= mod:NewSpecialWarningMove(97212)
 
 local berserkTimer				= mod:NewBerserkTimer(300)

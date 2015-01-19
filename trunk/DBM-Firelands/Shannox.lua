@@ -35,7 +35,7 @@ mod:SetBossHealthInfo(
 local warnFaceRage				= mod:NewTargetAnnounce(99947, 4)
 local warnRage					= mod:NewTargetAnnounce(100415, 3)
 local warnWary					= mod:NewTargetAnnounce(100167, 2, nil, false)
-local warnTears					= mod:NewStackAnnounce(99937, 3, nil, mod:IsTank() or mod:IsHealer())
+local warnTears					= mod:NewStackAnnounce(99937, 3, nil, "Tank|Healer")
 local warnSpear					= mod:NewSpellAnnounce(100002, 3)--warn for this instead of magmaflare until/if rip dies.
 local warnMagmaRupture			= mod:NewSpellAnnounce(99840, 3)
 local warnCrystalPrison			= mod:NewTargetAnnounce(99836, 2)--On by default, not as often, and useful for tanks or kiters
@@ -52,11 +52,11 @@ local yellImmoTrap				= mod:NewYell(99839, nil, false)
 local specWarnCrystalTrap		= mod:NewSpecialWarningMove(99836)
 local specWarnCrystalTrapNear	= mod:NewSpecialWarningClose(99836)
 local yellCrystalTrap			= mod:NewYell(99836)
-local specWarnTears				= mod:NewSpecialWarningStack(99937, mod:IsTank(), 8)
+local specWarnTears				= mod:NewSpecialWarningStack(99937, "Tank", 8)
 
 local timerRage					= mod:NewTargetTimer(15, 100415)
 local timerWary					= mod:NewTargetTimer(25, 100167, nil, false)
-local timerTears				= mod:NewTargetTimer(26, 99937, nil, mod:IsTank() or mod:IsHealer())
+local timerTears				= mod:NewTargetTimer(26, 99937, nil, "Tank|Healer")
 local timerCrystalPrison		= mod:NewTargetTimer(10, 99837)--Dogs Only
 local timerCrystalPrisonCD		= mod:NewCDTimer(25.5, 99836)--Seems consistent timing, other trap is not.
 local timerSpearCD				= mod:NewCDTimer(42, 100002)--Before riplimb dies

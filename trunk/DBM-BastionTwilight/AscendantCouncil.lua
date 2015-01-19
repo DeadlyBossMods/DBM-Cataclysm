@@ -26,22 +26,22 @@ mod:RegisterEventsInCombat(
 
 --Feludius
 local warnHeartIce			= mod:NewTargetAnnounce(82665, 3, nil, false)
-local warnGlaciate			= mod:NewSpellAnnounce(82746, 3, nil, mod:IsMelee())
+local warnGlaciate			= mod:NewSpellAnnounce(82746, 3, nil, "Melee")
 local warnWaterBomb			= mod:NewSpellAnnounce(82699, 3)
-local warnFrozen			= mod:NewTargetAnnounce(82772, 3, nil, mod:IsHealer())
+local warnFrozen			= mod:NewTargetAnnounce(82772, 3, nil, "Healer")
 --Ignacious
 local warnBurningBlood		= mod:NewTargetAnnounce(82660, 3, nil, false)
-local warnFlameTorrent		= mod:NewSpellAnnounce(82777, 2, nil, mod:IsTank() or mod:IsHealer())--Not too useful to announce but will leave for now. CD timer useless.
+local warnFlameTorrent		= mod:NewSpellAnnounce(82777, 2, nil, "Tank|Healer")--Not too useful to announce but will leave for now. CD timer useless.
 local warnAegisFlame		= mod:NewSpellAnnounce(82631, 4)
 --Terrastra
-local warnEruption			= mod:NewSpellAnnounce(83675, 2, nil, mod:IsMelee())
-local warnHardenSkin		= mod:NewSpellAnnounce(83718, 3, nil, mod:IsTank())
+local warnEruption			= mod:NewSpellAnnounce(83675, 2, nil, "Melee")
+local warnHardenSkin		= mod:NewSpellAnnounce(83718, 3, nil, "Tank")
 local warnQuakeSoon			= mod:NewPreWarnAnnounce(83565, 10, 3)
 local warnQuake				= mod:NewSpellAnnounce(83565, 4)
 --Arion
 local warnLightningRod		= mod:NewTargetAnnounce(83099, 3)
-local warnDisperse			= mod:NewSpellAnnounce(83087, 3, nil, mod:IsTank())
-local warnLightningBlast	= mod:NewCastAnnounce(83070, 3, nil, nil, mod:IsTank())
+local warnDisperse			= mod:NewSpellAnnounce(83087, 3, nil, "Tank")
+local warnLightningBlast	= mod:NewCastAnnounce(83070, 3, nil, nil, "Tank")
 local warnThundershockSoon	= mod:NewPreWarnAnnounce(83067, 10, 3)
 local warnThundershock		= mod:NewSpellAnnounce(83067, 4)
 --Elementium Monstrosity
@@ -55,9 +55,9 @@ local warnFrostBeacon		= mod:NewTargetAnnounce(92307, 4)--Heroic Phase 2 ablity
 
 --Feludius
 local specWarnHeartIce		= mod:NewSpecialWarningYou(82665, false)
-local specWarnGlaciate		= mod:NewSpecialWarningRun(82746, mod:IsMelee(), nil, nil, 4)
+local specWarnGlaciate		= mod:NewSpecialWarningRun(82746, "Melee", nil, nil, 4)
 local specWarnWaterLogged	= mod:NewSpecialWarningYou(82762)
-local specWarnHydroLance	= mod:NewSpecialWarningInterrupt(82752, mod:IsMelee())
+local specWarnHydroLance	= mod:NewSpecialWarningInterrupt(82752, "Melee")
 --Ignacious
 local specWarnBurningBlood	= mod:NewSpecialWarningYou(82660, false)
 local specWarnAegisFlame	= mod:NewSpecialWarningSpell(82631, nil, nil, nil, true)
@@ -65,7 +65,7 @@ local specWarnRisingFlames	= mod:NewSpecialWarningInterrupt(82636)
 --Terrastra
 local specWarnEruption		= mod:NewSpecialWarningSpell(83675, false)
 local specWarnSearingWinds	= mod:NewSpecialWarning("SpecWarnSearingWinds")
-local specWarnHardenedSkin	= mod:NewSpecialWarningInterrupt(83718, mod:IsMelee())
+local specWarnHardenedSkin	= mod:NewSpecialWarningInterrupt(83718, "Melee")
 --Arion
 local specWarnGrounded		= mod:NewSpecialWarning("SpecWarnGrounded")
 local specWarnLightningBlast= mod:NewSpecialWarningInterrupt(83070, false)
@@ -85,17 +85,17 @@ local specWarnBossLow		= mod:NewSpecialWarning("specWarnBossLow")
 --Feludius
 local timerHeartIce			= mod:NewTargetTimer(60, 82665, nil, false)
 local timerHeartIceCD		= mod:NewCDTimer(22, 82665, nil, false)--22-24 seconds
-local timerGlaciate			= mod:NewCDTimer(33, 82746, nil, mod:IsMelee())--33-35 seconds
+local timerGlaciate			= mod:NewCDTimer(33, 82746, nil, "Melee")--33-35 seconds
 local timerWaterBomb		= mod:NewCDTimer(33, 82699)--33-35 seconds
-local timerFrozen			= mod:NewBuffFadesTimer(10, 82772, nil, mod:IsHealer())
+local timerFrozen			= mod:NewBuffFadesTimer(10, 82772, nil, "Healer")
 local timerHydroLanceCD		= mod:NewCDTimer(12, 82752, nil, false)--12 second cd but lowest cast priority
 --Ignacious
 local timerBurningBlood		= mod:NewTargetTimer(60, 82660, nil, false)
 local timerBurningBloodCD	= mod:NewCDTimer(22, 82660, nil, false)--22-33 seconds, even worth having a timer?
 local timerAegisFlame		= mod:NewNextTimer(60, 82631)
 --Terrastra
-local timerEruptionCD		= mod:NewNextTimer(15, 83675, nil, mod:IsMelee())
-local timerHardenSkinCD		= mod:NewCDTimer(42, 83718, nil, mod:IsMelee())--This one is iffy, it isn't as consistent as other ability timers
+local timerEruptionCD		= mod:NewNextTimer(15, 83675, nil, "Melee")
+local timerHardenSkinCD		= mod:NewCDTimer(42, 83718, nil, "Melee")--This one is iffy, it isn't as consistent as other ability timers
 local timerQuakeCD			= mod:NewNextTimer(33, 83565)
 local timerQuakeCast		= mod:NewCastTimer(3, 83565)
 --Arion

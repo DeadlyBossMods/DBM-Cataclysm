@@ -22,8 +22,8 @@ local warnHatchAll			= mod:NewSpellAnnounce(43144, 4)
 
 local specWarnFlameBreath	= mod:NewSpecialWarningMove(97497)
 local specWarnAdds			= mod:NewSpecialWarningSpell(43962)
-local specWarnBomb			= mod:NewSpecialWarningSpell(42630, nil, nil, nil, true)
-local specWarnHatchAll		= mod:NewSpecialWarningSpell(43144, mod:IsTank())
+local specWarnBomb			= mod:NewSpecialWarningSpell(42630, nil, nil, nil, 2)
+local specWarnHatchAll		= mod:NewSpecialWarningSpell(43144, "Tank")
 
 local timerBomb				= mod:NewCastTimer(12, 42630)
 local timerBombCD			= mod:NewNextTimer(30, 42630)

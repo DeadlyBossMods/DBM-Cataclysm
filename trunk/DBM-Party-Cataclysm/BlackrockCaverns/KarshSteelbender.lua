@@ -17,7 +17,7 @@ local warnSuperheated		= mod:NewCountAnnounce(75846, 3)
 
 local timerSuperheated		= mod:NewTimer(17, "TimerSuperheated", 75846)
 
-local specWarnSuperheated	= mod:NewSpecialWarningStack(75846, mod:IsTank(), 5)
+local specWarnSuperheated	= mod:NewSpecialWarningStack(75846, "Tank", 5)
 
 function mod:OnCombatStart(delay)
 end

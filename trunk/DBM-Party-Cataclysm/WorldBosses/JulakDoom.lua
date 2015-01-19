@@ -21,7 +21,7 @@ mod.onlyNormal = true
 local warnShockwave			= mod:NewCastAnnounce(93610, 3)
 local warnMC				= mod:NewTargetAnnounce(93621, 4)
 
-local specWarnShockwave		= mod:NewSpecialWarningMove(93610, mod:IsTank())
+local specWarnShockwave		= mod:NewSpecialWarningMove(93610, "Tank")
 local specWarnBreath		= mod:NewSpecialWarningMove(93612)
 
 local timerShockwaveCD		= mod:NewNextTimer(28.5, 93610)

@@ -24,7 +24,7 @@ mod:RegisterEventsInCombat(
 	"UNIT_DIED"
 )
 
-local warnLavaSpew			= mod:NewSpellAnnounce(77689, 3, nil, mod:IsHealer())
+local warnLavaSpew			= mod:NewSpellAnnounce(77689, 3, nil, "Healer")
 local warnPillarFlame		= mod:NewSpellAnnounce(78006, 3)
 local warnMoltenTantrum		= mod:NewSpellAnnounce(78403, 4)
 local warnInferno			= mod:NewSpellAnnounce(92154, 4)
@@ -33,12 +33,12 @@ local warnArmageddon		= mod:NewSpellAnnounce(92177, 4)
 local warnPhase2Soon		= mod:NewPrePhaseAnnounce(2, 3)--heroic
 local warnPhase2			= mod:NewPhaseAnnounce(2, 4)--heroic
 
-local specWarnPillar		= mod:NewSpecialWarningSpell(78006, mod:IsRanged())
+local specWarnPillar		= mod:NewSpecialWarningSpell(78006, "Range")
 local specWarnIgnition		= mod:NewSpecialWarningMove(92128)
 local specWarnInfernoSoon   = mod:NewSpecialWarning("SpecWarnInferno")
 local specWarnArmageddon	= mod:NewSpecialWarningSpell(92177, nil, nil, nil, true)
 
-local timerLavaSpew			= mod:NewCDTimer(22, 77689, nil, mod:IsHealer())
+local timerLavaSpew			= mod:NewCDTimer(22, 77689, nil, "Healer")
 local timerPillarFlame		= mod:NewCDTimer(32.5, 78006)--This timer is a CD timer. 30-40 seconds. Use your judgement.
 local timerMangle			= mod:NewTargetTimer(30, 89773)
 local timerExposed			= mod:NewBuffActiveTimer(30, 79011)

@@ -22,9 +22,9 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 99352 99350 99259"
 )
 
-local warnDecimationBlade	= mod:NewSpellAnnounce(99352, 4, nil, mod:IsTank() or mod:IsHealer())
-local warnStrike			= mod:NewAnnounce("warnStrike", 4, 99353, mod:IsTank() or mod:IsHealer())
-local warnInfernoBlade		= mod:NewSpellAnnounce(99350, 3, nil, mod:IsTank())
+local warnDecimationBlade	= mod:NewSpellAnnounce(99352, 4, nil, "Tank|Healer")
+local warnStrike			= mod:NewAnnounce("warnStrike", 4, 99353, "Tank|Healer")
+local warnInfernoBlade		= mod:NewSpellAnnounce(99350, 3, nil, "Tank")
 local warnShardsTorment		= mod:NewCountAnnounce(99259, 3)
 local warnTormented			= mod:NewSpellAnnounce(99257, 3)--Self only warning.
 local warnCountdown			= mod:NewTargetAnnounce(99516, 4)
@@ -32,12 +32,12 @@ local yellCountdown			= mod:NewYell(99516)
 
 local specWarnShardsTorment	= mod:NewSpecialWarningSpell(99259, nil, nil, nil, true)
 local specWarnCountdown		= mod:NewSpecialWarningYou(99516)
-local specWarnTormented		= mod:NewSpecialWarningYou(99257, mod:IsHealer())
-local specWarnDecimation	= mod:NewSpecialWarningSpell(99352, mod:IsTank())
+local specWarnTormented		= mod:NewSpecialWarningYou(99257, "Healer")
+local specWarnDecimation	= mod:NewSpecialWarningSpell(99352, "Tank")
 
 local timerBladeActive		= mod:NewTimer(15, "TimerBladeActive", 99352)
-local timerBladeNext		= mod:NewTimer(30, "TimerBladeNext", 99350, mod:IsTank() or mod:IsHealer())	-- either Decimation Blade or Inferno Blade
-local timerStrikeCD			= mod:NewTimer(5, "timerStrike", 99353, mod:IsTank() or mod:IsHealer())--5 or 2.5 sec. Variations are noted but can be auto corrected after first timer since game follows correction.
+local timerBladeNext		= mod:NewTimer(30, "TimerBladeNext", 99350, "Tank|Healer")	-- either Decimation Blade or Inferno Blade
+local timerStrikeCD			= mod:NewTimer(5, "timerStrike", 99353, "Tank|Healer")--5 or 2.5 sec. Variations are noted but can be auto corrected after first timer since game follows correction.
 local timerShardsTorment	= mod:NewNextCountTimer(34, 99259)
 local timerCountdown		= mod:NewBuffFadesTimer(8, 99516)
 local timerCountdownCD		= mod:NewNextTimer(45, 99516)

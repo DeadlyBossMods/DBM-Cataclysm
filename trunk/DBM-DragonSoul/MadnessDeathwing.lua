@@ -23,7 +23,7 @@ mod:RegisterEventsInCombat(
 )
 
 local warnMutated					= mod:NewSpellAnnounce("ej4112", 3, 61618)
-local warnImpale					= mod:NewTargetAnnounce(106400, 3, nil, mod:IsTank() or mod:IsHealer())
+local warnImpale					= mod:NewTargetAnnounce(106400, 3, nil, "Tank|Healer")
 local warnElementiumBolt			= mod:NewSpellAnnounce(105651, 4)
 local warnTentacle					= mod:NewSpellAnnounce(105551, 3)
 local warnHemorrhage				= mod:NewSpellAnnounce(105863, 3)
@@ -37,26 +37,26 @@ local warnUnstableCorruption		= mod:NewCastAnnounce(108813, 4, 10)
 local warnTetanus					= mod:NewStackAnnounce(106730, 4, nil, false)
 local warnCongealingBloodSoon		= mod:NewSoonAnnounce("ej4350", 4, 109089)--15%, 10%, 5% on heroic. spellid is 109089.
 
-local specWarnMutated				= mod:NewSpecialWarningSwitch("ej4112", not mod:IsHealer())--Because tanks need to switch to it too.
+local specWarnMutated				= mod:NewSpecialWarningSwitch("ej4112", "-Healer")--Because tanks need to switch to it too.
 local specWarnImpale				= mod:NewSpecialWarningYou(106400)
-local specWarnImpaleOther			= mod:NewSpecialWarningTarget(106400, mod:IsTank() or mod:IsHealer())
+local specWarnImpaleOther			= mod:NewSpecialWarningTarget(106400, "Tank|Healer")
 local specWarnElementiumBolt		= mod:NewSpecialWarningSpell(105651, nil, nil, nil, true)--Cast, helps you find the mark on ground and get into positions
-local specWarnElementiumBoltDPS		= mod:NewSpecialWarningSwitch(105651, mod:IsDps())--Warning for when to switch to dps it, because i really felt one warning didn't serve both meanings, one is an aoe/damage warning for cast, other should be specifically yelling at dps to kill it.
-local specWarnTentacle				= mod:NewSpecialWarningSwitch("ej4103", mod:IsDps())--Tanks not included in this one cause they may still have adds.
-local specWarnHemorrhage			= mod:NewSpecialWarningSpell(105863, not mod:IsHealer())--Because tanks need to switch to it too.
-local specWarnFragments				= mod:NewSpecialWarningSpell("ej4115", mod:IsDps())--Not a "switch" warning because on normal a lot of groups choose to ignore these if they can burn boss and just pop dream. Let the raid leader decide strat on this one, not DBM.
+local specWarnElementiumBoltDPS		= mod:NewSpecialWarningSwitch(105651, "Dps")--Warning for when to switch to dps it, because i really felt one warning didn't serve both meanings, one is an aoe/damage warning for cast, other should be specifically yelling at dps to kill it.
+local specWarnTentacle				= mod:NewSpecialWarningSwitch("ej4103", "Dps")--Tanks not included in this one cause they may still have adds.
+local specWarnHemorrhage			= mod:NewSpecialWarningSpell(105863, "-Healer")--Because tanks need to switch to it too.
+local specWarnFragments				= mod:NewSpecialWarningSpell("ej4115", "Dps")--Not a "switch" warning because on normal a lot of groups choose to ignore these if they can burn boss and just pop dream. Let the raid leader decide strat on this one, not DBM.
 local specWarnTerror				= mod:NewSpecialWarningSpell("ej4117")--Same as fragments.
 local specWarnShrapnel				= mod:NewSpecialWarningYou(106794)
 local specWarnParasite				= mod:NewSpecialWarningYou(108649)
-local specWarnParasiteDPS			= mod:NewSpecialWarningSpell("ej4347", mod:IsDps())--many raid teams using kalecgos buff. they do not target switch to parasite
+local specWarnParasiteDPS			= mod:NewSpecialWarningSpell("ej4347", "Dps")--many raid teams using kalecgos buff. they do not target switch to parasite
 local yellParasite					= mod:NewYell(108649)
-local specWarnCongealingBlood		= mod:NewSpecialWarningSwitch("ej4350", mod:IsDps())--15%, 10%, 5% on heroic. spellid is 109089.
-local specWarnTetanus				= mod:NewSpecialWarningStack(106730, mod:IsTank(), 4)
-local specWarnTetanusOther			= mod:NewSpecialWarningTarget(106730, mod:IsTank())
+local specWarnCongealingBlood		= mod:NewSpecialWarningSwitch("ej4350", "Dps")--15%, 10%, 5% on heroic. spellid is 109089.
+local specWarnTetanus				= mod:NewSpecialWarningStack(106730, "Tank", 4)
+local specWarnTetanusOther			= mod:NewSpecialWarningTarget(106730, "Tank")
 
 local timerMutated					= mod:NewNextTimer(17, "ej4112", nil, nil, nil, 61618)
-local timerImpale					= mod:NewTargetTimer(49.5, 106400, nil, mod:IsTank() or mod:IsHealer())--45 plus 4 second cast plus .5 delay between debuff ID swap.
-local timerImpaleCD					= mod:NewCDTimer(35, 106400, nil, mod:IsTank() or mod:IsHealer())
+local timerImpale					= mod:NewTargetTimer(49.5, 106400, nil, "Tank|Healer")--45 plus 4 second cast plus .5 delay between debuff ID swap.
+local timerImpaleCD					= mod:NewCDTimer(35, 106400, nil, "Tank|Healer")
 local timerElementiumCast			= mod:NewCastTimer(7.5, 105651)
 local timerElementiumBlast			= mod:NewCastTimer(8, 105723)--8-10 variation depending on where it's actually going to land. Use the min time.
 local timerElementiumBoltCD			= mod:NewNextTimer(55.5, 105651)
@@ -69,14 +69,14 @@ local timerShrapnel					= mod:NewBuffFadesTimer(6, 106794)
 local timerParasite					= mod:NewTargetTimer(10, 108649)
 local timerParasiteCD				= mod:NewCDTimer(60, 108649)
 local timerUnstableCorruption		= mod:NewCastTimer(10, 108813)
-local timerTetanus					= mod:NewTargetTimer(6, 106730, nil, mod:IsHealer())
-local timerTetanusCD				= mod:NewCDTimer(3.5, 106730, nil, mod:IsTank())
+local timerTetanus					= mod:NewTargetTimer(6, 106730, nil, "Healer")
+local timerTetanusCD				= mod:NewCDTimer(3.5, 106730, nil, "Tank")
 
 local berserkTimer					= mod:NewBerserkTimer(900)
 
 local countdownBoltBlast			= mod:NewCountdown(8, 105723)
 local countdownUnstableCorruption	= mod:NewCountdown("Alt10", 108813)
-local countdownShrapnel				= mod:NewCountdown(6, 106794, not mod:IsTank())
+local countdownShrapnel				= mod:NewCountdown(6, 106794, "-Tank")
 
 mod:AddBoolOption("RangeFrame", true)--For heroic parasites, with debuff filtering.
 mod:AddBoolOption("SetIconOnParasite", true)
