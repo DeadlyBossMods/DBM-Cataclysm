@@ -302,7 +302,7 @@ function mod:UNIT_AURA(uId)
 	if UnitDebuff("player", Corruption) and self:AntiSpam(7, 2) then
 		specWarnSickness:Show()
 		timerSickness:Start()
-		if self.Options.RangeFrame and not DBM.RangeCheck:IsShown() then
+		if self.Options.RangeFrame then
 			DBM.RangeCheck:Show(5)
 		end
 	end
