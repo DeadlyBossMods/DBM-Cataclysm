@@ -6,7 +6,7 @@ mod:SetCreatureID(52558)--or does 53772 die instead?didn't actually varify this 
 mod:SetEncounterID(1204)
 mod:DisableEEKillDetection()
 mod:SetZone()
-mod:SetModelSound("Sound\\Creature\\RHYOLITH\\VO_FL_RHYOLITH_AGGRO.wav", "Sound\\Creature\\RHYOLITH\\VO_FL_RHYOLITH_KILL_02.wav")
+mod:SetModelSound("Sound\\Creature\\RHYOLITH\\VO_FL_RHYOLITH_AGGRO.ogg", "Sound\\Creature\\RHYOLITH\\VO_FL_RHYOLITH_KILL_02.ogg")
 --Long: Blah blah blah Nuisances, Nuisances :)
 --Short: So Soft
 
