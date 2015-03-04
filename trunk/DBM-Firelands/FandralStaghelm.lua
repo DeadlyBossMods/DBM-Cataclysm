@@ -193,10 +193,12 @@ function mod:SPELL_AURA_APPLIED(args)
 		timerOrb:Start()
 	elseif spellId == 98450 and args:IsPlayer() then
 		local _, _, _, _, _, duration, expires, _, _ = UnitDebuff("player", args.spellName)--Find out what our specific seed timer is
-		specWarnSearingSeed:Schedule(expires - GetTime() - 5)	-- Show "move away" warning 5secs before explode
-		timerSearingSeed:Start(expires-GetTime())
-		if self.Options.RangeFrameSeeds then
-			DBM.RangeCheck:Show(12)
+		if expires then
+			specWarnSearingSeed:Schedule(expires - GetTime() - 5)	-- Show "move away" warning 5secs before explode
+			timerSearingSeed:Start(expires-GetTime())
+			if self.Options.RangeFrameSeeds then
+				DBM.RangeCheck:Show(12)
+			end
 		end
 	end
 end
