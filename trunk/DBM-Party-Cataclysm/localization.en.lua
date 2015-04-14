@@ -689,7 +689,11 @@ L:SetMiscLocalization{
 -----------------------------
 -- Mannoroth and Varo'then --
 -----------------------------
-L= DBM:GetModLocalization(292)
+L= DBM:GetModLocalization("MannorothCata")
+
+L:SetGeneralLocalization{
+	name = "Mannoroth (Cataclysm)"
+}
 
 L:SetTimerLocalization{
 	TimerTyrandeHelp	= "Tyrande needs help"
