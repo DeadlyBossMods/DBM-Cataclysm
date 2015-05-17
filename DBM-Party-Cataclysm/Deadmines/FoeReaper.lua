@@ -19,7 +19,7 @@ local warnHarvest			= mod:NewTargetAnnounce(88495, 4)
 local warnEnrage			= mod:NewSpellAnnounce(88522, 4)
 local warnSpiritStrike		= mod:NewSpellAnnounce(59304, 3)
 
-local specWarnHarvest		= mod:NewSpecialWarningRun("OptionVersion2", 88495, nil, nil, nil, 4)
+local specWarnHarvest		= mod:NewSpecialWarningRun(88495, nil, nil, 2, 4)
 local specWarnHarvestNear	= mod:NewSpecialWarningClose(88495)
 
 local timerHarvest			= mod:NewCastTimer(5, 88495)
