@@ -16,7 +16,7 @@ mod.onlyHeroic = true
 local warnPursuit				= mod:NewTargetAnnounce(96306, 4)
 local warnRupture				= mod:NewTargetAnnounce(96619, 3)
 
-local specWarnPursuit			= mod:NewSpecialWarningRun("OptionVersion2", 96306, nil, nil, nil, 4)
+local specWarnPursuit			= mod:NewSpecialWarningRun(96306, nil, nil, 2, 4)
 local specWarnRupture			= mod:NewSpecialWarningYou(96619)
 local specWarnRuptureNear		= mod:NewSpecialWarningClose(96619)
 
