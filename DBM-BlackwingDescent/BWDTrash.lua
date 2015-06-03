@@ -24,7 +24,6 @@ local timerSacrifice		= mod:NewTargetTimer(20, 80727)
 local timerWhirlwind		= mod:NewTargetTimer(5, 80652)
 
 mod:RemoveOption("HealthFrame")
-mod:RemoveOption("SpeedKillTimer")
 
 local drakonidDied = 0
 
