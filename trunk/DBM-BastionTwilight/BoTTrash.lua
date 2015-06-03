@@ -27,7 +27,6 @@ local yellFlamestrike		= mod:NewYell(93362)
 local timerVolcanicWrath	= mod:NewBuffActiveTimer(9, 87903)--Maybe need a Guid based targettimer since most pulls have 2 of these?
 
 mod:RemoveOption("HealthFrame")
-mod:RemoveOption("SpeedKillTimer")
 
 local flamestrikeRunning = false
 

@@ -28,7 +28,6 @@ local timerRoleplay			= mod:NewTimer(45.5, "timerRoleplay", "Interface\\Icons\\S
 --I suspect some shitty LFR group is still gonna hit timer limit before 15 drakes, so we'll see
 
 mod:RemoveOption("HealthFrame")
-mod:RemoveOption("SpeedKillTimer")
 
 local drakeRunning = false
 local drakesCount = 15
