@@ -87,6 +87,11 @@ end
 local function showOrbWarning(source)
 	table.wipe(orbList)
 	mod:Unschedule(showOrbWarning)
+	if not IsInGroup() then--Solo, always orb target
+		playerWarned = true
+		specWarnOrbOnYou:Show()
+		return
+	end
 	local _, _, difficulty = GetInstanceInfo()
 	for i = 1, DBM:GetNumGroupMembers() do
 		-- do some checks for 25/10 man raid size so we don't warn for ppl who are not in the instance
@@ -94,7 +99,7 @@ local function showOrbWarning(source)
 		if difficulty == 6 and i > 25 then return end
 		local n = GetRaidRosterInfo(i)
 		-- Has aggro on something, but not a tank
-		if UnitThreatSituation(n) == 3 and not isTank(n) then
+		if n and UnitThreatSituation(n) == 3 and not isTank(n) then
 			orbList[#orbList + 1] = n
 			if UnitIsUnit(n, "player") and not playerWarned then
 				playerWarned = true
