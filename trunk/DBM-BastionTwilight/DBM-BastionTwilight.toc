@@ -18,7 +18,7 @@
 ## X-DBM-Mod-Category: CATA
 ## X-DBM-Mod-MapID: 671
 ## X-DBM-Mod-Sort: 303
-## X-DBM-Mod-MinCoreRevision: 12473
+## X-DBM-Mod-MinCoreRevision: 14002
 localization.en.lua
 localization.de.lua
 localization.es.lua
