@@ -34,12 +34,12 @@ local warnPhase2			= mod:NewPhaseAnnounce(2, 3)
 local specWarnMagmaFlow		= mod:NewSpecialWarningSpell(97225, nil, nil, nil, 2)
 local specWarnFlameStomp	= mod:NewSpecialWarningSpell(97282, false)
 
-local timerFragmentCD		= mod:NewNextTimer(22.5, "ej2531", nil, nil, nil, nil, 98136)
-local timerSparkCD			= mod:NewNextCountTimer(22.5, "ej2532", nil, nil, nil, nil, 98552)
-local timerHeatedVolcano	= mod:NewNextTimer(25.5, 98493)
-local timerFlameStomp		= mod:NewNextTimer(30.5, 97282)
+local timerFragmentCD		= mod:NewNextTimer(22.5, "ej2531", nil, nil, nil, 1, 98136)
+local timerSparkCD			= mod:NewNextCountTimer(22.5, "ej2532", nil, nil, nil, 1, 98552)
+local timerHeatedVolcano	= mod:NewNextTimer(25.5, 98493, nil, nil, nil, 5)
+local timerFlameStomp		= mod:NewNextTimer(30.5, 97282, nil, nil, nil, 2)
 local timerSuperheated		= mod:NewNextTimer(10, 101304)		--Add the 10 second party in later at some point if i remember to actually log it better
-local timerMoltenSpew		= mod:NewNextTimer(6, 98034)		--6secs after Drinking Magma
+local timerMoltenSpew		= mod:NewNextTimer(6, 98034, nil, nil, nil, 2)		--6secs after Drinking Magma
 local timerMagmaFlowActive	= mod:NewBuffActiveTimer(10, 97225)	--10 second buff volcano has, after which the magma line explodes.
 
 local countdownStomp		= mod:NewCountdown(30.5, 97282, false)

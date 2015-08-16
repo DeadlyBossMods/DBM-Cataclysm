@@ -33,9 +33,9 @@ local specWarnLeapingFlames		= mod:NewSpecialWarningMove(98535)
 local specWarnSearingSeed		= mod:NewSpecialWarningMoveAway(98450)
 local specWarnOrb				= mod:NewSpecialWarningStack(98584, true, 4)
 
-local timerOrbActive			= mod:NewBuffActiveTimer(64, 98451)
+local timerOrbActive			= mod:NewBuffActiveTimer(64, 98451, nil, nil, nil, 5)
 local timerOrb					= mod:NewBuffFadesTimer(6, 98584)
-local timerSearingSeed			= mod:NewBuffFadesTimer(60, 98450)
+local timerSearingSeed			= mod:NewBuffFadesTimer(60, 98450, nil, nil, nil, 3)
 local timerNextSpecial			= mod:NewTimer(4, "timerNextSpecial", 97238)--This one stays localized because it's 1 timer used for two abilities
 
 local berserkTimer				= mod:NewBerserkTimer(600)

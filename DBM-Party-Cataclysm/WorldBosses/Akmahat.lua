@@ -27,7 +27,7 @@ local timerShockwaveCD		= mod:NewCDTimer(16, 94968)--Every 16 seconds shockwave 
 local timerFuryofSandsCD	= mod:NewCDTimer(16, 94946)
 local timerSandsofTime		= mod:NewBuffFadesTimer(15, 93578)
 local timerSandsofTimeCD	= mod:NewCDTimer(25, 93578)
-local timerMantleCD			= mod:NewCDTimer(43, 93561)--42.8-46.5 variations. a CD timer will suffice of 43
+local timerMantleCD			= mod:NewCDTimer(43, 93561, nil, nil, nil, 5)--42.8-46.5 variations. a CD timer will suffice of 43
 
 mod:AddBoolOption("HealthFrame", true)
 
