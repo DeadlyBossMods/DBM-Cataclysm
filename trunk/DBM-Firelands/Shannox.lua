@@ -56,12 +56,12 @@ local specWarnTears				= mod:NewSpecialWarningStack(99937, "Tank", 8)
 
 local timerRage					= mod:NewTargetTimer(15, 100415)
 local timerWary					= mod:NewTargetTimer(25, 100167, nil, false)
-local timerTears				= mod:NewTargetTimer(26, 99937, nil, "Tank|Healer")
+local timerTears				= mod:NewTargetTimer(26, 99937, nil, "Tank|Healer", nil, 5)
 local timerCrystalPrison		= mod:NewTargetTimer(10, 99837)--Dogs Only
-local timerCrystalPrisonCD		= mod:NewCDTimer(25.5, 99836)--Seems consistent timing, other trap is not.
-local timerSpearCD				= mod:NewCDTimer(42, 100002)--Before riplimb dies
-local timerMagmaRuptureCD		= mod:NewCDTimer(15, 99840)--After riplimb dies
-local timerFaceRageCD			= mod:NewCDTimer(27, 99947, nil, false)--Has a 27-30 sec cd but off by default as it's subject to wild variation do to traps.
+local timerCrystalPrisonCD		= mod:NewCDTimer(25.5, 99836, nil, nil, nil, 3)--Seems consistent timing, other trap is not.
+local timerSpearCD				= mod:NewCDTimer(42, 100002, nil, nil, nil, 3)--Before riplimb dies
+local timerMagmaRuptureCD		= mod:NewCDTimer(15, 99840, nil, nil, nil, 2)--After riplimb dies
+local timerFaceRageCD			= mod:NewCDTimer(27, 99947, nil, false, nil, 5)--Has a 27-30 sec cd but off by default as it's subject to wild variation do to traps.
 
 local berserkTimer				= mod:NewBerserkTimer(600)
 

@@ -24,7 +24,6 @@ local isDKorPaly	= select(2, UnitClass("player")) == "DEATHKNIGHT"
 
 local warnIceStorm			= mod:NewSpellAnnounce(88239, 3)
 local warnSquallLine		= mod:NewSpellAnnounce(91129, 4)
-local warnWindBurst			= mod:NewSpellAnnounce(87770, 3)
 local warnAdd				= mod:NewSpellAnnounce(88272, 2)
 local warnPhase2			= mod:NewPhaseAnnounce(2)
 local warnAcidRain			= mod:NewCountAnnounce(88301, 2, nil, false)
@@ -39,15 +38,15 @@ local specWarnCloud			= mod:NewSpecialWarningMove(89588)
 local specWarnLightningRod	= mod:NewSpecialWarningMoveAway(89668)
 local yellLightningRod		= mod:NewYell(89668)
 
-local timerWindBurst		= mod:NewCastTimer(5, 87770)
-local timerWindBurstCD		= mod:NewCDTimer(25, 87770)		-- 25-30 Variation
-local timerAddCD			= mod:NewCDTimer(20, 88272)
-local timerFeedback			= mod:NewTimer(20, "TimerFeedback", 87904)
+local timerWindBurst		= mod:NewCastTimer(5, 87770, nil, nil, nil, 2)
+local timerWindBurstCD		= mod:NewCDTimer(25, 87770, nil, nil, nil, 2)		-- 25-30 Variation
+local timerAddCD			= mod:NewCDTimer(20, 88272, nil, nil, nil, 1)
+local timerFeedback			= mod:NewTimer(20, "TimerFeedback", 87904, nil, nil, 5)
 local timerAcidRainStack	= mod:NewNextTimer(15, 88301, nil, isDKorPaly)
-local timerLightningRod		= mod:NewTargetTimer(5, 89668)
-local timerLightningRodCD	= mod:NewNextTimer(15, 89668)
-local timerLightningCloudCD	= mod:NewNextTimer(15, 89588)
-local timerIceStormCD		= mod:NewCDTimer(25, 88239)
+local timerLightningRod		= mod:NewTargetTimer(5, 89668, nil, false)
+local timerLightningRodCD	= mod:NewNextTimer(15, 89668, nil, nil, nil, 3)
+local timerLightningCloudCD	= mod:NewNextTimer(15, 89588, nil, nil, nil, 3)
+local timerIceStormCD		= mod:NewCDTimer(25, 88239, nil, nil, nil, 3)
 local timerSquallLineCD		= mod:NewCDTimer(20, 91129)
 
 local berserkTimer			= mod:NewBerserkTimer(600)
@@ -147,7 +146,6 @@ end
 
 function mod:SPELL_CAST_START(args)
 	if args.spellId == 87770 then--Phase 1 wind burst
-		warnWindBurst:Show()
 		specWarnWindBurst:Show()
 		timerWindBurstCD:Start()
 		if self:IsDifficulty("heroic10", "heroic25") then

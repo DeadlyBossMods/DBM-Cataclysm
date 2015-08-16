@@ -15,11 +15,11 @@ mod:RegisterEvents(
 )
 mod.noStatistics = true
 
-local warnBreath				= mod:NewSpellAnnounce(99502, 4)
 local specwarnBreath			= mod:NewSpecialWarningCast(99502)
 local timerBreath				= mod:NewBuffActiveTimer(14, 99502)
 
 local warnHeal					= mod:NewSpellAnnounce(99392, 3)
+
 local specwarnHealInterrupt		= mod:NewSpecialWarningInterrupt(99392, false)	-- ppl have to manually turn it on if they can interrupt
 local specwarnHealDispel		= mod:NewSpecialWarningDispel(99392, false)	-- ppl have to manually turn it on if they can dispel
 local timerHeal					= mod:NewBuffActiveTimer(16, 99392)
@@ -30,7 +30,6 @@ end
 function mod:SPELL_CAST_START(args)
 	local spellId = args.spellId
 	if spellId == 99502 then
-		warnBreath:Show()
 		specwarnBreath:Show()
 		timerBreath:Start()
 	elseif spellId == 99392 then

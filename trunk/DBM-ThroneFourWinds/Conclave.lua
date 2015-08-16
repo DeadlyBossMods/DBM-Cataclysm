@@ -46,19 +46,19 @@ local specWarnIcePatch      = mod:NewSpecialWarningMove(86111)
 local specWarnShield		= mod:NewSpecialWarningSpell(93059)
 local specWarnWindBlast		= mod:NewSpecialWarningSpell(86193, false)
 
-local timerNurture			= mod:NewNextTimer(35, 85422)--This this is typically 35 seconds after a special has ended.
+local timerNurture			= mod:NewNextTimer(35, 85422, nil, nil, nil, 1)--This this is typically 35 seconds after a special has ended.
 local timerWindChill		= mod:NewNextTimer(10.5, 84645, nil, false)
 local timerSlicingGale		= mod:NewBuffFadesTimer(45, 86182, nil, false)
 local timerWindBlast		= mod:NewBuffActiveTimer(11.5, 86193)
-local timerWindBlastCD		= mod:NewCDTimer(60, 86193)-- Cooldown: 1st->2nd = 22sec || 2nd->3rd = 60sec || 3rd->4th = 60sec ?
-local timerStormShieldCD	= mod:NewCDTimer(35, 93059)--Heroic ability, seems to have a 35-40second cd and no longer syncs up to nurture since the windblast change. No longer consistent.
+local timerWindBlastCD		= mod:NewCDTimer(60, 86193, nil, nil, nil, 3)-- Cooldown: 1st->2nd = 22sec || 2nd->3rd = 60sec || 3rd->4th = 60sec ?
+local timerStormShieldCD	= mod:NewCDTimer(35, 93059, nil, nil, nil, 5)--Heroic ability, seems to have a 35-40second cd and no longer syncs up to nurture since the windblast change. No longer consistent.
 local timerGatherStrength	= mod:NewTargetTimer(60, 86307)
 local timerPoisonToxic		= mod:NewBuffActiveTimer(5, 86281)
 local timerPoisonToxicCD	= mod:NewCDTimer(21, 86281)--is this a CD or a next timer?
-local timerPermaFrostCD		= mod:NewCDTimer(10, 86081)
-local timerSoothingBreezeCD	= mod:NewNextTimer(32.5, 86205)
-local timerSpecial			= mod:NewTimer(95, "timerSpecial", "Interface\\Icons\\INV_Enchant_EssenceMagicLarge")--hurricane/Sleet storm/Zephyr share CD. Shortened cause sometimes slipstreams end early, even though cd is a little longer
-local timerSpecialActive	= mod:NewTimer(15, "timerSpecialActive", "Interface\\Icons\\INV_Enchant_EssenceMagicLarge")
+local timerPermaFrostCD		= mod:NewCDTimer(10, 86081, nil, "Tank", nil, 5)
+local timerSoothingBreezeCD	= mod:NewNextTimer(32.5, 86205, nil, "Tank", nil, 5)
+local timerSpecial			= mod:NewTimer(95, "timerSpecial", "Interface\\Icons\\INV_Enchant_EssenceMagicLarge", nil, nil, 6)--hurricane/Sleet storm/Zephyr share CD. Shortened cause sometimes slipstreams end early, even though cd is a little longer
+local timerSpecialActive	= mod:NewTimer(15, "timerSpecialActive", "Interface\\Icons\\INV_Enchant_EssenceMagicLarge", nil, nil, 6)
 
 local enrageTimer			= mod:NewBerserkTimer(480) -- Both normal and heroic mode
 

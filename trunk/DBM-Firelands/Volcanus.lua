@@ -22,7 +22,7 @@ local warnRoots					= mod:NewSpellAnnounce(100146, 2)--This is cast 2 seconds be
 local warnPhase2				= mod:NewPhaseAnnounce(2, 3)
 
 local timerRootsCD				= mod:NewCDTimer(17, 100146)
-local timerStaffTransition		= mod:NewTimer(35, "timerStaffTransition", 2457)--Might need tuning, hard to say if it's 35-39 as i might not have entered combat right away on my log
+local timerStaffTransition		= mod:NewTimer(35, "timerStaffTransition", 2457, nil, nil, 6)--Might need tuning, hard to say if it's 35-39 as i might not have entered combat right away on my log
 
 function mod:OnCombatStart(delay)
 	timerRootsCD:Start(-delay)
