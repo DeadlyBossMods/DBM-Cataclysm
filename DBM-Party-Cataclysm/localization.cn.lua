@@ -410,8 +410,7 @@ L= DBM:GetModLocalization(186)
 L:SetOptionLocalization{
 	StormIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43648),
 	RangeFrame	= "距离监视器（10码）",
-	StormArrow	= "DBM箭头：$spell:43648",
-	SetIconOnEagle	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97318)
+	StormArrow	= "DBM箭头：$spell:43648"
 }
 
 ---------------
@@ -543,8 +542,7 @@ L:SetWarningLocalization{
 
 L:SetOptionLocalization{
 	WarnRevive		= "警报：幽灵剩余数量",
-	SpecWarnOhgan	= "警报：奥根的复活", -- check this, i'm not good at English
-	SetIconOnOhgan	= "当奥根复活时自动为其添加标记" 
+	SpecWarnOhgan	= "警报：奥根的复活"
 }
 
 ----------------------

@@ -415,8 +415,7 @@ L= DBM:GetModLocalization(186)
 L:SetOptionLocalization{
 	StormIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43648),
 	RangeFrame	= "Mostrar distancia",
-	StormArrow	= "Mostrar flecha para $spell:43648",
-	SetIconOnEagle	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97318)
+	StormArrow	= "Mostrar flecha para $spell:43648"
 }
 
 ---------------
@@ -548,8 +547,7 @@ L:SetWarningLocalization{
 
 L:SetOptionLocalization{
 	WarnRevive	= "Anunciar cuantas resurrecciones de fantasmas quedan",
-	SpecWarnOhgan	= "Mostrar aviso cuando Ohgan es resucitado",
-	SetIconOnOhgan	= "Poner un icono a Ohgan cuando resucite" 
+	SpecWarnOhgan	= "Mostrar aviso cuando Ohgan es resucitado" 
 }
 
 ----------------------

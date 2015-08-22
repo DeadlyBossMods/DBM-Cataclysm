@@ -65,7 +65,7 @@ local timerDepravityCD				= mod:NewCDTimer(12, 81713, nil, "Melee")
 local berserkTimer					= mod:NewBerserkTimer(600)
 
 mod:AddBoolOption("SetIconOnWorship", true)
-mod:AddBoolOption("SetIconOnCreature", true)
+mod:AddSetIconOption("SetIconOnCreature", 82411, false, true)
 mod:AddBoolOption("CorruptingCrashArrow", true)
 mod:AddBoolOption("RangeFrame")
 mod:AddBoolOption("InfoFrame")
@@ -76,9 +76,6 @@ local firstFury = false
 local worshipIcon = 8
 local worshipCooldown = 20.5
 local shadowOrdersCD = 15
-local creatureIcons = {}
-local creatureIcon = 8
-local iconsSet = 0
 local Corruption = GetSpellInfo(82235)
 local Bloodlevel = EJ_GetSectionInfo(3165)
 
@@ -88,12 +85,6 @@ local function showWorshipWarning()
 	worshipIcon = 8
 	timerWorshipCD:Start(worshipCooldown)
 	specWarnWorship:Show()
-end
-
-local function resetCreatureIconState()
-	table.wipe(creatureIcons)
-	creatureIcon = 8
-	iconsSet = 0
 end
 
 function mod:CorruptingCrashTarget(sGUID)
@@ -128,14 +119,11 @@ function mod:OnCombatStart(delay)
 	timerFlamesOrders:Start(5-delay)
 	timerWorshipCD:Start(10-delay)
 	table.wipe(worshipTargets)
-	table.wipe(creatureIcons)
 	prewarned_Phase2 = false
 	firstFury = false
 	worshipIcon = 8
 	worshipCooldown = 20.5
 	shadowOrdersCD = 15
-	creatureIcon = 8
-	iconsSet = 0
 	berserkTimer:Start(-delay)
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:SetHeader(Bloodlevel)
@@ -205,9 +193,12 @@ function mod:SPELL_CAST_START(args)
 			timerFlamesOrders:Start(15)--Flames orders is 15 seconds after first fury, regardless whether or not shadow was last.
 		end
 	elseif args.spellId == 82411 then -- Creatures are channeling after their spawn.
-		if self.Options.SetIconOnCreature and not creatureIcons[args.sourceGUID] then
-			creatureIcons[args.sourceGUID] = creatureIcon
-			creatureIcon = creatureIcon - 1
+		if self.Options.SetIconOnCreature then
+			if self:IsDifficulty("normal25", "heroic25") then
+				self:ScanForMobs(args.destGUID, 0, 8, 8, 0.1, 20, "SetIconOnCreature")
+			else
+				self:ScanForMobs(args.destGUID, 0, 8, 4, 0.1, 20, "SetIconOnCreature")
+			end
 		end
 	elseif args.spellId == 81713 then
 		if not DBM.BossHealth:HasBoss(args.sourceGUID) and DBM.BossHealth:IsShown() then--Check if added to boss health
@@ -224,24 +215,9 @@ function mod:SPELL_CAST_START(args)
 	end
 end
 
-mod:RegisterOnUpdateHandler(function(self)
-	if self.Options.SetIconOnCreature and (DBM:GetRaidRank() > 0 and not (iconsSet == 8 and self:IsDifficulty("normal25", "heroic25") or iconsSet == 4 and self:IsDifficulty("normal10", "heroic10"))) then
-		for uId in DBM:GetGroupMembers() do
-			local uId = uId.."target"
-			local guid = UnitGUID(uId)
-			if creatureIcons[guid] then
-				SetRaidTarget(uId, creatureIcons[guid])
-				iconsSet = iconsSet + 1
-				creatureIcons[guid] = nil
-			end
-		end
-	end
-end, 1)
-
 function mod:SPELL_CAST_SUCCESS(args)
 	if args.spellId == 82414 then
 		warnCreations:Show()
-		resetCreatureIconState()
 		if self:IsDifficulty("heroic10", "heroic25") then -- other difficulty not sure, only comfirmed 25 man heroic
 			timerCreationsCD:Start(40)
 		else

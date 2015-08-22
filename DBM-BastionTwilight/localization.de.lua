@@ -70,8 +70,7 @@ L = DBM:GetModLocalization(167)
 L:SetOptionLocalization({
 	CorruptingCrashArrow	= "Zeige DBM-Pfeil, falls $spell:81685 nahe bei dir ist",
 	InfoFrame				= "Zeige Infofenster für $journal:3165",
-	RangeFrame				= "Zeige Abstandsfenster (5m) für $journal:3165",
-	SetIconOnCreature		= "Setze Zeichen auf Verfinsterte Geschöpfe"
+	RangeFrame				= "Zeige Abstandsfenster (5m) für $journal:3165"
 })
 
 ----------------

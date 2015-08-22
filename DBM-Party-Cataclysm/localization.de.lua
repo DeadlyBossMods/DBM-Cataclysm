@@ -529,8 +529,7 @@ L:SetWarningLocalization{
 
 L:SetOptionLocalization{
 	WarnRevive		= "Verkünde die Anzahl der verbleibenden Geisterwiederbelebungen",
-	SpecWarnOhgan	= "Zeige Warnung, wenn Ohgan wiederbelebt wird",
-	SetIconOnOhgan	= "Setze ein Zeichen auf Ohgan, wenn er wiederbelebt wird"
+	SpecWarnOhgan	= "Zeige Warnung, wenn Ohgan wiederbelebt wird"
 }
 
 ----------------------
