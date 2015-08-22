@@ -71,8 +71,7 @@ L= DBM:GetModLocalization(167)
 L:SetOptionLocalization({
 	CorruptingCrashArrow	= "當你附近的人中了$spell:81685時顯示DBM箭頭",
 	InfoFrame				= "為$journal:3165顯示資訊框架",
-	RangeFrame				= "為$journal:3165顯示距離框(5碼)",
-	SetIconOnCreature		= "設定標記到暗色觸鬚"
+	RangeFrame				= "為$journal:3165顯示距離框(5碼)"
 })
 
 ----------------

@@ -24,6 +24,7 @@ local isDKorPaly	= select(2, UnitClass("player")) == "DEATHKNIGHT"
 
 local warnIceStorm			= mod:NewSpellAnnounce(88239, 3)
 local warnSquallLine		= mod:NewSpellAnnounce(91129, 4)
+local warnWindBurst			= mod:NewSpellAnnounce(87770, 3)
 local warnAdd				= mod:NewSpellAnnounce(88272, 2)
 local warnPhase2			= mod:NewPhaseAnnounce(2)
 local warnAcidRain			= mod:NewCountAnnounce(88301, 2, nil, false)

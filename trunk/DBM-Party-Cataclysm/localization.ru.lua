@@ -406,8 +406,7 @@ L= DBM:GetModLocalization(186)
 L:SetOptionLocalization{
 	StormIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43648),
 	RangeFrame	= "Окно проверки дистанции (10м)",
-	StormArrow	= "Показывать стрелку DBM для $spell:43648",
-	SetIconOnEagle	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(97318)
+	StormArrow	= "Показывать стрелку DBM для $spell:43648"
 }
 
 ---------------
@@ -539,8 +538,7 @@ L:SetWarningLocalization{
 
 L:SetOptionLocalization{
 	WarnRevive		= "Показывать количество оставшихся духов",
-	SpecWarnOhgan	= "Предупреждение, когда Оган возрождается", -- check this, i'm not good at English
-	SetIconOnOhgan	= "Устанавливать метку на Огана, когда он возрождается"
+	SpecWarnOhgan	= "Предупреждение, когда Оган возрождается" -- check this, i'm not good at English
 }
 
 ----------------------

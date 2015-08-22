@@ -528,8 +528,7 @@ L:SetWarningLocalization{
 
 L:SetOptionLocalization{
 	WarnRevive		= "영혼 부활 남은횟수 알림 보기",
-	SpecWarnOhgan	= "되살아난 오간이 공격 가능 할때 특수 경고 보기",
-	SetIconOnOhgan	= "되살아난 오간에게 전술 목표 아이콘 설정"
+	SpecWarnOhgan	= "되살아난 오간이 공격 가능 할때 특수 경고 보기"
 }
 
 ----------------------

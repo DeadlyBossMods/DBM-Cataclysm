@@ -529,8 +529,7 @@ L:SetWarningLocalization{
 
 L:SetOptionLocalization{
 	WarnRevive		= "提示剩餘多少鬼魂",
-	SpecWarnOhgan	= "當奧根蘇醒時顯示警告",
-	SetIconOnOhgan	= "當奧根蘇醒時標記它"
+	SpecWarnOhgan	= "當奧根蘇醒時顯示警告"
 }
 
 ----------------------
