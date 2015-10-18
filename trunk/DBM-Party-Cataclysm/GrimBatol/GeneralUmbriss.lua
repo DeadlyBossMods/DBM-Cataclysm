@@ -8,111 +8,91 @@ mod:SetZone()
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_APPLIED_DOSE",
-	"SPELL_AURA_REMOVED",
-	"SPELL_CAST_START",
-	"UNIT_HEALTH",
-	"CHAT_MSG_RAID_BOSS_EMOTE"
+	"SPELL_AURA_APPLIED 74846 74853 74837 90170",
+	"SPELL_CAST_START 74634",
+	"CHAT_MSG_RAID_BOSS_EMOTE",
+	"UNIT_HEALTH boss1",
+	"UNIT_SPELLCAST_SUCCEEDED boss1"
 )
 
+--TODO, ground siege? 21-31 variation, too much to add timer at this time
 local warnBleedingWound		= mod:NewTargetAnnounce(74846, 4, nil, "Tank|Healer")
 local warnMalady			= mod:NewTargetAnnounce(74837, 2)
-local warnMalice			= mod:NewSpellAnnounce(90170, 4)
+local warnMalice			= mod:NewSpellAnnounce(90170, 4, nil, "Tank|Healer")
 local warnFrenzySoon		= mod:NewSoonAnnounce(74853, 2, nil, "Tank|Healer")
 local warnFrenzy			= mod:NewSpellAnnounce(74853, 3, nil, "Tank|Healer")
-local warnBlitz				= mod:NewTargetAnnounce(74670, 4)
+local warnBlitz				= mod:NewTargetAnnounce(74670, 3)
 
 local specWarnMalice		= mod:NewSpecialWarningSpell(90170, "Tank")
+local specWarnGroundSiege	= mod:NewSpecialWarningRun(74634, "Melee", nil, nil, 4)
 local specWarnBlitz			= mod:NewSpecialWarningYou(74670)
+local yellBlitz				= mod:NewYell(74670)
+local specWarnBlitzNear		= mod:NewSpecialWarningClose(74670)
+local specWarnSummonSkardyn	= mod:NewSpecialWarningSwitch("ej3358", "Dps")--Seems health based, pull,and 50%?
 
-local timerBleedingWound	= mod:NewTargetTimer(15, 74846, nil, "Tank|Healer")
-local timerBleedingWoundCD	= mod:NewCDTimer(25, 74846, nil, "Tank|Healer")
-local timerGroundSiege		= mod:NewCastTimer(2, 74634, nil, "Healer|Melee")
-local timerBlitz			= mod:NewCDTimer(23, 74670)
-local timerMalady			= mod:NewBuffFadesTimer(10, 74837)
-local timerMalice			= mod:NewBuffActiveTimer(20, 90170)
+local timerBleedingWoundCD	= mod:NewCDTimer(20.5, 74846, nil, "Tank|Healer", nil, 5)
+local timerBlitz			= mod:NewCDTimer(21.8, 74670, nil, nil, nil, 3)
+local timerMalice			= mod:NewBuffActiveTimer(20, 90170, nil, "Tank|Healer", 2, 5)
 
 mod:AddBoolOption("PingBlitz")
 
-local warnedFrenzy
-local maladyTargets = {}
-local maladyCount = 0
-
-local function showMaladyWarning()
-	warnMalady:Show(table.concat(maladyTargets, "<, >"))
-	table.wipe(maladyTargets)
-	timerMalady:Start()
-end
+local warnedFrenzy = false
 
 function mod:OnCombatStart(delay)
 	warnedFrenzy = false
-	table.wipe(maladyTargets)
-	maladyCount = 0
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 74846 then
+	local spellId = args.spellId
+	if spellId == 74846 then
 		warnBleedingWound:Show(args.destName)
-		timerBleedingWound:Start(args.destName)
 		timerBleedingWoundCD:Start()
-	elseif args.spellId == 74853 then
+	elseif spellId == 74853 then
 		warnFrenzy:Show()
-	elseif args.spellId == 74837 then
-		maladyCount = maladyCount + 1
-		maladyTargets[#maladyTargets + 1] = args.destName
-		self:Unschedule(showMaladyWarning)
-		self:Schedule(0.3, showMaladyWarning)
-	elseif args.spellId == 90170 then
+	elseif spellId == 74837 then
+		warnMalady:CombinedShow(0.3, args.destName)
+	elseif spellId == 90170 then
 		warnMalice:Show()
 		specWarnMalice:Show()
 		timerMalice:Start()
 	end
 end
 
-mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
-
-function mod:SPELL_AURA_REMOVED(args)
-	if args.spellId == 74846 then
-		timerBleedingWound:Cancel(args.destName)
-	elseif args.spellId == 74837 then
-		maladyCount = maladyCount - 1
-		if maladyCount == 0 then
-			timerMalady:Cancel()
-		end
-	end
-end
-
 function mod:SPELL_CAST_START(args)
 	if args.spellId == 74634 then
-		timerGroundSiege:Start()
-	end
-end
-
-function mod:UNIT_HEALTH(uId)
-	if UnitName(uId) == L.name then
-		local h = UnitHealth(uId) / UnitHealthMax(uId) * 100
-		if warnedFrenzy and h > 50 then
-			warnedFrenzy = false
-		elseif h > 33 and h < 38 and not warnedFrenzy then
-			warnFrenzySoon:Show()
-			warnedFrenzy = true
-		end
+		specWarnGroundSiege:Show()
 	end
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg, _, _, _, target)
-	if msg:find(L.Blitz) then
+	if msg:find("spell:74670") then
 		timerBlitz:Start()
-		if target then
-			local target = DBM:GetUnitFullName(target)
-			warnBlitz:Show(target)
-			if target == UnitName("player") then
-				specWarnBlitz:Show()
-				if self.Options.PingBlitz then
-					Minimap:PingLocation()
-				end
+		if not target then return end
+		local target = DBM:GetUnitFullName(target)
+		if target == UnitName("player") then
+			specWarnBlitz:Show()
+			yellBlitz:Yell()
+			if self.Options.PingBlitz then
+				Minimap:PingLocation()
 			end
+		elseif self:CheckNearby(6, target) then
+			specWarnBlitzNear:Show(target)
+		else
+			warnBlitz:Show(target)
 		end
+	end
+end
+
+function mod:UNIT_HEALTH(uId)
+	local h = UnitHealth(uId) / UnitHealthMax(uId) * 100
+	if h > 33 and h < 38 and not warnedFrenzy then
+		warnFrenzySoon:Show()
+		warnedFrenzy = true
+	end
+end
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, _, _, spellId)
+	if spellId == 74859 then
+		specWarnSummonSkardyn:Show()
 	end
 end

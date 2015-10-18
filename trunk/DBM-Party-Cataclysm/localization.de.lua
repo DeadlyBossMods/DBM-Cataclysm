@@ -95,10 +95,6 @@ L:SetOptionLocalization{
 	PingBlitz	= "Pingt die Minimap, wenn General Umbriss dich anstürmt"
 }
 
-L:SetMiscLocalization{
-	Blitz		= "richtet seine Augen auf |cFFFF0000(%S+)"
-}
-
 --------------------------
 -- Forgemaster Throngus --
 --------------------------
@@ -108,11 +104,6 @@ L= DBM:GetModLocalization(132)
 -- Drahga Shadowburner --
 -------------------------
 L= DBM:GetModLocalization(133)
-
-L:SetMiscLocalization{
-	ValionaYell	= "Drache, Ihr werdet tun, was ich sage! Fangt mich!",
-	Add			= "%s wirkt den Zauber"
-}
 
 ------------
 -- Erudax --

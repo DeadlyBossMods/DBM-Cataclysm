@@ -94,11 +94,6 @@ L= DBM:GetModLocalization(131)
 L:SetOptionLocalization{
 	PingBlitz	= "當昂布里斯將軍即將閃擊你時點擊小地圖"
 }
-
-L:SetMiscLocalization{
-	Blitz		= "將目光注射|cFFFF0000(%S+)"
-}
-
 --------------------------
 -- Forgemaster Throngus --
 --------------------------
@@ -108,11 +103,6 @@ L= DBM:GetModLocalization(132)
 -- Drahga Shadowburner --
 -------------------------
 L= DBM:GetModLocalization(133)
-
-L:SetMiscLocalization{
-	ValionaYell	= "龍啊，聽我命令! 抓住我!",
-	Add		= "%s進行"
-}
 
 ------------
 -- Erudax --

@@ -8,66 +8,60 @@ mod:SetZone()
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_REMOVED",
-	"SPELL_CAST_START"
+	"SPELL_AURA_APPLIED 75861 75792",
+	"SPELL_CAST_START 75763 79467",
+	"UNIT_SPELLCAST_SUCCEEDED boss1"
 )
 
 local warnBinding		= mod:NewTargetAnnounce(75861, 3)
-local warnFeeble		= mod:NewTargetAnnounce(75792, 3)
-local warnGale			= mod:NewSpellAnnounce(75664, 4)
+local warnFeeble		= mod:NewTargetAnnounce(75792, 3, nil, "Tank|Healer", 2)
 local warnUmbralMending	= mod:NewSpellAnnounce(75763, 4)
 
-local timerBinding		= mod:NewBuffFadesTimer(6, 75861)
-local timerFeeble		= mod:NewTargetTimer(3, 75792)
-local timerGale			= mod:NewCastTimer(5, 75664)
-local timerGaleCD		= mod:NewCDTimer(55, 75664)
+local specWarnMending	= mod:NewSpecialWarningInterrupt(75763)
+local specWarnGale		= mod:NewSpecialWarningSpell(75664, nil, nil, nil, 2)
+local specWarnAdds		= mod:NewSpecialWarningSwitch("ej3378", "Dps", nil, nil, 3)
 
-local bindingTargets = {}
-local bindingCount = 0
-
-local function showBindingWarning()
-	warnBinding:Show(table.concat(bindingTargets, "<, >"))
-	table.wipe(bindingTargets)
-	timerBinding:Start()
-end
+local timerFeebleCD		= mod:NewCDTimer(26, 75792, nil, "Tank", nil, 5)
+local timerFeeble		= mod:NewTargetTimer(3, 75792, nil, "Tank|Healer", 2, 5)
+local timerGale			= mod:NewCastTimer(5, 75664, nil, nil, nil, 2)
+local timerGaleCD		= mod:NewCDTimer(55, 75664, nil, nil, nil, 2)
+local timerAddsCD		= mod:NewCDTimer(54.5, 75704, nil, nil, nil, 1)
 
 function mod:OnCombatStart(delay)
-	table.wipe(bindingTargets)
-	bindingCount = 0
+	timerFeebleCD:Start(16-delay)
+	timerGaleCD:Start(23-delay)
+--	timerAddsCD:Start(95-delay)--First ones don't start until boss reaches % health of some sort?
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 75861 then
-		bindingCount = bindingCount + 1
-		bindingTargets[#bindingTargets + 1] = args.destName
-		self:Unschedule(showBindingWarning)
-		self:Schedule(0.3, showBindingWarning)
-	elseif args.spellId == 75792 then
+	local spellId = args.spellId
+	if spellId == 75861 then
+		warnBinding:CombinedShow(0.3, args.destName)
+	elseif spellId == 75792 then
 		warnFeeble:Show(args.destName)
-		if self:IsDifficulty("heroic5") then
-			timerFeeble:Start(5, args.destName)
-		else
+		timerFeebleCD:Start()
+		if self:IsDifficulty("normal") then
 			timerFeeble:Start(args.destName)
-		end
-	end
-end
-
-function mod:SPELL_AURA_REMOVED(args)
-	if args.spellId == 75861 then
-		bindingCount = bindingCount - 1
-		if bindingCount == 0 then
-			timerBinding:Cancel()
+		else
+			timerFeeble:Start(5, args.destName)
 		end
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args.spellId == 75664 then
-		warnGale:Show()
+	if args:IsSpellID(75763, 79467) and self:CheckInterruptFilter(args.sourceGUID) then
+		specWarnMending:Show()
+	end
+end
+
+--Sometimes boss fails to cast gale so no SPELL_CAST_START event. This ensures we still detect cast and start tiemers
+function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, _, _, spellId)
+	if spellId == 75656 then
+		specWarnGale:Show()
 		timerGale:Start()
 		timerGaleCD:Start()
-	elseif args:IsSpellID(75763, 79467) then
-		warnUmbralMending:Show()
+	elseif spellId == 75704 then
+		specWarnAdds:Show()
+		timerAddsCD:Start()
 	end
 end

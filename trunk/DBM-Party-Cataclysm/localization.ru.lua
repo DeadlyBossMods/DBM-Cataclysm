@@ -100,10 +100,6 @@ L:SetOptionLocalization{
 	PingBlitz	= "С эмитировать импульс на мини-карте, если Умбрисс собирается применить на вас $spell:74670"
 }
 
-L:SetMiscLocalization{
-	Blitz		= "останавливает взгяд на |cFFFF0000(%S+)" -- mb need use |3-3(%S+)
-}
-
 --------------------------
 -- Forgemaster Throngus --
 --------------------------
@@ -113,11 +109,6 @@ L= DBM:GetModLocalization(132)
 -- Drahga Shadowburner --
 -------------------------
 L= DBM:GetModLocalization(133)
-
-L:SetMiscLocalization{
-	ValionaYell	= "Дракон, ты будеш делать то, что я прикажу! Подхвати меня!",	-- translate -- Yell when Valiona is incoming
-	Add			= "%s призывает"
-}
 
 ------------
 -- Erudax --

@@ -95,10 +95,6 @@ L:SetOptionLocalization{
 	PingBlitz	= "$spell:74670 대상이 된 경우 미니맵에 위치 보기"
 }
 
-L:SetMiscLocalization{
-	Blitz		= "보면서"
-}
-
 --------------------------
 -- Forgemaster Throngus --
 --------------------------
@@ -108,11 +104,6 @@ L= DBM:GetModLocalization(132)
 -- Drahga Shadowburner --
 -------------------------
 L= DBM:GetModLocalization(133)
-
-L:SetMiscLocalization{
-	ValionaYell	= "용이여, 내 명령을 따라라! 날 태워라!",
-	Add			= "화염의 기원"
-}
 
 ------------
 -- Erudax --
