@@ -102,10 +102,6 @@ L:SetOptionLocalization{
 	PingBlitz	= "Ping sur la minimap lorsque le Général Umbriss est sur le point de vous faire une Attaque éclair"
 }
 
-L:SetMiscLocalization{
-	Blitz		= "Son regard se fixe sur |cFFFF0000(%S+)"
-}
-
 --------------------------
 -- Forgemaster Throngus --
 --------------------------
@@ -115,10 +111,6 @@ L= DBM:GetModLocalization(132)
 -- Drahga Shadowburner --
 -------------------------
 L= DBM:GetModLocalization(133)
-
-L:SetMiscLocalization{
-	ValionaYell	= "Dragon, vous faites ce que je commande! Attrape-moi!"	-- Yell when Valiona is incoming
-}
 
 ------------
 -- Erudax --

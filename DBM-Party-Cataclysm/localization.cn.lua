@@ -103,10 +103,6 @@ L:SetOptionLocalization{
 	PingBlitz	= "当乌比斯将军准备对你迅猛突袭时自动点击小地图"
 }
 
-L:SetMiscLocalization{
-	Blitz		= "盯住了|cFFFF0000(%S+)"
-}
-
 --------------------------
 -- Forgemaster Throngus --
 --------------------------
@@ -116,11 +112,6 @@ L= DBM:GetModLocalization(132)
 -- Drahga Shadowburner --
 -------------------------
 L= DBM:GetModLocalization(133)
-
-L:SetMiscLocalization{
-	ValionaYell	= "巨龙，听从我的命令！接住我！",	-- Yell when Valiona is incoming
-	Add			= "%s开始施放"
-}
 
 ------------
 -- Erudax --

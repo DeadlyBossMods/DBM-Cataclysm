@@ -10,77 +10,88 @@ mod:RegisterCombat("combat")
 mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED",
 	"SPELL_CAST_START",
-	"SPELL_SUMMON",
+--	"SPELL_SUMMON",
 	"CHAT_MSG_MONSTER_YELL",
-	"RAID_BOSS_EMOTE",
+	"CHAT_MSG_RAID_BOSS_EMOTE",
 	"UNIT_AURA_UNFILTERED"
 )
 
-local warnFlame					= mod:NewSpellAnnounce(75321, 3)
-local warnDevouring				= mod:NewSpellAnnounce(90950, 3)
-local warnShredding				= mod:NewSpellAnnounce(75271, 3)
+--shredding? Disabled since it seemed utterly useless in my limited testing
+--local warnShredding				= mod:NewSpellAnnounce(75271, 3)
 local warnFlamingFixate	 		= mod:NewTargetAnnounce(82850, 4)
 
-local specWarnFlamingFixate		= mod:NewSpecialWarningYou(82850)
-local specWarnDevouring 		= mod:NewSpecialWarningSpell(90950, nil, nil, nil, true)
+local specWarnFlamingFixate		= mod:NewSpecialWarningRun(82850, nil, nil, nil, 4)
+local specWarnDevouring 		= mod:NewSpecialWarningDodge(90950, nil, nil, nil, 2)
 local specWarnSeepingTwilight	= mod:NewSpecialWarningMove(75317)
 
-local timerFlame				= mod:NewCDTimer(27, 75321)
+local timerAddCD				= mod:NewCDTimer(22, 90949, nil, nil, nil, 1)--22-27. 24 is the average
+local timerDevouringCD			= mod:NewCDTimer(40, 90950, nil, nil, nil, 3)
 local timerDevouring			= mod:NewBuffActiveTimer(5, 90950)
-local timerShredding			= mod:NewBuffActiveTimer(20, 75271)
+--local timerShredding			= mod:NewBuffActiveTimer(20, 75271)
 
 local flamingFixate = GetSpellInfo(82850)
-local fixateWarned = false
+local fixateWarned = {}
 local Valiona = EJ_GetSectionInfo(3369)
+local valionaLanded = false
 
 function mod:OnCombatStart(delay)
-	fixateWarned = false
+	table.wipe(fixateWarned)
+	valionaLanded = false
 end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 75328 and DBM.BossHealth:IsShown() then
 		DBM.BossHealth:RemoveBoss(40320)
+		timerDevouringCD:Cancel()
+		timerDevouring:Cancel()
 	elseif args.spellId == 75317 and args:IsPlayer() then
 		specWarnSeepingTwilight:Show()
 	end
 end
 
 function mod:SPELL_CAST_START(args)
-	if args.spellId == 75321 then
-		warnFlame:Show()
-		timerFlame:Start()
-	elseif args.spellId == 90950 then
-		warnDevouring:Show()
+	if args.spellId == 90950 then
 		specWarnDevouring:Show()
 		timerDevouring:Start()
+		timerDevouringCD:Start()
 	end
 end
 
+--[[
 function mod:SPELL_SUMMON(args)
 	if args.spellId == 75271 then
 		warnShredding:Show()
 		timerShredding:Start()
 	end
-end
+end--]]
 
-function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if msg == L.ValionaYell or msg:find(L.ValionaYell) and DBM.BossHealth:IsShown() then
-		DBM.BossHealth:AddBoss(40320, Valiona)
+function mod:CHAT_MSG_MONSTER_YELL(msg, npc)
+	if npc == Valiona and not valionaLanded then
+		valionaLanded = true
+		timerDevouringCD:Start(29)
+		if DBM.BossHealth:IsShown() then
+			DBM.BossHealth:AddBoss(40320, Valiona)
+		end
 	end
 end
 
-function mod:RAID_BOSS_EMOTE(msg)
-	if msg == L.Add or msg:find(L.Add) then
-		fixateWarned = false--This will of course mess up if you haven't killed your last add yet, it'll rewarn fixate on that one then not warn for new one.
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg)
+	if msg:find("spell:75218") then--Add spawning
+		timerAddCD:Start()
 	end
 end
 
 function mod:UNIT_AURA_UNFILTERED(uId)
-	if UnitDebuff(uId, flamingFixate) and not fixateWarned then--This spams every 0.5 seconds if not throttled, debuff has unlimited duration so you can't really use a timed function.
-		warnFlamingFixate:Show(DBM:GetUnitFullName(uId))
+	local isFixate = UnitDebuff(uId, flamingFixate)
+	local name = DBM:GetUnitFullName(uId)
+	if not isFixate and fixateWarned[name] then
+		fixateWarned[name] = nil
+	elseif isFixate and not fixateWarned[name] then
+		fixateWarned[name] = true
 		if uId == "player" then
 			specWarnFlamingFixate:Show()
+		else
+			warnFlamingFixate:Show(DBM:GetUnitFullName(uId))
 		end
-		fixateWarned = true
 	end
 end
