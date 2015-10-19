@@ -209,13 +209,8 @@ L:SetWarningLocalization{
 	specWarnPhase2Soon	= "5秒後進入第2階段"
 }
 
-L:SetTimerLocalization({
-	timerPhase2 	= "第2階段開始"
-})
-
 L:SetOptionLocalization{
-	specWarnPhase2Soon	= "當第2階段即將到來(5秒)時顯示特別警告",
-	timerPhase2 	= "為第2階段開始顯示計時器"
+	specWarnPhase2Soon	= "當第2階段即將到來(5秒)時顯示特別警告"
 }
 
 -----------------------
