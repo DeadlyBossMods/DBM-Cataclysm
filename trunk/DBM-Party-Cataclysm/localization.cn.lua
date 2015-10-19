@@ -218,13 +218,8 @@ L:SetWarningLocalization{
 	specWarnPhase2Soon	= "5秒后进入第2阶段"
 }
 
-L:SetTimerLocalization({
-	timerPhase2 		= "第2阶段开始"
-})
-
 L:SetOptionLocalization{
-	specWarnPhase2Soon	= "特殊警报：第2阶段即将开始（约5秒）",
-	timerPhase2 		= "计时条：第2阶段即将开始"
+	specWarnPhase2Soon	= "特殊警报：第2阶段即将开始（约5秒）"
 }
 
 -----------------------

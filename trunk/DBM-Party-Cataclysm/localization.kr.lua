@@ -210,13 +210,8 @@ L:SetWarningLocalization{
 	specWarnPhase2Soon	= "5초 후 2 단계 시작!"
 }
 
-L:SetTimerLocalization({
-	timerPhase2 		= "2 단계"
-})
-
 L:SetOptionLocalization{
-	specWarnPhase2Soon	= "2 단계 이전에 특수 경고 보기",
-	timerPhase2 		= "2 단계 바 보기"
+	specWarnPhase2Soon	= "2 단계 이전에 특수 경고 보기"
 }
 
 -----------------------

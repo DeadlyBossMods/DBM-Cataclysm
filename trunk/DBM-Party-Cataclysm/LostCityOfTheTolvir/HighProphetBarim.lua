@@ -8,25 +8,28 @@ mod:SetZone()
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_REMOVED",
-	"SPELL_DAMAGE",
-	"SPELL_MISSED",
+	"SPELL_AURA_APPLIED 82622 82506 82255 88814",
+	"SPELL_AURA_REMOVED 82622 82506",
+	"SPELL_DAMAGE 81942",
+	"SPELL_MISSED 81942",
 	"UNIT_DIED"
 )
 
-local warnPlagueAges			= mod:NewTargetAnnounce(82622, 3)
-local warnLashings				= mod:NewTargetAnnounce(82506, 3)
+--TODO, verify how soul sever stuff works, i don't remember it completely
+local warnPlagueAges			= mod:NewTargetAnnounce(82622, 3, nil, "Healer", 2)
+local warnLashings				= mod:NewTargetAnnounce(82506, 3, nil, "Tank|Healer", 2)--I think it's tank debuff? review
 local warnRepentance			= mod:NewSpellAnnounce(82320, 2)	-- kind of add phase
-local warnSoulSever				= mod:NewTargetAnnounce(82255, 3)
-
-local timerPlagueAges			= mod:NewTargetTimer(9, 82622)
-local timerLashings				= mod:NewTargetTimer(20, 82506)
-local timerSoulSever			= mod:NewTargetTimer(4, 82255)
-local timerSoulSeverCD			= mod:NewCDTimer(11, 82255)
+local warnSoulSever				= mod:NewTargetAnnounce(82255, 4)
 
 local specWarnHeavenFury		= mod:NewSpecialWarningMove(81942)
 local specWarnHallowedGround 	= mod:NewSpecialWarningMove(88814)
+local specWarnSoulSever			= mod:NewSpecialWarningYou(82255, nil, nil, nil, 3)
+local specWarnSoulSeverDps		= mod:NewSpecialWarningSwitch(82255, "Dps")
+
+local timerPlagueAges			= mod:NewTargetTimer(9, 82622, nil, "Healer", 2, 5)
+local timerLashings				= mod:NewTargetTimer(20, 82506, nil, "Tank|Healer", 2, 5)
+local timerSoulSever			= mod:NewTargetTimer(4, 82255, nil, nil, nil, 1)
+local timerSoulSeverCD			= mod:NewCDTimer(11, 82255, nil, nil, nil, 3)
 
 mod:AddBoolOption("BossHealthAdds")
 
@@ -42,33 +45,40 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 82622 then
+	local spellId = args.spellId
+	if spellId == 82622 then
 		warnPlagueAges:Show(args.destName)
 		timerPlagueAges:Start(args.destName)
-	elseif args.spellId == 82506 then
+	elseif spellId == 82506 then
 		warnLashings:Show(args.destName)
 		timerLashings:Start(args.destName)
-	elseif args.spellId == 82320 and args.destName == L.name then
+	elseif spellId == 82320 and args.destName == L.name then
 		warnRepentance:Show()
 		spamSIS = GetTime()
 		if self.Options.BossHealthAdds and DBM.BossHealth:IsShown() then
 			DBM.BossHealth:AddBoss(43927, HarbringerDarkness)
 			DBM.BossHealth:RemoveBoss(48906)
 		end
-	elseif args.spellId == 82255 then
-		warnSoulSever:Show(args.destName)
+	elseif spellId == 82255 then
+		if args:IsPlayer() then
+			specWarnSoulSever:Show()
+		else
+			warnSoulSever:Show(args.destName)
+		end
+		specWarnSoulSeverDps:Schedule(4)
 		timerSoulSever:Start(args.destName)
 		timerSoulSeverCD:Start()
-	elseif args.spellId == 88814 and args:IsPlayer() and GetTime() - spamSIS > 5.5 then
+	elseif spellId == 88814 and args:IsPlayer() and GetTime() - spamSIS > 5.5 then
 		spamSIS = GetTime()
 		specWarnHallowedGround:Show()
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args.spellId == 82622 then
+	local spellId = args.spellId
+	if spellId == 82622 then
 		timerPlagueAges:Cancel(args.destName)
-	elseif args.spellId == 82506 then
+	elseif spellId == 82506 then
 		timerLashings:Cancel(args.destName)
 	end
 end

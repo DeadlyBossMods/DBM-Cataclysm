@@ -215,13 +215,8 @@ L:SetWarningLocalization{
 	specWarnPhase2Soon	= "2-ая фаза через 5 сек"
 }
 
-L:SetTimerLocalization({
-	timerPhase2 	= "Начало 2-ой фазы"
-})
-
 L:SetOptionLocalization{
-	specWarnPhase2Soon	= "Показывать особое предупреждение перед началом 2-ой фазы (5 сек)",
-	timerPhase2 	= "Показывать таймер начала 2-ой фазы"
+	specWarnPhase2Soon	= "Показывать особое предупреждение перед началом 2-ой фазы (5 сек)"
 }
 
 -----------------------

@@ -8,33 +8,37 @@ mod:SetZone()
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_CAST_START",
-	"SPELL_CAST_SUCCESS"
+	"SPELL_CAST_START 83445 91263",
+	"SPELL_CAST_SUCCESS 83113"
 )
 
 local warnShockwave 	= mod:NewCastAnnounce(83445, 3)
-local warnIntentions	= mod:NewSpellAnnounce(83113, 3)
-local warnDetonate		= mod:NewSpellAnnounce(91263, 3)
+local warnIntentions	= mod:NewTargetAnnounce(83113, 3)
 
+local specWarnDetonate	= mod:NewSpecialWarningDodge(91263)
+
+local timerShockwaveCD	= mod:NewCDTimer(36, 83445, nil, nil, nil, 2)
 local timerShockwave	= mod:NewCastTimer(5, 83445)
-local timerIntentions	= mod:NewNextTimer(25, 83113)
+local timerIntentions	= mod:NewNextTimer(25.4, 83113, nil, nil, nil, 3)-- First one seems health based, after that it's every 25-26
 
 function mod:OnCombatStart(delay)
-	timerIntentions:Start(-delay)	-- might needs tuning
+	timerShockwaveCD:Start(18-delay)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args.spellId == 83445 then
+	local spellId = args.spellId
+	if spellId == 83445 then
 		warnShockwave:Show()
 		timerShockwave:Start()
-	elseif args.spellId == 91263 then
-		warnDetonate:Show()
+		timerShockwaveCD:Start()
+	elseif spellId == 91263 and self:AntiSpam(5) then
+		specWarnDetonate:Show()
 	end
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
 	if args.spellId == 83113 then
-		warnIntentions:Show()
+		warnIntentions:Show(args.destName)
 		timerIntentions:Start()
 	end
 end

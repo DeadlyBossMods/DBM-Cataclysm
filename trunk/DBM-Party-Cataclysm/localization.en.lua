@@ -213,13 +213,8 @@ L:SetWarningLocalization{
 	specWarnPhase2Soon	= "Phase 2 in 5 seconds"
 }
 
-L:SetTimerLocalization({
-	timerPhase2 		= "Phase 2 Starts"
-})
-
 L:SetOptionLocalization{
-	specWarnPhase2Soon	= "Show special warning for phase 2 soon (5 seconds)",
-	timerPhase2 		= "Show timer for start of phase 2"
+	specWarnPhase2Soon	= "Show special warning for phase 2 soon (5 seconds)"
 }
 
 -----------------------
