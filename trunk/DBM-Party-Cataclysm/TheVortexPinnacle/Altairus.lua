@@ -15,14 +15,13 @@ mod:RegisterEventsInCombat(
 
 local warnBreath		= mod:NewTargetAnnounce(88308, 2)
 local warnUpwind		= mod:NewSpellAnnounce(88282, 3)
-local warnDownwind		= mod:NewSpellAnnounce(88286, 4)
 
 local specWarnBreath	= mod:NewSpecialWarningYou(88308, false)
 local specWarnBreathNear= mod:NewSpecialWarningClose(88308)
 local specWarnDownwind	= mod:NewSpecialWarningMove(88286)
 
 local timerBreath		= mod:NewCastTimer(2, 88308)
-local timerBreathCD		= mod:NewCDTimer(12, 88308)
+local timerBreathCD		= mod:NewCDTimer(10.5, 88308)
 
 mod:AddBoolOption("BreathIcon")
 
@@ -57,7 +56,6 @@ function mod:SPELL_AURA_APPLIED(args)
 		warnUpwind:Show()
 		activeWind = "up"
 	elseif args.spellId == 88286 and args:IsPlayer() and activeWind ~= "down" then
-		warnDownwind:Show()
 		specWarnDownwind:Show()
 		activeWind = "down"
 	end
