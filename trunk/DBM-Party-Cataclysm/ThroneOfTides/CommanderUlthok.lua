@@ -8,40 +8,31 @@ mod:SetZone()
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_REMOVED",
-	"SPELL_CAST_START"
+	"SPELL_AURA_APPLIED 76094 76100 76026",
+	"SPELL_CAST_START 76047 76100"
 )
 
 local warnDarkFissure		= mod:NewSpellAnnounce(76047, 4)
 local warnSqueeze			= mod:NewTargetAnnounce(76026, 3)
-local warnEnrage			= mod:NewSpellAnnounce(76100, 2)
-local warnCurse				= mod:NewTargetAnnounce(76094, 2)
+local warnEnrage			= mod:NewSpellAnnounce(76100, 2, nil, "Tank")
+
+local specWarnCurse			= mod:NewSpecialWarningDispel(76094, "RemoveCurse")
 
 local timerDarkFissure		= mod:NewCastTimer(2, 76047)
 local timerDarkFissureCD	= mod:NewCDTimer(20, 76047)
 local timerSqueeze			= mod:NewTargetTimer(6, 76026)
-local timerSqueezeCD		= mod:NewCDTimer(29, 76026)
-local timerEnrage			= mod:NewBuffActiveTimer(10, 76100)
-local timerEnrageCast		= mod:NewCastTimer(2.5, 76100)
-local timerCurse			= mod:NewTargetTimer(15, 76094)
+local timerSqueezeCD		= mod:NewCDTimer(29, 76026, nil, nil, nil, 3)
+local timerEnrage			= mod:NewBuffActiveTimer(10, 76100, nil, "Tank", 2, 5)
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 76094 then
-		warnCurse:Show(args.destName)
-		timerCurse:Start(args.destName)
+		specWarnCurse:Show(args.destName)
 	elseif args.spellId == 76100 then
 		timerEnrage:Start()
 	elseif args.spellId == 76026 then
 		warnSqueeze:Show(args.destName)
 		timerSqueeze:Start(args.destName)
 		timerSqueezeCD:Start()
-	end
-end
-
-function mod:SPELL_AURA_REMOVED(args)
-	if args.spellId == 76094 then
-		timerCurse:Cancel(args.destName)
 	end
 end
 
@@ -52,6 +43,5 @@ function mod:SPELL_CAST_START(args)
 		timerDarkFissureCD:Start()
 	elseif args.spellId == 76100 then
 		warnEnrage:Show()
-		timerEnrageCast:Start()
 	end
 end
