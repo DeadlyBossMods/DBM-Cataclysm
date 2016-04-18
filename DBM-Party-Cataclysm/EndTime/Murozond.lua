@@ -9,8 +9,8 @@ mod:RegisterCombat("combat")
 mod:RegisterKill("yell", L.Kill)
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_CAST_START"
+	"SPELL_AURA_APPLIED 101591",
+	"SPELL_CAST_START 102381 102569"
 )
 mod.onlyHeroic = true
 
@@ -20,7 +20,7 @@ local warnBreath		= mod:NewSpellAnnounce(102569, 4)
 local warnRewind		= mod:NewSpellAnnounce(101591, 3)
 
 --local timerBlastCD		= mod:NewNextTimer(12, 102381)
---local timerBreathCD		= mod:NewNextTimer(22, 102569)
+--local timerBreathCD		= mod:NewNextTimer(22, 102569, nil, "Tank", nil, 5)
 
 function mod:OnCombatStart(delay)
 --	timerBlastCD:Start(-delay)
