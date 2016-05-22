@@ -21,7 +21,7 @@ local specWarnMending	= mod:NewSpecialWarningInterrupt(75763)
 local specWarnGale		= mod:NewSpecialWarningSpell(75664, nil, nil, nil, 2)
 local specWarnAdds		= mod:NewSpecialWarningSwitch("ej3378", "Dps", nil, nil, 3)
 
-local timerFeebleCD		= mod:NewCDTimer(26, 75792, nil, "Tank", nil, 5)
+local timerFeebleCD		= mod:NewCDTimer(26, 75792, nil, "Tank", nil, 5, nil, DBM_CORE_TANK_ICON)
 local timerFeeble		= mod:NewTargetTimer(3, 75792, nil, "Tank|Healer", 2, 5)
 local timerGale			= mod:NewCastTimer(5, 75664, nil, nil, nil, 2)
 local timerGaleCD		= mod:NewCDTimer(55, 75664, nil, nil, nil, 2)
