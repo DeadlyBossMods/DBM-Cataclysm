@@ -16,7 +16,7 @@ local warnDarkFissure		= mod:NewSpellAnnounce(76047, 4)
 local warnSqueeze			= mod:NewTargetAnnounce(76026, 3)
 local warnEnrage			= mod:NewSpellAnnounce(76100, 2, nil, "Tank")
 
-local specWarnCurse			= mod:NewSpecialWarningDispel(76094, "RemoveCurse")
+local specWarnCurse			= mod:NewSpecialWarningDispel(76094, "RemoveCurse", nil, 2)
 local specWarnFissure		= mod:NewSpecialWarningDodge(76047, "Tank")
 
 local timerDarkFissureCD	= mod:NewCDTimer(18.4, 76047)
