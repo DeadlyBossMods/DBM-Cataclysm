@@ -18,7 +18,7 @@ local warnGhouls				= mod:NewSpellAnnounce(93707, 4)
 local warnPistolBarrage			= mod:NewSpellAnnounce(93520, 4)
 
 local specWarnMortalWound		= mod:NewSpecialWarningStack(93675, nil, 5)
-local specWarnCursedBullets		= mod:NewSpecialWarningDispel(93629, "RemoveCurse")
+local specWarnCursedBullets		= mod:NewSpecialWarningDispel(93629, "RemoveCurse", nil, 2)
 
 local timerGhouls				= mod:NewNextTimer(30, 93707, nil, nil, nil, 1)
 local timerPistolBarrage		= mod:NewBuffActiveTimer(6, 93520)
