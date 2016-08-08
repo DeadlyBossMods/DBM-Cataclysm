@@ -6,7 +6,6 @@ local Rageface	= EJ_GetSectionInfo(2583)
 mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(53691)
 mod:SetEncounterID(1205)
-mod:DisableEEKillDetection()
 mod:SetZone()
 mod:SetUsedIcons(6, 8) -- cross(7) is hard to see in redish environment?
 mod:SetModelSound("Sound\\Creature\\SHANNOX\\VO_FL_SHANNOX_SPAWN.ogg", "Sound\\Creature\\SHANNOX\\VO_FL_SHANNOX_KILL_04.ogg")
