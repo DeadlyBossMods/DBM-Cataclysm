@@ -4,7 +4,6 @@ local L		= mod:GetLocalizedStrings()
 mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(55869)
 mod:SetEncounterID(1332)
-mod:DisableEEKillDetection()
 mod:SetModelSound("sound\\CREATURE\\ALIZABAL\\VO_BH_ALIZABAL_INTRO_01.OGG", "sound\\CREATURE\\ALIZABAL\\VO_BH_ALIZABAL_RESET_01.OGG")
 mod:SetZone()
 

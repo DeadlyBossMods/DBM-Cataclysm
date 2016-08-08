@@ -4,6 +4,7 @@ local Ohgan	= EJ_GetSectionInfo(2615)
 
 mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(52151)
+mod:SetEncounterID(1179)
 mod:SetZone()
 mod:SetUsedIcons(8)
 

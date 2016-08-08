@@ -3,9 +3,10 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(24239)
+mod:SetEncounterID(1193)
 mod:SetZone()
 
-mod:RegisterCombat("yell", L.YellPull)
+mod:RegisterCombat("combat")
 mod:SetMinCombatTime(30)	-- Prevent pre-maturely combat-end in cases where none targets the boss?
 
 mod:RegisterEventsInCombat(
