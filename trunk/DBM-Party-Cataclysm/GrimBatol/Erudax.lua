@@ -55,7 +55,7 @@ function mod:SPELL_CAST_START(args)
 	end
 end
 
---Sometimes boss fails to cast gale so no SPELL_CAST_START event. This ensures we still detect cast and start tiemers
+--Sometimes boss fails to cast gale so no SPELL_CAST_START event. This ensures we still detect cast and start timers
 function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, _, _, spellId)
 	if spellId == 75656 then
 		specWarnGale:Show()
