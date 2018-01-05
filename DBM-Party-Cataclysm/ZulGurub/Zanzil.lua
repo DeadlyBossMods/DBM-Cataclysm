@@ -30,6 +30,8 @@ local timerZanzilElixir		= mod:NewCDTimer(30, 96316)
 mod:AddBoolOption("SetIconOnGaze", false)
 mod:AddBoolOption("InfoFrame", "Healer")--on by default for healers, so they know what numpties to heal through gas
 
+local frameDebuff = DBM:GetSpellInfo(96328)
+
 function mod:GazeTarget()
 	local targetname = self:GetBossTarget(52054)
 	if not targetname then return end
@@ -44,9 +46,10 @@ function mod:GazeTarget()
 end
 
 function mod:OnCombatStart(delay)
+	frameDebuff = DBM:GetSpellInfo(96328)
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:SetHeader(L.PlayerDebuffs)
-		DBM.InfoFrame:Show(5, "playergooddebuff", 96328)
+		DBM.InfoFrame:Show(5, "playergooddebuff", frameDebuff)
 	end
 end
 

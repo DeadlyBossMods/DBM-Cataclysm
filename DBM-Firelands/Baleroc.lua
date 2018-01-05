@@ -63,7 +63,7 @@ local shardCount = 0
 local tormentIcon = 8
 local countdownIcon = 2
 local countdownTargets = {}
-local tormentDebuff = DBM:GetSpellInfo(99257)
+local tormentDebuff, stackDebuff1, stackDebuff2 = DBM:GetSpellInfo(99257), DBM:GetSpellInfo(99262), DBM:GetSpellInfo(99263)
 
 local function showCountdownWarning()
 	warnCountdown:Show(table.concat(countdownTargets, "<, >"))
@@ -79,6 +79,7 @@ do
 end
 
 function mod:OnCombatStart(delay)
+	tormentDebuff, stackDebuff1, stackDebuff2 = DBM:GetSpellInfo(99257), DBM:GetSpellInfo(99262), DBM:GetSpellInfo(99263)
 	bladesName = DBM:GetSpellInfo(99351)
 	bladesName = DBM:GetSpellInfo(99353)
 	bladesName = nil
@@ -98,7 +99,7 @@ function mod:OnCombatStart(delay)
 	end
 	if self.Options.InfoFrame then
 		--DBM.InfoFrame:SetHeader(L.VitalSpark)
-		DBM.InfoFrame:Show(5, "playerbuffstacks", 99262, 99263, 1)
+		DBM.InfoFrame:Show(5, "playerbuffstacks", stackDebuff1, stackDebuff2, 1)
 	end
 end
 

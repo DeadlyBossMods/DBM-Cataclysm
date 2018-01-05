@@ -450,7 +450,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 		end
 		if self.Options.MeteorFrame and meteorSpawned == 1 then--Show meteor frame and clear any health or aggro frame because nothing is more important then meteors.
 			DBM.InfoFrame:SetHeader(L.MeteorTargets)
-			DBM.InfoFrame:Show(6, "playerbaddebuff", 99849)--If you get more then 6 chances are you're screwed unless it's normal mode and he's at like 11%. Really anything more then 4 is chaos and wipe waiting to happen.
+			DBM.InfoFrame:Show(6, "playerbaddebuff", meteorTarget)--If you get more then 6 chances are you're screwed unless it's normal mode and he's at like 11%. Really anything more then 4 is chaos and wipe waiting to happen.
 		end
 	elseif spellId == 100714 then
 		warnCloudBurst:Show()

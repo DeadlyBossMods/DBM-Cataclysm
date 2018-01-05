@@ -29,14 +29,17 @@ local berserkTimer		= mod:NewBerserkTimer(600)
 
 mod:AddBoolOption("InfoFrame")
 
+local surgeDebuff = DBM:GetSpellInfo(42402)
+
 function mod:OnCombatStart(delay)
+	surgeDebuff = DBM:GetSpellInfo(42402)
 	timerSurgeCD:Start(-delay)
 	timerBear:Start()
 	warnBearSoon:Schedule(25)
 	berserkTimer:Start(-delay)
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:SetHeader(L.PlayerDebuffs)
-		DBM.InfoFrame:Show(5, "playerbaddebuff", 42402)
+		DBM.InfoFrame:Show(5, "playerbaddebuff", surgeDebuff)
 	end
 end
 
