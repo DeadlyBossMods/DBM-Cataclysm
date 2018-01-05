@@ -40,6 +40,12 @@ mod:AddBoolOption("ThrowIcon", false)
 mod:AddBoolOption("ClawRageIcon", false)
 mod:AddBoolOption("InfoFrame")
 
+local surgeDebuff = DBM:GetSpellInfo(42402)
+
+function mod:OnCombatStart()
+	surgeDebuff = DBM:GetSpellInfo(42402)
+end
+
 function mod:OnCombatEnd()
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Hide()
@@ -94,7 +100,7 @@ function mod:SPELL_CAST_START(args)
 		timerSurgeCD:Start()
 		if self.Options.InfoFrame then
 			DBM.InfoFrame:SetHeader(L.PlayerDebuffs)
-			DBM.InfoFrame:Show(5, "playerbaddebuff", 42402)
+			DBM.InfoFrame:Show(5, "playerbaddebuff", surgeDebuff)
 		end
 	elseif args.spellId == 42606 then
 		timerThrow:Cancel()

@@ -186,7 +186,7 @@ local function checkGrounded(self)
 	if self.Options.InfoFrame and not infoFrameUpdated then
 		infoFrameUpdated = true
 		DBM.InfoFrame:SetHeader(L.WrongDebuff:format(groundedName))
-		DBM.InfoFrame:Show(5, "playergooddebuff", 83581)
+		DBM.InfoFrame:Show(5, "playergooddebuff", groundedName)
 	end
 end
 
@@ -197,7 +197,7 @@ local function checkSearingWinds(self)
 	if self.Options.InfoFrame and not infoFrameUpdated then
 		infoFrameUpdated = true
 		DBM.InfoFrame:SetHeader(L.WrongDebuff:format(searingName))
-		DBM.InfoFrame:Show(5, "playergooddebuff", 83500)
+		DBM.InfoFrame:Show(5, "playergooddebuff", searingName)
 	end
 end
 
