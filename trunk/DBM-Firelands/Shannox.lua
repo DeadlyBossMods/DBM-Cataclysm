@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod(195, "DBM-Firelands", nil, 78)
 local L		= mod:GetLocalizedStrings()
-local Riplimb	= EJ_GetSectionInfo(2581)
-local Rageface	= EJ_GetSectionInfo(2583)
+local Riplimb	= DBM:EJ_GetSectionInfo(2581)
+local Rageface	= DBM:EJ_GetSectionInfo(2583)
 
 mod:SetRevision(("$Revision$"):sub(12, -3))
 mod:SetCreatureID(53691)

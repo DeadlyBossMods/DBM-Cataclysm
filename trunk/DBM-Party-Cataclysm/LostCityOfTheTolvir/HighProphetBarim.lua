@@ -35,8 +35,8 @@ local timerSoulSeverCD			= mod:NewCDTimer(11, 82255, nil, nil, nil, 3)
 mod:AddBoolOption("BossHealthAdds")
 
 local spamSIS = 0--We use custom updating so don't use prototype
-local BlazeHeavens = EJ_GetSectionInfo(2459)
-local HarbringerDarkness = EJ_GetSectionInfo(2473)
+local BlazeHeavens = DBM:EJ_GetSectionInfo(2459)
+local HarbringerDarkness = DBM:EJ_GetSectionInfo(2473)
 
 function mod:OnCombatStart(delay)
 	spamSIS = 0

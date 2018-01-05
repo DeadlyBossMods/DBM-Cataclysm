@@ -71,8 +71,8 @@ local firstPhase = true
 local iceFired = false
 local assaultCount = 0
 local pillarsRemaining = 4
-local frostPillar = EJ_GetSectionInfo(4069)
-local lightningPillar = EJ_GetSectionInfo(3919)
+local frostPillar = DBM:EJ_GetSectionInfo(4069)
+local lightningPillar = DBM:EJ_GetSectionInfo(3919)
 local CVAR = false
 local CVAR2 = false
 
