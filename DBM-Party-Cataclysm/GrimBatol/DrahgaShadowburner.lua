@@ -30,12 +30,13 @@ local timerDevouringCD			= mod:NewCDTimer(40, 90950, nil, nil, nil, 3)
 local timerDevouring			= mod:NewBuffActiveTimer(5, 90950)
 --local timerShredding			= mod:NewBuffActiveTimer(20, 75271)
 
-local flamingFixate = GetSpellInfo(82850)
+local flamingFixate = DBM:GetSpellInfo(82850)
 local fixateWarned = {}
-local Valiona = EJ_GetSectionInfo(3369)
+local Valiona = DBM:EJ_GetSectionInfo(3369)
 local valionaLanded = false
 
 function mod:OnCombatStart(delay)
+	flamingFixate = DBM:GetSpellInfo(82850)
 	table.wipe(fixateWarned)
 	valionaLanded = false
 end

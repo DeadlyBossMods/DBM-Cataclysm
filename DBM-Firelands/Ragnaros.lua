@@ -125,11 +125,7 @@ local phase2Started = false
 local blazingHeatIcon = 2
 local seedsActive = false
 local meteorWarned = false
-local dreadflame = GetSpellInfo(100675)
-local meteorTarget = GetSpellInfo(99849)
-local staffDebuff = GetSpellInfo(101109)
-local seedCast = GetSpellInfo(98333)
-local deluge = GetSpellInfo(100713)
+local dreadflame, meteorTarget, staffDebuff, seedCast, deluge = DBM:GetSpellInfo(100675), DBM:GetSpellInfo(99849), DBM:GetSpellInfo(101109), DBM:GetSpellInfo(98333), DBM:GetSpellInfo(100713)
 local dreadFlameTimer = 45
 local UnitDebuff = UnitDebuff
 
@@ -233,6 +229,7 @@ local function warnSeeds()
 end
 
 function mod:OnCombatStart(delay)
+	dreadflame, meteorTarget, staffDebuff, seedCast, deluge = DBM:GetSpellInfo(100675), DBM:GetSpellInfo(99849), DBM:GetSpellInfo(101109), DBM:GetSpellInfo(98333), DBM:GetSpellInfo(100713)
 	berserkTimer:Start(-delay)
 	timerWrathRagnaros:Start(6-delay)--4.5-6sec variation, as a result, randomizes whether or not there will be a 2nd wrath before sulfuras smash. (favors not tho)
 	timerMagmaTrap:Start(16-delay)

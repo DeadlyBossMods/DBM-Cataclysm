@@ -53,9 +53,9 @@ mod:AddBoolOption("TrackingIcon")
 mod:AddBoolOption("InfoFrame")
 
 local shieldsLeft = 10
-local pestered = GetSpellInfo(92685)
+local pestered = DBM:GetSpellInfo(92685)
 local pesteredWarned = false
-local SoundLevel = EJ_GetSectionInfo(3072)
+local SoundLevel = DBM:EJ_GetSectionInfo(3072)
 
 local function groundphase()
 	timerAirphase:Start()
@@ -65,6 +65,7 @@ local function groundphase()
 end
 
 function mod:OnCombatStart(delay)
+	pestered = DBM:GetSpellInfo(92685)
 	timerSonarPulseCD:Start(-delay)
 	timerSonicBreath:Start(25-delay)
 	warnSearingFlameSoon:Schedule(40-delay)

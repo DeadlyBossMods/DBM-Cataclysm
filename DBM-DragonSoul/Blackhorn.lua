@@ -149,7 +149,7 @@ function mod:OnCombatStart(delay)
 		countdownSapper:Start(69-delay)
 	end
 	if DBM.BossHealth:IsShown() then
-		local shipname = EJ_GetSectionInfo(4202)
+		local shipname = DBM:EJ_GetSectionInfo(4202)
 		DBM.BossHealth:Clear()
 		DBM.BossHealth:AddBoss(56598, shipname)
 	end
@@ -209,7 +209,7 @@ function mod:SPELL_AURA_APPLIED(args)
 				specWarnSunder:Show(amount)
 			end
 		else
-			if amount >= 2 and not UnitDebuff("player", GetSpellInfo(108043)) and not UnitIsDeadOrGhost("player") then
+			if amount >= 2 and not UnitDebuff("player", args.spellName) and not UnitIsDeadOrGhost("player") then
 				specWarnSunderOther:Show(args.destName)
 			end
 		end

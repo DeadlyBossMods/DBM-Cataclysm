@@ -71,8 +71,8 @@ function mod:SPELL_CAST_SUCCESS(args)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(uId, spellName)
-	if spellName == GetSpellInfo(80803) then--Lava Fissure
+function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, _, _, spellId)
+	if spellId == 80803 then--Lava Fissure
 		warnFissure:Show()
 		timerFissureCD:Start()
 	end

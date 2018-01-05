@@ -72,7 +72,7 @@ function mod:SPELL_CAST_START(args)
 		warnZanzilFire:Show()
 	elseif args.spellId == 96338 then
 		warnZanzilGas:Show()
-		if not UnitDebuff("player", GetSpellInfo(96328)) and not UnitIsDeadOrGhost("player") then
+		if not UnitDebuff("player", args.spellName) and not UnitIsDeadOrGhost("player") then
 			specWarnToxic:Show()
 		end
 	elseif args.spellId == 96342 and self:IsInCombat() then
