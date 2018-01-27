@@ -199,26 +199,10 @@ local function checkSearingWinds(self)
 	end
 end
 
-local function updateBossFrame(self)
-	if DBM.BossHealth:IsShown() then
-		DBM.BossHealth:Clear()
-		if phase == 1 then
-			DBM.BossHealth:AddBoss(43687, Feludius)
-			DBM.BossHealth:AddBoss(43686, Ignacious)
-		elseif phase == 2 then
-			DBM.BossHealth:AddBoss(43688, Arion)
-			DBM.BossHealth:AddBoss(43689, Terrastra)
-		elseif phase == 3 then
-			DBM.BossHealth:AddBoss(43735, Monstrosity)
-		end
-	end
-end
-
 function mod:OnCombatStart(delay)
 	groundedName, searingName = DBM:GetSpellInfo(83581), DBM:GetSpellInfo(83500)
 	DBM:GetModByName("BoTrash"):SetFlamestrike(true)
 	phase = 1
-	updateBossFrame(self)
 	table.wipe(frozenTargets)
 	table.wipe(lightningRodTargets)
 	table.wipe(gravityCrushTargets)
@@ -618,7 +602,6 @@ function mod:OnSync(msg, boss)
 		specWarnBossLow:Show(boss)
 	elseif msg == "Phase2" and self:IsInCombat() then
 		phase = 2
-		updateBossFrame(self)
 		timerWaterBomb:Cancel()
 		timerGlaciate:Cancel()
 		timerAegisFlame:Cancel()
@@ -648,7 +631,6 @@ function mod:OnSync(msg, boss)
 		end
 	elseif msg == "Phase3" and self:IsInCombat() then
 		phase = 3
-		updateBossFrame(self)
 		timerFrostBeaconCD:Cancel()--Cancel here to avoid problems with orbs that spawn during the transition.
 		timerLavaSeedCD:Start(18)
 		timerGravityCrushCD:Start(28)

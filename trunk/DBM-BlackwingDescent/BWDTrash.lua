@@ -23,8 +23,6 @@ local timerChargeCD			= mod:NewNextTimer(30, 79630)--Guesswork
 local timerSacrifice		= mod:NewTargetTimer(20, 80727)
 local timerWhirlwind		= mod:NewTargetTimer(5, 80652)
 
-mod:RemoveOption("HealthFrame")
-
 local drakonidDied = 0
 
 function mod:SPELL_AURA_APPLIED(args)
