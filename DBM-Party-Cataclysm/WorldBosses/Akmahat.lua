@@ -29,8 +29,6 @@ local timerSandsofTime		= mod:NewBuffFadesTimer(15, 93578)
 local timerSandsofTimeCD	= mod:NewCDTimer(25, 93578)
 local timerMantleCD			= mod:NewCDTimer(43, 93561, nil, nil, nil, 5)--42.8-46.5 variations. a CD timer will suffice of 43
 
-mod:AddBoolOption("HealthFrame", true)
-
 local sandsTargets = {}
 local sandsDebuffs = 0
 
@@ -63,9 +61,8 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 93561 and DBM.BossHealth:IsShown() then
-		self:ShowShieldHealthBar(args.destGUID, args.spellName, 500000)
-		self:ScheduleMethod(60, "RemoveShieldHealthBar", args.destGUID)
+	if args.spellId == 93561 then
+		--Do infoframe things
 	elseif args.spellId == 93578 then
 		sandsTargets[#sandsTargets + 1] = args.destName
 		sandsDebuffs = sandsDebuffs + 1
@@ -78,8 +75,7 @@ end
 
 function mod:SPELL_AURA_REMOVED(args)
 	if args.spellId == 93561 then
-		self:UnscheduleMethod("RemoveShieldHealthBar", args.destGUID)
-		self:RemoveShieldHealthBar(args.destGUID)
+		--End infoframe things
 	elseif args.spellId == 93578 then
 		sandsDebuffs = sandsDebuffs - 1
 		if sandsDebuffs == 0 then

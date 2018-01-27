@@ -38,7 +38,6 @@ local warnFrozen			= mod:NewTargetAnnounce(82772, 3, nil, "Healer")
 --Ignacious
 local warnBurningBlood		= mod:NewTargetAnnounce(82660, 3, nil, false)
 local warnFlameTorrent		= mod:NewSpellAnnounce(82777, 2, nil, "Tank|Healer")--Not too useful to announce but will leave for now. CD timer useless.
-local warnAegisFlame		= mod:NewSpellAnnounce(82631, 4)
 --Terrastra
 local warnEruption			= mod:NewSpellAnnounce(83675, 2, nil, "Melee")
 local warnHardenSkin		= mod:NewSpellAnnounce(83718, 3, nil, "Tank")
@@ -66,7 +65,7 @@ local specWarnWaterLogged	= mod:NewSpecialWarningYou(82762)
 local specWarnHydroLance	= mod:NewSpecialWarningInterrupt(82752, "Melee")
 --Ignacious
 local specWarnBurningBlood	= mod:NewSpecialWarningYou(82660, false)
-local specWarnAegisFlame	= mod:NewSpecialWarningSpell(82631, nil, nil, nil, true)
+local specWarnAegisFlame	= mod:NewSpecialWarningSwitch(82631, nil, nil, nil, 1)
 local specWarnRisingFlames	= mod:NewSpecialWarningInterrupt(82636)
 --Terrastra
 local specWarnEruption		= mod:NewSpecialWarningSpell(83675, false)
@@ -127,7 +126,6 @@ local timerStaticOverloadCD	= mod:NewNextTimer(20, 92067, nil, nil, nil, 3, nil,
 local timerFlameStrikeCD	= mod:NewNextTimer(20, 92212, nil, nil, nil, 3, nil, DBM_CORE_HEROIC_ICON)--Heroic Phase 2 ablity
 local timerFrostBeaconCD	= mod:NewNextTimer(20, 92307, nil, nil, nil, 3, nil, DBM_CORE_HEROIC_ICON)--Heroic Phase 2 ablity
 
-mod:AddBoolOption("HealthFrame", true)
 mod:AddBoolOption("HeartIceIcon")
 mod:AddBoolOption("BurningBloodIcon")
 mod:AddBoolOption("LightningRodIcon")
@@ -308,11 +306,10 @@ function mod:SPELL_AURA_APPLIED(args)
 			warnFlameTorrent:Show()
 		end
 	elseif args.spellId == 82631 then--Aegis of Flame
-		warnAegisFlame:Show()
 		specWarnAegisFlame:Show()
-		if DBM.BossHealth:IsShown() then
-			self:ShowShieldHealthBar(args.destGUID, args.spellName, shieldHealth[(DBM:GetCurrentInstanceDifficulty())])
-			self:ScheduleMethod(20, "RemoveShieldHealthBar", args.destGUID)
+		if self.Options.InfoFrame then
+			DBM.InfoFrame:SetHeader(args.spellName)
+			DBM.InfoFrame:Show(2, "enemyabsorb", nil, shieldHealth[(DBM:GetCurrentInstanceDifficulty())])
 		end
 	elseif args.spellId == 82762 and args:IsPlayer() then
 		specWarnWaterLogged:Show()
@@ -496,10 +493,11 @@ function mod:SPELL_AURA_REMOVED(args)
 			self:SetIcon(args.destName, 0)
 		end
 	elseif args.spellId == 82631 then	-- Shield Removed
-		self:UnscheduleMethod("RemoveShieldHealthBar", args.destGUID)
-		self:RemoveShieldHealthBar(args.destGUID)
 		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43686 or self:GetUnitCreatureId("focus") == 43686) or not self:IsMelee() then
 			specWarnRisingFlames:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
+		end
+		if self.Options.InfoFrame then
+			DBM.InfoFrame:Hide()
 		end
 	end
 end
