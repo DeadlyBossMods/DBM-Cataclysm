@@ -25,12 +25,6 @@ mod:RegisterEventsInCombat(
 	"UNIT_DIED"
 )
 
-mod:SetBossHealthInfo(
-	53691,	L.name,
-	53694,	Riplimb,
-	53695,	Rageface
-)
-
 local warnFaceRage				= mod:NewTargetAnnounce(99947, 4)
 local warnRage					= mod:NewTargetAnnounce(100415, 3)
 local warnWary					= mod:NewTargetAnnounce(100167, 2, nil, false)

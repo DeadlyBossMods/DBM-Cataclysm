@@ -8,11 +8,6 @@ mod:SetEncounterID(1179)
 mod:SetZone()
 mod:SetUsedIcons(8)
 
-mod:SetBossHealthInfo(
-	52151, L.name,
-	52157, Ohgan
-)
-
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
