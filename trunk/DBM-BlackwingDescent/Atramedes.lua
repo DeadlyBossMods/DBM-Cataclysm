@@ -65,7 +65,6 @@ local function groundphase()
 end
 
 function mod:OnCombatStart(delay)
-	pestered = DBM:GetSpellInfo(92685)
 	timerSonarPulseCD:Start(-delay)
 	timerSonicBreath:Start(25-delay)
 	warnSearingFlameSoon:Schedule(40-delay)
@@ -156,7 +155,7 @@ end
 
 function mod:UNIT_AURA(uId)
 	if pesteredWarned then return end
-	if UnitDebuff("player", pestered) then
+	if DBM:UnitDebuff("player", pestered) then
 		pesteredWarned = true--This aura is a periodic trigger, so we don't want to spam warn for it.
 		specWarnPestered:Show()
 		yellPestered:Yell()

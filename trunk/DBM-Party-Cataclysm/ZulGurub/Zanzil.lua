@@ -46,7 +46,6 @@ function mod:GazeTarget()
 end
 
 function mod:OnCombatStart(delay)
-	frameDebuff = DBM:GetSpellInfo(96328)
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:SetHeader(L.PlayerDebuffs)
 		DBM.InfoFrame:Show(5, "playergooddebuff", frameDebuff)
@@ -75,7 +74,7 @@ function mod:SPELL_CAST_START(args)
 		warnZanzilFire:Show()
 	elseif args.spellId == 96338 then
 		warnZanzilGas:Show()
-		if not UnitDebuff("player", args.spellName) and not UnitIsDeadOrGhost("player") then
+		if not DBM:UnitDebuff("player", args.spellName) and not UnitIsDeadOrGhost("player") then
 			specWarnToxic:Show()
 		end
 	elseif args.spellId == 96342 and self:IsInCombat() then

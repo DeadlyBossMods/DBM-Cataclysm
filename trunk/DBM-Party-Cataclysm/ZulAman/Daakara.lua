@@ -42,10 +42,6 @@ mod:AddBoolOption("InfoFrame")
 
 local surgeDebuff = DBM:GetSpellInfo(42402)
 
-function mod:OnCombatStart()
-	surgeDebuff = DBM:GetSpellInfo(42402)
-end
-
 function mod:OnCombatEnd()
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Hide()

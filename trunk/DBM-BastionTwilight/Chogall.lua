@@ -114,7 +114,6 @@ function mod:CorruptingCrashTarget(sGUID)
 end
 
 function mod:OnCombatStart(delay)
-	Corruption = DBM:GetSpellInfo(82235)
 	timerFlamesOrders:Start(5-delay)
 	timerWorshipCD:Start(10-delay)
 	table.wipe(worshipTargets)
@@ -267,8 +266,7 @@ function mod:UNIT_HEALTH(uId)
 end
 
 function mod:UNIT_AURA(uId)
-	if uId ~= "player" or not self:IsInCombat() then return end
-	if UnitDebuff("player", Corruption) and self:AntiSpam(7, 2) then
+	if DBM:UnitDebuff("player", Corruption) and self:AntiSpam(7, 2) then
 		specWarnSickness:Show()
 		timerSickness:Start()
 		if self.Options.RangeFrame then

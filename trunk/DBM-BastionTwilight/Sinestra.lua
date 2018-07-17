@@ -166,7 +166,6 @@ local function showWrackWarning()
 end
 
 function mod:OnCombatStart(delay)
-	wrackName = DBM:GetSpellInfo(89421)
 	eggDown = 0
 	eggRemoved = false
 	timerDragon:Start(16-delay)

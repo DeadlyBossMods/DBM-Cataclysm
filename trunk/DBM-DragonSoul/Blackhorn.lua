@@ -204,7 +204,7 @@ function mod:SPELL_AURA_APPLIED(args)
 				specWarnSunder:Show(amount)
 			end
 		else
-			if amount >= 2 and not UnitDebuff("player", args.spellName) and not UnitIsDeadOrGhost("player") then
+			if amount >= 2 and not DBM:UnitDebuff("player", args.spellName) and not UnitIsDeadOrGhost("player") then
 				specWarnSunderOther:Show(args.destName)
 			end
 		end
@@ -291,7 +291,7 @@ function mod:UNIT_DIED(args)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
 	if spellId == 107594 then--Blade Rush, cast start is not detectable, only cast finish, can't use target scanning, or pre warn (ie when the lines go out), only able to detect when they actually finish rush
 		self:SendSync("BladeRush", UnitGUID(uId))
 	end

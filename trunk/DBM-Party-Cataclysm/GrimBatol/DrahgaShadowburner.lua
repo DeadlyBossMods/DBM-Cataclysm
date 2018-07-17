@@ -36,7 +36,6 @@ local Valiona = DBM:EJ_GetSectionInfo(3369)
 local valionaLanded = false
 
 function mod:OnCombatStart(delay)
-	flamingFixate = DBM:GetSpellInfo(82850)
 	table.wipe(fixateWarned)
 	valionaLanded = false
 end
@@ -80,7 +79,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg)
 end
 
 function mod:UNIT_AURA_UNFILTERED(uId)
-	local isFixate = UnitDebuff(uId, flamingFixate)
+	local isFixate = DBM:UnitDebuff(uId, flamingFixate)
 	local name = DBM:GetUnitFullName(uId)
 	if not isFixate and fixateWarned[name] then
 		fixateWarned[name] = nil
