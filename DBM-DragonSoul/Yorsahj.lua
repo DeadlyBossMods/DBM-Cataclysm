@@ -126,7 +126,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	if spellId == 104849 then
 		local amount = args.amount or 1
 		warnVoidBolt:Show(args.destName, amount)
-		local _, _, _, _, _, duration, expires = UnitDebuff(args.destName, args.spellName)--This is now consistently 12 seconds, but it's been nerfed twice without warning, i'm just gonna leave this here to make the mod continue to auto correct it when/if it changes more.
+		local _, _, _, _, duration, expires = DBM:UnitDebuff(args.destName, args.spellName)--This is now consistently 12 seconds, but it's been nerfed twice without warning, i'm just gonna leave this here to make the mod continue to auto correct it when/if it changes more.
 		if duration then
 			timerVoidBolt:Start(duration, args.destName)
 		end
@@ -205,7 +205,7 @@ function mod:UNIT_DIED(args)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
 	if oozeColors[spellId] then
 		table.wipe(oozesHitTable)
 		specWarnOozes:Show()

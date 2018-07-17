@@ -73,7 +73,6 @@ local initiateSpawns = {
 }
 
 function mod:OnCombatStart(delay)
-	PowerLevel = DBM:GetSpellInfo(98734)
 	if self:IsDifficulty("heroic10", "heroic25") then
 		timerFieryVortexCD:Start(243-delay)--Probably not right.
 		timerCataclysmCD:Start(32-delay)

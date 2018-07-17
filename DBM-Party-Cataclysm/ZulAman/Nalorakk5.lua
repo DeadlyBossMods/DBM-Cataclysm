@@ -32,7 +32,6 @@ mod:AddBoolOption("InfoFrame")
 local surgeDebuff = DBM:GetSpellInfo(42402)
 
 function mod:OnCombatStart(delay)
-	surgeDebuff = DBM:GetSpellInfo(42402)
 	timerSurgeCD:Start(-delay)
 	timerBear:Start()
 	warnBearSoon:Schedule(25)

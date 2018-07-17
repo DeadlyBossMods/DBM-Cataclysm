@@ -54,7 +54,7 @@ mod:AddBoolOption("SetIconOnCountdown")
 mod:AddBoolOption("SetIconOnTorment")
 mod:AddBoolOption("ArrowOnCountdown")
 
-local bladesName = nil
+local bladesName
 local lastStrike = 0--Custom, no prototype
 local currentStrike = 0--^^
 local lastStrikeDiff = 0--^^
@@ -74,15 +74,11 @@ end
 local tormentDebuffFilter
 do
 	tormentDebuffFilter = function(uId)
-		return UnitDebuff(uId, tormentDebuff)
+		return DBM:UnitDebuff(uId, tormentDebuff)
 	end
 end
 
 function mod:OnCombatStart(delay)
-	tormentDebuff, stackDebuff1, stackDebuff2 = DBM:GetSpellInfo(99257), DBM:GetSpellInfo(99262), DBM:GetSpellInfo(99263)
-	bladesName = DBM:GetSpellInfo(99351)
-	bladesName = DBM:GetSpellInfo(99353)
-	bladesName = nil
 	lastStrike = 0
 	currentStrike = 0
 	lastStrikeDiff = 0
