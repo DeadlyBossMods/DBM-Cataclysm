@@ -122,7 +122,7 @@ function mod:ScanParasite()
 		end
 	end
 	if founded then
-		local _, _, _, _, startTime, endTime = UnitCastingInfo(unitID)
+		local _, _, _, startTime, endTime = UnitCastingInfo(unitID)
 		local castTime = ((endTime or 0) - (startTime or 0)) / 1000
 		timerUnstableCorruption:Update(parasiteScan * 0.1, castTime)
 		countdownUnstableCorruption:Start(castTime - (parasiteScan * 0.1))
