@@ -225,7 +225,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
 end
 
 -- support Yor'sahj raid leading tools (eg YorsahjAnnounce) who want to broadcast a target arrow
-RegisterAddonMessagePrefix("DBM-YORSAHJARROW")
+C_ChatInfo.RegisterAddonMessagePrefix("DBM-YORSAHJARROW")
 --mod:RegisterEvents("CHAT_MSG_ADDON") -- for debugging
 local oozePos = {
 	["BLUE"] = 	{ 71, 34 },
