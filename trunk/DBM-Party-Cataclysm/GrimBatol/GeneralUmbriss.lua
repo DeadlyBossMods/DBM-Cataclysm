@@ -35,8 +35,6 @@ local timerBleedingWoundCD	= mod:NewCDTimer(20.5, 74846, nil, "Tank|Healer", nil
 local timerBlitz			= mod:NewCDTimer(21.8, 74670, nil, nil, nil, 3)
 local timerMalice			= mod:NewBuffActiveTimer(20, 90170, nil, "Tank|Healer", 2, 5)
 
-mod:AddBoolOption("PingBlitz")
-
 local warnedFrenzy = false
 
 function mod:OnCombatStart(delay)
@@ -73,9 +71,6 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg, _, _, _, target)
 		if target == UnitName("player") then
 			specWarnBlitz:Show()
 			yellBlitz:Yell()
-			if self.Options.PingBlitz then
-				Minimap:PingLocation()
-			end
 		elseif self:CheckNearby(6, target) then
 			specWarnBlitzNear:Show(target)
 		else
