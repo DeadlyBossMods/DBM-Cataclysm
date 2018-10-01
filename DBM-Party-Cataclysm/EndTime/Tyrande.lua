@@ -33,7 +33,7 @@ function mod:SPELL_CAST_START(args)
 	if args.spellId == 102472 then
 		warnGuidance:Show()
 		timerGuidance:Start()
-	elseif args.spellId == 102173 then
+	elseif args.spellId == 102173 and self:CheckInterruptFilter(args.sourceGUID, false, true) then
 		specwarnStardust:Show(args.sourceName)
 	end
 end

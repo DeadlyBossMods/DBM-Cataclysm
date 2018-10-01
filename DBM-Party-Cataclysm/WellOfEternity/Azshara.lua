@@ -16,7 +16,6 @@ mod:RegisterEventsInCombat(
 mod.onlyHeroic = true
 
 local warnServant		= mod:NewSpellAnnounce(102334, 4)
-local warnObedience		= mod:NewSpellAnnounce(103241, 4)
 local warnAdds			= mod:NewAnnounce("WarnAdds", 3)
 
 local specWarnServant	= mod:NewSpecialWarningSpell(102334, nil, nil, nil, 2)
@@ -46,8 +45,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args.spellId == 103241 then
-		warnObedience:Show()
+	if args.spellId == 103241 and self:CheckInterruptFilter(args.sourceGUID, false, true) then
 		specWarnObedience:Show(args.sourceName)
 --		timerObedienceCD:Start()
 	end

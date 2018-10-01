@@ -40,7 +40,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_CAST_START(args)
-	if args.spellId == 93844 then
+	if args.spellId == 93844 and self:CheckInterruptFilter(args.sourceGUID, false, true) then
 		specWarnEmpowerment:Show(args.sourceName)
 	end
 end

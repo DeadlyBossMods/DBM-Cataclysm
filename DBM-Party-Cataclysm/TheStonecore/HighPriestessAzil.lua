@@ -36,7 +36,7 @@ end
 function mod:SPELL_CAST_START(args)
 	if args.spellId == 82858 then
 		warnShield:Show()
-	elseif args.spellId == 79351 then
+	elseif args.spellId == 79351 and self:CheckInterruptFilter(args.sourceGUID, false, true) then
 		specWarnGrip:Show(args.sourceName)
 	end
 end
