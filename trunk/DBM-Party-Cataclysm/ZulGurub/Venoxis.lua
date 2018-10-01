@@ -26,15 +26,15 @@ local warnToxicLink			= mod:NewTargetAnnounce(96477, 4)
 local warnBlessing			= mod:NewSpellAnnounce(96512, 3)
 local warnBloodvenom		= mod:NewSpellAnnounce(96842, 3)
 
-local timerWhisperHethiss	= mod:NewTargetTimer(8, 96466)
-local timerBreathHethiss	= mod:NewNextTimer(12, 96509)
-local timerToxicLinkCD		= mod:NewNextTimer(14, 96477)--13-15 second variations, 14 will be a good medium
-
-local specWarnWhisperHethiss= mod:NewSpecialWarningInterrupt(96466, "-Healer")
+local specWarnWhisperHethiss= mod:NewSpecialWarningInterrupt(96466, "HasInterrupt")
 local specWarnToxicLink		= mod:NewSpecialWarningYou(96477)
 local specWarnBloodvenom	= mod:NewSpecialWarningSpell(96842, nil, nil, nil, 2)
 local specWarnPoolAcridTears= mod:NewSpecialWarningMove(96521)
 local specWarnEffusion		= mod:NewSpecialWarningMove(96680)
+
+local timerWhisperHethiss	= mod:NewTargetTimer(8, 96466)
+local timerBreathHethiss	= mod:NewNextTimer(12, 96509)
+local timerToxicLinkCD		= mod:NewNextTimer(14, 96477)--13-15 second variations, 14 will be a good medium
 
 mod:AddBoolOption("SetIconOnToxicLink")
 mod:AddBoolOption("LinkArrow")
@@ -90,7 +90,9 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif args.spellId == 96466 and args:IsDestTypePlayer() then
 		warnWhisperHethiss:Show(args.destName)
 		timerWhisperHethiss:Start(args.destName)
-		specWarnWhisperHethiss:Show(args.sourceName)
+		if self:CheckInterruptFilter(args.sourceGUID, false, true) then
+			specWarnWhisperHethiss:Show(args.sourceName)
+		end
 	end
 end
 

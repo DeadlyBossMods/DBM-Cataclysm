@@ -35,7 +35,7 @@ end
 function mod:SPELL_CAST_START(args)
 	if args.spellId == 93757 then
 		warnArchangel:Show()
-	elseif args.spellId == 93468 then
+	elseif args.spellId == 93468 and self:CheckInterruptFilter(args.sourceGUID, false, true, true) then
 		specWarnStayExec:Show(args.sourceName)
 	end
 end

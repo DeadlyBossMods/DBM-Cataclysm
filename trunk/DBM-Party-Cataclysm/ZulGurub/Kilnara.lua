@@ -16,13 +16,12 @@ mod:RegisterEventsInCombat(
 )
 mod.onlyHeroic = true
 
-local warnTears			= mod:NewSpellAnnounce(96435, 3)
 local warnLash			= mod:NewTargetAnnounce(96423, 3)
 local warnWaveAgony		= mod:NewSpellAnnounce(96457, 3)
 local warnRavage		= mod:NewTargetAnnounce(96592, 3)
 local warnPhase2		= mod:NewPhaseAnnounce(2)
 
-local specWarnTears		= mod:NewSpecialWarningInterrupt(96435)
+local specWarnTears		= mod:NewSpecialWarningInterrupt(96435, "HasInterrupt", nil, 2, 1, 2)
 
 local timerTears		= mod:NewCastTimer(6, 96435)
 local timerLash			= mod:NewTargetTimer(10, 96423)
@@ -37,8 +36,10 @@ end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 96435 then	-- Tears of Blood, CD 27-37 secs
-		warnTears:Show()
-		specWarnTears:Show(args.sourceName)
+		if self:CheckInterruptFilter(args.sourceGUID, false, true) then
+			specWarnTears:Show(args.sourceName)
+			specWarnTears:Play("kickcast")
+		end
 		timerTears:Start()
 	elseif args.spellId == 96423 then
 		warnLash:Show(args.destName)
