@@ -23,7 +23,7 @@ local warnAbsorbStorms		= mod:NewSpellAnnounce(83151, 2, nil, false, 2)
 local warnGatheredStorms	= mod:NewSpellAnnounce(84982, 3)
 local warnLightningCharge	= mod:NewCastAnnounce(91872, 3)
 
-local specWarnPhase2Soon	= mod:NewSpecialWarning("specWarnPhase2Soon", true, nil, nil, 2)
+local specWarnPhase2Soon	= mod:NewSpecialWarning("specWarnPhase2Soon", true, nil, nil, 2, 2)
 
 local timerThunderCrash		= mod:NewCastTimer(3, 84522)
 local timerWailingWinds		= mod:NewBuffActiveTimer(6, 83066)
@@ -56,6 +56,7 @@ function mod:SPELL_CAST_START(args)
 		warnLightningCharge:Show()
 		if args.sourceGUID == self.vb.thirdServant then--Third add to have spawned is dying and casting Lightning Charge
 			specWarnPhase2Soon:Show()
+			specWarnPhase2Soon:Play("ptwo")
 			timerPhase2Start:Start()--Phase 2 starts 5 seconds after 3rd add casts static charge regardless of whether or not other adds are dead.
 		end
 	end
