@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod(198, "DBM-Firelands", nil, 78)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision(("$Revision$"):sub(12, -3))
+mod:SetRevision(string.sub("@file-date-integer@", 1, -5))
 mod:SetCreatureID(52409)
 mod:SetEncounterID(1203)
 mod:SetZone()

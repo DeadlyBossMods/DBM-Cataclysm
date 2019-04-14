@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod(169, "DBM-BlackwingDescent", nil, 73)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision(("$Revision$"):sub(12, -3))
+mod:SetRevision(string.sub("@file-date-integer@", 1, -5))
 mod:SetCreatureID(42180, 42178, 42179, 42166)
 mod:SetEncounterID(1027)
 mod:SetZone()

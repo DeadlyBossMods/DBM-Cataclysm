@@ -3,7 +3,7 @@ local L		= mod:GetLocalizedStrings()
 local Nefarian	= DBM:EJ_GetSectionInfo(3279)
 local Onyxia	= DBM:EJ_GetSectionInfo(3283)
 
-mod:SetRevision(("$Revision$"):sub(12, -3))
+mod:SetRevision(string.sub("@file-date-integer@", 1, -5))
 mod:SetCreatureID(41376, 41270)
 mod:SetEncounterID(1026) -- ES fires when Nefarian engaged.
 mod:SetZone()

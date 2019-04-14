@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod(155, "DBM-ThroneFourWinds", nil, 75)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision(("$Revision$"):sub(12, -3))
+mod:SetRevision(string.sub("@file-date-integer@", 1, -5))
 mod:SetCreatureID(46753)
 mod:SetEncounterID(1034)
 mod:SetZone()

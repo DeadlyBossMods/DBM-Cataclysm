@@ -4,7 +4,7 @@ local Anshal	= DBM:EJ_GetSectionInfo(3166)
 local Nezir		= DBM:EJ_GetSectionInfo(3178)
 local Rohash	= DBM:EJ_GetSectionInfo(3172)
 
-mod:SetRevision(("$Revision$"):sub(12, -3))
+mod:SetRevision(string.sub("@file-date-integer@", 1, -5))
 mod:SetCreatureID(45870, 45871, 45872)
 mod:SetEncounterID(1035)
 mod:SetZone()
