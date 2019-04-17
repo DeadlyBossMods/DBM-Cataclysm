@@ -1,11 +1,11 @@
-package-as: DBM-Cataclysm
+package-as: DBM-DragonSoul
 enable-nolib-creation: no
 
 move-folders:
-    DBM-Cataclysm/DBM-BaradinHold: DBM-BaradinHold
-    DBM-Cataclysm/DBM-BastionTwilight: DBM-BastionTwilight
-    DBM-Cataclysm/DBM-BlackwingDescent: DBM-BlackwingDescent
-    DBM-Cataclysm/DBM-DragonSoul: DBM-DragonSoul
-    DBM-Cataclysm/DBM-Firelands: DBM-Firelands
-    DBM-Cataclysm/DBM-ThroneFourWinds: ThroneFourWinds
+    DBM-DragonSoul/DBM-BaradinHold: DBM-BaradinHold
+    DBM-DragonSoul/DBM-BastionTwilight: DBM-BastionTwilight
+    DBM-DragonSoul/DBM-BlackwingDescent: DBM-BlackwingDescent
+    DBM-DragonSoul/DBM-DragonSoul: DBM-DragonSoul
+    DBM-DragonSoul/DBM-Firelands: DBM-Firelands
+    DBM-DragonSoul/DBM-ThroneFourWinds: ThroneFourWinds
     
