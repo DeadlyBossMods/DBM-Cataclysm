@@ -5,7 +5,7 @@ mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(44600)
 mod:SetEncounterID(1030)
 mod:SetZone()
-mod:SetModelSound("Sound\\Creature\\Chogall\\VO_BT_Chogall_BotEvent02.ogg", "Sound\\Creature\\Halfus\\VO_BT_Halfus_Event07.ogg")
+--mod:SetModelSound("Sound\\Creature\\Chogall\\VO_BT_Chogall_BotEvent02.ogg", "Sound\\Creature\\Halfus\\VO_BT_Halfus_Event07.ogg")
 --Long: Halfus! Hear me! The master calls, the master wants! Protect our secrets, Halfus! Destroy the intruders! Murder for his glory, murder for his hunger!
 --Short: Dragons to my side!
 
