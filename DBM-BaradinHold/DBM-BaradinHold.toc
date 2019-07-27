@@ -20,6 +20,9 @@
 ## X-DBM-Mod-MapID: 757
 ## X-DBM-Mod-Sort: 806
 ## X-DBM-Mod-MinCoreRevision: 12473
+## X-Curse-Project-ID: 43971
+## X-WoWI-ID: 21469
+
 localization.en.lua
 localization.de.lua
 localization.es.lua
