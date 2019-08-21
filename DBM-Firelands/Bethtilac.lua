@@ -41,7 +41,7 @@ local timerFixate					= mod:NewTargetTimer(10, 99526, nil, false)
 local timerWidowsKissCD				= mod:NewCDTimer(32, 99476, nil, "Tank|Healer", nil, 5, nil, DBM_CORE_TANK_ICON)
 local timerWidowKiss				= mod:NewTargetTimer(23, 99476, nil, "Tank|Healer", nil, 5, nil, DBM_CORE_TANK_ICON)
 
-local berserkTimer						= mod:NewBerserkTimer(600)
+local berserkTimer					= mod:NewBerserkTimer(600)
 
 mod.vb.smolderingCount = 0
 
