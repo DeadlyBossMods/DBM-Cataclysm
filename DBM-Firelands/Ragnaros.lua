@@ -147,7 +147,7 @@ local function TransitionEnded(self)
 	if self.vb.phase == 2 then
 		if self:IsHeroic() then
 			timerSulfurasSmash:Start(6)
-			if mod.Options.warnSeedsLand then
+			if self.Options.warnSeedsLand then
 				timerMoltenSeedCD:Start(17.5)
 			else
 				timerMoltenSeedCD:Start(15)--14.8-16 variation. We use earliest time for safety.
