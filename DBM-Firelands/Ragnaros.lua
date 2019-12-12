@@ -5,6 +5,8 @@ mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(52409)
 mod:SetEncounterID(1203)
 mod:SetZone()
+mod:SetHotfixNoticeRev(20191212000000)--2019, 12, 12
+mod:SetMinSyncRevision(20191212000000)--2019, 12, 12
 mod:SetUsedIcons(1, 2)
 --mod:SetModelSound("Sound\\Creature\\RAGNAROS\\VO_FL_RAGNAROS_AGGRO.ogg", "Sound\\Creature\\RAGNAROS\\VO_FL_RAGNAROS_KILL_03.ogg")
 --Long: blah blah blah (didn't feel like transcribing it)
@@ -169,7 +171,7 @@ local function TransitionEnded(self)
 		timerLivingMeteorCD:Start(45, 1)
 	elseif self.vb.phase == 4 then
 		timerLivingMeteorCD:Stop()
-		warnLivingMeteorSoon:Stop()
+		warnLivingMeteorSoon:Cancel()
 		timerFlamesCD:Stop()
 		timerSulfurasSmash:Stop()
 		timerBreadthofFrostCD:Start(33)
@@ -234,7 +236,7 @@ function mod:OnCombatStart(delay)
 	self.vb.magmaTrapSpawned = 0
 	self.vb.elementalsSpawned = 0
 	self.vb.meteorSpawned = 0
-	self.vb.sonsLeft = 8
+	self.vb.sonsLeft = 0
 	self.vb.phase = 1
 	self.vb.firstSmash = false
 	self.vb.prewarnedPhase2 = false
@@ -291,7 +293,7 @@ function mod:SPELL_CAST_START(args)
 			end
 		end
 	elseif args:IsSpellID(98951, 98952, 98953) then--This has 3 spellids, 1 for each possible location for hammer.
-		self.vb.sonsLeft = 8
+		self.vb.sonsLeft = self.vb.sonsLeft + 8
 		self.vb.phase = self.vb.phase + 1
 		self:Unschedule(warnSeeds)
 		timerMoltenSeedCD:Stop()
