@@ -127,7 +127,7 @@ function mod:OnCombatStart(delay)
 		DBM.InfoFrame:SetHeader(Bloodlevel)
 		DBM.InfoFrame:Show(5, "playerpower", 10, ALTERNATE_POWER_INDEX)
 	end
-end	
+end
 
 function mod:OnCombatEnd()
 	if self.Options.InfoFrame then
@@ -136,7 +136,7 @@ function mod:OnCombatEnd()
 	if self.Options.RangeFrame then
 		DBM.RangeCheck:Hide()
 	end
-end 
+end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 91317 then

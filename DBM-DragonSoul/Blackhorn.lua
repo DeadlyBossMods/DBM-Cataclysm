@@ -223,7 +223,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		warnConsumingShroud:Show(args.destName)
 		timerConsumingShroud:Start()
 	end
-end		
+end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)

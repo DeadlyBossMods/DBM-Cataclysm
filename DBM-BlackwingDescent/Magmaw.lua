@@ -69,7 +69,7 @@ function mod:OnCombatEnd()
 	if self.Options.RangeFrame then
 		DBM.RangeCheck:Hide()
 	end
-end 
+end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 78006 then--More than one spellid?

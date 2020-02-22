@@ -105,7 +105,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 		specWarnPsychicDrain:Show()
 		timerPsychicDrainCD:Start()
 	end
-end	
+end
 
 function mod:SPELL_AURA_APPLIED(args)
 	local spellId = args.spellId
@@ -146,7 +146,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			self:Schedule(0.3, warnShadowsTargets)
 		end
 	end
-end		
+end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)

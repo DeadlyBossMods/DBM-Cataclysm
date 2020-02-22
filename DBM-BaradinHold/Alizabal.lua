@@ -20,7 +20,7 @@ local warnSeethingHate			= mod:NewTargetAnnounce(105067, 3)
 
 local specWarnBladeDance		= mod:NewSpecialWarningRun(104995, nil, nil, nil, 4)
 local specWarnSkewer			= mod:NewSpecialWarningSpell(104936, "Tank|Healer")
-local specWarnSeethingHate		= mod:NewSpecialWarningYou(105067, "Tank")--off tank may need this warn. 
+local specWarnSeethingHate		= mod:NewSpecialWarningYou(105067, "Tank")--off tank may need this warn.
 
 local timerBladeDance			= mod:NewBuffActiveTimer(15, 104995, nil, nil, nil, 6)
 local timerBladeDanceCD			= mod:NewCDTimer(60, 104995, nil, nil, nil, 6)
@@ -73,7 +73,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 		warnSeethingHate:Show(args.destName)
 		timerSeethingHate:Start(args.destName)
-		if args:IsPlayer() then		
+		if args:IsPlayer() then
 			specWarnSeethingHate:Show()
 		end
 	elseif args.spellId == 105784 then--It seems the cast ID was disabled on live, so now gotta do this the dumb way.

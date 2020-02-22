@@ -55,7 +55,6 @@ mod:AddBoolOption("LightningRodIcon")
 mod:AddBoolOption("RangeFrame", true)
 
 local phase2Started = false
-local strikeStarted = false
 
 function mod:CloudRepeat()
 	self:UnscheduleMethod("CloudRepeat")
@@ -73,7 +72,6 @@ end
 
 function mod:OnCombatStart(delay)
 	phase2Started = false
-	strikeStarted = false
 	berserkTimer:Start(-delay)
 	timerWindBurstCD:Start(20-delay)
 	timerIceStormCD:Start(6-delay)

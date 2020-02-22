@@ -85,7 +85,7 @@ function mod:OnCombatEnd()
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Hide()
 	end
-end 
+end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 78092 then

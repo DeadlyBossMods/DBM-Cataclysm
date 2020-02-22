@@ -36,7 +36,7 @@ local warnMagmaJets				= mod:NewSpellAnnounce(78194, 4, nil, "Tank")
 local warnEngulfingDarkness		= mod:NewSpellAnnounce(92754, 4, nil, "Tank|Healer")--Heroic Ability
 local warnPhase2Soon			= mod:NewPrePhaseAnnounce(2, 3)
 local warnPhase2				= mod:NewPhaseAnnounce(2, 4)
- 
+
 local timerPhase				= mod:NewTimer(49, "TimerPhase", 89250)--Just some random cauldron icon not actual spellid
 local timerBitingChill			= mod:NewBuffFadesTimer(10, 77760)
 local timerFlashFreeze			= mod:NewCDTimer(14, 77699)--Varies on other abilities CDs

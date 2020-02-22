@@ -77,7 +77,6 @@ mod:AddBoolOption("RangeFrame", true)--For heroic parasites, with debuff filteri
 mod:AddBoolOption("SetIconOnParasite", true)
 
 local firstAspect = true
-local engageCount = 0
 local shrapnelTargets = {}
 local warnedCount = 0
 local activateTetanusTimers = false
@@ -129,14 +128,13 @@ function mod:ScanParasite()
 	else -- if scan failure after 40 loops, use default 10 sec timer.
 		timerUnstableCorruption:Update(parasiteScan * 0.1, 10)
 		warnUnstableCorruption = mod:NewCastAnnounce(108813, 4, 10)
-		warnUnstableCorruption:Show()		
+		warnUnstableCorruption:Show()
 	end
 end
 
 function mod:OnCombatStart(delay)
 	firstAspect = true
 	activateTetanusTimers = false
-	engageCount = 0
 	warnedCount = 0
 	table.wipe(shrapnelTargets)
 	berserkTimer:Start(-delay)

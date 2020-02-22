@@ -97,7 +97,7 @@ function mod:SPELL_AURA_REMOVED(args)
 		timerConsumingCD:Start(9)
 	end
 end
-	
+
 function mod:SPELL_CAST_START(args)
 	if args.spellId == 88972 then
 		warnFirestorm:Show()

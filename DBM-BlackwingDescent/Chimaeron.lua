@@ -66,7 +66,7 @@ end
 
 -- Chimaeron bots goes offline after massacre 2~3 cast. after 2 massacre casts if not bot goes offline, 3rd massacre cast 100% bot goes offline, this timer supports this.
 local function failureCheck()
-	if not botOffline and massacreCast >= 2 then 
+	if not botOffline and massacreCast >= 2 then
 		timerFailureNext:Start()
 	end
 end
