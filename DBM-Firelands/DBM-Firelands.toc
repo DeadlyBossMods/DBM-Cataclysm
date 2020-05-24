@@ -19,7 +19,7 @@
 ## X-DBM-Mod-Category: CATA
 ## X-DBM-Mod-Sort: 802
 ## X-DBM-Mod-MapID: 720,951
-## X-DBM-Mod-MinCoreRevision: 14002
+## X-DBM-Mod-MinCoreRevision: 20200524142133
 ## X-Curse-Project-ID: 43971
 ## X-WoWI-ID: 21469
 ## Version: @project-version@
