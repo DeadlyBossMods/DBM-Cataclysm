@@ -28,7 +28,7 @@ local specWarnFadingLight			= mod:NewSpecialWarningYou(109075)
 local specWarnFadingLightOther		= mod:NewSpecialWarningTarget(109075, "Tank")
 local specWarnTwilightEruption		= mod:NewSpecialWarningSpell(106388, nil, nil, 2, 3)
 
-local timerCombatStart				= mod:NewTimer(35, "TimerCombatStart", 2457)
+local timerCombatStart				= mod:NewTimer(35, "TimerCombatStart", 59571)
 local timerUnstableMonstrosity		= mod:NewNextTimer(60, 106372, nil, "Healer", nil, 5, nil, DBM_CORE_L.HEALER_ICON)
 local timerHourofTwilight			= mod:NewCastTimer(5, 106371)
 local timerHourofTwilightCD			= mod:NewNextCountTimer(45.5, 106371, nil, nil, nil, 5, nil, nil, nil, 2, 4)
