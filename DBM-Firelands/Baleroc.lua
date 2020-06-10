@@ -145,7 +145,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			self:SetIcon(args.destName, #countdownTargets, 8)
 		end
 		if args:IsPlayer() then
-			specWarnCountdown:Show(DBM_ALLY)
+			specWarnCountdown:Show(DBM_CORE_L.ALLY)
 			specWarnCountdown:Play("gather")
 			yellCountdown:Yell()
 			yellCountdownFades:Countdown(8)
