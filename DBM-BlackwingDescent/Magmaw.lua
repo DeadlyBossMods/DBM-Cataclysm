@@ -4,7 +4,6 @@ local L		= mod:GetLocalizedStrings()
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(41570)
 mod:SetEncounterID(1024) --no ES fires this boss.
-mod:SetZone()
 --mod:SetModelSound("Sound\\Creature\\Nefarian\\VO_BD_Nefarian_MagmawIntro01.ogg", nil)
 --Long: I found this fascinating specimen in the lava underneath this very room. Magmaw should provide an adequate challenge for your pathetic little band.
 --Short: There isn't one

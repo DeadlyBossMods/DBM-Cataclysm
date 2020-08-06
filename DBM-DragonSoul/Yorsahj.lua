@@ -5,7 +5,6 @@ mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(55312)
 mod:SetEncounterID(1295)
 --mod:DisableRegenDetection()--Uncomment in next dbm release
-mod:SetZone()
 --mod:SetModelSound("sound\\CREATURE\\Yorsahj\\VO_DS_YORSAHJ_INTRO_01.OGG", "sound\\CREATURE\\Yorsahj\\VO_DS_YORSAHJ_SPELL_02.OGG")
 
 mod:RegisterCombat("combat")

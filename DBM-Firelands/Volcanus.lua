@@ -5,7 +5,6 @@ mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(53833)
 --7/14 23:59:03.242  UNIT_DIED,0x0000000000000000,nil,0x80000000,0x80000000,0xF130D2490000CE02,"Volcanus",0x10a48,0x0
 mod:SetModelID(38592)
-mod:SetZone()
 
 --[RAID_BOSS_EMOTE] RAID_BOSS_EMOTE#The Branch of Nordrassil reacts violently to Ambrossia's touch!#Branch of Nordrassil#0#false", -- [1]
 mod:RegisterCombat("emote_regex", L.StaffEvent)

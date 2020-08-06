@@ -5,7 +5,6 @@ mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(55308)
 mod:SetEncounterID(1294)
 --mod:DisableRegenDetection()--Uncomment in next dbm release
-mod:SetZone()
 mod:SetUsedIcons()
 --mod:SetModelSound("sound\\CREATURE\\WarlordZonozz\\VO_DS_ZONOZZ_INTRO_01.OGG", "sound\\CREATURE\\WarlordZonozz\\VO_DS_ZONOZZ_SPELL_05.OGG")
 
