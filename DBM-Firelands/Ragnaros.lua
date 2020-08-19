@@ -4,14 +4,15 @@ local L		= mod:GetLocalizedStrings()
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(52409)
 mod:SetEncounterID(1203)
-mod:SetHotfixNoticeRev(20191212000000)--2019, 12, 12
-mod:SetMinSyncRevision(20191212000000)--2019, 12, 12
+mod:SetHotfixNoticeRev(20200819000000)--2020, 08, 19
+mod:SetMinSyncRevision(20200819000000)--2020, 08, 19
 mod:SetUsedIcons(1, 2)
 --mod:SetModelSound("Sound\\Creature\\RAGNAROS\\VO_FL_RAGNAROS_AGGRO.ogg", "Sound\\Creature\\RAGNAROS\\VO_FL_RAGNAROS_KILL_03.ogg")
 --Long: blah blah blah (didn't feel like transcribing it)
 --Short: This is my realm
 
 mod:RegisterCombat("combat")
+mod:SetWipeTime(20)--Blind fix to premature wipe, unknown if actual issue
 
 mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 98710 98951 98952 98953 99172 99235 99236 100646 100479",
@@ -505,14 +506,6 @@ function mod:OnTranscriptorSync(msg, targetName)
 		targetName = Ambiguate(targetName, "none")
 		warnRageRagnarosSoon:Show(staffDebuff, targetName)
 		timerRageRagnaros:Start(5, staffDebuff, targetName)
-		timerRageRagnarosCD:Start()
-	end
-end
-
-function mod:OnSync(event, target)
-	if event == "RageOfRagnaros" then
-		warnRageRagnarosSoon:Show(staffDebuff, target)
-		timerRageRagnaros:Start(5, staffDebuff, target)
 		timerRageRagnarosCD:Start()
 	end
 end
