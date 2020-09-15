@@ -67,7 +67,6 @@ function mod:OnCombatStart(delay)
 	if self:IsHeroic() then
 		timerFieryVortexCD:Start(243-delay)--Probably not right.
 		timerCataclysmCD:Start(32-delay)
-		timerHatchEggs:Start(42-delay)
 		timerFirestormCD:Start(94-delay)
 		warnFirestormSoon:Schedule(84-delay)
 		timerHatchEggs:Start(37-delay)
