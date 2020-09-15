@@ -31,7 +31,7 @@ mod:RegisterEventsInCombat(
 )
 
 --[[
-(ability.id = 98710 or ability.id = 98951 or ability.id = 98952 or ability.id = 98953 or ability.id = 98951 or ability.id = 98952 or ability.id = 98953 or ability.id = 99172 or ability.id = 99235 or ability.id = 99236 or ability.id = 99172 or ability.id = 99235 or ability.id = 99236 or ability.id = 100646 or ability.id = 100479 and type = "begincast"
+(ability.id = 98710 or ability.id = 98951 or ability.id = 98952 or ability.id = 98953 or ability.id = 99172 or ability.id = 99235 or ability.id = 99236 or ability.id = 99172 or ability.id = 99235 or ability.id = 99236 or ability.id = 100646 or ability.id = 100479 and type = "begincast"
  or (ability.id = 98237 or ability.id = 98164 or ability.id = 98263 or ability.id = 100460 or ability.id = 99268 or ability.id = 100714 or ability.id = 101110) and type = "cast"
  or type = "death"
 --]]
@@ -303,6 +303,7 @@ function mod:SPELL_CAST_START(args)
 		timerWrathRagnaros:Stop()
 		timerFlamesCD:Stop()
 		hideRangeFrame(self)
+		timerPhaseSons:Stop()
 		if self:IsHeroic() then
 			timerPhaseSons:Start(60)--Longer on heroic
 		else
@@ -310,7 +311,9 @@ function mod:SPELL_CAST_START(args)
 		end
 		specWarnSplittingBlow:Show()
 		specWarnSplittingBlow:Play("phasechange")
+		timerInvokeSons:Stop()
 		timerInvokeSons:Start()
+		timerLavaBoltCD:Stop()
 		timerLavaBoltCD:Start(17.3)--9.3 seconds + cast time for splitting blow
 		if spellId == 98951 then--West
 			warnSplittingBlow:Show(args.spellName, L.West)
