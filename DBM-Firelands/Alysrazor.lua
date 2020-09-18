@@ -66,7 +66,7 @@ local PowerLevel = DBM:GetSpellInfo(98734)
 function mod:OnCombatStart(delay)
 	if self:IsHeroic() then
 		timerFieryVortexCD:Start(243-delay)--Probably not right.
-		timerCataclysmCD:Start(32-delay)
+		timerCataclysmCD:Start(30.4-delay)
 		timerFirestormCD:Start(94-delay)
 		warnFirestormSoon:Schedule(84-delay)
 		timerHatchEggs:Start(37-delay)
