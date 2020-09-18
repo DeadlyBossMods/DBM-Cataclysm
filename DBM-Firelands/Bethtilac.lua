@@ -20,6 +20,7 @@ mod:RegisterEventsInCombat(
 ability.id = 99052 and type = "begincast"
  or (ability.id = 99476 or ability.id = 98934 or ability.id = 99859) and type = "cast"
 --]]
+--TODO, track boss power and live update based on energy similar to blasts furnace or gorilla dude
 local warnSmolderingDevastation		= mod:NewCountAnnounce(99052, 4)--Use count announce, cast time is pretty obvious from the bar, but it's useful to keep track how many of these have been cast.
 local warnPhase2Soon				= mod:NewPrePhaseAnnounce(2, 3)
 local warnFixate					= mod:NewTargetAnnounce(99526, 4)--Heroic ability
@@ -86,7 +87,7 @@ function mod:SPELL_CAST_START(args)
 			timerDrone:Cancel()
 			timerWidowsKissCD:Start(47)--47-50sec variation for first, probably based on her movement into position.
 		else
-			timerSmolderingDevastationCD:Start(90, self.vb.smolderingCount+1)
+			timerSmolderingDevastationCD:Start(69.1, self.vb.smolderingCount+1)--It's technically 85-90 if adds handled correctly, this assumes they aren't
 			timerSpinners:Start()
 		end
 	end
