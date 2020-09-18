@@ -183,7 +183,13 @@ local function TransitionEnded(self)
 	end
 end
 
-local function splittingBlowCasting(self, spellId, adjustedTime)
+local function warnSeeds()
+	specWarnMoltenSeed:Show()
+	specWarnMoltenSeed:Play("watchstep")
+	timerMoltenSeedCD:Start()
+end
+
+local function splittingBlowCasting(self, spellId, spellName, adjustedTime)
 	self.vb.sonsLeft = self.vb.sonsLeft + 8
 	self.vb.phase = self.vb.phase + 1
 	self:Unschedule(warnSeeds)
@@ -209,11 +215,11 @@ local function splittingBlowCasting(self, spellId, adjustedTime)
 	local boltTime = (self.vb.phase == 2 and 17.3 or 7.3) - adjustedTime
 	timerLavaBoltCD:Start(boltTime)--9.3 seconds + cast time for splitting blow
 	if spellId == 98951 then--West
-		warnSplittingBlow:Show(args.spellName, L.West)
+		warnSplittingBlow:Show(spellName, L.West)
 	elseif spellId == 98952 then--Middle
-		warnSplittingBlow:Show(args.spellName, L.Middle)
+		warnSplittingBlow:Show(spellName, L.Middle)
 	elseif spellId == 98953 then--East
-		warnSplittingBlow:Show(args.spellName, L.East)
+		warnSplittingBlow:Show(spellName, L.East)
 	end
 end
 
@@ -255,12 +261,6 @@ function mod:LivingMeteorTarget(targetname)
 	end
 end
 
-local function warnSeeds()
-	specWarnMoltenSeed:Show()
-	specWarnMoltenSeed:Play("watchstep")
-	timerMoltenSeedCD:Start()
-end
-
 function mod:OnCombatStart(delay)
 	berserkTimer:Start(-delay)
 	timerWrathRagnaros:Start(6-delay)--4.5-6sec variation, as a result, randomizes whether or not there will be a 2nd wrath before sulfuras smash. (favors not tho)
@@ -288,11 +288,11 @@ function mod:OnCombatStart(delay)
 		self:RegisterKill("yell", L.Defeat)
 	end
 	--Check if splitting blow started casting before OnCombatStart (ie overpowering fight) and fix mods timers/phase
-	local _, _, _, startTime, endTime, _, _, _, spellId = UnitCastingInfo("boss1")
+	local spellName, _, _, startTime, endTime, _, _, _, spellId = UnitCastingInfo("boss1")
 	if spellId and (spellId == 98951 or spellId == 98952 or spellId == 98953) and self.vb.phase < 2 then
 		DBM:Debug("Running phase correction code for splitting blow that started before engage")
 		local adjustedTime = GetTime() - (startTime / 1000)
-		splittingBlowCasting(self, spellId, adjustedTime)
+		splittingBlowCasting(self, spellId, spellName, adjustedTime)
 	end
 end
 
@@ -335,7 +335,7 @@ function mod:SPELL_CAST_START(args)
 			end
 		end
 	elseif args:IsSpellID(98951, 98952, 98953) then--This has 3 spellids, 1 for each possible location for hammer.
-		splittingBlowCasting(self, spellId, 0)
+		splittingBlowCasting(self, spellId, args.spellName, 0)
 	elseif args:IsSpellID(99172, 99235, 99236) then--Another scripted spell with a ton of spellids based on location of room.
 		if not self:IsHeroic() then
 			if self.vb.phase == 3 then
