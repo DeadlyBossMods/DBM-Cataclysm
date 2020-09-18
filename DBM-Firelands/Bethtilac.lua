@@ -44,7 +44,7 @@ local timerWidowKiss				= mod:NewTargetTimer(23, 99476, nil, "Tank|Healer", nil,
 local berserkTimer					= mod:NewBerserkTimer(600)
 
 mod.vb.smolderingCount = 0
-mod.vb.phase == 1
+mod.vb.phase = 1
 
 mod:AddRangeFrameOption(10, 99476)
 
@@ -55,7 +55,7 @@ end
 
 function mod:OnCombatStart(delay)
 	self.vb.smolderingCount = 0
-	self.vb.phase == 1
+	self.vb.phase = 1
 	timerSpiderlings:Start(11.1-delay)
 	timerSpinners:Start(12-delay)
 	timerDrone:Start(45-delay)
