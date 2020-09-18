@@ -314,7 +314,8 @@ function mod:SPELL_CAST_START(args)
 		timerInvokeSons:Stop()
 		timerInvokeSons:Start()
 		timerLavaBoltCD:Stop()
-		timerLavaBoltCD:Start(17.3)--9.3 seconds + cast time for splitting blow
+		--TODO, verify this myself later probably
+		timerLavaBoltCD:Start(self.vb.phase == 2 and 17.3 or 7.3)--9.3 seconds + cast time for splitting blow
 		if spellId == 98951 then--West
 			warnSplittingBlow:Show(args.spellName, L.West)
 		elseif spellId == 98952 then--Middle

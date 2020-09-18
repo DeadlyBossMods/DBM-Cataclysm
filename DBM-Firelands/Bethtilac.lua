@@ -33,7 +33,7 @@ local specWarnTouchWidowKissOther	= mod:NewSpecialWarningTarget(99476, "Tank", n
 local timerSpinners 				= mod:NewNextTimer(15, "ej2770", nil, nil, nil, 1, 97370) -- 15secs after Smoldering cast start
 local timerSpiderlings				= mod:NewNextTimer(30, "ej2778", nil, nil, nil, 1, 72106)
 local timerDrone					= mod:NewNextTimer(60, "ej2773", nil, nil, nil, 1, 28866)
-local timerSmolderingDevastationCD	= mod:NewNextCountTimer(90, 99052, nil, nil, nil, 2, nil, DBM_CORE_L.DEADLY_ICON)
+local timerSmolderingDevastationCD	= mod:NewCDCountTimer(69.1, 99052, nil, nil, nil, 2, nil, DBM_CORE_L.DEADLY_ICON)
 local timerEmberFlareCD				= mod:NewNextTimer(6, 98934, nil, nil, nil, 2)
 local timerSmolderingDevastation	= mod:NewCastTimer(8, 99052, nil, nil, nil, 2, nil, DBM_CORE_L.DEADLY_ICON)
 local timerFixate					= mod:NewTargetTimer(10, 99526, nil, false)
@@ -46,24 +46,18 @@ mod.vb.smolderingCount = 0
 
 mod:AddRangeFrameOption(10, 99476)
 
-function mod:repeatSpiderlings()
-	timerSpiderlings:Start()
-	self:ScheduleMethod(30, "repeatSpiderlings")
-end
-
 function mod:repeatDrone()
 	timerDrone:Start()
 	self:ScheduleMethod(60, "repeatDrone")
 end
 
 function mod:OnCombatStart(delay)
-	timerSmolderingDevastationCD:Start(82-delay, 1)
+	self.vb.smolderingCount = 0
+	timerSpiderlings:Start(11.1-delay)
 	timerSpinners:Start(12-delay)
-	timerSpiderlings:Start(12.5-delay)
-	self:ScheduleMethod(11-delay , "repeatSpiderlings")
 	timerDrone:Start(45-delay)
 	self:ScheduleMethod(45-delay, "repeatDrone")
-	self.vb.smolderingCount = 0
+	timerSmolderingDevastationCD:Start(75-delay, 1)
 	berserkTimer:Start(600-delay)
 end
 
@@ -87,7 +81,6 @@ function mod:SPELL_CAST_START(args)
 		timerEmberFlareCD:Cancel()--Cast immediately after Devastation, so don't need to really need to update timer, just cancel last one since it won't be cast during dev
 		if self.vb.smolderingCount == 3 then	-- 3rd cast = start P2
 			warnPhase2Soon:Show()
-			self:UnscheduleMethod("repeatSpiderlings")
 			self:UnscheduleMethod("repeatDrone")
 			timerSpiderlings:Cancel()
 			timerDrone:Cancel()
@@ -159,7 +152,6 @@ mod.SPELL_MISSED = mod.SPELL_DAMAGE
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(msg)
 	if msg == L.EmoteSpiderlings then
-		self:UnscheduleMethod("repeatSpiderlings")	-- in case it is off
-		self:repeatSpiderlings()
+		timerSpiderlings:Start()
 	end
 end
