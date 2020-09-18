@@ -209,7 +209,7 @@ local function splittingBlowCasting(self, spellId, spellName, adjustedTime)
 	specWarnSplittingBlow:Show()
 	specWarnSplittingBlow:Play("phasechange")
 	timerInvokeSons:Stop()
-	timerInvokeSons:Start(time - adjustedTime)
+	timerInvokeSons:Start(17 - adjustedTime)
 	timerLavaBoltCD:Stop()
 	--TODO, verify this myself later probably
 	local boltTime = (self.vb.phase == 2 and 17.3 or 7.3) - adjustedTime
