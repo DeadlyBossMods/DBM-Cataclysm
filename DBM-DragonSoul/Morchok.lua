@@ -191,7 +191,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 		if self.Options.RangeFrame and not self:IsDifficulty("lfr25") then
 			DBM.RangeCheck:Show(5)
 		end
-		if not self:IsTrivial(90) then--Only register damage events during vortex (when black blood is out) and only if it's not trivial
+		if not self:IsTrivial() then--Only register damage events during vortex (when black blood is out) and only if it's not trivial
 			self:RegisterShortTermEvents(
 				"SPELL_DAMAGE 103785",
 				"SPELL_MISSED 103785"
