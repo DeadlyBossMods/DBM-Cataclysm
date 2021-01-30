@@ -613,7 +613,7 @@ function mod:OnSync(msg, boss)
 			timerFlameStrikeCD:Start(28)
 		end
 		timerQuakeCD:Start()
-		self:Schedule(3, checkSearingWinds)
+		self:Schedule(3, checkSearingWinds, self)
 	elseif msg == "PhaseTransition" and self:IsInCombat() then
 		self:Unschedule(checkSearingWinds)
 		self:Unschedule(checkGrounded)
