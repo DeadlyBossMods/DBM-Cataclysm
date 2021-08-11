@@ -2,10 +2,12 @@ local mod	= DBM:NewMod(332, "DBM-DragonSoul", nil, 187)
 local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision("@file-date-integer@")
-mod:SetCreatureID(56598)--56427 is Boss, but engage trigger needs the ship which is 56598
---mod:SetEncounterID(1298)--Fires when ship get actual engage. need to adjust timer.
-mod:SetMainBossID(56427)--Boss Id used by boss health and stuff
+mod:SetCreatureID(56427)
+mod:SetEncounterID(1298)--Fires when ship get actual engage. need to adjust timer.
+mod:DisableIEEUCombatDetection()
 --mod:SetModelSound("sound\\CREATURE\\WarmasterBlackhorn\\VO_DS_BLACKHORN_INTRO_01.OGG", "sound\\CREATURE\\WarmasterBlackhorn\\VO_DS_BLACKHORN_SLAY_01.OGG")
+mod:SetHotfixNoticeRev(20210811000000)--2021, 08, 11
+mod:SetMinSyncRevision(20210811000000)
 
 mod:RegisterCombat("combat")
 mod:SetMinCombatTime(20)
@@ -21,12 +23,8 @@ mod:RegisterEventsInCombat(
 	"SPELL_MISSED 108076 110095",
 	"RAID_BOSS_EMOTE",
 	"UNIT_DIED",
-	"UNIT_SPELLCAST_SUCCEEDED boss1"
+	"UNIT_SPELLCAST_SUCCEEDED"
 )
-
---mod:RegisterEvents(
---	"INSTANCE_ENCOUNTER_ENGAGE_UNIT"
---)-- TODO: Move combat start timer to this event.
 
 local warnDrakesLeft				= mod:NewAddsLeftAnnounce("ej4192", 2, 61248)
 local warnHarpoon					= mod:NewTargetAnnounce(108038, 2)
@@ -131,15 +129,14 @@ function mod:OnCombatStart(delay)
 	drakesCount = 6
 	twilightOnslaughtCount = 0
 	CVAR = false
-	timerCombatStart:Start(-delay)
-	timerAdd:Start(22.8-delay)
-	self:Schedule(22.8-delay, AddsRepeat, self)
-	timerTwilightOnslaughtCD:Start(46.9-delay, 1)
+	timerAdd:Start(8.3-delay)--Likely wrong for now
+	self:Schedule(8.3-delay, AddsRepeat, self)--22.8 old
+	timerTwilightOnslaughtCD:Start(32.4-delay, 1)--46.9 old
 	if self:IsHeroic() then
-		timerBroadsideCD:Start(57-delay)
+		timerBroadsideCD:Start(42.4-delay)--57 old
 	end
 	if not self:IsDifficulty("lfr25") then--No sappers in LFR
-		timerSapperCD:Start(69-delay)
+		timerSapperCD:Start(53-delay)
 	end
 	if self.Options.SetTextures and GetCVarBool("projectedTextures") then--This is only true if projected textures were on when we pulled and option to control setting is also on.
 		CVAR = true--so set this variable to true, which means we are allowed to mess with users graphics settings
@@ -245,13 +242,19 @@ function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
 end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE
 
+function mod:CHAT_MSG_MONSTER_YELL(msg)
+	if msg == L.Pull or msg:find(L.Pull) then
+		self:SendSync("PreCombat")
+	end
+end
+
 function mod:RAID_BOSS_EMOTE(msg)
 	if msg == L.SapperEmote or msg:find(L.SapperEmote) then
 		timerSapperCD:Start()
 		specWarnSapper:Show()
-	elseif msg == L.Broadside or msg:find(L.Broadside) then
+	elseif msg:find("110153") then
 		timerBroadsideCD:Start()
-	elseif msg == L.DeckFire or msg:find(L.DeckFire) then
+	elseif msg:find("110095") then
 		specWarnDeckFireCast:Show()
 	elseif msg == L.GorionaRetreat or msg:find(L.GorionaRetreat) then
 		self:Schedule(1.5, function()
@@ -284,7 +287,9 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
 end
 
 function mod:OnSync(msg, sourceGUID)
-	if msg == "BladeRush" then
+	if msg == "PreCombat" then
+		timerCombatStart:Start(19.1)
+	elseif msg == "BladeRush" and self:IsInCombat() then
 		timerBladeRushCD:Start(self:IsHeroic() and 15.5 or 20, sourceGUID)
 	end
 end
