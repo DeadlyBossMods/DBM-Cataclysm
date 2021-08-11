@@ -12,6 +12,10 @@ mod:SetMinSyncRevision(20210811000000)
 mod:RegisterCombat("combat")
 mod:SetMinCombatTime(20)
 
+mod:RegisterEvents(
+	"CHAT_MSG_MONSTER_YELL"
+)
+
 mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 107588 108046 110212 108039",
 	"SPELL_CAST_SUCCESS 108044 108042 107558",
