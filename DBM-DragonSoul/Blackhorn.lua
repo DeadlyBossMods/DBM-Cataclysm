@@ -4,7 +4,7 @@ local L		= mod:GetLocalizedStrings()
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(56598)--56427 is Boss, but engage trigger needs the ship which is 56598
 --mod:SetEncounterID(1298)--Fires when ship get actual engage. need to adjust timer.
-mod:SetMainBossID(56427)
+mod:SetMainBossID(56427)--Boss Id used by boss health and stuff
 --mod:SetModelSound("sound\\CREATURE\\WarmasterBlackhorn\\VO_DS_BLACKHORN_INTRO_01.OGG", "sound\\CREATURE\\WarmasterBlackhorn\\VO_DS_BLACKHORN_SLAY_01.OGG")
 
 mod:RegisterCombat("combat")
@@ -82,19 +82,33 @@ local drakesCount = 6
 local twilightOnslaughtCount = 0
 local CVAR = false
 
-local function Phase2Delay()
-	mod:UnscheduleMethod("AddsRepeat")
+local function AddsRepeat(self)
+	if addsCount < 2 then
+		addsCount = addsCount + 1
+		timerAdd:Start()
+		self:Schedule(61, AddsRepeat, self)
+	end
+	specWarnElites:Show()
+	if addsCount == 1 then
+		timerHarpoonCD:Start(18)--20 seconds after first elites (Confirmed). If harpoon bug not happening, it comes 18 sec after first elites.
+	else--6-7 seconds after sets 2 and 3.
+		timerHarpoonCD:Start()--6-7 second variation.
+	end
+end
+
+local function Phase2Delay(self)
+	self:Unschedul(AddsRepeat)
 	timerSapperCD:Cancel()
 	timerRoarCD:Start(10)
 	timerTwilightFlamesCD:Start(10.5)
 	timerShockwaveCD:Start(13)--13-16 second variation
-	if mod:IsDifficulty("heroic10", "heroic25") then
+	if self:IsHeroic() then
 		timerConsumingShroud:Start(45)	-- 45seconds once P2 starts?
 	end
-	if not mod:IsDifficulty("lfr25") then--Assumed, but i find it unlikely a 4 min berserk timer will be active on LFR
+	if not self:IsDifficulty("lfr25") then--Assumed, but i find it unlikely a 4 min berserk timer will be active on LFR
 		berserkTimer:Start()
 	end
-	if mod.Options.SetTextures and not GetCVarBool("projectedTextures") and CVAR then--Confirm we turned them off in phase 1 before messing with anything.
+	if self.Options.SetTextures and not GetCVarBool("projectedTextures") and CVAR then--Confirm we turned them off in phase 1 before messing with anything.
 		SetCVar("projectedTextures", 1)--Turn them back on for phase 2 if we're the ones that turned em off on pull.
 	end
 end
@@ -111,20 +125,6 @@ function mod:ShockwaveTarget()
 	end
 end
 
-function mod:AddsRepeat()
-	if addsCount < 2 then
-		addsCount = addsCount + 1
-		timerAdd:Start()
-		self:ScheduleMethod(61, "AddsRepeat")
-	end
-	specWarnElites:Show()
-	if addsCount == 1 then
-		timerHarpoonCD:Start(18)--20 seconds after first elites (Confirmed). If harpoon bug not happening, it comes 18 sec after first elites.
-	else--6-7 seconds after sets 2 and 3.
-		timerHarpoonCD:Start()--6-7 second variation.
-	end
-end
-
 function mod:OnCombatStart(delay)
 	phase2Started = false
 	addsCount = 0
@@ -133,9 +133,9 @@ function mod:OnCombatStart(delay)
 	CVAR = false
 	timerCombatStart:Start(-delay)
 	timerAdd:Start(22.8-delay)
-	self:ScheduleMethod(22.8-delay, "AddsRepeat")
+	self:Schedule(22.8-delay, AddsRepeat, self)
 	timerTwilightOnslaughtCD:Start(46.9-delay, 1)
-	if self:IsDifficulty("heroic10", "heroic25") then
+	if self:IsHeroic() then
 		timerBroadsideCD:Start(57-delay)
 	end
 	if not self:IsDifficulty("lfr25") then--No sappers in LFR
@@ -148,7 +148,7 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:OnCombatEnd()
-	if self.Options.SetTextures and not GetCVarBool("projectedTextures") and CVAR then--Only turn them back on if they are off now, but were on when we pulled, and the setting is enabled.
+	if self.Options.SetTextures and CVAR then--Only turn them back on if they are off now, but were on when we pulled, and the setting is enabled.
 		SetCVar("projectedTextures", 1)
 	end
 end
@@ -206,15 +206,11 @@ function mod:SPELL_AURA_APPLIED(args)
 			specWarnHarpoon:Show(args.destName)
 		end
 		-- Timer not use time check. 2 harpoons cast same time even not bugged.
-		if self:IsDifficulty("heroic10", "heroic25") then
-			timerHarpoonActive:Start(nil, args.destGUID)
-		elseif self:IsDifficulty("normal10", "normal25") then
-			timerHarpoonActive:Start(25, args.destGUID)
-		end
+		timerHarpoonActive:Start(self:IsHeroic() and 20 or 25, args.destGUID)
 	elseif spellId == 108040 and not phase2Started then--Goriona is being shot by the ships Artillery Barrage (phase 2 trigger)
 		timerTwilightOnslaughtCD:Cancel()
 		timerBroadsideCD:Cancel()
-		self:Schedule(10, Phase2Delay)--seems to only sapper comes even phase2 started. so delays only sapper stuff.
+		self:Schedule(10, Phase2Delay, self)--seems to only sapper comes even phase2 started. so delays only sapper stuff.
 		phase2Started = true
 		warnPhase2:Show()--We still warn phase 2 here though to get into position, especially since he can land on deck up to 5 seconds before his yell.
 		--timerCombatStart:Start(5)--5-8 seems variation, we use shortest.
@@ -289,10 +285,6 @@ end
 
 function mod:OnSync(msg, sourceGUID)
 	if msg == "BladeRush" then
-		if self:IsDifficulty("heroic10", "heroic25") then
-			timerBladeRushCD:Start(sourceGUID)
-		else
-			timerBladeRushCD:Start(20, sourceGUID)--assumed based on LFR, which seemed to have a 20-25 variation, not 15-20
-		end
+		timerBladeRushCD:Start(self:IsHeroic() and 15.5 or 20, sourceGUID)
 	end
 end
