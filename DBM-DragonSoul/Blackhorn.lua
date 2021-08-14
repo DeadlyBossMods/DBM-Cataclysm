@@ -99,7 +99,7 @@ local function AddsRepeat(self)
 end
 
 local function Phase2Delay(self)
-	self:Unschedul(AddsRepeat)
+	self:Unschedule(AddsRepeat)
 	timerSapperCD:Cancel()
 	timerRoarCD:Start(10)
 	timerTwilightFlamesCD:Start(10.5)
