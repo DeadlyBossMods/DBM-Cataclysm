@@ -33,7 +33,6 @@ mod:RegisterEventsInCombat(
 local warnDrakesLeft				= mod:NewAddsLeftAnnounce("ej4192", 2, 61248)
 local warnHarpoon					= mod:NewTargetAnnounce(108038, 2)
 local warnReloading					= mod:NewCastAnnounce(108039, 2)
-local warnTwilightOnslaught			= mod:NewCountAnnounce(107588, 4)
 local warnPhase2					= mod:NewPhaseAnnounce(2, 3)
 local warnRoar						= mod:NewSpellAnnounce(108044, 2)
 local warnTwilightFlames			= mod:NewSpellAnnounce(108051, 3)
@@ -43,7 +42,7 @@ local warnSunder					= mod:NewStackAnnounce(108043, 3, nil, "Tank|Healer")
 local warnConsumingShroud			= mod:NewTargetAnnounce(110214)
 
 local specWarnHarpoon				= mod:NewSpecialWarningTarget(108038, false)
-local specWarnTwilightOnslaught		= mod:NewSpecialWarningSpell(107588, nil, nil, nil, true)
+local specWarnTwilightOnslaught		= mod:NewSpecialWarningCount(107588, nil, nil, nil, 2)
 local specWarnSapper				= mod:NewSpecialWarningSwitch("ej4200", "Dps")
 local specWarnDeckFireCast			= mod:NewSpecialWarningSpell(110095, false, nil, nil, true)
 local specWarnDeckFire				= mod:NewSpecialWarningMove(110095)
@@ -158,8 +157,7 @@ function mod:SPELL_CAST_START(args)
 	local spellId = args.spellId
 	if spellId == 107588 then
 		twilightOnslaughtCount = twilightOnslaughtCount + 1
-		warnTwilightOnslaught:Show(twilightOnslaughtCount)
-		specWarnTwilightOnslaught:Show()
+		specWarnTwilightOnslaught:Show(twilightOnslaughtCount)
 		timerTwilightOnslaught:Start()
 		timerTwilightOnslaughtCD:Start(nil, twilightOnslaughtCount + 1)
 	elseif spellId == 108046 then
