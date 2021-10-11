@@ -192,9 +192,9 @@ function mod:SPELL_CAST_START(args)
 	elseif args.spellId == 82411 then -- Creatures are channeling after their spawn.
 		if self.Options.SetIconOnCreature then
 			if self:IsDifficulty("normal25", "heroic25") then
-				self:ScanForMobs(args.destGUID, 0, 8, 8, 0.1, 20, "SetIconOnCreature")
+				self:ScanForMobs(args.destGUID, 0, 8, 8, nil, 20, "SetIconOnCreature")
 			else
-				self:ScanForMobs(args.destGUID, 0, 8, 4, 0.1, 20, "SetIconOnCreature")
+				self:ScanForMobs(args.destGUID, 0, 8, 4, nil, 20, "SetIconOnCreature")
 			end
 		end
 	elseif args.spellId == 81713 then
