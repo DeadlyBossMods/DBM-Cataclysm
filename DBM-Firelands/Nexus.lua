@@ -19,7 +19,7 @@ local specwarnHealInterrupt		= mod:NewSpecialWarningInterrupt(99392, "HasInterru
 local specwarnHealDispel		= mod:NewSpecialWarningDispel(99392, "MagicDispeller", nil, 2, 1, 2)
 
 local timerBreath				= mod:NewBuffActiveTimer(14, 99502, nil, nil, nil, 3)
-local timerHeal					= mod:NewTargetTimer(16, 99392, nil, nil, nil, 5, nil, DBM_CORE_L.MAGIC_ICON)
+local timerHeal					= mod:NewTargetTimer(16, 99392, nil, nil, nil, 5, nil, DBM_COMMON_L.MAGIC_ICON)
 
 function mod:OnCombatStart(delay)
 end
