@@ -211,10 +211,10 @@ function mod:SPELL_AURA_APPLIED(args)
 		else
 			timerNextActivate:Start()
 		end
-		if self.Options.SetIconOnActivated and DBM:GetRaidRank() >= 1 then
+		if self.Options.SetIconOnActivated then
 			for i = 1, 4 do
 				if UnitName("boss"..i) == args.destName then
-					SetRaidTarget("boss"..i, 8)
+					self:SetIcon("boss"..i, 8)
 					break
 				end
 			end
