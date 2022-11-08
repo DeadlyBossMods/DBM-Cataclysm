@@ -248,8 +248,8 @@ function mod:RAID_BOSS_EMOTE(msg)
 			timerBarrelRoll:Start(5)
 			self:Schedule(8, clearTendrils)--Clearing 3 seconds after the roll should be sufficent
 		else
-			timerBarrelRoll:Start(10)
-			self:Schedule(13, clearTendrils)--Clearing 3 seconds after the roll should be sufficent
+			timerBarrelRoll:Start(20)
+			self:Schedule(23, clearTendrils)--Clearing 3 seconds after the roll should be sufficent
 		end
 		if self.Options.InfoFrame and not DBM.InfoFrame:IsShown() then
 			DBM.InfoFrame:SetHeader(L.NoDebuff:format(tendrilDebuff))
