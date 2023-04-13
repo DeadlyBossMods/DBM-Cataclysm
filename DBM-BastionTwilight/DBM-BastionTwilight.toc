@@ -13,6 +13,7 @@
 ## RequiredDeps: DBM-Core
 ## SavedVariables: DBMBastionTwilight_AllSavedVars
 ## SavedVariablesPerCharacter: DBMBastionTwilight_SavedStats
+## IconTexture: Interface\AddOns\DBM-Core\textures\dbm_airhorn
 ## X-DBM-Mod: 1
 ## X-DBM-Mod-Type: RAID
 ## X-DBM-Mod-Category: CATA
