@@ -1,4 +1,4 @@
-local mod	= DBM:NewMod(195, "DBM-Firelands", nil, 78)
+local mod	= DBM:NewMod(195, "DBM-Raids-Cata", 2, 78)
 local L		= mod:GetLocalizedStrings()
 local Riplimb	= DBM:EJ_GetSectionInfo(2581)
 local Rageface	= DBM:EJ_GetSectionInfo(2583)

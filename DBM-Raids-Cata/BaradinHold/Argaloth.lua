@@ -1,4 +1,4 @@
-local mod	= DBM:NewMod(139, "DBM-Raid-Cata", 6, 74)
+local mod	= DBM:NewMod(139, "DBM-Raids-Cata", 6, 74)
 local L		= mod:GetLocalizedStrings()
 
 mod.statTypes = "normal,normal25"

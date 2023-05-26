@@ -1,4 +1,4 @@
-local mod	= DBM:NewMod("NexusLegendary", "DBM-Firelands")
+local mod	= DBM:NewMod("NexusLegendary", "DBM-Raids-Cata", 2)
 local L		= mod:GetLocalizedStrings()
 
 if not mod:IsClassic() then--Future planning, so cata classic uses regular rules defined in toc and not timewalker rules for this zone

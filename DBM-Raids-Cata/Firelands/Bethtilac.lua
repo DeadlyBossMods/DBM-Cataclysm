@@ -1,4 +1,4 @@
-local mod	= DBM:NewMod(192, "DBM-Firelands", nil, 78)
+local mod	= DBM:NewMod(192, "DBM-Raids-Cata", 2, 78)
 local L		= mod:GetLocalizedStrings()
 
 --normal,normal25,heroic,heroic25 in classic
