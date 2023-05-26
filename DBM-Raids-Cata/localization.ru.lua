@@ -72,7 +72,7 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
-	SpecWarnInferno	= "Предупреждать заранее о $spell:92190 (~4 сек)",
+	SpecWarnInferno	= "Предупреждать заранее о $spell:92154 (~4 сек)",
 	RangeFrame		= "Показывать окно проверки дистанции на второй фазе (5м)"
 })
 
@@ -217,10 +217,10 @@ L:SetOptionLocalization({
 L= DBM:GetModLocalization(157)
 
 L:SetOptionLocalization({
-	TBwarnWhileBlackout		= "Предупреждение о $spell:92898, когда активно $spell:86788",
-	TwilightBlastArrow		= "Показывать стрелку DBM, когда $spell:92898 около Вас",
+	TBwarnWhileBlackout		= "Предупреждение о $spell:86369, когда активно $spell:86788",
+	TwilightBlastArrow		= "Показывать стрелку DBM, когда $spell:86369 около Вас",
 	RangeFrame				= "Показывать окно проверки дистанции (10м)",
-	BlackoutShieldFrame		= "Показывать полоску здоровья для $spell:92878",
+	BlackoutShieldFrame		= "Показывать здоровье босса с помощью шкалы здоровья для $spell:86788",
 	BlackoutIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(86788),
 	EngulfingIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(86622)
 })
@@ -660,7 +660,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(331)
 
 L:SetWarningLocalization({
-	specWarnHourofTwilightN		= "%s (%%d)"
+	specWarnHourofTwilightN		= "%s (%d) через 5 сек."
 })
 
 L:SetTimerLocalization({
@@ -719,10 +719,10 @@ L:SetWarningLocalization({
 
 L:SetOptionLocalization({
 	warnSealArmor			= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.cast:format(105847),
-	SpecWarnTendril			= "Спецпредупреждение, когда на Вас нет дебаффа $spell:109454",
-	InfoFrame				= "Показывать информационное окно для игроков без $spell:109454",
-	SetIconOnGrip			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(109459),
-	ShowShieldInfo			= "Показывать полосы здоровья для исцеления $spell:105479"
+	SpecWarnTendril			= "Спецпредупреждение, когда на Вас нет дебаффа $spell:105563",
+	InfoFrame				= "Показывать информационное окно для игроков без $spell:105563",
+	SetIconOnGrip			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(105490),
+	ShowShieldInfo			= "Показывать полосы здоровья для исцеления $spell:105479<br/>(Игнорирует параметр рамки здоровья босса)"
 })
 
 L:SetMiscLocalization({
@@ -762,7 +762,7 @@ L:SetWarningLocalization({
 
 L:SetTimerLocalization({
 	timerRoleplay		= GUILD_INTEREST_RP,
-	TimerDrakes			= "%s",--spellname from mod
+	TimerDrakes			= "%s"
 })
 
 L:SetOptionLocalization({
