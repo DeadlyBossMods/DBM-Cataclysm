@@ -10,7 +10,7 @@ end
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(53472)
 mod:SetModelID(32230)
-mod:SetZone(720)--Scoped to Nexus only
+mod:SetZone(951)--Scoped to Nexus only
 
 mod:RegisterCombat("combat")
 

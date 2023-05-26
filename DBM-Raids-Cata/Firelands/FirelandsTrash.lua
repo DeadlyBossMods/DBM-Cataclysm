@@ -3,7 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision("@file-date-integer@")
 mod:SetModelID(38765)
-mod:SetZone(951)--Scoped to firelands only
+mod:SetZone(720)--Scoped to firelands only
 mod.isTrashMod = true
 
 mod:RegisterEvents(
