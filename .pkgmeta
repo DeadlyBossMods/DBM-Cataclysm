@@ -1,11 +1,5 @@
-package-as: DBM-DragonSoul
+package-as: DBM-Raids-Cata
 enable-nolib-creation: no
 
 move-folders:
-    DBM-DragonSoul/DBM-BaradinHold: DBM-BaradinHold
-    DBM-DragonSoul/DBM-BastionTwilight: DBM-BastionTwilight
-    DBM-DragonSoul/DBM-BlackwingDescent: DBM-BlackwingDescent
-    DBM-DragonSoul/DBM-DragonSoul: DBM-DragonSoul
-    DBM-DragonSoul/DBM-Firelands: DBM-Firelands
-    DBM-DragonSoul/DBM-ThroneFourWinds: DBM-ThroneFourWinds
-    
+    DBM-Raids-Cata/DBM-Raids-Cata: DBM-Raids-Cata
