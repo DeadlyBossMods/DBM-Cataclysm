@@ -1,6 +1,6 @@
 ## Interface: 100105
 ## X-Min-Interface: 80000
-## Title:|cffffe00a<|r|cffff7d0aDBM Module|r|cffffe00a>|r |cffff6010 (Cata)|r
+## Title:|cffffe00a<|r|cffff7d0aDBM Module|r|cffffe00a>|r |cffff6010Raids (Cata)|r
 ## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM Module|r|cffffe00a>|r |cffff6010Рейды (Катаклизм)|r
 ## Author: MysticalOS
 ## LoadOnDemand: 1
