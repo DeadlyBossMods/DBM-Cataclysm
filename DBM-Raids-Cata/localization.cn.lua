@@ -10,10 +10,6 @@ local L
 ----------------
 L= DBM:GetModLocalization(139)
 
-L:SetOptionLocalization({
-	SetIconOnConsuming		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(88954)
-})
-
 -----------------
 --  Occu'thar  --
 -----------------

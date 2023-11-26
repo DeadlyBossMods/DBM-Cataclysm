@@ -6,52 +6,15 @@ local L
 ----------------
 L= DBM:GetModLocalization(139)
 
-L:SetWarningLocalization({
-})
-
-L:SetTimerLocalization({
-})
-
-L:SetMiscLocalization({
-})
-
-L:SetOptionLocalization({
-	SetIconOnConsuming		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(88954)
-})
-
 -----------------
 --  Occu'thar  --
 -----------------
 L= DBM:GetModLocalization(140)
 
-L:SetWarningLocalization({
-})
-
-L:SetTimerLocalization({
-})
-
-L:SetMiscLocalization({
-})
-
-L:SetOptionLocalization({
-})
-
 ----------------------------------
 --  Alizabal, Mistress of Hate  --
 ----------------------------------
 L= DBM:GetModLocalization(339)
-
-L:SetWarningLocalization({
-})
-
-L:SetTimerLocalization({
-})
-
-L:SetMiscLocalization({
-})
-
-L:SetOptionLocalization({
-})
 
 -------------------------------
 --  Dark Iron Golem Council  --

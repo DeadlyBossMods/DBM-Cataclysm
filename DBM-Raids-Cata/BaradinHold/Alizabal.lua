@@ -10,39 +10,36 @@ mod:SetEncounterID(1332)
 
 mod:RegisterCombat("combat")
 
-mod:RegisterEvents(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_REMOVED"
+mod:RegisterEventsInCombat(
+	"SPELL_AURA_APPLIED 104936 105067 105784",
+	"SPELL_AURA_REMOVED 105784 104936"
 )
 
-local warnBladeDance			= mod:NewSpellAnnounce(104995, 4)
-local warnSkewer				= mod:NewTargetAnnounce(104936, 4, nil, "Tank|Healer")
 local warnSeethingHate			= mod:NewTargetAnnounce(105067, 3)
 
-local specWarnBladeDance		= mod:NewSpecialWarningRun(104995, nil, nil, nil, 4)
-local specWarnSkewer			= mod:NewSpecialWarningSpell(104936, "Tank|Healer")
-local specWarnSeethingHate		= mod:NewSpecialWarningYou(105067, "Tank")--off tank may need this warn.
+local specWarnBladeDance		= mod:NewSpecialWarningRun(104995, nil, nil, nil, 4, 2)
+local specWarnSkewer			= mod:NewSpecialWarningTaunt(104936, nil, nil, nil, 1, 2)
+local specWarnSeethingHate		= mod:NewSpecialWarningMoveAway(105067, nil, nil, nil, 1, 2)
 
 local timerBladeDance			= mod:NewBuffActiveTimer(15, 104995, nil, nil, nil, 6)
 local timerBladeDanceCD			= mod:NewCDTimer(60, 104995, nil, nil, nil, 6)
 local timerFirstSpecial			= mod:NewTimer(8, "TimerFirstSpecial", "136116")--Whether she casts skewer or seething after a blade dance is random. This generic timer just gives you a timer for whichever she'll do.
 local timerSkewer				= mod:NewTargetTimer(8, 104936, nil, false, 2, 5, nil, DBM_COMMON_L.TANK_ICON)
 local timerSkewerCD				= mod:NewNextTimer(20.5, 104936, nil, "Tank", 2, 5, nil, DBM_COMMON_L.TANK_ICON)
-local timerSeethingHate			= mod:NewTargetTimer(9, 105067)
 local timerSeethingHateCD		= mod:NewNextTimer(20.5, 105067, nil, nil, nil, 3)
 
 local berserkTimer				= mod:NewBerserkTimer(300)
 
-local firstspecial = false
-local firstskewer = true
-local firstseething = true
-local bladeCasts = 0
+mod.vb.firstspecial = false
+mod.vb.firstskewer = true
+mod.vb.firstseething = true
+mod.vb.bladeCasts = 0
 
 function mod:OnCombatStart(delay)
-	firstspecial = false
-	firstskewer = true
-	firstseething = true
-	bladeCasts = 0
+	self.vb.firstspecial = false
+	self.vb.firstskewer = true
+	self.vb.firstseething = true
+	self.vb.bladeCasts = 0
 	timerFirstSpecial:Start(5.5-delay)
 	timerBladeDanceCD:Start(26-delay) -- first blade dance variables 26~40 sec (sigh blizz sucks, it was always 35 on PTR)
 	berserkTimer:Start(-delay)
@@ -50,57 +47,56 @@ end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 104936 then
-		if not firstspecial then--First special ability used after a blade dance, so the OTHER special is going to be cast in 8 seconds.
+		if not self.vb.firstspecial then--First special ability used after a blade dance, so the OTHER special is going to be cast in 8 seconds.
 			timerFirstSpecial:Cancel()
 			timerSeethingHateCD:Start(8)
-			firstspecial = true
+			self.vb.firstspecial = true
 		end
-		if not firstskewer then--First cast after blade dance, so there will be a 2nd cast in 20 seconds.
+		if not self.vb.firstskewer then--First cast after blade dance, so there will be a 2nd cast in 20 seconds.
 			timerSkewerCD:Start()
-			firstskewer = true
+			self.vb.firstskewer = true
 		end
-		warnSkewer:Show(args.destName)
 		timerSkewer:Start(args.destName)
-		specWarnSkewer:Show()
+		if not args:IsPlayer() then
+			specWarnSkewer:Show(args.destName)
+			specWarnSkewer:Play("tauntboss")
+		end
 	elseif args.spellId == 105067 then--10m ID confirmed
-		if not firstspecial then--First special ability used after a blade dance, so the OTHER special is going to be cast in 8 seconds.
+		if not self.vb.firstspecial then--First special ability used after a blade dance, so the OTHER special is going to be cast in 8 seconds.
 			timerFirstSpecial:Cancel()
 			timerSkewerCD:Start(8)
-			firstspecial = true
+			self.vb.firstspecial = true
 		end
-		if not firstseething then--First cast after blade dance, so there will be a 2nd cast in 20 seconds.
+		if not self.vb.firstseething then--First cast after blade dance, so there will be a 2nd cast in 20 seconds.
 			timerSeethingHateCD:Start()
-			firstseething = true
+			self.vb.firstseething = true
 		end
-		warnSeethingHate:Show(args.destName)
-		timerSeethingHate:Start(args.destName)
 		if args:IsPlayer() then
 			specWarnSeethingHate:Show()
+			specWarnSeethingHate:Play("scatter")
+		else
+			warnSeethingHate:Show(args.destName)
 		end
 	elseif args.spellId == 105784 then--It seems the cast ID was disabled on live, so now gotta do this the dumb way.
-		bladeCasts = bladeCasts + 1
-		if bladeCasts > 1 then return end
-		warnBladeDance:Show()
+		self.vb.bladeCasts = self.vb.bladeCasts + 1
+		if self.vb.bladeCasts > 1 then return end
 		specWarnBladeDance:Show()
+		specWarnBladeDance:Play("justrun")
 		timerBladeDance:Start()
-		if self:IsInCombat() then--Only start this on actual boss, not trash
-			timerBladeDanceCD:Start()
-		end
+		timerBladeDanceCD:Start()
 	end
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args.spellId == 105784 then
+	if args.spellId == 105784 and self:IsInCombat() then
 		if bladeCasts < 3 then return end
-		firstspecial = false
-		firstskewer = false
-		firstseething = false
-		bladeCasts = 0
+		self.vb.firstspecial = false
+		self.vb.firstskewer = false
+		self.vb.firstseething = false
+		self.vb.bladeCasts = 0
 		timerBladeDance:Cancel()
 		timerFirstSpecial:Start()
 	elseif args.spellId == 104936 then
 		timerSkewer:Cancel(args.destName)
-	elseif args.spellId == 105067 then
-		timerSeethingHate:Cancel(args.destName)
 	end
 end
