@@ -89,7 +89,7 @@ end
 
 function mod:SPELL_AURA_REMOVED(args)
 	if args.spellId == 105784 and self:IsInCombat() then
-		if bladeCasts < 3 then return end
+		if self.vb.bladeCasts < 3 then return end
 		self.vb.firstspecial = false
 		self.vb.firstskewer = false
 		self.vb.firstseething = false
