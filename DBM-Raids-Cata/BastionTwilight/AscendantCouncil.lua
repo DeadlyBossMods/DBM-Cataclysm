@@ -13,140 +13,132 @@ mod:RegisterCombat("combat")
 mod:RegisterKill("yell", L.Kill)
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_REFRESH",
-	"SPELL_AURA_REMOVED",
-	"SPELL_CAST_START",
-	"SPELL_CAST_SUCCESS",
+	"SPELL_CAST_START 82746 82752 82699 83675 83718 83565 83087 83070 83067 84913 92212",
+	"SPELL_CAST_SUCCESS 82636 82665 82660",
+	"SPELL_AURA_APPLIED 82772 82665 82660 83099 82777 82631 82762 84948 92307 92067 92075",
+	"SPELL_AURA_REFRESH 82772 83099 82777 82631 82762 84948 92307 92067 92075",--burning blood/heart of ice must be excluded from here
+	"SPELL_AURA_REMOVED 82665 82660 82772 83099 84948 92307 92067 92075 82631",
 	"RAID_BOSS_EMOTE",
 	"UNIT_SPELLCAST_SUCCEEDED boss1 boss2 boss3 boss4",
 	"UNIT_HEALTH boss1 boss2 boss3 boss4"
 )
 
-local Ignacious = DBM:EJ_GetSectionInfo(3118)
-local Feludius = DBM:EJ_GetSectionInfo(3110)
-local Arion = DBM:EJ_GetSectionInfo(3128)
-local Terrastra = DBM:EJ_GetSectionInfo(3135)
-local Monstrosity = DBM:EJ_GetSectionInfo(3145)
+--General
+local specWarnBossLow		= mod:NewSpecialWarning("specWarnBossLow")
 
+mod:AddRangeFrameOption("10")
+mod:AddInfoFrameOption(nil, true)
 --Feludius
+mod:AddTimerLine(DBM:EJ_GetSectionInfo(3110))
 local warnHeartIce			= mod:NewTargetAnnounce(82665, 3, nil, false)
 local warnGlaciate			= mod:NewSpellAnnounce(82746, 3, nil, "Melee")
 local warnWaterBomb			= mod:NewSpellAnnounce(82699, 3)
-local warnFrozen			= mod:NewTargetAnnounce(82772, 3, nil, "Healer")
---Ignacious
-local warnBurningBlood		= mod:NewTargetAnnounce(82660, 3, nil, false)
-local warnFlameTorrent		= mod:NewSpellAnnounce(82777, 2, nil, "Tank|Healer")--Not too useful to announce but will leave for now. CD timer useless.
---Terrastra
-local warnEruption			= mod:NewSpellAnnounce(83675, 2, nil, "Melee")
-local warnHardenSkin		= mod:NewSpellAnnounce(83718, 3, nil, "Tank")
-local warnQuakeSoon			= mod:NewPreWarnAnnounce(83565, 10, 3)
-local warnQuake				= mod:NewSpellAnnounce(83565, 4)
---Arion
-local warnLightningRod		= mod:NewTargetAnnounce(83099, 3)
-local warnDisperse			= mod:NewSpellAnnounce(83087, 3, nil, "Tank")
-local warnLightningBlast	= mod:NewCastAnnounce(83070, 3, nil, nil, "Tank")
-local warnThundershockSoon	= mod:NewPreWarnAnnounce(83067, 10, 3)
-local warnThundershock		= mod:NewSpellAnnounce(83067, 4)
---Elementium Monstrosity
-local warnLavaSeed			= mod:NewSpellAnnounce(84913, 4)
-local warnGravityCrush		= mod:NewTargetAnnounce(84948, 3)
---Heroic
-local warnGravityCore		= mod:NewTargetAnnounce(92075, 4)--Heroic Phase 1 ablity
-local warnStaticOverload	= mod:NewTargetAnnounce(92067, 4)--Heroic Phase 1 ablity
-local warnFlameStrike		= mod:NewCastAnnounce(92212, 3) --Heroic Phase 2 ablity
-local warnFrostBeacon		= mod:NewTargetAnnounce(92307, 4)--Heroic Phase 2 ablity
+local warnFrozen			= mod:NewTargetNoFilterAnnounce(82772, 3, nil, "Healer")
+local warnFrostBeacon		= mod:NewTargetNoFilterAnnounce(92307, 4)--Heroic Phase 2 ablity
 
---Feludius
-local specWarnHeartIce		= mod:NewSpecialWarningYou(82665, false)
-local specWarnGlaciate		= mod:NewSpecialWarningRun(82746, "Melee", nil, nil, 4)
-local specWarnWaterLogged	= mod:NewSpecialWarningYou(82762)
-local specWarnHydroLance	= mod:NewSpecialWarningInterrupt(82752, "Melee")
---Ignacious
-local specWarnBurningBlood	= mod:NewSpecialWarningYou(82660, false)
-local specWarnAegisFlame	= mod:NewSpecialWarningSwitch(82631, nil, nil, nil, 1)
-local specWarnRisingFlames	= mod:NewSpecialWarningInterrupt(82636)
---Terrastra
-local specWarnEruption		= mod:NewSpecialWarningSpell(83675, false)
-local specWarnSearingWinds	= mod:NewSpecialWarning("SpecWarnSearingWinds")
-local specWarnHardenedSkin	= mod:NewSpecialWarningInterrupt(83718, "Melee")
---Arion
-local specWarnGrounded		= mod:NewSpecialWarning("SpecWarnGrounded")
-local specWarnLightningBlast= mod:NewSpecialWarningInterrupt(83070, false)
-local specWarnLightningRod	= mod:NewSpecialWarningMoveAway(83099)
-local yellLightningRod		= mod:NewYell(83099)
---Heroic
-local specWarnGravityCore	= mod:NewSpecialWarningYou(92075)--Heroic
-local yellGravityCore		= mod:NewYell(92075)
-local specWarnStaticOverload= mod:NewSpecialWarningYou(92067)--Heroic
-local yellStaticOverload	= mod:NewYell(92067)
-local specWarnFrostBeacon	= mod:NewSpecialWarningYou(92307, nil, nil, nil, 3)--Heroic
+local specWarnHeartIce		= mod:NewSpecialWarningYou(82665, false, nil, nil, 1, 2)
+local specWarnGlaciate		= mod:NewSpecialWarningRun(82746, "Melee", nil, nil, 4, 2)
+local specWarnWaterLogged	= mod:NewSpecialWarningYou(82762, nil, nil, nil, 1, 2)--beter voice than defensive?
+local specWarnHydroLance	= mod:NewSpecialWarningInterrupt(82752, "HasInterrupt", nil, nil, 1, 2)
+local specWarnFrostBeacon	= mod:NewSpecialWarningMoveAway(92307, nil, nil, nil, 3, 2)--Heroic
 local yellFrostbeacon		= mod:NewYell(92307)
 local yellScrewed			= mod:NewYell(92307, L.blizzHatesMe, true, "yellScrewed", "YELL")--Amusing but effective.
 
-local specWarnBossLow		= mod:NewSpecialWarning("specWarnBossLow")
-
---Feludius
-mod:AddTimerLine(Feludius)
-local timerHeartIce			= mod:NewTargetTimer(60, 82665, nil, false)
-local timerHeartIceCD		= mod:NewCDTimer(22, 82665, nil, false)--22-24 seconds
+local timerHeartIce			= mod:NewTargetTimer(60, 82665, nil, false, nil, 5)
+local timerHeartIceCD		= mod:NewCDTimer(22, 82665, nil, false, nil, 3)--22-24 seconds
 local timerGlaciate			= mod:NewCDTimer(33, 82746, nil, "Melee", nil, 2, nil, DBM_COMMON_L.DEADLY_ICON)--33-35 seconds
 local timerWaterBomb		= mod:NewCDTimer(33, 82699, nil, nil, nil, 3)--33-35 seconds
 local timerFrozen			= mod:NewBuffFadesTimer(10, 82772, nil, "Healer", nil, 5, nil, DBM_COMMON_L.HEALER_ICON)
 local timerHydroLanceCD		= mod:NewCDTimer(12, 82752, nil, "HasInterrupt", 2, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)--12 second cd but lowest cast priority
+local timerFrostBeaconCD	= mod:NewNextTimer(20, 92307, nil, nil, nil, 3, nil, DBM_COMMON_L.HEROIC_ICON)--Heroic Phase 2 ablity
+
+mod:AddSetIconOption("HeartIceIcon", 82665, true, 0, {6})
+mod:AddSetIconOption("FrostBeaconIcon", 92307, true, 0, {3})
 --Ignacious
-mod:AddTimerLine(Ignacious)
-local timerBurningBlood		= mod:NewTargetTimer(60, 82660, nil, false)
-local timerBurningBloodCD	= mod:NewCDTimer(22, 82660, nil, false)--22-33 seconds, even worth having a timer?
+mod:AddTimerLine(DBM:EJ_GetSectionInfo(3118))
+local warnBurningBlood		= mod:NewTargetAnnounce(82660, 3, nil, false)
+local warnFlameTorrent		= mod:NewSpellAnnounce(82777, 2, nil, "Tank|Healer")--Not too useful to announce but will leave for now. CD timer useless.
+local warnFlameStrike		= mod:NewCastAnnounce(92212, 3) --Heroic Phase 2 ablity
+
+local specWarnBurningBlood	= mod:NewSpecialWarningYou(82660, false, nil, nil, 1, 2)
+local specWarnAegisFlame	= mod:NewSpecialWarningSwitch(82631, nil, nil, nil, 1, 2)
+local specWarnRisingFlames	= mod:NewSpecialWarningInterrupt(82636, "HasInterrupt", nil, nil, 1, 2)
+
+local timerBurningBlood		= mod:NewTargetTimer(60, 82660, nil, false, nil, 5)
+local timerBurningBloodCD	= mod:NewCDTimer(22, 82660, nil, false, nil, 3)--22-33 seconds, even worth having a timer?
 local timerAegisFlame		= mod:NewNextTimer(60, 82631, nil, nil, nil, 5, nil, DBM_COMMON_L.DAMAGE_ICON)
+local timerFlameStrikeCD	= mod:NewNextTimer(20, 92212, nil, nil, nil, 3, nil, DBM_COMMON_L.HEROIC_ICON)--Heroic Phase 2 ablity
+
+mod:AddSetIconOption("BurningBloodIcon", 82660, true, 0, {7})
 --Terrastra
-mod:AddTimerLine(Terrastra)
+mod:AddTimerLine(DBM:EJ_GetSectionInfo(3135))
+local warnEruption			= mod:NewSpellAnnounce(83675, 2, nil, "Melee")
+local warnHardenSkin		= mod:NewSpellAnnounce(83718, 3, nil, "Tank")
+local warnQuakeSoon			= mod:NewPreWarnAnnounce(83565, 10, 3)
+local warnQuake				= mod:NewSpellAnnounce(83565, 4)
+local warnGravityCore		= mod:NewTargetNoFilterAnnounce(92075, 4)--Heroic Phase 1 ablity
+
+local specWarnEruption		= mod:NewSpecialWarningDodge(83675, false, nil, nil, 2, 2)
+local specWarnSearingWinds	= mod:NewSpecialWarning("SpecWarnSearingWinds")--No decent custom voice
+local specWarnHardenedSkin	= mod:NewSpecialWarningInterrupt(83718, "HasInterrupt", nil, nil, 1, 2)
+local specWarnGravityCore	= mod:NewSpecialWarningYou(92075, nil, nil, nil, 1, 2)--Heroic
+local yellGravityCore		= mod:NewYell(92075)
+
 local timerEruptionCD		= mod:NewNextTimer(15, 83675, nil, "Melee", nil, 3)
 local timerHardenSkinCD		= mod:NewCDTimer(42, 83718, nil, "HasInterrupt", 2, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)--This one is iffy, it isn't as consistent as other ability timers
 local timerQuakeCD			= mod:NewNextTimer(33, 83565, nil, nil, nil, 2, nil, DBM_COMMON_L.DEADLY_ICON)
-local timerQuakeCast		= mod:NewCastTimer(3, 83565)
+local timerQuakeCast		= mod:NewCastTimer(3, 83565, nil, nil, nil, 5)
+local timerGravityCoreCD	= mod:NewNextTimer(20, 92075, nil, nil, nil, 3, nil, DBM_COMMON_L.HEROIC_ICON)--Heroic Phase 1 ablity
+
+mod:AddSetIconOption("GravityCoreIcon", 92075, true, 0, {5})
 --Arion
-mod:AddTimerLine(Arion)
-local timerLightningRod		= mod:NewBuffFadesTimer(15, 83099)
+mod:AddTimerLine(DBM:EJ_GetSectionInfo(3128))
+local warnLightningRod		= mod:NewTargetNoFilterAnnounce(83099, 3)
+local warnDisperse			= mod:NewSpellAnnounce(83087, 3, nil, "Tank")
+local warnLightningBlast	= mod:NewCastAnnounce(83070, 3, nil, nil, "Tank")
+local warnThundershockSoon	= mod:NewPreWarnAnnounce(83067, 10, 3)
+local warnThundershock		= mod:NewSpellAnnounce(83067, 4)
+local warnStaticOverload	= mod:NewTargetNoFilterAnnounce(92067, 4)--Heroic Phase 1 ablity
+
+local specWarnGrounded		= mod:NewSpecialWarning("SpecWarnGrounded")--No decent custom voice
+local specWarnLightningBlast= mod:NewSpecialWarningInterrupt(83070, false, nil, nil, 1, 2)
+local specWarnLightningRod	= mod:NewSpecialWarningMoveAway(83099, nil, nil, nil, 1, 2)
+local yellLightningRod		= mod:NewYell(83099)
+local specWarnStaticOverload= mod:NewSpecialWarningYou(92067, nil, nil, nil, 1, 2)--Heroic
+local yellStaticOverload	= mod:NewYell(92067)
+
+local timerLightningRod		= mod:NewBuffFadesTimer(15, 83099, nil, nil, nil, 5)
 local timerDisperse			= mod:NewCDTimer(30, 83087, nil, nil, nil, 6)
-local timerLightningBlast	= mod:NewCastTimer(4, 83070, nil, false)
+local timerLightningBlast	= mod:NewCastTimer(4, 83070, nil, false, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)
 local timerThundershockCD	= mod:NewNextTimer(33, 83067, nil, nil, nil, 2, nil, DBM_COMMON_L.DEADLY_ICON)
-local timerThundershockCast	= mod:NewCastTimer(3, 83067)
+local timerThundershockCast	= mod:NewCastTimer(3, 83067, nil, nil, nil, 5)
+local timerStaticOverloadCD	= mod:NewNextTimer(20, 92067, nil, nil, nil, 3, nil, DBM_COMMON_L.HEROIC_ICON)--Heroic Phase 1 ablity
+
+mod:AddSetIconOption("LightningRodIcon", 83099, true, 0, {1, 2, 3})
+mod:AddSetIconOption("StaticOverloadIcon", 92067, true, 0, {4})
 --Elementium Monstrosity
-mod:AddTimerLine(Monstrosity)
+mod:AddTimerLine(DBM:EJ_GetSectionInfo(3145))
+local warnLavaSeed			= mod:NewSpellAnnounce(84913, 4)
+local warnGravityCrush		= mod:NewTargetNoFilterAnnounce(84948, 3)
+
 local timerTransition		= mod:NewTimer(16.7, "timerTransition", 84918, nil, nil, 6)
 local timerLavaSeedCD		= mod:NewCDTimer(23, 84913, nil, nil, nil, 2)
-local timerGravityCrush		= mod:NewBuffActiveTimer(10, 84948)
+local timerGravityCrush		= mod:NewBuffActiveTimer(10, 84948, nil, nil, nil, 5)
 local timerGravityCrushCD	= mod:NewCDTimer(24, 84948, nil, nil, nil, 3)--24-28sec cd, decent varation
---Heroic
-mod:AddTimerLine(PLAYER_DIFFICULTY2)
-local timerGravityCoreCD	= mod:NewNextTimer(20, 92075, nil, nil, nil, 3, nil, DBM_COMMON_L.HEROIC_ICON)--Heroic Phase 1 ablity
-local timerStaticOverloadCD	= mod:NewNextTimer(20, 92067, nil, nil, nil, 3, nil, DBM_COMMON_L.HEROIC_ICON)--Heroic Phase 1 ablity
-local timerFlameStrikeCD	= mod:NewNextTimer(20, 92212, nil, nil, nil, 3, nil, DBM_COMMON_L.HEROIC_ICON)--Heroic Phase 2 ablity
-local timerFrostBeaconCD	= mod:NewNextTimer(20, 92307, nil, nil, nil, 3, nil, DBM_COMMON_L.HEROIC_ICON)--Heroic Phase 2 ablity
 
-mod:AddBoolOption("HeartIceIcon")
-mod:AddBoolOption("BurningBloodIcon")
-mod:AddBoolOption("LightningRodIcon")
-mod:AddBoolOption("GravityCrushIcon")
-mod:AddBoolOption("FrostBeaconIcon")
-mod:AddBoolOption("StaticOverloadIcon")
-mod:AddBoolOption("GravityCoreIcon")
-mod:AddBoolOption("RangeFrame")
-mod:AddBoolOption("InfoFrame")
+mod:AddSetIconOption("GravityCrushIcon", 84948, true, 0, {1, 2, 3})
 
+mod.vb.lightningRodIcon = 1
+mod.vb.gravityCrushIcon = 1
+mod.vb.frozenCount = 0
 local frozenTargets = {}
 local lightningRodTargets = {}
 local gravityCrushTargets = {}
-local lightningRodIcon = 8
-local gravityCrushIcon = 8
 local sentLowHP = {}
 local warnedLowHP = {}
-local frozenCount = 0
 local isBeacon = false
 local isRod = false
 local infoFrameUpdated = false
-local phase = 1
 local groundedName, searingName = DBM:GetSpellInfo(83581), DBM:GetSpellInfo(83500)
 
 local shieldHealth = {
@@ -162,18 +154,18 @@ local function showFrozenWarning()
 	table.wipe(frozenTargets)
 end
 
-local function showLightningRodWarning()
+local function showLightningRodWarning(self)
 	warnLightningRod:Show(table.concat(lightningRodTargets, "<, >"))
 	timerLightningRod:Start()
 	table.wipe(lightningRodTargets)
-	lightningRodIcon = 8
+	self.vb.lightningRodIcon = 1
 end
 
-local function showGravityCrushWarning()
+local function showGravityCrushWarning(self)
 	warnGravityCrush:Show(table.concat(gravityCrushTargets, "<, >"))
 	timerGravityCrush:Start()
 	table.wipe(gravityCrushTargets)
-	gravityCrushIcon = 8
+	self.vb.gravityCrushIcon = 1
 end
 
 local function checkGrounded(self)
@@ -200,15 +192,15 @@ end
 
 function mod:OnCombatStart(delay)
 	DBM:GetModByName("BoTrash"):SetFlamestrike(true)
-	phase = 1
+	self:SetStage(1)
+	self.vb.lightningRodIcon = 1
+	self.vb.gravityCrushIcon = 1
+	self.vb.frozenCount = 0
 	table.wipe(frozenTargets)
 	table.wipe(lightningRodTargets)
 	table.wipe(gravityCrushTargets)
 	table.wipe(sentLowHP)
 	table.wipe(warnedLowHP)
-	lightningRodIcon = 8
-	gravityCrushIcon = 8
-	frozenCount = 0
 	isBeacon = false
 	isRod = false
 	infoFrameUpdated = false
@@ -235,26 +227,105 @@ function mod:OnCombatEnd()
 	end
 end
 
+function mod:SPELL_CAST_START(args)
+	if args.spellId == 82746 then
+		timerGlaciate:Start()
+		if self:GetUnitCreatureId("target") == 43687 then--Only warn if targeting/tanking this boss.
+			specWarnGlaciate:Show()
+			specWarnGlaciate:Play("justrun")
+		else
+			warnGlaciate:Show()
+		end
+	elseif args.spellId == 82752 then
+		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43687 or self:GetUnitCreatureId("focus") == 43687) or not self:IsMelee() then
+			specWarnHydroLance:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
+			specWarnHydroLance:Play("kickcast")
+		end
+		timerHydroLanceCD:Show()
+	elseif args.spellId == 82699 then
+		warnWaterBomb:Show()
+		timerWaterBomb:Start()
+	elseif args.spellId == 83675 then
+		if self.Options.SpecWarn83675dodge then
+			specWarnEruption:Show()
+			specWarnEruption:Play("watchstep")
+		else
+			warnEruption:Show()
+		end
+		timerEruptionCD:Start()
+	elseif args.spellId == 83718 then
+		warnHardenSkin:Show()
+		timerHardenSkinCD:Start()
+		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43689 or self:GetUnitCreatureId("focus") == 43689) or not self:IsMelee() then
+			specWarnHardenedSkin:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
+			specWarnHardenedSkin:Play("kickcast")
+		end
+	elseif args.spellId == 83565 then
+		infoFrameUpdated = false
+		warnQuake:Show()
+		timerQuakeCD:Cancel()
+		timerQuakeCast:Start()
+		timerThundershockCD:Start()
+		self:Schedule(5, checkGrounded, self)
+	elseif args.spellId == 83087 then
+		warnDisperse:Show()
+		timerDisperse:Start()
+	elseif args.spellId == 83070 then
+		timerLightningBlast:Start()
+		if self.Options.SpecWarn83070interrupt then
+			specWarnLightningBlast:Show(args.sourceName)
+			specWarnLightningBlast:Play("kickcast")
+		else
+			warnLightningBlast:Show()
+		end
+	elseif args.spellId == 83067 then
+		infoFrameUpdated = false
+		warnThundershock:Show()
+		timerThundershockCD:Cancel()
+		timerThundershockCast:Start()
+		timerQuakeCD:Start()
+		self:Schedule(5, checkSearingWinds, self)
+	elseif args.spellId == 84913 then
+		warnLavaSeed:Show()
+		timerLavaSeedCD:Start()
+	elseif args.spellId == 92212 then
+		warnFlameStrike:Show()
+		timerFlameStrikeCD:Start()
+	end
+end
+
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 82636 then
+		timerAegisFlame:Start()
+	elseif args.spellId == 82665 then
+		timerHeartIceCD:Start()
+	elseif args.spellId == 82660 then
+		timerBurningBloodCD:Start()
+	end
+end
+
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 82772 then
-		frozenCount = frozenCount + 1
+		self.vb.frozenCount = self.vb.frozenCount + 1
 		frozenTargets[#frozenTargets + 1] = args.destName
 		self:Unschedule(showFrozenWarning)
 		self:Schedule(0.3, showFrozenWarning)
-	elseif args.spellId == 82665 then
+	elseif args.spellId == 82665 then--Dont use REFRESH
 		warnHeartIce:Show(args.destName)
 		timerHeartIce:Start(args.destName)
 		if args:IsPlayer() then
 			specWarnHeartIce:Show()
+			specWarnHeartIce:Play("targetyou")
 		end
 		if self.Options.HeartIceIcon then
 			self:SetIcon(args.destName, 6)
 		end
-	elseif args.spellId == 82660 then
+	elseif args.spellId == 82660 then--Dont use REFRESH
 		warnBurningBlood:Show(args.destName)
 		timerBurningBlood:Start(args.destName)
 		if args:IsPlayer() then
 			specWarnBurningBlood:Show()
+			specWarnBurningBlood:Play("targetyou")
 		end
 		if self.Options.BurningBloodIcon then
 			self:SetIcon(args.destName, 7)
@@ -264,24 +335,25 @@ function mod:SPELL_AURA_APPLIED(args)
 		if args:IsPlayer() then
 			isRod = true
 			specWarnLightningRod:Show()
+			specWarnLightningRod:Play("runout")
 			if isBeacon then--You have lighting rod and frost beacon at same time.
 				yellScrewed:Yell()
 			else--You only have rod so do normal yell
 				yellLightningRod:Yell()
 			end
-			if self.Options.RangeFrame then
-				DBM.RangeCheck:Show(10)
-			end
+			--if self.Options.RangeFrame then
+			--	DBM.RangeCheck:Show(10)
+			--end
 		end
 		if self.Options.LightningRodIcon then
-			self:SetIcon(args.destName, lightningRodIcon)
-			lightningRodIcon = lightningRodIcon - 1
+			self:SetIcon(args.destName, self.vb.lightningRodIcon)
 		end
+		self.vb.lightningRodIcon = self.vb.lightningRodIcon + 1
 		self:Unschedule(showLightningRodWarning)
 		if (self:IsDifficulty("normal25", "heroic25") and #lightningRodTargets >= 3) or (self:IsDifficulty("normal10", "heroic10") and #lightningRodTargets >= 1) then
-			showLightningRodWarning()
+			showLightningRodWarning(self)
 		else
-			self:Schedule(0.3, showLightningRodWarning)
+			self:Schedule(0.3, showLightningRodWarning, self)
 		end
 	elseif args.spellId == 82777 then
 		if self:GetUnitCreatureId("target") == 43686 or self:GetBossTarget(43686) == DBM:GetUnitFullName("target") then--Warn if the boss casting it is your target, OR your target is the person its being cast on.
@@ -289,35 +361,39 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 	elseif args.spellId == 82631 then--Aegis of Flame
 		specWarnAegisFlame:Show()
+		specWarnAegisFlame:Play("targetchange")
 		if self.Options.InfoFrame then
 			DBM.InfoFrame:SetHeader(args.spellName)
 			DBM.InfoFrame:Show(2, "enemyabsorb", nil, shieldHealth[(DBM:GetCurrentInstanceDifficulty())])
 		end
 	elseif args.spellId == 82762 and args:IsPlayer() then
 		specWarnWaterLogged:Show()
+		specWarnWaterLogged:Play("defensive")
 	elseif args.spellId == 84948 then
 		gravityCrushTargets[#gravityCrushTargets + 1] = args.destName
 		timerGravityCrushCD:Start()
 		if self.Options.GravityCrushIcon then
-			self:SetIcon(args.destName, gravityCrushIcon)
-			gravityCrushIcon = gravityCrushIcon - 1
+			self:SetIcon(args.destName, self.vb.gravityCrushIcon)
 		end
+		self.vb.gravityCrushIcon = self.vb.gravityCrushIcon + 1
 		self:Unschedule(showGravityCrushWarning)
 		if (self:IsDifficulty("normal25", "heroic25") and #gravityCrushTargets >= 3) or (self:IsDifficulty("normal10", "heroic10") and #gravityCrushTargets >= 1) then
-			showGravityCrushWarning()
+			showGravityCrushWarning(self)
 		else
-			self:Schedule(0.3, showGravityCrushWarning)
+			self:Schedule(0.3, showGravityCrushWarning, self)
 		end
 	elseif args.spellId == 92307 then
-		warnFrostBeacon:Show(args.destName)
 		if args:IsPlayer() then
 			isBeacon = true
 			specWarnFrostBeacon:Show()
+			specWarnFrostBeacon:Play("runout")
 			if isRod then--You have lighting rod and frost beacon at same time.
 				yellScrewed:Yell()
 			else--You only have beacon so do normal yell
 				yellFrostbeacon:Yell()
 			end
+		else
+			warnFrostBeacon:Show(args.destName)
 		end
 		if self.Options.FrostBeaconIcon then
 			self:SetIcon(args.destName, 3)
@@ -326,109 +402,32 @@ function mod:SPELL_AURA_APPLIED(args)
 			timerFrostBeaconCD:Start()
 		end
 	elseif args.spellId == 92067 then--All other spell IDs are jump spellids, do not add them in or we'll have to scan source target and filter them.
-		warnStaticOverload:Show(args.destName)
 		timerStaticOverloadCD:Start()
 		if self.Options.StaticOverloadIcon then
 			self:SetIcon(args.destName, 4)
 		end
 		if args:IsPlayer() then
 			specWarnStaticOverload:Show()
+			specWarnStaticOverload:Play("targetyou")
 			yellStaticOverload:Yell()
+		else
+			warnStaticOverload:Show(args.destName)
 		end
 	elseif args.spellId == 92075 then
-		warnGravityCore:Show(args.destName)
 		timerGravityCoreCD:Start()
 		if self.Options.GravityCoreIcon then
 			self:SetIcon(args.destName, 5)
 		end
 		if args:IsPlayer() then
 			specWarnGravityCore:Show()
+			specWarnGravityCore:Play("targetyou")
 			yellGravityCore:Yell()
+		else
+			warnGravityCore:Show(args.destName)
 		end
 	end
 end
-
-function mod:SPELL_AURA_REFRESH(args)--We do not combine refresh with applied cause it causes issues with burning blood/heart of ice.
-	if args.spellId == 82772 then
-		frozenCount = frozenCount + 1
-		frozenTargets[#frozenTargets + 1] = args.destName
-		self:Unschedule(showFrozenWarning)
-		self:Schedule(0.3, showFrozenWarning)
-	elseif args.spellId == 83099 then
-		lightningRodTargets[#lightningRodTargets + 1] = args.destName
-		if args:IsPlayer() then
-			isRod = true
-			specWarnLightningRod:Show()
-			if isBeacon then--You have lighting rod and frost beacon at same time.
-				yellScrewed:Yell()
-			else--You only have rod so do normal yell
-				yellLightningRod:Yell()
-			end
-			if self.Options.RangeFrame then
-				DBM.RangeCheck:Show(10)
-			end
-		end
-		if self.Options.LightningRodIcon then
-			self:SetIcon(args.destName, lightningRodIcon)
-			lightningRodIcon = lightningRodIcon - 1
-		end
-		self:Unschedule(showLightningRodWarning)
-		if (self:IsDifficulty("normal25", "heroic25") and #lightningRodTargets >= 3) or (self:IsDifficulty("normal10", "heroic10") and #lightningRodTargets >= 1) then
-			showLightningRodWarning()
-		else
-			self:Schedule(0.3, showLightningRodWarning)
-		end
-	elseif args.spellId == 82762 and args:IsPlayer() then
-		specWarnWaterLogged:Show()
-	elseif args.spellId == 84948 then
-		gravityCrushTargets[#gravityCrushTargets + 1] = args.destName
-		timerGravityCrushCD:Start()
-		if self.Options.GravityCrushIcon then
-			self:SetIcon(args.destName, gravityCrushIcon)
-			gravityCrushIcon = gravityCrushIcon - 1
-		end
-		self:Unschedule(showGravityCrushWarning)
-		if (self:IsDifficulty("normal25", "heroic25") and #gravityCrushTargets >= 3) or (self:IsDifficulty("normal10", "heroic10") and #gravityCrushTargets >= 1) then
-			showGravityCrushWarning()
-		else
-			self:Schedule(0.3, showGravityCrushWarning)
-		end
-	elseif args.spellId == 92307 then
-		warnFrostBeacon:Show(args.destName)
-		if args:IsPlayer() then
-			isBeacon = true
-			specWarnFrostBeacon:Show()
-			if isRod then--You have lighting rod and frost beacon at same time.
-				yellScrewed:Yell()
-			else--You only have beacon so do normal yell
-				yellFrostbeacon:Yell()
-			end
-		end
-		if self.Options.FrostBeaconIcon then
-			self:SetIcon(args.destName, 3)
-		end
-	elseif args.spellId == 92067 then--All other spell IDs are jump spellids, do not add them in or we'll have to scan source target and filter them.
-		warnStaticOverload:Show(args.destName)
-		timerStaticOverloadCD:Start()
-		if self.Options.StaticOverloadIcon then
-			self:SetIcon(args.destName, 4)
-		end
-		if args:IsPlayer() then
-			specWarnStaticOverload:Show()
-			yellStaticOverload:Yell()
-		end
-	elseif args.spellId == 92075 then
-		warnGravityCore:Show(args.destName)
-		timerGravityCoreCD:Start()
-		if self.Options.GravityCoreIcon then
-			self:SetIcon(args.destName, 5)
-		end
-		if args:IsPlayer() then
-			specWarnGravityCore:Show()
-			yellGravityCore:Yell()
-		end
-	end
-end
+mod.SPELL_AURA_REFRESH = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
 	if args.spellId == 82665 then
@@ -442,8 +441,8 @@ function mod:SPELL_AURA_REMOVED(args)
 			self:SetIcon(args.destName, 0)
 		end
 	elseif args.spellId == 82772 then
-		frozenCount = frozenCount - 1
-		if frozenCount == 0 then
+		self.vb.frozenCount = self.vb.frozenCount - 1
+		if self.vb.frozenCount == 0 then
 			timerFrozen:Cancel()
 		end
 	elseif args.spellId == 83099 then
@@ -477,6 +476,7 @@ function mod:SPELL_AURA_REMOVED(args)
 	elseif args.spellId == 82631 then	-- Shield Removed
 		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43686 or self:GetUnitCreatureId("focus") == 43686) or not self:IsMelee() then
 			specWarnRisingFlames:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
+			specWarnRisingFlames:Play("kickcast")
 		end
 		if self.Options.InfoFrame then
 			DBM.InfoFrame:Hide()
@@ -484,73 +484,8 @@ function mod:SPELL_AURA_REMOVED(args)
 	end
 end
 
-function mod:SPELL_CAST_START(args)
-	if args.spellId == 82746 then
-		timerGlaciate:Start()
-		if self:GetUnitCreatureId("target") == 43687 then--Only warn if targeting/tanking this boss.
-			warnGlaciate:Show()
-			specWarnGlaciate:Show()
-		end
-	elseif args.spellId == 82752 then
-		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43687 or self:GetUnitCreatureId("focus") == 43687) or not self:IsMelee() then
-			specWarnHydroLance:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
-		end
-		timerHydroLanceCD:Show()
-	elseif args.spellId == 82699 then
-		warnWaterBomb:Show()
-		timerWaterBomb:Start()
-	elseif args.spellId == 83675 then
-		warnEruption:Show()
-		specWarnEruption:Show()
-		timerEruptionCD:Start()
-	elseif args.spellId == 83718 then
-		warnHardenSkin:Show()
-		timerHardenSkinCD:Start()
-		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43689 or self:GetUnitCreatureId("focus") == 43689) or not self:IsMelee() then
-			specWarnHardenedSkin:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
-		end
-	elseif args.spellId == 83565 then
-		infoFrameUpdated = false
-		warnQuake:Show()
-		timerQuakeCD:Cancel()
-		timerQuakeCast:Start()
-		timerThundershockCD:Start()
-		self:Schedule(5, checkGrounded, self)
-	elseif args.spellId == 83087 then
-		warnDisperse:Show()
-		timerDisperse:Start()
-	elseif args.spellId == 83070 then
-		warnLightningBlast:Show()
-		timerLightningBlast:Start()
-		specWarnLightningBlast:Show()
-	elseif args.spellId == 83067 then
-		infoFrameUpdated = false
-		warnThundershock:Show()
-		timerThundershockCD:Cancel()
-		timerThundershockCast:Start()
-		timerQuakeCD:Start()
-		self:Schedule(5, checkSearingWinds, self)
-	elseif args.spellId == 84913 then
-		warnLavaSeed:Show()
-		timerLavaSeedCD:Start()
-	elseif args.spellId == 92212 then
-		warnFlameStrike:Show()
-		timerFlameStrikeCD:Start()
-	end
-end
-
-function mod:SPELL_CAST_SUCCESS(args)
-	if args.spellId == 82636 then
-		timerAegisFlame:Start()
-	elseif args.spellId == 82665 then
-		timerHeartIceCD:Start()
-	elseif args.spellId == 82660 then
-		timerBurningBloodCD:Start()
-	end
-end
-
 function mod:RAID_BOSS_EMOTE(msg)
-	if (msg == L.Quake or msg:find(L.Quake)) and phase == 2 then
+	if (msg == L.Quake or msg:find(L.Quake)) and self:GetStage(2) then
 		timerQuakeCD:Update(23, 33)
 		warnQuakeSoon:Show()
 		checkSearingWinds(self)
@@ -558,7 +493,7 @@ function mod:RAID_BOSS_EMOTE(msg)
 			self:Schedule(3.3, checkSearingWinds, self)
 			self:Schedule(6.6, checkSearingWinds, self)
 		end
-	elseif (msg == L.Thundershock or msg:find(L.Thundershock)) and phase == 2 then
+	elseif (msg == L.Thundershock or msg:find(L.Thundershock)) and self:GetStage(2) then
 		timerThundershockCD:Update(23, 33)
 		warnThundershockSoon:Show()
 		checkGrounded(self)
@@ -595,11 +530,12 @@ function mod:UNIT_HEALTH(uId)
 end
 
 function mod:OnSync(msg, boss)
+	if not self:IsInCombat() then return end
 	if msg == "lowhealth" and boss and not warnedLowHP[boss] then
 		warnedLowHP[boss] = true
 		specWarnBossLow:Show(boss)
-	elseif msg == "Phase2" and self:IsInCombat() then
-		phase = 2
+	elseif msg == "Phase2" then
+		self:SetStage(2)
 		timerWaterBomb:Cancel()
 		timerGlaciate:Cancel()
 		timerAegisFlame:Cancel()
@@ -614,7 +550,7 @@ function mod:OnSync(msg, boss)
 		end
 		timerQuakeCD:Start()
 		self:Schedule(3, checkSearingWinds, self)
-	elseif msg == "PhaseTransition" and self:IsInCombat() then
+	elseif msg == "PhaseTransition" then
 		self:Unschedule(checkSearingWinds)
 		self:Unschedule(checkGrounded)
 		timerQuakeCD:Cancel()
@@ -627,13 +563,13 @@ function mod:OnSync(msg, boss)
 		if self.Options.InfoFrame then
 			DBM.InfoFrame:Hide()
 		end
-	elseif msg == "Phase3" and self:IsInCombat() then
-		phase = 3
+	elseif msg == "Phase3" then
+		self:SetStage(3)
 		timerFrostBeaconCD:Cancel()--Cancel here to avoid problems with orbs that spawn during the transition.
 		timerLavaSeedCD:Start(18)
 		timerGravityCrushCD:Start(28)
-		if self.Options.RangeFrame then
-			DBM.RangeCheck:Show(10)
-		end
+		--if self.Options.RangeFrame then
+		--	DBM.RangeCheck:Show(10)
+		--end
 	end
 end

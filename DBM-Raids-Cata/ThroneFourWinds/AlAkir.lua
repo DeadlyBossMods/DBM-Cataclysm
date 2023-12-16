@@ -41,7 +41,7 @@ local timerWindBurst		= mod:NewCastTimer(5, 87770, nil, nil, nil, 2)
 local timerWindBurstCD		= mod:NewCDTimer(25, 87770, nil, nil, nil, 2)		-- 25-30 Variation
 local timerAddCD			= mod:NewCDTimer(20, 88272, nil, nil, nil, 1)
 local timerFeedback			= mod:NewTimer(20, "TimerFeedback", 87904, nil, nil, 5, DBM_COMMON_L.DAMAGE_ICON)
-local timerAcidRainStack	= mod:NewNextTimer(15, 88301, nil, isDKorPaly)
+local timerAcidRainStack	= mod:NewNextTimer(15, 88301, nil, isDKorPaly, nil, 5)
 local timerLightningRod		= mod:NewTargetTimer(5, 89668, nil, false)
 local timerLightningRodCD	= mod:NewNextTimer(15, 89668, nil, nil, nil, 3)
 local timerLightningCloudCD	= mod:NewNextTimer(15, 89588, nil, nil, nil, 3, nil, DBM_COMMON_L.DEADLY_ICON)
@@ -76,8 +76,8 @@ function mod:OnCombatStart(delay)
 	timerIceStormCD:Start(6-delay)
 	--Only needed in phase 1
 	self:RegisterShortTermEvents(
-		"SPELL_PERIODIC_DAMAGE",
-		"SPELL_PERIODIC_MISSED"
+		"SPELL_PERIODIC_DAMAGE 91020",
+		"SPELL_PERIODIC_MISSED 91020"
 	)
 end
 
@@ -200,8 +200,8 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
 	elseif spellId == 89639 and self:AntiSpam(2, 3) then -- Phase 3 Lightning cloud trigger (only cast once)
 		self:CloudRepeat()
 		self:RegisterShortTermEvents(
-			"SPELL_DAMAGE",
-			"SPELL_MISSED"
+			"SPELL_DAMAGE 88858 89588",
+			"SPELL_MISSED 88858 89588"
 		)
 	end
 end
