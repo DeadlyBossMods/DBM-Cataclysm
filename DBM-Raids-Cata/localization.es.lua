@@ -272,13 +272,6 @@ L:SetMiscLocalization({
 ----------------
 L = DBM:GetModLocalization(167)
 
-L:SetOptionLocalization({
-	CorruptingCrashArrow	= "Mostrar flecha cuando $spell:81685 ocurra cerca de ti",
-	InfoFrame				= "Mostrar marco de información para $journal:3165",
-	RangeFrame				= "Mostrar marco de distancia (5 m) para $journal:3165",
-	SetIconOnWorship		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(91317)
-})
-
 ----------------
 --  Sinestra  --
 ----------------

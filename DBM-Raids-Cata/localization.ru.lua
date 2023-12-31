@@ -273,13 +273,6 @@ L:SetMiscLocalization({
 ----------------
 L= DBM:GetModLocalization(167)
 
-L:SetOptionLocalization({
-	CorruptingCrashArrow	= "Показывать стрелку DBM, когда $spell:81685 около Вас",
-	InfoFrame				= "Показывать информационное окно для $journal:3165",
-	RangeFrame				= "Показывать окно проверки дистанции (5м) для $journal:3165",
-	SetIconOnWorship		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(91317)
-})
-
 ----------------
 --  Sinestra  --
 ----------------

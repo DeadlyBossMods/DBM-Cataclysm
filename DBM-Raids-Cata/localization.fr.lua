@@ -247,21 +247,6 @@ L:SetOptionLocalization({
 ----------------
 L= DBM:GetModLocalization(167)
 
-L:SetWarningLocalization({
---	WarnPhase2Soon	= "Phase 2 imminente"
-})
-
-L:SetTimerLocalization({
-})
-
-L:SetOptionLocalization({
---	WarnPhase2Soon		= "Afficher la pré-alerte pour la Phase 2",
-	CorruptingCrashArrow	= "Afficher la flèche DBM lorsque $spell:93178 est près de vous",
-	InfoFrame			= "Afficher la fenêtre d'info pour le sort $journal:3165",
-	RangeFrame		= "Afficher la fenêtre de portée (5) pour $spell:82235",
-	SetIconOnWorship	= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(91317)
-})
-
 ----------------
 --  Sinestra  --
 ----------------

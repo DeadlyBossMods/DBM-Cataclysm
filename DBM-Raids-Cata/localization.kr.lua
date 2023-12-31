@@ -254,12 +254,6 @@ L:SetMiscLocalization({
 ----------------
 L= DBM:GetModLocalization(167)
 
-L:SetOptionLocalization({
-	CorruptingCrashArrow	= "$spell:81685 대상이 가까이 있을 경우 DBM 화살표 보기",
-	InfoFrame				= "$journal:3165 정보를 정보 창으로 보기",
-	RangeFrame				= "$spell:82235 대상이 된 경우 거리 창(5m) 보기"
-})
-
 ----------------
 --  Sinestra  --
 ----------------

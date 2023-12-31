@@ -280,13 +280,6 @@ L:SetMiscLocalization({
 ----------------
 L = DBM:GetModLocalization(167)
 
-L:SetOptionLocalization({
-	CorruptingCrashArrow	= "DBM箭头：当$spell:93178在你附近时",
-	InfoFrame				= "信息框：$journal:3165",
-	RangeFrame				= "为$spell:82235显示距离监视器（5码）",
-	SetIconOnWorship		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(91317)
-})
-
 ----------------
 --  Sinestra  --
 ----------------
