@@ -195,7 +195,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 91317 then
 		worshipTargets[#worshipTargets + 1] = args.destName
 		if self.Options.SetIconOnWorship then
-			self:SetIcon(args.destName, worshipIcon)
+			self:SetIcon(args.destName, self.vb.worshipIcon)
 		end
 		self.vb.worshipIcon = self.vb.worshipIcon + 1
 		self:Unschedule(showWorshipWarning)
