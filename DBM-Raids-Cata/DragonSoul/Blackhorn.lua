@@ -54,7 +54,7 @@ local specWarnTwilightFlames		= mod:NewSpecialWarningMove(108076)
 local specWarnSunder				= mod:NewSpecialWarningStack(108043, "Tank", 3)
 local specWarnSunderOther			= mod:NewSpecialWarningTarget(108043, "Tank")
 
-local timerCombatStart				= mod:NewCombatTimer(20.5)
+local timerCombatStart				= mod:NewRPTimer(20.5)
 local timerAdd						= mod:NewTimer(61, "TimerAdd", 107752, nil, nil, 1)
 local timerHarpoonCD				= mod:NewCDTimer(6.5, 108038, nil, "Dps", nil, 5, nil, DBM_COMMON_L.DAMAGE_ICON)--If you fail to kill drake until next drake spawning, timer do not match. So better to use cd timer for now.
 local timerHarpoonActive			= mod:NewBuffActiveTimer(20, 108038, nil, "Dps", nil, 5, nil, DBM_COMMON_L.DAMAGE_ICON)--Seems to always hold at least 20 seconds, beyond that, RNG, but you always get at least 20 seconds before they "snap" free.

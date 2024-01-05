@@ -48,7 +48,7 @@ local specWarnGushingWoundSelf	= mod:NewSpecialWarningYou(99308, false, nil, nil
 local specWarnTantrum			= mod:NewSpecialWarningSpell(99362, "Tank", nil, nil, 1, 2)
 local specWarnGushingWoundOther	= mod:NewSpecialWarningTarget(99308, false, nil, nil, 1)--There is no voice that really fits this
 
-local timerCombatStart			= mod:NewCombatTimer(33)
+local timerCombatStart			= mod:NewRPTimer(33)
 local timerFieryVortexCD		= mod:NewNextTimer(179, 99794, nil, nil, nil, 6)
 local timerMoltingCD			= mod:NewNextTimer(60, 99464, nil, nil, nil, 5)
 local timerCataclysm			= mod:NewCastTimer(5, 102111, nil, nil, nil, 5)--Heroic
