@@ -193,10 +193,6 @@ L:SetGeneralLocalization({
 --------------------------
 L = DBM:GetModLocalization(156)
 
-L:SetOptionLocalization({
-	ShowDrakeHealth		= "Zeige die Gesundheit befreiter Drachen (benötigt aktivierte Lebensanzeige)"
-})
-
 ---------------------------
 --  Valiona & Theralion  --
 ---------------------------
@@ -204,8 +200,6 @@ L = DBM:GetModLocalization(157)
 
 L:SetOptionLocalization({
 	TBwarnWhileBlackout		= "Warne auch bei aktivem $spell:86788 vor $spell:86369",
-	TwilightBlastArrow		= "Zeige DBM-Pfeil, falls $spell:86369 in deiner Nähe ist",
-	RangeFrame				= "Zeige Abstandsfenster (10m)",
 	BlackoutShieldFrame		= "Zeige Lebensanzeige mit einem Balken für $spell:86788"
 })
 
@@ -234,9 +228,7 @@ L:SetOptionLocalization({
 	SpecWarnGrounded		= "Spezialwarnung, falls dir der $spell:83581 Buff fehlt<br/>(~10 Sekunden vor dem Wirken von $spell:83067)",
 	SpecWarnSearingWinds	= "Spezialwarnung, falls dir der $spell:83500 Buff fehlt<br/>(~10 Sekunden vor dem Wirken von $spell:83565)",
 	timerTransition			= "Dauer des Phasenübergangs anzeigen",
-	RangeFrame				= "Zeige Abstandsfenster automatisch bei Bedarf",
-	yellScrewed				= "Schreie, wenn du gleichzeitig von $spell:83099 und $spell:92307 betroffen bist",
-	InfoFrame				= "Zeige Infofenster für Spieler ohne $spell:83581 bzw. $spell:83500"
+	yellScrewed				= "Schreie, wenn du gleichzeitig von $spell:83099 und $spell:92307 betroffen bist"
 })
 
 L:SetMiscLocalization({

@@ -193,10 +193,6 @@ L:SetGeneralLocalization({
 --------------------------
 L= DBM:GetModLocalization(156)
 
-L:SetOptionLocalization({
-	ShowDrakeHealth		= "풀려난 용의 체력 바 보기(우두머리 체력 바 필요)"
-})
-
 ---------------------------
 --  Valiona & Theralion  --
 ---------------------------
@@ -204,8 +200,6 @@ L= DBM:GetModLocalization(157)
 
 L:SetOptionLocalization({
 	TBwarnWhileBlackout		= "$spell:86788이 활성화 중일때도 $spell:86369 경고 보기",
-	TwilightBlastArrow		= "$spell:86369 대상이 가까이 있을 경우 DBM 화살표 보기",
-	RangeFrame				= "거리 창 보기(10m)",
 	BlackoutShieldFrame		= "우두머리 체력 바 사용시 $spell:86788 치유량 바 함께 보기"
 })
 
@@ -234,9 +228,7 @@ L:SetOptionLocalization({
 	SpecWarnGrounded		= "$spell:83581 효과가 없을 경우 특수 경고 보기(~10초 전)",
 	SpecWarnSearingWinds	= "$spell:83500 효과가 없을 경우 특수 경고 보기(~10초 전)",
 	timerTransition			= "다음 단계 바 보기",
-	RangeFrame				= "필요시 거리 창 보기",
-	yellScrewed				= "$spell:83099 와 $spell:92307 대상이 동시에 된 경우 대화로 알리기",
-	InfoFrame				= "$spell:83581 또는 $spell:83500 없는 대상을 정보 창으로 보기"
+	yellScrewed				= "$spell:83099 와 $spell:92307 대상이 동시에 된 경우 대화로 알리기"
 })
 
 L:SetMiscLocalization({

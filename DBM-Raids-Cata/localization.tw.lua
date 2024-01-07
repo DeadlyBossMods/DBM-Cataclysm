@@ -193,10 +193,6 @@ L:SetGeneralLocalization({
 --------------------------
 L= DBM:GetModLocalization(156)
 
-L:SetOptionLocalization({
-	ShowDrakeHealth		= "顯示已被釋放的小龍血量<br/>(需要先開啟首領血量)"
-})
-
 ---------------------------
 --  Valiona & Theralion  --
 ---------------------------
@@ -204,8 +200,6 @@ L= DBM:GetModLocalization(157)
 
 L:SetOptionLocalization({
 	TBwarnWhileBlackout	= "當$spell:86369生效時顯示$spell:86788警告",
-	TwilightBlastArrow	= "當你附近的人中了$spell:86369時顯示DBM箭頭",
-	RangeFrame			= "顯示距離框(10碼)",
 	BlackoutShieldFrame	= "為$spell:86788顯示首領血量條"
 })
 
@@ -234,9 +228,7 @@ L:SetOptionLocalization({
 	SpecWarnGrounded		= "當你缺少$spell:83581時顯示特別警告<br/>(大約施放前10秒內)",
 	SpecWarnSearingWinds	= "當你缺少$spell:83500時顯示特別警告<br/>(大約施放前10秒內)",
 	timerTransition			= "顯示階段轉換計時器",
-	RangeFrame	 			= "當需要時自動顯示距離框",
-	yellScrewed				= "當你同時有$spell:83099和$spell:92307時大喊",
-	InfoFrame				= "顯示沒有$spell:83581或$spell:83500的玩家"
+	yellScrewed				= "當你同時有$spell:83099和$spell:92307時大喊"
 })
 
 L:SetMiscLocalization({

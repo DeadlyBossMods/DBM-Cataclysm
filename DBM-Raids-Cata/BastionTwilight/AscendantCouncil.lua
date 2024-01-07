@@ -237,7 +237,7 @@ function mod:SPELL_CAST_START(args)
 			warnGlaciate:Show()
 		end
 	elseif args.spellId == 82752 then
-		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43687 or self:GetUnitCreatureId("focus") == 43687) or not self:IsMelee() then
+		if self:CheckInterruptFilter(args.sourceGUID, false, true) then
 			specWarnHydroLance:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
 			specWarnHydroLance:Play("kickcast")
 		end
@@ -256,7 +256,7 @@ function mod:SPELL_CAST_START(args)
 	elseif args.spellId == 83718 then
 		warnHardenSkin:Show()
 		timerHardenSkinCD:Start()
-		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43689 or self:GetUnitCreatureId("focus") == 43689) or not self:IsMelee() then
+		if self:CheckInterruptFilter(args.sourceGUID, false, true) then
 			specWarnHardenedSkin:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
 			specWarnHardenedSkin:Play("kickcast")
 		end
@@ -272,7 +272,7 @@ function mod:SPELL_CAST_START(args)
 		timerDisperse:Start()
 	elseif args.spellId == 83070 then
 		timerLightningBlast:Start()
-		if self.Options.SpecWarn83070interrupt then
+		if self.Options.SpecWarn83070interrupt and self:CheckInterruptFilter(args.sourceGUID, false, true) then
 			specWarnLightningBlast:Show(args.sourceName)
 			specWarnLightningBlast:Play("kickcast")
 		else
@@ -474,7 +474,7 @@ function mod:SPELL_AURA_REMOVED(args)
 			self:SetIcon(args.destName, 0)
 		end
 	elseif args.spellId == 82631 then	-- Shield Removed
-		if self:IsMelee() and (self:GetUnitCreatureId("target") == 43686 or self:GetUnitCreatureId("focus") == 43686) or not self:IsMelee() then
+		if self:CheckInterruptFilter(args.sourceGUID, false, true) then
 			specWarnRisingFlames:Show(args.sourceName)--Only warn for melee targeting him or exclicidly put him on focus, else warn regardless if he's your target/focus or not if you aren't a melee
 			specWarnRisingFlames:Play("kickcast")
 		end

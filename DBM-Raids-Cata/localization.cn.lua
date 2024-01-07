@@ -210,10 +210,6 @@ L:SetGeneralLocalization({
 --------------------------
 L = DBM:GetModLocalization(156)
 
-L:SetOptionLocalization({
-	ShowDrakeHealth		= "显示已释放幼龙的生命值（需要开启首领生命值显示）"
-})
-
 ---------------------------
 --  Valiona & Theralion  --
 ---------------------------
@@ -221,11 +217,7 @@ L = DBM:GetModLocalization(157)
 
 L:SetOptionLocalization({
 	TBwarnWhileBlackout		= "警报：$spell:86788时的$spell:92898",
-	TwilightBlastArrow		= "DBM箭头：当有$spell:92898的目标在你附近时",
-	RangeFrame				= "距离监视器（10码）",
-	BlackoutShieldFrame		= "为$spell:92878显示首领血量条",
-	BlackoutIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92878),
-	EngulfingIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(86622)
+	BlackoutShieldFrame		= "为$spell:92878显示首领血量条"
 })
 
 L:SetMiscLocalization({
@@ -253,16 +245,7 @@ L:SetOptionLocalization({
 	SpecWarnGrounded		= "特殊警报：缺少$spell:83581效果（对应技能施放10秒前警报）",
 	SpecWarnSearingWinds	= "特殊警报：缺少$spell:83500效果（对应技能施放10秒前警报）",
 	timerTransition			= "计时条：阶段转换",
-	RangeFrame				= "在需要时自动显示距离监视器",
-	yellScrewed				= "当你同时受到$spell:83099和$spell:92307影响时大喊",
-	InfoFrame				= "信息框：没有$spell:83581或$spell:83500效果的团员的列表",
-	HeartIceIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(82665),
-	BurningBloodIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(82660),
-	LightningRodIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(83099),
-	GravityCrushIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(84948),
-	FrostBeaconIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92307),
-	StaticOverloadIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92067),
-	GravityCoreIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92075)
+	yellScrewed				= "当你同时受到$spell:83099和$spell:92307影响时大喊"
 })
 
 L:SetMiscLocalization({

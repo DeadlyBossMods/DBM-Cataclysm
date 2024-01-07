@@ -201,10 +201,6 @@ L:SetGeneralLocalization({
 --------------------------
 L = DBM:GetModLocalization(156)
 
-L:SetOptionLocalization({
-	ShowDrakeHealth		= "Show the health of released drakes<br/>(Requires Boss Health enabled)"
-})
-
 ---------------------------
 --  Valiona & Theralion  --
 ---------------------------
@@ -212,11 +208,7 @@ L = DBM:GetModLocalization(157)
 
 L:SetOptionLocalization({
 	TBwarnWhileBlackout		= "Show $spell:86369 warning when $spell:86788 active",
-	TwilightBlastArrow		= "Show DBM arrow when $spell:86369 is near you",
-	RangeFrame				= "Show range frame (10)",
-	BlackoutShieldFrame		= "Show boss health with a health bar for $spell:86788",
-	BlackoutIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(86788),
-	EngulfingIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(86622)
+	BlackoutShieldFrame		= "Show boss health with a health bar for $spell:86788"
 })
 
 L:SetMiscLocalization({
@@ -244,16 +236,7 @@ L:SetOptionLocalization({
 	SpecWarnGrounded		= "Show special warning when you are missing $spell:83581 debuff<br/>(~10sec before cast)",
 	SpecWarnSearingWinds	= "Show special warning when you are missing $spell:83500 debuff<br/>(~10sec before cast)",
 	timerTransition			= "Show Phase transition timer",
-	RangeFrame				= "Show range frame automatically when needed",
-	yellScrewed				= "Yell when you have $spell:83099 &amp; $spell:92307 at same time",
-	InfoFrame				= "Show info frame for players without $spell:83581 or $spell:83500",
-	HeartIceIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(82665),
-	BurningBloodIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(82660),
-	LightningRodIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(83099),
-	GravityCrushIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(84948),
-	FrostBeaconIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92307),
-	StaticOverloadIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92067),
-	GravityCoreIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92075)
+	yellScrewed				= "Yell when you have $spell:83099 &amp; $spell:92307 at same time"
 })
 
 L:SetMiscLocalization({

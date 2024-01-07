@@ -203,10 +203,6 @@ L:SetGeneralLocalization({
 --------------------------
 L = DBM:GetModLocalization(156)
 
-L:SetOptionLocalization({
-	ShowDrakeHealth		= "Mostrar vida dos dragonetes soltos.<br/>(Requer quadro de vida habilitado)"
-})
-
 ---------------------------
 --  Valiona & Theralion  --
 ---------------------------
@@ -214,11 +210,7 @@ L = DBM:GetModLocalization(157)
 
 L:SetOptionLocalization({
 	TBwarnWhileBlackout		= "Exibir aviso para $spell:92898 quando $spell:86788 estiver ativo",
-	TwilightBlastArrow		= "Exibir seta do DBM quando $spell:92898 estiver próximo a você",
-	RangeFrame				= "Mostrar medidor de distância (10m)",
-	BlackoutShieldFrame		= "Usar uma barra de vida para mostrar a vida do chefe durante $spell:92878",
-	BlackoutIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92878),
-	EngulfingIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(86622)
+	BlackoutShieldFrame		= "Usar uma barra de vida para mostrar a vida do chefe durante $spell:92878"
 })
 
 L:SetMiscLocalization({
@@ -246,16 +238,7 @@ L:SetOptionLocalization({
 	SpecWarnGrounded		= "Exibir aviso especial quando você estiver sem o efeito de $spell:83581<br/>(~10seg antes do lançamento)",
 	SpecWarnSearingWinds	= "Exibir aviso especial quando você estiver sem o efeito de $spell:83500<br/>(~10seg antes do lançamento)",
 	timerTransition			= "Exibir cronógrafo de transição de fase",
-	RangeFrame				= "Exibir medidor de distância automaticamente, quando necessário",
-	yellScrewed				= "Gritar quando você tiver $spell:83099 e $spell:92307 ao mesmo tempo",
-	InfoFrame				= "Mostrar quadro de informações para jogadores sem $spell:83581 ou $spell:83500",
-	HeartIceIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(82665),
-	BurningBloodIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(82660),
-	LightningRodIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(83099),
-	GravityCrushIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(84948),
-	FrostBeaconIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92307),
-	StaticOverloadIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92067),
-	GravityCoreIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92075)
+	yellScrewed				= "Gritar quando você tiver $spell:83099 e $spell:92307 ao mesmo tempo"
 })
 
 L:SetMiscLocalization({

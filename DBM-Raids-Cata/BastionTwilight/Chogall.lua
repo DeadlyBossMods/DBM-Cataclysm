@@ -141,14 +141,14 @@ function mod:SPELL_CAST_START(args)
 		end
 		self.vb.creatureIcon = self.vb.creatureIcon - 1
 	elseif args.spellId == 81713 then
-		if args.sourceGUID == UnitGUID("target") then--Only show warning for your own target.
+		if self:CheckInterruptFilter(args.sourceGUID, false, true) then
 			specWarnDepravity:Show(args.sourceName)
 			specWarnDepravity:Play("kickcast")
-			if self:IsDifficulty("normal10", "heroic10") then
-				timerDepravityCD:Start()--every 12 seconds on 10 man from their 1 adherent, can be solo interrupted.
-			else
-				timerDepravityCD:Start(6)--every 6 seconds on 25 man (unless interrupted by a mage then 7.5 cause of school lockout)
-			end
+		end
+		if self:IsDifficulty("normal10", "heroic10") then
+			timerDepravityCD:Start()--every 12 seconds on 10 man from their 1 adherent, can be solo interrupted.
+		else
+			timerDepravityCD:Start(6)--every 6 seconds on 25 man (unless interrupted by a mage then 7.5 cause of school lockout)
 		end
 	end
 end

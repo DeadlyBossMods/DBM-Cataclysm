@@ -4,7 +4,7 @@ local L		= mod:GetLocalizedStrings()
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(45992, 45993)
 mod:SetEncounterID(1032)
-mod:SetUsedIcons(6, 7, 8)
+mod:SetUsedIcons(1, 2, 3, 8)
 --mod:SetModelSound("Sound\\Creature\\Chogall\\VO_BT_Chogall_BotEvent10.ogg", "Sound\\Creature\\Valiona\\VO_BT_Valiona_Event06.ogg")
 --Long: Valiona, Theralion put them in their place!
 --Short: Enter twilight!
@@ -12,23 +12,23 @@ mod:SetUsedIcons(6, 7, 8)
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_APPLIED_DOSE",
-	"SPELL_AURA_REFRESH",
-	"SPELL_AURA_REMOVED",
-	"SPELL_CAST_START",
-	"SPELL_DAMAGE",
-	"SPELL_MISSED",
-	"SPELL_HEAL",
-	"SPELL_PERIODIC_HEAL",
+	"SPELL_CAST_START 86840 90950 86408 86369",
+	"SPELL_AURA_APPLIED 86788 86622 93051 86214",
+	"SPELL_AURA_APPLIED_DOSE 86788 86622 93051 86214",--No idea which IDs are actually used by dose, so using all
+	"SPELL_AURA_REFRESH 86788 86622 93051 86214",--No idea which IDs are actually used by refresh, so using all
+	"SPELL_AURA_REMOVED 86788 86622 93051",
+	"SPELL_DAMAGE 86505",
+	"SPELL_MISSED 86505",
+--	"SPELL_HEAL",--Why were these registered, they aren't even used
+--	"SPELL_PERIODIC_HEAL",--Why were these registered, they aren't even used
 	"RAID_BOSS_EMOTE",
 	"UNIT_AURA player",
 	"UNIT_SPELLCAST_SUCCEEDED boss1 boss2"
 )
 
+--TODO, fix RAID_BOSS_EMOTE so it's not easily broken by onyxian whelpling pets being out
 --Valiona Ground Phase
-local warnBlackout					= mod:NewTargetAnnounce(86788, 3)
-local warnDevouringFlames			= mod:NewSpellAnnounce(86840, 3)
+local warnBlackout					= mod:NewTargetNoFilterAnnounce(86788, 3)
 local warnDazzlingDestruction		= mod:NewCountAnnounce(86408, 4)--Used by Theralion just before landing
 --Theralion Ground Phase
 local warnFabFlames					= mod:NewTargetAnnounce(86505, 3)
@@ -38,24 +38,22 @@ local warnDeepBreath				= mod:NewCountAnnounce(86059, 4)--Used by Valiona just b
 local warnTwilightShift				= mod:NewStackAnnounce(93051, 2)
 
 --Valiona Ground Phase
-local specWarnDevouringFlames		= mod:NewSpecialWarningSpell(86840, nil, nil, nil, 2)
-local specWarnDazzlingDestruction	= mod:NewSpecialWarningSpell(86408, nil, nil, nil, 2)
-local specWarnBlackout				= mod:NewSpecialWarningYou(86788)
+local specWarnDevouringFlames		= mod:NewSpecialWarningRun(86840, nil, nil, nil, 4, 2)
+local specWarnDazzlingDestruction	= mod:NewSpecialWarningSpell(86408, nil, nil, nil, 2, 2)
+local specWarnBlackout				= mod:NewSpecialWarningYou(86788, nil, nil, nil, 1, 2)
 mod:AddBoolOption("TBwarnWhileBlackout", false, "announce")
-local specWarnTwilightBlast			= mod:NewSpecialWarningMove(86369, false)
-local specWarnTwilightBlastNear		= mod:NewSpecialWarningClose(86369, false)
+local specWarnTwilightBlast			= mod:NewSpecialWarningMove(86369, false, nil, nil, 1, 2)
 local yellTwilightBlast				= mod:NewYell(86369, nil, false)
 --Theralion Ground Phase
-local specWarnDeepBreath			= mod:NewSpecialWarningSpell(86059, nil, nil, nil, 2)
-local specWarnFabulousFlames		= mod:NewSpecialWarningMove(86505)
-local specWarnFabulousFlamesNear	= mod:NewSpecialWarningClose(86505)
+local specWarnDeepBreath			= mod:NewSpecialWarningDodge(86059, nil, nil, nil, 2, 2)
+local specWarnFabulousFlames		= mod:NewSpecialWarningMove(86505, nil, nil, nil, 2, 8)
 local yellFabFlames					= mod:NewYell(86505)
-local specWarnTwilightMeteorite		= mod:NewSpecialWarningYou(88518)
-local yellTwilightMeteorite			= mod:NewYell(88518, nil, false)
-local specWarnEngulfingMagic		= mod:NewSpecialWarningMoveAway(86622, nil, nil, nil, 3)
+local specWarnTwilightMeteorite		= mod:NewSpecialWarningYou(86013, nil, nil, nil, 1, 2)
+local yellTwilightMeteorite			= mod:NewYell(86013, false, nil, nil, "YELL")
+local specWarnEngulfingMagic		= mod:NewSpecialWarningMoveAway(86622, nil, nil, nil, 3, 2)
 local yellEngulfingMagic			= mod:NewYell(86622)
 
-local specWarnTwilightZone			= mod:NewSpecialWarningStack(86214, nil, 20)
+local specWarnTwilightZone			= mod:NewSpecialWarningStack(86214, nil, 20, nil, nil, 1, 6)
 
 --Valiona Ground Phase
 local timerBlackout					= mod:NewTargetTimer(15, 86788, nil, nil, nil, 5, nil, DBM_COMMON_L.MAGIC_ICON..DBM_COMMON_L.HEALER_ICON)
@@ -63,61 +61,54 @@ local timerBlackoutCD				= mod:NewCDTimer(45.5, 86788, nil, nil, nil, 3, nil, DB
 local timerDevouringFlamesCD		= mod:NewCDTimer(40, 86840, nil, nil, nil, 3)
 local timerNextDazzlingDestruction	= mod:NewNextTimer(132, 86408, nil, nil, nil, 3)
 --Theralion Ground Phase
-local timerTwilightMeteorite		= mod:NewCastTimer(6, 86013)
-local timerEngulfingMagic			= mod:NewBuffFadesTimer(20, 86622)
+local timerTwilightMeteorite		= mod:NewCastTimer(6, 86013, nil, nil, nil, 5)
+local timerEngulfingMagic			= mod:NewBuffFadesTimer(20, 86622, nil, nil, nil, 5)
 local timerEngulfingMagicNext		= mod:NewCDTimer(35, 86622, nil, nil, nil, 3)--30-40 second variations.
 local timerNextFabFlames			= mod:NewNextTimer(15, 86505, nil, nil, nil, 3)
 local timerNextDeepBreath			= mod:NewNextTimer(98, 86059, nil, nil, nil, 3)
 
 local timerTwilightShift			= mod:NewTargetTimer(100, 93051, nil, "Tank", 2, 5, nil, DBM_COMMON_L.TANK_ICON)
-local timerTwilightShiftCD			= mod:NewCDTimer(20, 93051, nil, "Tank", 2, 5, nil, DBM_COMMON_L.TANK_ICON)
+local timerTwilightShiftCD			= mod:NewCDTimer(20, 93051, nil, "Tank|Healer", 2, 5, nil, DBM_COMMON_L.TANK_ICON)
 
 local berserkTimer					= mod:NewBerserkTimer(600)
 
-mod:AddBoolOption("TwilightBlastArrow", false)
-mod:AddBoolOption("BlackoutIcon")
-mod:AddBoolOption("EngulfingIcon")
-mod:AddBoolOption("RangeFrame")
+mod:AddSetIconOption("BlackoutIcon", 86788, true, 0, {8})
+mod:AddSetIconOption("EngulfingIcon", 86622, true, 0, {1, 2, 3})
+mod:AddRangeFrameOption("8/10")
 mod:AddInfoFrameOption(86788, true)
 
 mod.vb.blackoutCount = 0
+mod.vb.engulfingMagicIcon = 1
+mod.vb.dazzlingCast = 0
+mod.vb.breathCast = 0
+mod.vb.ValionaLanded = false
 local engulfingMagicTargets = {}
-local engulfingMagicIcon = 7
-local dazzlingCast = 0
-local breathCast = 0
-local lastFab = 0--Leave this custom one, we use reset gettime on it in extra places and that cannot be done with prototype
-local markWarned = false
-local ValionaLanded = false
-local meteorTarget, fabFlames = DBM:GetSpellInfo(88518), DBM:GetSpellInfo(86497)
+local markWarned = false--Personal, do not sync
 
-local function showEngulfingMagicWarning()
+local function showEngulfingMagicWarning(self)
 	warnEngulfingMagic:Show(table.concat(engulfingMagicTargets, "<, >"))
 	timerEngulfingMagic:Start()
 	table.wipe(engulfingMagicTargets)
-	engulfingMagicIcon = 7
+	self.vb.engulfingMagicIcon = 1
 end
 
-local function markRemoved()
-	markWarned = false
-end
-
-local function valionaDelay()
+local function valionaDelay(self)
 	timerEngulfingMagicNext:Cancel()
 	timerBlackoutCD:Start(10)
 	timerDevouringFlamesCD:Start(25)
-	if mod.Options.RangeFrame then
+	if self.Options.RangeFrame then
 		DBM.RangeCheck:Show(8)
 	end
 end
 
-local function theralionDelay()
+local function theralionDelay(self)
 	timerDevouringFlamesCD:Cancel()
 	timerBlackoutCD:Cancel()
 	timerNextFabFlames:Start(10)
 	timerEngulfingMagicNext:Start(15)
 	timerNextDeepBreath:Start()
-	ValionaLanded = false
-	if mod.Options.RangeFrame then
+	self.vb.ValionaLanded = false
+	if self.Options.RangeFrame then
 		DBM.RangeCheck:Show(10)
 	end
 end
@@ -126,58 +117,41 @@ local function AMSTimerDelay()
 	timerTwilightShiftCD:Start()
 end
 
-function mod:FabFlamesTarget()
-	local targetname, uId = self:GetBossTarget(45993)
+function mod:FabFlamesTarget(targetname, uId)
 	if not targetname then return end
-	warnFabFlames:Show(targetname)
 	if targetname == UnitName("player") then
-		specWarnFabulousFlames:Show()
-		yellFabFlames:Yell()
-		lastFab = GetTime()--Trigger the anti spam here so when we pre warn it thrown at them we don't double warn them again for taking 1 tick of it when it lands.
-	else
-		if uId then
-			local inRange = DBM.RangeCheck:GetDistance("player", uId)
-			if inRange and inRange < 11 then--What's exact radius of this circle?
-				specWarnFabulousFlamesNear:Show(targetname)
-			end
+		if self:AntiSpam(2, 3) then--Trigger the anti spam here so when we pre warn it thrown at them we don't double warn them again for taking 1 tick of it when it lands.
+			specWarnFabulousFlames:Show()
+			specWarnFabulousFlames:Play("targetyou")
 		end
+		yellFabFlames:Yell()
+	else
+		warnFabFlames:Show(targetname)
 	end
 end
 
-function mod:TwilightBlastTarget()
-	local targetname = self:GetBossTarget(45993)
+function mod:TwilightBlastTarget(targetname, uId)
 	if not targetname then return end
 	if self.Options.TBwarnWhileBlackout or self.vb.blackoutCount == 0 then
 		if targetname == UnitName("player") then
 			specWarnTwilightBlast:Show()
+			specWarnTwilightBlast:Play("targetyou")
 			yellTwilightBlast:Yell()
-		else
-			local uId = DBM:GetRaidUnitId(targetname)
-			if uId then
-				local inRange = DBM.RangeCheck:GetDistance("player", uId)
-				if inRange and inRange < 9 then
-					specWarnTwilightBlastNear:Show(targetname)
-					if self.Options.TwilightBlastArrow then
-						local x, y = UnitPosition(uId)
-						DBM.Arrow:ShowRunAway(x, y, 8, 5)
-					end
-				end
-			end
 		end
 	end
 end
 
 function mod:OnCombatStart(delay)
+	markWarned = false
+	self.vb.engulfingMagicIcon = 1
 	berserkTimer:Start(-delay)
 	timerBlackoutCD:Start(10-delay)
 	timerDevouringFlamesCD:Start(25.5-delay)
 	timerNextDazzlingDestruction:Start(85-delay)
 	self.vb.blackoutCount = 0
-	dazzlingCast = 0
-	breathCast = 0
-	lastFab = 0
-	markWarned = false
-	ValionaLanded = true
+	self.vb.dazzlingCast = 0
+	self.vb.breathCast = 0
+	self.vb.ValionaLanded = true
 	if self.Options.RangeFrame then
 		DBM.RangeCheck:Show(8)
 	end
@@ -192,10 +166,33 @@ function mod:OnCombatEnd()
 	end
 end
 
+function mod:SPELL_CAST_START(args)
+	if args:IsSpellID(86840, 90950) then--Strange to have 2 cast ids instead of either 1 or 4
+		timerDevouringFlamesCD:Start()
+		specWarnDevouringFlames:Show()
+		specWarnDevouringFlames:Play("justrun")
+	elseif args.spellId == 86408 then
+		self.vb.dazzlingCast = self.vb.dazzlingCast + 1
+		warnDazzlingDestruction:Show(self.vb.dazzlingCast)
+		if self.vb.dazzlingCast == 1 then
+			specWarnDazzlingDestruction:Show()
+			specWarnDazzlingDestruction:Play("watchstep")
+		elseif self.vb.dazzlingCast == 3 then
+			self:Schedule(5, theralionDelay)--delayed so we don't cancel blackout timer until after 3rd cast.
+			self.vb.dazzlingCast = 0
+		end
+	elseif args.spellId == 86369 then--First cast of this is true phase change, as theralion can still cast his grounded phase abilities until he's fully in air casting this instead.
+		self:ScheduleMethod(0.1, "BossTargetScanner", args.sourceGUID, "TwilightBlastTarget", 0.1, 4)
+		if not self.vb.ValionaLanded then
+			timerNextFabFlames:Cancel()
+			self.vb.ValionaLanded = true
+		end
+	end
+end
+
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 86788 then
 		self.vb.blackoutCount = self.vb.blackoutCount + 1
-		warnBlackout:Show(args.destName)
 		timerBlackout:Start(args.destName)
 		timerBlackoutCD:Start()
 		if self.Options.BlackoutIcon then
@@ -203,6 +200,9 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 		if args:IsPlayer() then
 			specWarnBlackout:Show()
+			specWarnBlackout:Play("targetyou")
+		else
+			warnBlackout:Show(args.destName)
 		end
 		if self.Options.InfoFrame and not DBM.InfoFrame:IsShown() then
 			DBM.InfoFrame:SetHeader(args.spellName)
@@ -213,17 +213,18 @@ function mod:SPELL_AURA_APPLIED(args)
 		timerEngulfingMagicNext:Start()
 		if args:IsPlayer() then
 			specWarnEngulfingMagic:Show()
+			specWarnEngulfingMagic:Play("runout")
 			yellEngulfingMagic:Yell()
 		end
 		if self.Options.EngulfingIcon then
-			self:SetIcon(args.destName, engulfingMagicIcon)
-			engulfingMagicIcon = engulfingMagicIcon - 1
+			self:SetIcon(args.destName, self.vb.engulfingMagicIcon)
 		end
+		self.vb.engulfingMagicIcon = self.vb.engulfingMagicIcon + 1
 		self:Unschedule(showEngulfingMagicWarning)
 		if (self:IsDifficulty("heroic25") and #engulfingMagicTargets >= 3) or (self:IsDifficulty("normal25", "heroic10") and #engulfingMagicTargets >= 2) or (self:IsDifficulty("normal10") and #engulfingMagicTargets >= 1) then
-			showEngulfingMagicWarning()
+			showEngulfingMagicWarning(self)
 		else
-			self:Schedule(0.3, showEngulfingMagicWarning)
+			self:Schedule(0.3, showEngulfingMagicWarning, self)
 		end
 	elseif args.spellId == 93051 then
 		warnTwilightShift:Show(args.destName, args.amount or 1)
@@ -239,13 +240,12 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif args.spellId == 86214 and args:IsPlayer() then
 		if (args.amount or 1) >= 20 and self:AntiSpam(5, 1) then
 			specWarnTwilightZone:Show(args.amount)
+			specWarnTwilightZone:Play("stackhigh")
 		end
 	end
 end
-
-mod.SPELL_AURA_REFRESH = mod.SPELL_AURA_APPLIED
-
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
+mod.SPELL_AURA_REFRESH = mod.SPELL_AURA_APPLIED
 
 function mod:SPELL_AURA_REMOVED(args)
 	if args.spellId == 86788 then
@@ -270,67 +270,54 @@ function mod:SPELL_AURA_REMOVED(args)
 	end
 end
 
-function mod:SPELL_CAST_START(args)
-	if args:IsSpellID(86840, 90950) then--Strange to have 2 cast ids instead of either 1 or 4
-		warnDevouringFlames:Show()
-		timerDevouringFlamesCD:Start()
-		specWarnDevouringFlames:Show()
-	elseif args.spellId == 86408 then
-		dazzlingCast = dazzlingCast + 1
-		warnDazzlingDestruction:Show(dazzlingCast)
-		if dazzlingCast == 1 then
-			specWarnDazzlingDestruction:Show()
-		elseif dazzlingCast == 3 then
-			self:Schedule(5, theralionDelay)--delayed so we don't cancel blackout timer until after 3rd cast.
-			dazzlingCast = 0
-		end
-	elseif args.spellId == 86369 then--First cast of this is true phase change, as theralion can still cast his grounded phase abilities until he's fully in air casting this instead.
-		self:ScheduleMethod(0.1, "TwilightBlastTarget")
-		if not ValionaLanded then
-			timerNextFabFlames:Cancel()
-			ValionaLanded = true
-		end
-	end
-end
-
 function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
-	if spellId == 86505 and destGUID == UnitGUID("player") and GetTime() - lastFab > 3 then
+	if spellId == 86505 and destGUID == UnitGUID("player") and self:AntiSpam(3, 3) then
 		specWarnFabulousFlames:Show()
-		lastFab = GetTime()
+		specWarnFabulousFlames:Play("watchfeet")
 	end
 end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE--Absorbs still show as spell missed, such as PWS, but with this you'll still get a special warning to GTFO, instead of dbm waiting til your shield breaks and you take a second tick :)
 
 function mod:RAID_BOSS_EMOTE(msg)
-	if msg == L.Trigger1 or msg:find(L.Trigger1) then
-		breathCast = breathCast + 1
-		warnDeepBreath:Show(breathCast)
-		if breathCast == 1 then
+	if msg == L.Trigger1 or msg:find(L.Trigger1) then--TODO, verify npc as well to filter onyxian whelpling pets?
+		self.vb.breathCast = self.vb.breathCast + 1
+		warnDeepBreath:Show(self.vb.breathCast)
+		if self.vb.breathCast == 1 then
 			timerNextDeepBreath:Cancel()
 			specWarnDeepBreath:Show()
+			specWarnDeepBreath:Play("breathsoon")
 			timerNextDazzlingDestruction:Start()
-			self:Schedule(40, valionaDelay)--We do this cause you get at least one more engulfing magic after this emote before they completely switch so we need a method to cancel bar more appropriately
-		elseif breathCast == 3 then
-			breathCast = 0
+			self:Schedule(40, valionaDelay, self)--We do this cause you get at least one more engulfing magic after this emote before they completely switch so we need a method to cancel bar more appropriately
+		elseif self.vb.breathCast == 3 then
+			self.vb.breathCast = 0
 		end
 	end
 end
 
-function mod:UNIT_AURA(uId)
-	if DBM:UnitDebuff("player", meteorTarget) and not markWarned then
-		specWarnTwilightMeteorite:Show()
-		timerTwilightMeteorite:Start()
-		yellTwilightMeteorite:Yell()
-		markWarned = true
-		self:Schedule(7, markRemoved)
+do
+	local meteorTarget = DBM:GetSpellInfo(88518)
+	local function markRemoved()
+		markWarned = false
+	end
+	function mod:UNIT_AURA(uId)
+		if DBM:UnitDebuff("player", meteorTarget) and not markWarned then--Switch to ID if correct ID is verified
+			specWarnTwilightMeteorite:Show()
+			specWarnTwilightMeteorite:Play()
+			timerTwilightMeteorite:Start()
+			yellTwilightMeteorite:Yell()
+			markWarned = true
+			self:Schedule(7, markRemoved)
+		end
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
-	local spellName = DBM:GetSpellInfo(spellId)--Shit workaround, fix
-	if spellName == fabFlames and not ValionaLanded and self:AntiSpam(2, 2) then
-		self:ScheduleMethod(0.1, "FabFlamesTarget")
-		timerNextFabFlames:Start()
-		lastFab = GetTime()
+do
+	local fabFlames = DBM:GetSpellInfo(86497)
+	function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
+		local spellName = DBM:GetSpellInfo(spellId)--Shit workaround, fix
+		if spellName == fabFlames and not self.vb.ValionaLanded and self:AntiSpam(2, 2) then
+			self:ScheduleMethod(0.1, "BossTargetScanner", args.sourceGUID, "FabFlamesTarget", 0.1, 4)
+			timerNextFabFlames:Start()
+		end
 	end
 end

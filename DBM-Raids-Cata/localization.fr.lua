@@ -170,35 +170,10 @@ L:SetGeneralLocalization({
 --------------------------
 L= DBM:GetModLocalization(156)
 
-L:SetWarningLocalization({
-})
-
-L:SetTimerLocalization({
-})
-
-L:SetMiscLocalization({
-})
-
-L:SetOptionLocalization({
-})
-
 ---------------------------
 --  Valiona & Theralion  --
 ---------------------------
 L= DBM:GetModLocalization(157)
-
-L:SetWarningLocalization({
-})
-
-L:SetTimerLocalization({
-})
-
-L:SetOptionLocalization({
-	TwilightBlastArrow		= "Afficher la flèche DBM lorsque $spell:92898 est près de vous",
-	RangeFrame				= "Afficher la fenêtre de portée (10)",
-	BlackoutIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92878),
-	EngulfingIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(86622)
-})
 
 L:SetMiscLocalization({
 	Trigger1				= "Theralion, je m'occupe du vestibule. Couvre leur fuite !"--Change this to what deep breath emote is.
