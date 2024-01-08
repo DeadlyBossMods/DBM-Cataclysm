@@ -43,6 +43,7 @@ local berserkTimer					= mod:NewBerserkTimer(360)
 
 --Raid CDs will have following options: Don't show Raid CDs, Show only My Raid CDs, Show all raid CDs
 
+mod:AddMiscLine(DBM_CORE_L.OPTION_CATEGORY_DROPDOWNS)
 mod:AddDropdownOption("ResetHoTCounter", {"Never", "ResetDynamic", "Reset3Always"}, "Reset3Always", "announce")
 --ResetDynamic = 3s on heroic and 2s on normal.
 --Reset3Always = 3s on both heroic and normal.
