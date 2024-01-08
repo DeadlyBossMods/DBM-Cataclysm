@@ -40,7 +40,6 @@ local timerBlackBlood			= mod:NewBuffActiveTimer(30, 104378, nil, nil, nil, 6)
 
 local berserkTimer				= mod:NewBerserkTimer(360)
 
-mod:AddMiscLine(DBM_CORE_L.OPTION_CATEGORY_DROPDOWNS)
 mod:AddDropdownOption("CustomRangeFrame", {"Never", "Normal", "DynamicPhase2", "DynamicAlways"}, "Dynamic3Always", "misc")
 
 local shadowsTargets = {}

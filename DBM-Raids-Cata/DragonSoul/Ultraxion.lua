@@ -43,11 +43,10 @@ local berserkTimer					= mod:NewBerserkTimer(360)
 
 --Raid CDs will have following options: Don't show Raid CDs, Show only My Raid CDs, Show all raid CDs
 
-mod:AddMiscLine(DBM_CORE_L.OPTION_CATEGORY_DROPDOWNS)
-mod:AddDropdownOption("ResetHoTCounter", {"Never", "ResetDynamic", "Reset3Always"}, "Reset3Always", "announce")
+mod:AddDropdownOption("ResetHoTCounter", {"Never", "ResetDynamic", "Reset3Always"}, "Reset3Always", "announce", nil, 106371)
 --ResetDynamic = 3s on heroic and 2s on normal.
 --Reset3Always = 3s on both heroic and normal.
-mod:AddDropdownOption("SpecWarnHoTN", {"Never", "One", "Two", "Three"}, "Never", "announce")
+mod:AddDropdownOption("SpecWarnHoTN", {"Never", "One", "Two", "Three"}, "Never", "announce", nil, 106371)
 --If ResetDynamic, SpecWarnHoTN will work for 1-2, if set to 3 on normal it'll just be ignored.
 --If ResetHoTCounter is Never, SpecWarnHoTN will work in 3 counts still ie 1 4 7, 2 5, 3 6
 
