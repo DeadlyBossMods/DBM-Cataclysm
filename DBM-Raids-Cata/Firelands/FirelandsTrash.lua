@@ -49,17 +49,11 @@ function mod:LeapTarget(sGUID)
 			specWarnDruidLeap:Show()
 			specWarnDruidLeap:Play("targetyou")
 			yelldruidLeap:Yell()
+		elseif self:IsClassic() and self:CheckNearby(10, targetname) then
+			specWarnDruidLeapNear:Show(targetname)
+			specWarnDruidLeapNear:Play("runaway")
 		else
-			local uId = DBM:GetRaidUnitId(targetname)
-			if uId then
-				local inRange = CheckInteractDistance(uId, 2)
-				if inRange then
-					specWarnDruidLeapNear:Show(targetname)
-					specWarnDruidLeapNear:Play("runaway")
-				else
-					warnDruidLeap:Show(targetname)
-				end
-			end
+			warnDruidLeap:Show(targetname)
 		end
 	end
 end
