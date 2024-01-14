@@ -1,6 +1,8 @@
 local mod	= DBM:NewMod(332, "DBM-Raids-Cata", 1, 187)
 local L		= mod:GetLocalizedStrings()
 
+mod.statTypes = "normal,normal25,heroic,heroic25,lfr"
+
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(56427)
 mod:SetEncounterID(1298)--Fires when ship get actual engage. need to adjust timer.
