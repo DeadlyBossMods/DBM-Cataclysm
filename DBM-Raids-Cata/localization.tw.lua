@@ -80,10 +80,6 @@ L:SetMiscLocalization({
 -----------------
 L = DBM:GetModLocalization(171)
 
-L:SetOptionLocalization({
-	InfoFrame				= "為$journal:3072顯示資訊框架"
-})
-
 L:SetMiscLocalization({
 	NefAdd					= "亞特拉米德，英雄們就在那!",
 	Airphase				= "沒錯，逃吧!每一步都會讓你的心跳加速。跳得轟隆作響...震耳欲聾。你逃不掉的!"

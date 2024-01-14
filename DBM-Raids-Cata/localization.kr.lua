@@ -80,10 +80,6 @@ L:SetMiscLocalization({
 -----------------
 L = DBM:GetModLocalization(171)
 
-L:SetOptionLocalization({
-	InfoFrame				= "$journal:3072 정보를 정보 창으로 보기"
-})
-
 L:SetMiscLocalization({
 	NefAdd					= "아트라메데스, 적은 바로 저기에 있다!",
 	Airphase				= "그래, 도망가라! 발을 디딜 때마다 맥박은 빨라지지. 점점 더 크게 울리는구나... 귀청이 터질 것만 같군! 넌 달아날 수 없다!"

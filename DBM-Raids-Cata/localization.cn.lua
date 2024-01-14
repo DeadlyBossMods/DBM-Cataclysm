@@ -90,11 +90,6 @@ L:SetMiscLocalization({
 -----------------
 L = DBM:GetModLocalization(171)
 
-L:SetOptionLocalization({
-	InfoFrame				= "信息框：团员声音等级列表",
-	TrackingIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(78092)
-})
-
 L:SetMiscLocalization({
 	NefAdd					= "艾卓曼德斯，那些英雄就在那边！",
 	Airphase				= "对，跑吧！每跑一步你的心跳都会加快。这心跳声，洪亮如雷，震耳欲聋。你逃不掉的！"

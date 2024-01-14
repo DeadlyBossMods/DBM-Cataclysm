@@ -80,10 +80,6 @@ L:SetMiscLocalization({
 -----------------
 L = DBM:GetModLocalization(171)
 
-L:SetOptionLocalization({
-	InfoFrame				= "Zeige Infofenster für $journal:3072"
-})
-
 L:SetMiscLocalization({
 	NefAdd					= "Atramedes, die Helden sind direkt DA DRÜBEN!",
 	Airphase				= "Ja, lauft! Jeder Schritt lässt Euer Herz stärker klopfen. Laut und heftig... ohrenbetäubend. Es gibt kein Entkommen!"

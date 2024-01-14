@@ -83,11 +83,6 @@ L:SetMiscLocalization({
 -----------------
 L = DBM:GetModLocalization(171)
 
-L:SetOptionLocalization({
-	InfoFrame				= "Показывать информационное окно для $journal:3072",
-	TrackingIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(78092)
-})
-
 L:SetMiscLocalization({
 	NefAdd					= "Атрамед, они вон там!",
 	Airphase				= "Да, беги! С каждым шагом твое сердце бьется все быстрее. Эти громкие, оглушительные удары... Тебе некуда бежать!"

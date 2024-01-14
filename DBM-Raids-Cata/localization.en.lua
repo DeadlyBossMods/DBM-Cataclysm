@@ -82,11 +82,6 @@ L:SetMiscLocalization({
 -----------------
 L = DBM:GetModLocalization(171)
 
-L:SetOptionLocalization({
-	InfoFrame				= "Show info frame for $journal:3072",
-	TrackingIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(78092)
-})
-
 L:SetMiscLocalization({
 	NefAdd					= "Atramedes, the heroes are right THERE!",
 	Airphase				= "Yes, run! With every step your heart quickens. The beating, loud and thunderous... Almost deafening. You cannot escape!"
