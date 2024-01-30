@@ -16,10 +16,10 @@ mod:RegisterEventsInCombat(
 local warnAlgae				= mod:NewTargetNoFilterAnnounce(93491, 2)
 
 local specWarnRam			= mod:NewSpecialWarningDodge(93492, "Tank", nil, nil, 1, 2)
-local specWarnWake			= mod:NewSpecialWarningMove(93494, "Melee", nil, nil, 2, 2)
-local specWarnAlgae			= mod:NewSpecialWarningMove(93490, nil, nil, nil, 1, 2)
+local specWarnWake			= mod:NewSpecialWarningRun(93494, "Melee", nil, nil, 4, 2)
+local specWarnAlgae			= mod:NewSpecialWarningGTFO(93490, nil, nil, nil, 1, 8)
 
-local timerAlgaeCD			= mod:NewNextTimer(12, 93490, nil, nil, nil, 3)
+local timerAlgaeCD			= mod:NewNextTimer(12, 93491, nil, nil, nil, 3)
 local timerRamCD			= mod:NewNextTimer(16, 93492, nil, "Tank", nil, 5, nil, DBM_COMMON_L.TANK_ICON)--16-17 seconds after wake seems more accurate then wild upwards of 20 second variations of starting timer after previous ram
 local timerWakeCD			= mod:NewCDTimer(47, 93494, nil, nil, nil, 3)--47-60 second variations. also typcally 30-33sec after a ram AFTER first one.
 
@@ -52,7 +52,7 @@ end
 
 function mod:SPELL_AURA_APPLIED(args)--Assumed spell event, might need to use spell damage, or spell periodic damage instead.
 	if args.spellId == 93490 and args:IsPlayer() then
-		specWarnAlgae:Show()
-		specWarnAlgae:Play("runaway")
+		specWarnAlgae:Show(args.spellName)
+		specWarnAlgae:Play("watchfeet")
 	end
 end
