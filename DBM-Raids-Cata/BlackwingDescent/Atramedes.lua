@@ -36,9 +36,9 @@ local specWarnSearingFlame	= mod:NewSpecialWarningCount(77840, nil, nil, nil, 2,
 local specWarnSonarPulse	= mod:NewSpecialWarningDodge(77672, nil, nil, nil, 2, 2)
 local specWarnTracking		= mod:NewSpecialWarningRun(78092, nil, nil, nil, 4, 2)
 local specWarnPestered		= mod:NewSpecialWarningYou(92685, nil, nil, nil, 1, 2)
-local yellPestered			= mod:NewYell(-3082)
+local yellPestered			= mod:NewYell(92685)
 local specWarnObnoxious		= mod:NewSpecialWarningInterrupt(92677, "HasInterrupt", nil, nil, 1, 2)
-local specWarnAddTargetable	= mod:NewSpecialWarningSwitch(-3082, "Ranged", nil, nil, 1, 2)
+local specWarnAddTargetable	= mod:NewSpecialWarningSwitch(92677, "Ranged", nil, nil, 1, 2)
 
 local timerSonarPulseCD		= mod:NewCDTimer(10, 77672, nil, nil, nil, 3)
 local timerSonicBreath		= mod:NewCDTimer(41, 78075, nil, nil, nil, 3)
