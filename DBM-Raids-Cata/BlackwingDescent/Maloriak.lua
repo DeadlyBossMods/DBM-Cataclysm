@@ -36,6 +36,16 @@ local warnEngulfingDarkness		= mod:NewSpellAnnounce(92754, 4, nil, "Tank|Healer"
 local warnPhase2Soon			= mod:NewPrePhaseAnnounce(2, 3)
 local warnPhase2				= mod:NewPhaseAnnounce(2, 4)
 
+local specWarnBitingChill		= mod:NewSpecialWarningYou(77760)
+local specWarnConsumingFlames	= mod:NewSpecialWarningYou(77786)
+local specWarnSludge			= mod:NewSpecialWarningMove(92930)
+local specWarnArcaneStorm		= mod:NewSpecialWarningInterrupt(77896, false)
+local specWarnMagmaJets			= mod:NewSpecialWarningMove(78194, "Tank")
+local specWarnEngulfingDarkness	= mod:NewSpecialWarningSpell(92754, "Tank|Healer")--Heroic Ability
+local specWarnFlashFreeze		= mod:NewSpecialWarningTarget(77699, "Ranged")--On Heroic it has a lot more health.
+local specWarnRemedy			= mod:NewSpecialWarningDispel(77912, "MagicDispeller")
+local specWarnAdds				= mod:NewSpecialWarningSpell(77569, false)
+
 local timerPhase				= mod:NewTimer(49, "TimerPhase", 89250)--Just some random cauldron icon not actual spellid
 local timerBitingChill			= mod:NewBuffFadesTimer(10, 77760)
 local timerFlashFreeze			= mod:NewCDTimer(14, 77699)--Varies on other abilities CDs
@@ -46,16 +56,6 @@ local timerScorchingBlast		= mod:NewCDTimer(10, 77679)--Varies on other abilitie
 local timerDebilitatingSlime	= mod:NewBuffActiveTimer(15, 77615)
 local timerMagmaJetsCD			= mod:NewNextTimer(10, 78194)
 local timerEngulfingDarknessCD	= mod:NewNextTimer(12, 92754, nil, "Tank|Healer")--Heroic Ability
-
-local specWarnBitingChill		= mod:NewSpecialWarningYou(77760)
-local specWarnConsumingFlames	= mod:NewSpecialWarningYou(77786)
-local specWarnSludge			= mod:NewSpecialWarningMove(92930)
-local specWarnArcaneStorm		= mod:NewSpecialWarningInterrupt(77896, false)
-local specWarnMagmaJets			= mod:NewSpecialWarningMove(78194, "Tank")
-local specWarnEngulfingDarkness	= mod:NewSpecialWarningSpell(92754, "Tank|Healer")--Heroic Ability
-local specWarnFlashFreeze		= mod:NewSpecialWarningTarget(77699, "Ranged")--On Heroic it has a lot more health.
-local specWarnRemedy			= mod:NewSpecialWarningDispel(77912, "MagicDispeller")
-local specWarnAdds				= mod:NewSpecialWarningSpell(77569, false)
 
 local berserkTimer				= mod:NewBerserkTimer(420)
 
