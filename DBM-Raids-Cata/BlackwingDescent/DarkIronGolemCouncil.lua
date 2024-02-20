@@ -109,7 +109,7 @@ local specWarnAnnihilator		= mod:NewSpecialWarningInterrupt(79710, "HasInterrupt
 
 local timerGeneratorCD			= mod:NewNextTimer(30, 79624, nil, nil, nil, 5)
 local timerConversion			= mod:NewBuffActiveTimer(11.5, 79729, nil, false, nil, 5, nil, DBM_COMMON_L.DAMAGE_ICON)		--10 + 1.5 cast time
-local timerArcaneLockout		= mod:NewTimer(3, "timerArcaneLockout", 79710, false, nil, 4, nil, nil, nil, nil, nil, nil, nil, 79710)	--How long arcanotron is locked out from casting another Arcane Annihilator
+local timerArcaneLockout		= mod:NewTimer(3, "timerArcaneLockout", 79710, "HasInterrupt", nil, 4, DBM_COMMON_L.INTERRUPT_ICON, nil, nil, nil, nil, nil, nil, 79710)	--How long arcanotron is locked out from casting another Arcane Annihilator
 local timerArcaneBlowback		= mod:NewTimer(8, "timerArcaneBlowbackCast", 91879, nil, nil, 3, DBM_COMMON_L.HEROIC_ICON, nil, nil, nil, nil, nil, nil, 91879)		--what happens after the overcharged power generator explodes. 8 seconds after overcharge cast.
 
 local cloudSpam = 0--Uses custom resets, don't use prototype
