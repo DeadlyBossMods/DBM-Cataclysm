@@ -30,11 +30,6 @@ L:SetOptionLocalization({
 -------------------------------
 L = DBM:GetModLocalization(169)
 
-L:SetWarningLocalization({
-	SpecWarnActivated			= "Mude de alvo para %s!",
-	specWarnGenerator			= "Gerador de Energia - Mexa-se %s!"
-})
-
 L:SetTimerLocalization({
 	timerShadowConductorCast	= "Infusão Sombria",
 	timerArcaneLockout			= "Aniquilador em Recarga",
@@ -46,13 +41,7 @@ L:SetOptionLocalization({
 	timerShadowConductorCast	= "Exibir cronógrafo para lançamento de $spell:92048",
 	timerArcaneLockout			= "Exibir cronógrafo para recarga de $spell:91542",
 	timerArcaneBlowbackCast		= "Exibir cronógrafo para lançamento de $spell:91879",
-	timerNefAblity				= "Exibir cronógrafo para recarga do bônus Melhorar Habilidade (modo Heróico)",
-	SpecWarnActivated			= "Exibir aviso especial quando um novo chefe é ativado",
-	specWarnGenerator			= "Exibir aviso especial quando um chefe obtém $spell:91557",
-	AcquiringTargetIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(79501),
-	ConductorIcon				= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(79888),
-	ShadowConductorIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92053),
-	SetIconOnActivated			= "Colocar ícone no último chefe ativado"
+	timerNefAblity				= "Exibir cronógrafo para recarga do bônus Melhorar Habilidade (modo Heróico)"
 })
 
 L:SetMiscLocalization({

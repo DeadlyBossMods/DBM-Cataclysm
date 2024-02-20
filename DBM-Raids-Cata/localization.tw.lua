@@ -29,11 +29,6 @@ L:SetOptionLocalization({
 -------------------------------
 L = DBM:GetModLocalization(169)
 
-L:SetWarningLocalization({
-	SpecWarnActivated			= "轉換目標到 %s!",
-	specWarnGenerator			= "發電機 - 拉開%s!"
-})
-
 L:SetTimerLocalization({
 	timerShadowConductorCast	= "聚影體",
 	timerArcaneLockout			= "秘法殲滅者鎖定",
@@ -45,10 +40,7 @@ L:SetOptionLocalization({
 	timerShadowConductorCast	= "為$spell:92048的施放顯示計時器",
 	timerArcaneLockout			= "為$spell:79710法術鎖定顯示計時器",
 	timerArcaneBlowbackCast		= "為$spell:91879的施放顯示計時器",
-	timerNefAblity				= "為困難技能增益冷卻顯示計時器",
-	SpecWarnActivated			= "當新首領啟動時顯示特別警告",
-	specWarnGenerator			= "當首領獲得$spell:91557時顯示特別警告",
-	SetIconOnActivated			= "設置標記到最後啟動的首領"
+	timerNefAblity				= "為困難技能增益冷卻顯示計時器"
 })
 
 L:SetMiscLocalization({

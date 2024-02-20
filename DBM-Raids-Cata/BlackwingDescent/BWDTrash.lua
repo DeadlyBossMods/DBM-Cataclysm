@@ -18,11 +18,11 @@ local warnEnrage			= mod:NewStackAnnounce(80084, 3)--This is enrage effect for M
 local warnSacrifice			= mod:NewTargetNoFilterAnnounce(80727, 2)--Sacrifice used by spirits before atramedes
 local warnWhirlwind			= mod:NewTargetNoFilterAnnounce(80652, 2)--Whirlwind used by spirits before atramedes
 
-local timerChargeCD			= mod:NewNextTimer(30, 79630, nil, nil, nil, 3)--Guesswork
+local timerChargeCD			= mod:NewCDTimer(30, 79630, nil, nil, nil, 3)--Guesswork
 local timerSacrifice		= mod:NewTargetTimer(20, 80727, nil, nil, nil, 5)
 local timerWhirlwind		= mod:NewTargetTimer(5, 80652, nil, nil, nil, 5)
 
-local drakonidDied = 0
+mod.vb.drakonidDied = 0
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 80727 and args:IsDestTypePlayer() then
@@ -36,7 +36,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif args.spellId == 79630 then--Drakonid Rush
 		timerChargeCD:Start()
 	elseif args.spellId == 80035 then--Drakonid Vengeful rage, good way to reset dragonid died counter without a pull mechanic to reset on.
-		drakonidDied = 1
+		self.vb.drakonidDied = 1
 	end
 end
 
@@ -59,8 +59,8 @@ end
 function mod:UNIT_DIED(args)
 	local cid = self:GetCIDFromGUID(args.destGUID)
 	if cid == 42362 then
-		drakonidDied = drakonidDied + 1
-		if drakonidDied == 2 then
+		self.vb.drakonidDied = self.vb.drakonidDied + 1
+		if self.vb.drakonidDied == 2 then
 			timerChargeCD:Stop()
 		end
 	end

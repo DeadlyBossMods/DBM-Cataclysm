@@ -36,11 +36,6 @@ L:SetMiscLocalization({
 -------------------------------
 L = DBM:GetModLocalization(169)
 
-L:SetWarningLocalization({
-	SpecWarnActivated			= "更换目标 -> %s!",
-	specWarnGenerator			= "能量发生器 - 移动%s!"
-})
-
 L:SetTimerLocalization({
 	timerShadowConductorCast	= "暗影导体",
 	timerArcaneLockout			= "奥术歼灭者反制",
@@ -52,13 +47,7 @@ L:SetOptionLocalization({
 	timerShadowConductorCast	= "计时条：$spell:92048施法时间",
 	timerArcaneLockout			= "计时条：$spell:91542反制时间",
 	timerArcaneBlowbackCast		= "计时条：$spell:91879施法时间",
-	timerNefAblity				= "计时条：英雄模式增益法术冷却时间",
-	SpecWarnActivated			= "特殊警报：新的金刚已激活",
-	specWarnGenerator			= "特殊警报：金刚获得$spell:91557效果",
-	AcquiringTargetIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(79501),
-	ConductorIcon				= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(79888),
-	ShadowConductorIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92053),
-	SetIconOnActivated			= "自动为最新激活的金刚添加团队标记"
+	timerNefAblity				= "计时条：英雄模式增益法术冷却时间"
 })
 
 L:SetMiscLocalization({

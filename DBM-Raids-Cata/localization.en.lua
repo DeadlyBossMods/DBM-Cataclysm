@@ -28,11 +28,6 @@ L:SetOptionLocalization({
 -------------------------------
 L = DBM:GetModLocalization(169)
 
-L:SetWarningLocalization({
-	SpecWarnActivated			= "Change Target to %s!",
-	specWarnGenerator			= "Power Generator - Move %s!"
-})
-
 L:SetTimerLocalization({
 	timerShadowConductorCast	= "Shadow Conductor",
 	timerArcaneLockout			= "Annihilator Lockout",
@@ -44,13 +39,7 @@ L:SetOptionLocalization({
 	timerShadowConductorCast	= "Show timer for $spell:92048 cast",
 	timerArcaneLockout			= "Show timer for $spell:79710 spell lockout",
 	timerArcaneBlowbackCast		= "Show timer for $spell:91879 cast",
-	timerNefAblity				= "Show timer for heroic ability buff cooldown",
-	SpecWarnActivated			= "Show special warning when new boss activated",
-	specWarnGenerator			= "Show special warning when a boss gains $spell:79629",
-	AcquiringTargetIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(79501),
-	ConductorIcon				= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(79888),
-	ShadowConductorIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92053),
-	SetIconOnActivated			= "Set icon on last activated boss"
+	timerNefAblity				= "Show timer for heroic ability buff cooldown"
 })
 
 L:SetMiscLocalization({
@@ -95,7 +84,7 @@ L = DBM:GetModLocalization(172)
 L:SetOptionLocalization({
 	RangeFrame		= "Show range frame (6)",
 	SetIconOnSlime	= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(82935),
-	InfoFrame		= "Show info frame for health (<10k hp)"
+	InfoFrame		= "Show info frame for health (&lt;10k hp)"
 })
 
 L:SetMiscLocalization({

@@ -29,11 +29,6 @@ L:SetOptionLocalization({
 --------------------------------------
 L = DBM:GetModLocalization(169)
 
-L:SetWarningLocalization({
-	SpecWarnActivated			= "¡Cambia de objetivo a %s!",
-	specWarnGenerator			= "Generador de poder - ¡saca a %s!"
-})
-
 L:SetTimerLocalization({
 	timerShadowConductorCast	= "Conductor de las Sombras",
 	timerArcaneLockout			= "Aniquilador Arcano bloqueado",
@@ -45,13 +40,7 @@ L:SetOptionLocalization({
 	timerShadowConductorCast	= "Mostrar temporizador para el lanzamiento de $spell:92048",
 	timerArcaneLockout			= "Mostrar temporizador para el bloqueo de lanzamiento de $spell:79710",
 	timerArcaneBlowbackCast		= "Mostrar temporizador para el lanzamiento de $spell:91879",
-	timerNefAblity				= "Mostrar temporizador para las mejoras de lord Victor Nefarius (dificultad heroica)",
-	SpecWarnActivated			= "Mostrar aviso especial cuando se active un jefe",
-	specWarnGenerator			= "Mostrar aviso especial cuando un jefe obtenga $spell:79629",
-	AcquiringTargetIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(79501),
-	ConductorIcon				= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(79888),
-	ShadowConductorIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92053),
-	SetIconOnActivated			= "Poner icono en el último jefe activado"
+	timerNefAblity				= "Mostrar temporizador para las mejoras de lord Victor Nefarius (dificultad heroica)"
 })
 
 L:SetMiscLocalization({

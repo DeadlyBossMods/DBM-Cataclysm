@@ -29,11 +29,6 @@ L:SetOptionLocalization({
 -------------------------------
 L = DBM:GetModLocalization(169)
 
-L:SetWarningLocalization({
-	SpecWarnActivated			= "%s 활성화 - 대상 전환!",
-	specWarnGenerator			= "%s이 동력 증폭장 바닥을 밟음 - 이동시키세요!"
-})
-
 L:SetTimerLocalization({
 	timerShadowConductorCast	= "암흑 전도체 변환",
 	timerArcaneLockout			= "비전 파괴자 가능",
@@ -45,10 +40,7 @@ L:SetOptionLocalization({
 	timerShadowConductorCast	= "$spell:92053 시전 바 보기",
 	timerArcaneLockout			= "$spell:79710 대기시간 바 보기",
 	timerArcaneBlowbackCast		= "$spell:91879 시전 바 보기",
-	timerNefAblity				= "영웅 난이도에서 골렘 스킬 강화 대기시간 바 보기",
-	SpecWarnActivated			= "새로운 우두머리가 활성화 될 때 대상 전환 특수 경고 보기",
-	specWarnGenerator			= "우두머리가 $spell:79629 바닥을 밟은 경우 특수 경고 보기",
-	SetIconOnActivated			= "활성화된 우두머리에게 전술 목표 아이콘 설정"
+	timerNefAblity				= "영웅 난이도에서 골렘 스킬 강화 대기시간 바 보기"
 })
 
 L:SetMiscLocalization({

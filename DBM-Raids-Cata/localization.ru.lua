@@ -29,11 +29,6 @@ L:SetOptionLocalization({
 -------------------------------
 L = DBM:GetModLocalization(169)
 
-L:SetWarningLocalization({
-	SpecWarnActivated			= "Смена цели на: %s!",
-	specWarnGenerator			= "Генератор энергии - Двигайтесь %s!"
-})
-
 L:SetTimerLocalization({
 	timerShadowConductorCast	= "Проводник тьмы",
 	timerArcaneLockout			= "Волшебный уничтожитель",
@@ -45,13 +40,7 @@ L:SetOptionLocalization({
 	timerShadowConductorCast	= "Отсчет времени применения заклинания $spell:92048",
 	timerArcaneLockout			= "Отсчет времени блокировки $spell:79710",
 	timerArcaneBlowbackCast		= "Отсчет времени применения заклинания $spell:91879",
-	timerNefAblity				= "Отсчет времени восстановления баффа (героический режим)",
-	SpecWarnActivated			= "Спецпредупреждение при активации нового босса",
-	specWarnGenerator			= "Спецпредупреждение, когда босс стоит в $spell:79629",
-	AcquiringTargetIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(79501),
-	ConductorIcon				= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(79888),
-	ShadowConductorIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92053),
-	SetIconOnActivated			= "Устанавливать метку на появившегося босса"
+	timerNefAblity				= "Отсчет времени восстановления баффа (героический режим)"
 })
 
 L:SetMiscLocalization({

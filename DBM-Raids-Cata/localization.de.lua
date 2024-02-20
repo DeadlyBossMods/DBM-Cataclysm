@@ -29,11 +29,6 @@ L:SetOptionLocalization({
 -------------------------------
 L = DBM:GetModLocalization(169)
 
-L:SetWarningLocalization({
-	SpecWarnActivated			= "Wechsel Ziel zu %s!",
-	specWarnGenerator			= "Energiegenerator - Zieh %s raus!"
-})
-
 L:SetTimerLocalization({
 	timerShadowConductorCast	= "Schattenleiter",
 	timerArcaneLockout			= "Annihilator Sperre",
@@ -45,10 +40,7 @@ L:SetOptionLocalization({
 	timerShadowConductorCast	= "Zeige Zeit bis $spell:92048 gewirkt wird",
 	timerArcaneLockout			= "Zeige Zeit, in der $spell:79710 nicht gewirkt werden kann",
 	timerArcaneBlowbackCast		= "Zeige Zeit bis $spell:91879 gewirkt wird",
-	timerNefAblity				= "Zeige Abklingzeit für heroische Fähigkeitsverbesserungen",
-	SpecWarnActivated			= "Spezialwarnung, wenn ein neuer Boss aktiviert wird",
-	specWarnGenerator			= "Spezialwarnung, wenn ein Boss von $spell:79629 profitiert",
-	SetIconOnActivated			= "Setze ein Zeichen auf den zuletzt aktivierten Boss"
+	timerNefAblity				= "Zeige Abklingzeit für heroische Fähigkeitsverbesserungen"
 })
 
 L:SetMiscLocalization({
