@@ -11,12 +11,12 @@ mod:SetEncounterID(1024) --no ES fires this boss.
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_REMOVED",
-	"SPELL_CAST_SUCCESS",
-	"SPELL_SUMMON",
-	"SPELL_DAMAGE",
-	"SPELL_MISSED",
+	"SPELL_CAST_SUCCESS 77690 92177",
+	"SPELL_SUMMON 92154",
+	"SPELL_AURA_APPLIED 78006 78403 89773",
+	"SPELL_AURA_REMOVED 89773",
+	"SPELL_DAMAGE 92128",
+	"SPELL_MISSED 92128",
 	"CHAT_MSG_MONSTER_YELL",
 	"RAID_BOSS_EMOTE",
 	"UNIT_HEALTH boss1",
@@ -24,30 +24,28 @@ mod:RegisterEventsInCombat(
 )
 
 local warnLavaSpew			= mod:NewSpellAnnounce(77689, 3, nil, "Healer")
-local warnPillarFlame		= mod:NewSpellAnnounce(78006, 3)
 local warnMoltenTantrum		= mod:NewSpellAnnounce(78403, 4)
 local warnInferno			= mod:NewSpellAnnounce(92154, 4)
-local warnMangle			= mod:NewTargetAnnounce(89773, 3)
-local warnArmageddon		= mod:NewSpellAnnounce(92177, 4)
+local warnMangle			= mod:NewTargetNoFilterAnnounce(89773, 3, nil, "Tank|Healer")
 local warnPhase2Soon		= mod:NewPrePhaseAnnounce(2, 3)--heroic
 local warnPhase2			= mod:NewPhaseAnnounce(2, 4)--heroic
 
-local specWarnPillar		= mod:NewSpecialWarningSpell(78006, "Ranged")
-local specWarnIgnition		= mod:NewSpecialWarningMove(92128)
-local specWarnInfernoSoon   = mod:NewSpecialWarning("SpecWarnInferno")
-local specWarnArmageddon	= mod:NewSpecialWarningSpell(92177, nil, nil, nil, true)
+local specWarnPillar		= mod:NewSpecialWarningSwitch(-3312, "Ranged", nil, nil, 1, 2)
+local specWarnIgnition		= mod:NewSpecialWarningGTFO(92128, nil, nil, nil, 1, 8)
+local specWarnInfernoSoon   = mod:NewSpecialWarning("SpecWarnInferno", nil, nil, nil, 1, 2)
+local specWarnArmageddon	= mod:NewSpecialWarningRun(92177, nil, nil, nil, 4, 2)
 
-local timerLavaSpew			= mod:NewCDTimer(22, 77689, nil, "Healer")
-local timerPillarFlame		= mod:NewCDTimer(32.5, 78006)--This timer is a CD timer. 30-40 seconds. Use your judgement.
-local timerMangle			= mod:NewTargetTimer(30, 89773)
-local timerExposed			= mod:NewBuffActiveTimer(30, 79011)
-local timerMangleCD			= mod:NewCDTimer(95, 89773)
-local timerInferno			= mod:NewNextTimer(35, 92154)
-local timerArmageddon		= mod:NewCastTimer(8, 92177)
+local timerLavaSpew			= mod:NewCDTimer(22, 77689, nil, nil, nil, 2, nil, DBM_COMMON_L.HEALER_ICON)
+local timerPillarFlame		= mod:NewCDTimer(32.5, 78006, nil, nil, nil, 1)--This timer is a CD timer. 30-40 seconds. Use your judgement.
+local timerMangle			= mod:NewTargetTimer(30, 89773, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
+local timerExposed			= mod:NewBuffActiveTimer(30, 79011, nil, nil, nil, 5, nil, DBM_COMMON_L.DAMAGE_ICON)
+local timerMangleCD			= mod:NewCDTimer(95, 89773, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
+local timerInferno			= mod:NewNextTimer(35, 92154, nil, nil, nil, 1, nil, DBM_COMMON_L.HEROIC_ICON)
+local timerArmageddon		= mod:NewCastTimer(8, 92177, nil, nil, nil, 3)
 
 local berserkTimer			= mod:NewBerserkTimer(600)
 
-mod:AddBoolOption("RangeFrame")
+mod:AddRangeFrameOption("6")--For shadow breath
 
 local geddonConstruct = 0
 local prewarnedPhase2 = false
@@ -61,6 +59,7 @@ function mod:OnCombatStart(delay)
 	if self:IsDifficulty("heroic10", "heroic25") then
 		timerInferno:Start(30-delay)
 		specWarnInfernoSoon:Schedule(26-delay)
+		specWarnInfernoSoon:ScheduleVoice(26-delay, "bigmobsoon")
 	end
 end
 
@@ -70,10 +69,30 @@ function mod:OnCombatEnd()
 	end
 end
 
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 77690 and self:AntiSpam(5, 1) then
+		warnLavaSpew:Show()
+		timerLavaSpew:Start()
+	elseif args.spellId == 92177 then
+		specWarnArmageddon:Show()
+		specWarnArmageddon:Play("justrun")
+		timerArmageddon:Start(nil, args.sourceGUID)
+	end
+end
+
+function mod:SPELL_SUMMON(args)
+	if args.spellId == 92154 then
+		warnInferno:Show()
+		specWarnInfernoSoon:Schedule(31)
+		specWarnInfernoSoon:ScheduleVoice(31, "bigmobsoon")
+		timerInferno:Start()
+	end
+end
+
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 78006 then--More than one spellid?
-		warnPillarFlame:Show()
 		specWarnPillar:Show()
+		specWarnPillar:Play("killmob")
 		timerPillarFlame:Start()
 	elseif args.spellId == 78403 then
 		warnMoltenTantrum:Show()
@@ -90,29 +109,10 @@ function mod:SPELL_AURA_REMOVED(args)
 	end
 end
 
-function mod:SPELL_CAST_SUCCESS(args)
-	if args.spellId == 77690 and self:AntiSpam(5, 1) then
-		warnLavaSpew:Show()
-		timerLavaSpew:Start()
-	elseif args.spellId == 92177 then
-		warnArmageddon:Show()
-		specWarnArmageddon:Show()
-		timerArmageddon:Start()
-		geddonConstruct = args.sourceGUID--Cache last mob to cast armageddon
-	end
-end
-
-function mod:SPELL_SUMMON(args)
-	if args.spellId == 92154 then
-		warnInferno:Show()
-		specWarnInfernoSoon:Schedule(31)
-		timerInferno:Start()
-	end
-end
-
-function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId, spellName)
 	if spellId == 92128 and destGUID == UnitGUID("player") and self:AntiSpam(4, 2) then
-		specWarnIgnition:Show()
+		specWarnIgnition:Show(spellName)
+		specWarnIgnition:Play("watchfeet")
 	end
 end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE
@@ -122,9 +122,10 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if msg == L.YellPhase2 or msg:find(L.YellPhase2) then
 		timerInferno:Cancel()
 		specWarnInfernoSoon:Cancel()
+		specWarnInfernoSoon:CancelVoice()
 		warnPhase2:Show()
-		if self.Options.RangeFrame then
-			DBM.RangeCheck:Show(5)
+		if self.Options.RangeFrame and self:IsDifficulty("heroic10", "heroic25") then
+			DBM.RangeCheck:Show(6)
 		end
 	end
 end
@@ -151,7 +152,8 @@ function mod:UNIT_HEALTH(uId)
 end
 
 function mod:UNIT_DIED(args)
-	if args.destGUID == geddonConstruct then--Check GUID of units dying if they match last armageddon casting construct. Better than CID alone so we don't cancel it if a diff one dies, but probably not perfect if two cast it at once heh.
-		timerArmageddon:Cancel()
+	local cid = self:GetCIDFromGUID(args.destGUID)
+	if cid == 49416 then--Blazing Bone Construct
+		timerArmageddon:Stop(args.destGUID)
 	end
 end

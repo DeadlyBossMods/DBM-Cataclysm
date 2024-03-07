@@ -32,7 +32,7 @@ mod:RegisterEventsInCombat(
 	"UNIT_SPELLCAST_SUCCEEDED"
 )
 
-local warnDrakesLeft				= mod:NewAddsLeftAnnounce("ej4192", 2, 61248)
+local warnDrakesLeft				= mod:NewAddsLeftAnnounce(-4192, 2, 61248)
 local warnHarpoon					= mod:NewTargetAnnounce(108038, 2)
 local warnReloading					= mod:NewCastAnnounce(108039, 2)
 local warnPhase2					= mod:NewPhaseAnnounce(2, 3)
@@ -45,7 +45,7 @@ local warnConsumingShroud			= mod:NewTargetAnnounce(110214)
 
 local specWarnHarpoon				= mod:NewSpecialWarningTarget(108038, false)
 local specWarnTwilightOnslaught		= mod:NewSpecialWarningCount(107588, nil, nil, nil, 2)
-local specWarnSapper				= mod:NewSpecialWarningSwitch("ej4200", "Dps")
+local specWarnSapper				= mod:NewSpecialWarningSwitch(-4200, "Dps")
 local specWarnDeckFireCast			= mod:NewSpecialWarningSpell(110095, false, nil, nil, true)
 local specWarnDeckFire				= mod:NewSpecialWarningMove(110095)
 local specWarnElites				= mod:NewSpecialWarning("SpecWarnElites", "Tank")
@@ -63,7 +63,7 @@ local timerHarpoonActive			= mod:NewBuffActiveTimer(20, 108038, nil, "Dps", nil,
 local timerReloadingCast			= mod:NewCastTimer(10, 108039, nil, "Dps", nil, 5, nil, DBM_COMMON_L.DAMAGE_ICON)
 local timerTwilightOnslaught		= mod:NewCastTimer(7, 107588, nil, nil, nil, 5)
 local timerTwilightOnslaughtCD		= mod:NewNextCountTimer(35, 107588, nil, nil, nil, 5, nil, nil, nil, 1, 4)
-local timerSapperCD					= mod:NewNextTimer(39.8, "ej4200", nil, nil, nil, 1, 107752, DBM_COMMON_L.HEROIC_ICON, nil, 2, 4)
+local timerSapperCD					= mod:NewNextTimer(39.8, -4200, nil, nil, nil, 1, 107752, DBM_COMMON_L.HEROIC_ICON, nil, 2, 4)
 local timerDegenerationCD			= mod:NewCDTimer(8.5, 107558, nil, "Tank", nil, 5, nil, DBM_COMMON_L.TANK_ICON)--8.5-9.5 variation.
 local timerBladeRushCD				= mod:NewCDTimer(15.5, 107595, nil, nil, nil, 3)
 local timerBroadsideCD				= mod:NewNextTimer(70, 110153, nil, nil, nil, nil, nil, DBM_COMMON_L.HEROIC_ICON)
