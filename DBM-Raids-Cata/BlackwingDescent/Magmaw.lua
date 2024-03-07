@@ -47,12 +47,10 @@ local berserkTimer			= mod:NewBerserkTimer(600)
 
 mod:AddRangeFrameOption("6")--For shadow breath
 
-local geddonConstruct = 0
-local prewarnedPhase2 = false
+mod.vb.prewarnedPhase2 = false
 
 function mod:OnCombatStart(delay)
-	geddonConstruct = 0
-	prewarnedPhase2 = false
+	self.vb.prewarnedPhase2 = false
 	timerPillarFlame:Start(30-delay)
 	timerMangleCD:Start(90-delay)
 	berserkTimer:Start(-delay)
@@ -142,10 +140,10 @@ end
 function mod:UNIT_HEALTH(uId)
 	if self:GetUnitCreatureId(uId) == 41570 and self:IsDifficulty("heroic10", "heroic25") then
 		local h = UnitHealth(uId) / UnitHealthMax(uId) * 100
-		if h > 40 and prewarnedPhase2 then
-			prewarnedPhase2 = false
-		elseif h > 29 and h < 34 and not prewarnedPhase2 then
-			prewarnedPhase2 = true
+		if h > 40 and self.vb.prewarnedPhase2 then
+			self.vb.prewarnedPhase2 = false
+		elseif h > 29 and h < 34 and not self.vb.prewarnedPhase2 then
+			self.vb.prewarnedPhase2 = true
 			warnPhase2Soon:Show()
 		end
 	end
