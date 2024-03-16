@@ -50,7 +50,7 @@ mod:AddBoolOption("RangeFrame", true)
 local oozesHitTable = {}
 local expectedOozes = 0
 local yellowActive = false
-local bossName = EJ_GetEncounterInfo(325)
+local bossName = EJ_GetEncounterInfo and EJ_GetEncounterInfo(325) or "Yorsahj"
 
 local oozeColorsHeroic = {
 	[105420] = { L.Purple, L.Green, L.Black, L.Blue },
