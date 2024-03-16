@@ -5,6 +5,7 @@
 <h2 id="w-features"><strong>Features</strong></h2>
 <ul>
 <li>Boss mods for all Cataclysm raids</li>
+<li>Supports both Retail and Classic</li>
 </ul>
 <h2><strong>Looking for Dungeons?</strong></h2>
 <p>Dungeon mods are now all grouped together in <a href="https://wow.curseforge.com/projects/deadly-boss-mods-dbm-dungeons">DBM-Dungeons package</a></p>
