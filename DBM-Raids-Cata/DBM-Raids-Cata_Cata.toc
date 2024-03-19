@@ -1,6 +1,7 @@
 ## Interface: 40400
 ## X-Min-Interface-Cata: 40400
 ## Title:|cffffe00a<|r|cffff7d0aDBM Mod|r|cffffe00a>|r |cffff6010Raids (Cata)|r
+## Title-koKR:|cffffe00a<|r|cffff7d0aDBM Mod|r|cffffe00a>|r |cffff6010공격대 (대격변)|r
 ## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM Мод|r|cffffe00a>|r |cffff6010Рейды (Катаклизм)|r
 ## Author: MysticalOS
 ## LoadOnDemand: 1
@@ -14,6 +15,7 @@
 ## X-DBM-StatTypes: normal,normal25,heroic,heroic25
 ## X-DBM-Mod-SubCategoriesID: 967,720,754,671,669,757
 ## X-DBM-Mod-Name: Raids (Cata)
+## X-DBM-Mod-Name-koKR: 공격대 (대격변)
 ## X-DBM-Mod-Name-ruRU: Рейды (Катаклизм)
 ## X-DBM-Mod-Sort: 801
 ## X-DBM-Mod-MapID: 967,720,951,754,671,669,757
