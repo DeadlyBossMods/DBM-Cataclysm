@@ -101,18 +101,9 @@ L:SetWarningLocalization({
 	WarnPhase			= "Fase %s"
 })
 
-L:SetTimerLocalization({
-	TimerPhase			= "Siguiente fase"
-})
-
 L:SetOptionLocalization({
 	WarnPhase			= "Mostrar aviso para cuál es la siguiente fase",
-	TimerPhase			= "Mostrar temporizador para la siguiente fase",
-	RangeFrame			= "Mostrar marco de distancia (6 m) durante la fase azul",
-	SetTextures			= "Desactivar automáticamente la opción gráfica de texturas proyectadas durante la fase oscura (se reactivará automáticamente al cambiar de fase)",
-	FlashFreezeIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(77699),
-	BitingChillIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(77760),
-	ConsumingFlamesIcon	= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(77786)
+	SetTextures			= "Desactivar automáticamente la opción gráfica de texturas proyectadas durante la fase oscura (se reactivará automáticamente al cambiar de fase)"
 })
 
 L:SetMiscLocalization({
@@ -128,39 +119,17 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(174)
 
 L:SetWarningLocalization({
-	OnyTailSwipe			= "Latigazo de cola (Onyxia)",
-	NefTailSwipe			= "Latigazo de cola (Nefarian)",
-	OnyBreath				= "Aliento (Onyxia)",
-	NefBreath				= "Aliento (Nefarian)",
-	specWarnShadowblazeSoon	= "%s",
 	warnShadowblazeSoon		= "%s"
 })
 
 L:SetTimerLocalization({
-	timerNefLanding			= "Nefarian aterriza",
-	OnySwipeTimer			= "Latigazo de cola (Onyxia) TdR",
-	NefSwipeTimer			= "Latigazo de cola (Nefarian) TdR",
-	OnyBreathTimer			= "Aliento (Onyxia) TdR",
-	NefBreathTimer			= "Aliento (Nefarian) TdR"
+	timerNefLanding			= "Nefarian aterriza"
 })
 
 L:SetOptionLocalization({
-	OnyTailSwipe			= "Mostrar aviso para $spell:77827 de Onyxia",
-	NefTailSwipe			= "Mostrar aviso para $spell:77827 de Nefarian",
-	OnyBreath				= "Mostrar aviso para $spell:77826 de Onyxia",
-	NefBreath				= "Mostrar aviso para $spell:77826 de Nefarian",
-	specWarnCinderMove		= "Mostrar aviso especial para apartarte si te afecta $spell:79339 (5 s antes de la explosión)",
 	warnShadowblazeSoon		= "Mostrar aviso previo con cuenta atrás para $spell:81031 (5 s antes, y solo tras el primer grito con tal de que sea preciso)",
-	specWarnShadowblazeSoon	= "Mostrar aviso especial previo para $spell:81031 (5 s antes la primera vez, y 1 s antes tras el primer grito con tal de que sea preciso)",
 	timerNefLanding			= "Mostrar temporizador para el aterrizaje de Nefarian",
-	OnySwipeTimer			= "Mostrar temporizador para el tiempo de reutilización de $spell:77827 de Onyxia",
-	NefSwipeTimer			= "Mostrar temporizador para el tiempo de reutilización de $spell:77827 de Nefarian",
-	OnyBreathTimer			= "Mostrar temporizador para el tiempo de reutilización de $spell:77826 de Onyxia",
-	NefBreathTimer			= "Mostrar temporizador para el tiempo de reutilización de $spell:77826 de Nefarian",
-	InfoFrame				= "Mostrar marco de información para $journal:3284",
-	SetWater				= "Desactivar automáticamente la opción de cámara de colisión con el agua al iniciar el encuentro (se reactivará automáticamente al terminar el encuentro)",
-	SetIconOnCinder			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(79339),
-	RangeFrame				= "Mostrar marco de distancia (10 m) para $spell:79339 (muestra a todos los jugadores si tienes el perjuicio, o solo a los jugadores con el perjuicio si no estás afectado)"
+	SetWater				= "Desactivar automáticamente la opción de cámara de colisión con el agua al iniciar el encuentro (se reactivará automáticamente al terminar el encuentro)"
 })
 
 L:SetMiscLocalization({
@@ -168,8 +137,7 @@ L:SetMiscLocalization({
 	YellPhase2				= "¡Os maldigo, mortales! ¡Ese cruel menosprecio por las posesiones de uno debe ser castigado con fuerza extrema!",
 	YellPhase3				= "He intentado ser un buen anfitrión, pero ¡no morís! Es hora de dejarnos de tonterías y simplemente... ¡MATAROS A TODOS!",
 	YellShadowBlaze			= "¡Carne a ceniza!",
-	ShadowBlazeExact		= "Chispa de llamarada de las Sombras en %d s",
-	ShadowBlazeEstimate		= "Chispa de llamarada de las Sombras en breve (unos 5 s)"
+	ShadowBlazeExact		= "Chispa de llamarada de las Sombras en %d s"
 })
 
 ------------------------

@@ -91,17 +91,8 @@ L:SetWarningLocalization({
 	WarnPhase		= " Phase %s"
 })
 
-L:SetTimerLocalization({
-	TimerPhase		= "Prochaine Phase"
-})
-
 L:SetOptionLocalization({
-	WarnPhase			= "Affiche l'alerte d'une nouvelle phase",
-	TimerPhase			= "Affiche le timer de la prochaine phase",
-	RangeFrame		= "Affiche la fenêtre de portée (6) durant la Phase Bleue",
-	FlashFreezeIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(92979),
-	BitingChillIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(77760),
-	ConsumingFlamesIcon	= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(77786)
+	WarnPhase			= "Affiche l'alerte d'une nouvelle phase"
 })
 
 L:SetMiscLocalization({
@@ -116,39 +107,11 @@ L:SetMiscLocalization({
 ----------------
 L = DBM:GetModLocalization(174)
 
-L:SetWarningLocalization({
-	OnyTailSwipe		= "(Onyxia) Fouette-queue",
-	NefTailSwipe		= "(Nefarian) Fouette-queue",
-	OnyBreath			= "(Onyxia) Souffle",
-	NefBreath			= "(Nefarian) Souffle"
-})
-
-L:SetTimerLocalization({
-	OnySwipeTimer		= "(Ony) CD Fouette-queue",
-	NefSwipeTimer		= "(Nef) CD Fouette-queue",
-	OnyBreathTimer		= "(Ony) CD Souffle",
-	NefBreathTimer		= "(Nef) CD Souffle"
-})
-
-L:SetOptionLocalization({
-	OnyTailSwipe		= "Alerte pour $spell:77827 d'Onyxia",
-	NefTailSwipe		= "Alerte pour $spell:77827 de Nefarian",
-	OnyBreath			= "Alerte pour $spell:94124 d'Onyxia",
-	NefBreath			= "Alerte pour $spell:94124 de Nefarian",
-	OnySwipeTimer		= "Affiche le CoolDown $spell:77827 d'Onyxia",
-	NefSwipeTimer		= "Affiche le CoolDown $spell:77827 de Nefarian",
-	OnyBreathTimer		= "Affiche le CoolDown $spell:94124 d'Onyxia",
-	NefBreathTimer		= "Affiche le CoolDown $spell:94124 de Nefarian",
-	RangeFrame		= "Affiche la fenêtre de portée (10) lorsque vous avez $spell:79339",
-	SetIconOnCinder		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(79339)
-})
-
 L:SetMiscLocalization({
 	NefAoe			= "L'air craque sous l'électricité !", -- à vérifier
 	YellPhase2			= "Soyez maudits, mortels ! Un tel mépris pour les possessions d'autrui doit être traité avec une extrême fermeté !", -- à vérifier
 	YellPhase3			= "J'ai tout fait pour être un hôte accomodant, mais vous ne daignez pas mourir ! Oublions les bonnes manières et passons aux choses sérieuses... VOUS TUER TOUS !",
-	ShadowBlazeExact		= "Shadowblaze in %ds",
-	ShadowBlazeEstimate		= "Shadowblaze soon (~5s)"
+	ShadowBlazeExact		= "Shadowblaze in %ds"
 })
 
 -------------------------------

@@ -101,18 +101,9 @@ L:SetWarningLocalization({
 	WarnPhase			= "%s фаза"
 })
 
-L:SetTimerLocalization({
-	TimerPhase			= "Следующая фаза"
-})
-
 L:SetOptionLocalization({
 	WarnPhase			= "Предупреждать о переходе фаз",
-	TimerPhase			= "Показывать таймер до следующей фазы",
-	RangeFrame			= "Показывать окно проверки дистанции (6м) во время синей фазы",
-	SetTextures			= "Автоматически отключить \"Проецирование текстур\" в темной фазе<br/>(включается обратно при выходе из фазы)",
-	FlashFreezeIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(77699),
-	BitingChillIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(77760),
-	ConsumingFlamesIcon	= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(77786)
+	SetTextures			= "Автоматически отключить \"Проецирование текстур\" в темной фазе<br/>(включается обратно при выходе из фазы)"
 })
 
 L:SetMiscLocalization({
@@ -128,39 +119,17 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(174)
 
 L:SetWarningLocalization({
-	OnyTailSwipe		= "Удар хвостом (Ониксия)",
-	NefTailSwipe		= "Удар хвостом (Нефариан)",
-	OnyBreath			= "Дыхание темного огня (Ониксия)",
-	NefBreath			= "Дыхание темного огня (Нефариан)",
-	specWarnShadowblazeSoon	= "%s",
 	warnShadowblazeSoon		= "%s"
 })
 
 L:SetTimerLocalization({
-	timerNefLanding		= "Приземление Нефариана",
-	OnySwipeTimer		= "Удар хвостом - перезарядка (Ониксия)",
-	NefSwipeTimer		= "Удар хвостом - перезарядка (Нефариан)",
-	OnyBreathTimer		= "Дыхание темного огня (Ониксия)",
-	NefBreathTimer		= "Дыхание темного огня (Нефариан)"
+	timerNefLanding		= "Приземление Нефариана"
 })
 
 L:SetOptionLocalization({
-	OnyTailSwipe		= "Предупреждение для $spell:77827 Ониксии",
-	NefTailSwipe		= "Предупреждение для $spell:77827 Нефариана",
-	OnyBreath			= "Предупреждение для $spell:77826 Ониксии",
-	NefBreath			= "Предупреждение для $spell:77826 Нефариана",
-	specWarnCinderMove	= "Спецпредупреждение за 5 секунд до взрыва $spell:79339",
 	warnShadowblazeSoon	= "Отсчитывать время до $spell:81031 (за 5 секунд до каста)<br/>(Отсчет пойдет только после первой синхронизации с эмоцией босса)",
-	specWarnShadowblazeSoon	= "Предупреждать заранее о $spell:81031<br/>(За 5 секунд до первого каста, за 1 секунду до каждого следующего)",
 	timerNefLanding		= "Отсчет времени до приземления Нефариана",
-	OnySwipeTimer		= "Отсчет времени до восстановления $spell:77827 Ониксии",
-	NefSwipeTimer		= "Отсчет времени до восстановления $spell:77827 Нефариана",
-	OnyBreathTimer		= "Отсчет времени до восстановления $spell:77826 Ониксии",
-	NefBreathTimer		= "Отсчет времени до восстановления $spell:77826 Нефариана",
-	InfoFrame			= "Показывать информационное окно для $journal:3284",
-	SetWater			= "Автоматически отключать настройку Брызги воды<br/>(Включается обратно при выходе из боя)",
-	SetIconOnCinder		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(79339),
-	RangeFrame			= "Окно проверки дистанции (10м) для $spell:79339<br/>(Если на Вас дебафф - показывает всех, иначе только игроков с метками)"
+	SetWater			= "Автоматически отключать настройку Брызги воды<br/>(Включается обратно при выходе из боя)"
 })
 
 L:SetMiscLocalization({
@@ -168,8 +137,7 @@ L:SetMiscLocalization({
 	YellPhase2			= "Дерзкие смертные! Неуважение к чужой собственности нужно пресекать самым жестоким образом!",
 	YellPhase3			= "Я пытался следовать законам гостеприимства, но вы всё никак не умрете!",
 	YellShadowBlaze		= "И плоть превратится в прах!",
-	ShadowBlazeExact		= "Вспышка пламени тени через %d",
-	ShadowBlazeEstimate		= "Скоро вспышка пламени тени (~5с)"
+	ShadowBlazeExact		= "Вспышка пламени тени через %d"
 })
 
 -------------------------------
