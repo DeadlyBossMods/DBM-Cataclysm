@@ -100,14 +100,8 @@ L:SetWarningLocalization({
 	WarnPhase			= "%s Phase"
 })
 
-L:SetTimerLocalization({
-	TimerPhase			= "Nächste Phase"
-})
-
 L:SetOptionLocalization({
 	WarnPhase			= "Verkünde welche Phase als Nächstes kommt",
-	TimerPhase			= "Zeige Zeit bis nächste Phase",
-	RangeFrame			= "Zeige Abstandsfenster (6m) während der blauen Phase",
 	SetTextures			= "Automatische Deaktivierung der Grafikeinstellung 'Projizierte Texturen' in der dunklen Phase (wird nach Verlassen der Phase autom. wieder aktiviert)"
 })
 
@@ -124,38 +118,17 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(174)
 
 L:SetWarningLocalization({
-	OnyTailSwipe			= "Schwanzpeitscher (Onyxia)",
-	NefTailSwipe			= "Schwanzpeitscher (Nefarian)",
-	OnyBreath				= "Atem (Onyxia)",
-	NefBreath				= "Atem (Nefarian)",
-	specWarnShadowblazeSoon	= "%s",
 	warnShadowblazeSoon		= "%s"
 })
 
 L:SetTimerLocalization({
-	timerNefLanding			= "Nefarian landet",
-	OnySwipeTimer			= "Schwanzpeitscher CD (Ony)",
-	NefSwipeTimer			= "Schwanzpeitscher CD (Nef)",
-	OnyBreathTimer			= "Atem CD (Ony)",
-	NefBreathTimer			= "Atem CD (Nef)"
+	timerNefLanding			= "Nefarian landet"
 })
 
 L:SetOptionLocalization({
-	OnyTailSwipe			= "Zeige Warnung für Onyxias $spell:77827",
-	NefTailSwipe			= "Zeige Warnung für Nefarians $spell:77827",
-	OnyBreath				= "Zeige Warnung für Onyxias $spell:77826",
-	NefBreath				= "Zeige Warnung für Nefarians $spell:77826",
-	specWarnCinderMove		= "Spezialwarnung zum Weglaufen, wenn du von $spell:79339 betroffen bist (5s vor Explosion)",
 	warnShadowblazeSoon		= "Zeige Vorwarnungscountdown für $spell:81031 (5s zuvor)<br/>(aus Genauigkeitsgründen erst nach Synchronisierung mit erstem Ausruf)",
-	specWarnShadowblazeSoon	= "Spezialvorwarnung für $spell:81031 (aus Genauigkeitsgründen<br/>zu Beginn 5s Vorwarnung, 1s Vorwarnung nach erstem Ausruf)",
 	timerNefLanding			= "Zeige Zeit bis Nefarian landet",
-	OnySwipeTimer			= "Zeige Abklingzeit für Onyxias $spell:77827",
-	NefSwipeTimer			= "Zeige Abklingzeit für Nefarians $spell:77827",
-	OnyBreathTimer			= "Zeige Abklingzeit für Onyxias $spell:77826",
-	NefBreathTimer			= "Zeige Abklingzeit für Nefarians $spell:77826",
-	InfoFrame				= "Zeige Infofenster für $journal:3284",
-	SetWater				= "Automatische Deaktivierung der Kameraeinstellung 'Wasserkollision'<br/>bei Kampfbeginn (wird nach Kampfende automatisch wieder aktiviert)",
-	RangeFrame				= "Zeige Abstandsfenster (10m) für $spell:79339 (zeigt jeden, falls du den Debuff hast; sonst nur betroffene Spieler)"
+	SetWater				= "Automatische Deaktivierung der Kameraeinstellung 'Wasserkollision'<br/>bei Kampfbeginn (wird nach Kampfende automatisch wieder aktiviert)"
 })
 
 L:SetMiscLocalization({
@@ -163,8 +136,7 @@ L:SetMiscLocalization({
 	YellPhase2				= "Verfluchte Sterbliche! Ein solcher Umgang mit dem Eigentum anderer verlangt nach Gewalt!",
 	YellPhase3				= "Ich habe versucht, ein guter Gastgeber zu sein, aber ihr wollt einfach nicht sterben! Genug der Spielchen! Ich werde euch einfach... ALLE TÖTEN!",
 	YellShadowBlaze			= "Fleisch wird zu Asche!",
-	ShadowBlazeExact		= "Schattensengen in %ds",
-	ShadowBlazeEstimate		= "Schattensengen bald  (~5s)"
+	ShadowBlazeExact		= "Schattensengen in %ds"
 })
 
 -------------------------------

@@ -100,14 +100,8 @@ L:SetWarningLocalization({
 	WarnPhase				= "%s階段"
 })
 
-L:SetTimerLocalization({
-	TimerPhase				= "下一階段"
-})
-
 L:SetOptionLocalization({
 	WarnPhase				= "為哪個階段即將到來顯示警告",
-	TimerPhase				= "為下一階段顯示計時器",
-	RangeFrame				= "藍色階段時顯示距離框 (6碼)",
 	SetTextures				= "自動在黑暗階段停用投影材質<br/>(離開黑暗階段後回到啟用)"
 })
 
@@ -124,38 +118,17 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(174)
 
 L:SetWarningLocalization({
-	OnyTailSwipe			= "尾部鞭擊 (奧妮克希亞)",
-	NefTailSwipe			= "尾部鞭擊 (奈法利安)",
-	OnyBreath				= "暗影焰息 (奧妮克希亞)",
-	NefBreath				= "暗影焰息 (奈法利安)",
-	specWarnShadowblazeSoon	= "%s",
 	warnShadowblazeSoon		= "%s"
 })
 
 L:SetTimerLocalization({
-	timerNefLanding			= "奈法利安落地",
-	OnySwipeTimer			= "尾部鞭擊冷卻 (奧妮)",
-	NefSwipeTimer			= "尾部鞭擊冷卻 (奈法)",
-	OnyBreathTimer			= "暗影焰息冷卻 (奧妮)",
-	NefBreathTimer			= "暗影焰息冷卻 (奈法)"
+	timerNefLanding			= "奈法利安落地"
 })
 
 L:SetOptionLocalization({
-	OnyTailSwipe			= "為奧妮克希亞的$spell:77827顯示警告",
-	NefTailSwipe			= "為奈法利安的$spell:77827顯示警告",
-	OnyBreath				= "為奧妮克希亞的$spell:77826顯示警告",
-	NefBreath				= "為奈法利安的$spell:77826顯示警告",
-	specWarnCinderMove		= "為$spell:79339顯示特殊警告提示你離開(爆炸前5秒)",
 	warnShadowblazeSoon		= "為$spell:81031顯示提前警告<br/>(只在計時器與第一次大喊台詞同步後顯示, 以確保準確)",
-	specWarnShadowblazeSoon	= "為$spell:94085顯示預先特別警告(約5秒)",
 	timerNefLanding			= "為奈法利安落地顯示計時器",
-	OnySwipeTimer			= "為奧妮克希亞的$spell:77827的冷卻時間顯示計時器",
-	NefSwipeTimer			= "為奈法利安的$spell:77827的冷卻時間顯示計時器",
-	OnyBreathTimer			= "為奧妮克希亞的$spell:77826的冷卻時間顯示計時器",
-	NefBreathTimer			= "為奈法利安的$spell:77826的冷卻時間顯示計時器",
-	InfoFrame				= "為$journal:3284顯示資訊框架",
-	SetWater				= "進入戰鬥後自動停用水體細節<br/>(離開戰鬥後回到啟用)",
-	RangeFrame				= "為$spell:79339顯示距離框(10碼)<br/>(當你中減益時顯示所有人, 否則只顯示中的人)"
+	SetWater				= "進入戰鬥後自動停用水體細節<br/>(離開戰鬥後回到啟用)"
 })
 
 L:SetMiscLocalization({
@@ -163,8 +136,7 @@ L:SetMiscLocalization({
 	YellPhase2 				= "詛咒你們，凡人!如此冷酷地漠視他人的所有物必須受到嚴厲的懲罰!",
 	YellPhase3				= "我本來只想略盡地主之誼，但是你們就是不肯痛快的受死!是時候拋下一切的虛偽...殺光你們就好!",
 	YellShadowBlaze			= "化為灰燼吧!",
-	ShadowBlazeExact		= "暗影炎%d秒",
-	ShadowBlazeEstimate		= "暗影炎即將到來(約5秒後)"
+	ShadowBlazeExact		= "暗影炎%d秒"
 })
 
 -------------------------------

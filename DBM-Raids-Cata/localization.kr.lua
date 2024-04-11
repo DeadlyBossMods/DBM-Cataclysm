@@ -101,14 +101,8 @@ L:SetWarningLocalization({
 	WarnPhase			= "%s단계"
 })
 
-L:SetTimerLocalization({
-	TimerPhase		= "다음 단계"
-})
-
 L:SetOptionLocalization({
 	WarnPhase			= "어느 단계가 오는지 경고 보기",
-	TimerPhase			= "다음 단계 타이머 바 보기",
-	RangeFrame			= "푸른색 단계에서 거리 창 보기 (6m)",
 	SetTextures			= "암흑 단계에서 텍스쳐 투영 효과 자동으로 비활성화<br/>(암흑 단계가 끝나면 다시 활성화)"
 })
 
@@ -124,37 +118,14 @@ L:SetMiscLocalization({
 ----------------
 L = DBM:GetModLocalization(174)
 
-L:SetWarningLocalization({
-	OnyTailSwipe			= "꼬리 채찍 (오닉시아)",
-	NefTailSwipe			= "꼬리 채찍 (네파리안)",
-	OnyBreath				= "숨결 (오닉시아)",
-	NefBreath				= "숨결 (네파리안)"
-})
-
 L:SetTimerLocalization({
 	timerNefLanding		= "네파리안 착지",
-	OnySwipeTimer		= "꼬리 채찍 쿨타임 (오닉)",
-	NefSwipeTimer		= "꼬리 채찍 쿨타임 (네파)",
-	OnyBreathTimer		= "숨결 쿨타임 (오닉)",
-	NefBreathTimer		= "숨결 쿨타임 (네파)"
 })
 
 L:SetOptionLocalization({
-	OnyTailSwipe			= "오닉시아의 $spell:77827 경고 보기",
-	NefTailSwipe			= "네파리안의 $spell:77827 경고 보기",
-	OnyBreath				= "오닉시아의 $spell:77826 경고 보기",
-	NefBreath				= "네파리안의 $spell:77826 경고 보기",
-	specWarnCinderMove		= "$spell:79339에 걸리면 멀리 이동 특수 경고 보기 (폭발 5초 전부터)",
 	warnShadowblazeSoon		= "$spell:81031 사전 경고 초읽기 보기 (~5초 전부터)<br/>(정확도를 유지하기 위해 첫번째 말풍선 알림 이후부터 타이머가 동기화 됩니다)",
-	specWarnShadowblazeSoon	= "$spell:81031 사전 특수 경고 보기<br/>(처음엔 5초 전에 사전 경고, 정확도 유지를 위해 첫번째 말풍선에 동기화 이후엔 1초 전에 사전 경고)",
 	timerNefLanding			= "네파리안 착지시 타이머 바 보기",
-	OnySwipeTimer			= "오닉시아의 $spell:77827 쿨타임 타이머 바 보기",
-	NefSwipeTimer			= "네파리안의 $spell:77827 쿨타임 타이머 바 보기",
-	OnyBreathTimer			= "오닉시아의 $spell:77826 쿨타임 타이머 바 보기",
-	NefBreathTimer			= "네파리안의 $spell:77826 쿨타임 타이머 바 보기",
-	InfoFrame				= "$journal:3284|1을;를; 정보 창에 표시",
-	SetWater				= "보스 풀링때 수면 자동 시점 옵션을 자동으로 비활성화<br/>(전투가 끝나면 다시 활성화)",
-	RangeFrame				= "$spell:79339 범위에 대한 거리 창 보기 (10m)<br/>(디버프에 걸리면 모든 사람, 디버프가 없을땐 자신만 표시)"
+	SetWater				= "보스 풀링때 수면 자동 시점 옵션을 자동으로 비활성화<br/>(전투가 끝나면 다시 활성화)"
 })
 
 L:SetMiscLocalization({
@@ -162,8 +133,7 @@ L:SetMiscLocalization({
 	YellPhase2			= "저주받을 필멸자들! 내 소중한 작품을 이렇게 망치다니! 쓴맛을 봐야 정신을 차리겠군!",
 	YellPhase3			= "품위있는 집주인답게 행동하려 했건만, 네놈들이 도무지 죽질 않는군! 겉치레는 이제 집어치우자고. 그냥 모두 없애 버리겠어!",
 	YellShadowBlaze		= "살을 재로 만들어 주마!",
-	ShadowBlazeExact	= "%d초 후 암흑불꽃!",
-	ShadowBlazeEstimate	= "곧 암흑불꽃 (~5초)"
+	ShadowBlazeExact	= "%d초 후 암흑불꽃!"
 })
 
 -------------------------------

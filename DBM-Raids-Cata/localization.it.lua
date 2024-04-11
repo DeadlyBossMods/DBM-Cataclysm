@@ -1,6 +1,8 @@
 if GetLocale() ~= "itIT" then return end
 local L
 
+--MISSING EVERYTHING PRIOR TO DRAGONSOUL
+
 -------------
 -- Morchok --
 -------------

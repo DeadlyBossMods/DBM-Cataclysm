@@ -106,12 +106,7 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	WarnPhase			= "Show warning which phase is incoming",
-	TimerPhase			= "Show timer for next phase",
-	RangeFrame			= "Show range frame (6) during blue phase",
-	SetTextures			= "Automatically disable projected textures in dark phase<br/>(returns it to enabled upon leaving phase)",
-	FlashFreezeIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(77699),
-	BitingChillIcon		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(77760),
-	ConsumingFlamesIcon	= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(77786)
+	SetTextures			= "Automatically disable projected textures in dark phase<br/>(returns it to enabled upon leaving phase)"
 })
 
 L:SetMiscLocalization({
@@ -127,39 +122,17 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(174)
 
 L:SetWarningLocalization({
-	OnyTailSwipe			= "Tail Lash (Onyxia)",
-	NefTailSwipe			= "Tail Lash (Nefarian)",
-	OnyBreath				= "Breath (Onyxia)",
-	NefBreath				= "Breath (Nefarian)",
-	specWarnShadowblazeSoon	= "%s",
 	warnShadowblazeSoon		= "%s"
 })
 
 L:SetTimerLocalization({
-	timerNefLanding			= "Nefarian lands",
-	OnySwipeTimer			= "Tail Lash CD (Ony)",
-	NefSwipeTimer			= "Tail Lash CD (Nef)",
-	OnyBreathTimer			= "Breath CD (Ony)",
-	NefBreathTimer			= "Breath CD (Nef)"
+	timerNefLanding			= "Nefarian lands"
 })
 
 L:SetOptionLocalization({
-	OnyTailSwipe			= "Show warning for Onyxia's $spell:77827",
-	NefTailSwipe			= "Show warning for Nefarian's $spell:77827",
-	OnyBreath				= "Show warning for Onyxia's $spell:77826",
-	NefBreath				= "Show warning for Nefarian's $spell:77826",
-	specWarnCinderMove		= "Show special warning to move away when you are affected by<br/> $spell:79339 (5s before explosion)",
 	warnShadowblazeSoon		= "Show pre-warning countdown for $spell:81031 (5s before)<br/>(Only after timer has been synced to first yell to ensure accuracy)",
-	specWarnShadowblazeSoon	= "Show pre-special warning for $spell:81031<br/>(5s prewarn at first, 1s prewarn after first yell sync to ensure accuracy)",
 	timerNefLanding			= "Show timer for when Nefarian lands",
-	OnySwipeTimer			= "Show timer for Onyxia's $spell:77827 cooldown",
-	NefSwipeTimer			= "Show timer for Nefarian's $spell:77827 cooldown",
-	OnyBreathTimer			= "Show timer for Onyxia's $spell:77826 cooldown",
-	NefBreathTimer			= "Show timer for Nefarian's $spell:77826 cooldown",
-	InfoFrame				= "Show info frame for $journal:3284",
-	SetWater				= "Automatically disable water collision on pull<br/>(returns it to enabled upon leaving combat)",
-	SetIconOnCinder			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(79339),
-	RangeFrame				= "Show range frame (10) for $spell:79339<br/>(Shows everyone if you have debuff, only players with debuff if not)"
+	SetWater				= "Automatically disable water collision on pull<br/>(returns it to enabled upon leaving combat)"
 })
 
 L:SetMiscLocalization({
@@ -167,8 +140,7 @@ L:SetMiscLocalization({
 	YellPhase2				= "Curse you, mortals! Such a callous disregard for one's possessions must be met with extreme force!",
 	YellPhase3				= "I have tried to be an accommodating host, but you simply will not die! Time to throw all pretense aside and just... KILL YOU ALL!",
 	YellShadowBlaze			= "Flesh turns to ash!",
-	ShadowBlazeExact		= "Shadowblaze Spark in %ds",
-	ShadowBlazeEstimate		= "Shadowblaze Spark soon (~5s)"
+	ShadowBlazeExact		= "Shadowblaze Spark in %ds"
 })
 
 -------------------------------
