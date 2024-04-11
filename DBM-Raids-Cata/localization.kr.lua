@@ -119,11 +119,11 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(174)
 
 L:SetTimerLocalization({
-	timerNefLanding		= "네파리안 착지",
+	timerNefLanding		= "네파리안 착지"
 })
 
 L:SetOptionLocalization({
-	warnShadowblazeSoon		= "$spell:81031 사전 경고 초읽기 보기 (~5초 전부터)<br/>(정확도를 유지하기 위해 첫번째 말풍선 알림 이후부터 타이머가 동기화 됩니다)",
+	warnShadowblazeSoon		= "$spell:81031 사전 경고 초읽기 보기 (5초 전부터)<br/>(정확도를 유지하기 위해 첫번째 넴드 외침 이후부터 타이머가 동기화 됩니다)",
 	timerNefLanding			= "네파리안 착지시 타이머 바 보기",
 	SetWater				= "보스 풀링때 수면 자동 시점 옵션을 자동으로 비활성화<br/>(전투가 끝나면 다시 활성화)"
 })
@@ -132,7 +132,7 @@ L:SetMiscLocalization({
 	NefAoe				= "전기가 튀며 파지직하는 소리가 납니다!",
 	YellPhase2			= "저주받을 필멸자들! 내 소중한 작품을 이렇게 망치다니! 쓴맛을 봐야 정신을 차리겠군!",
 	YellPhase3			= "품위있는 집주인답게 행동하려 했건만, 네놈들이 도무지 죽질 않는군! 겉치레는 이제 집어치우자고. 그냥 모두 없애 버리겠어!",
-	YellShadowBlaze		= "살을 재로 만들어 주마!",
+	YellShadowBlaze			= "살을 재로 만들어 주마!",
 	ShadowBlazeExact	= "%d초 후 암흑불꽃!"
 })
 
