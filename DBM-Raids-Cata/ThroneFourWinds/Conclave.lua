@@ -26,12 +26,12 @@ mod:RegisterEventsInCombat(
 --TODO, if cata classic happens, the tech on this should be redone to start all timers but use fading by distance, not just omit timers if you forget to target boss (bad obsolete tech)
 --TODO, if boss unit ids work and apis for checking distance to boss work. deprecate warn for my target and instead do warnings based on boss proximity
 local warnNurture			= mod:NewSpellAnnounce(85422, 3)
-local warnSoothingBreeze	= mod:NewTargetNoFilfterAnnounce(86207, 3)	-- using a spellID here with a better description of the spell
+local warnSoothingBreeze	= mod:NewTargetNoFilterAnnounce(86207, 3)	-- using a spellID here with a better description of the spell
 local warnSummonTornados	= mod:NewSpellAnnounce(86192, 3)
 local warnWindBlast			= mod:NewSpellAnnounce(86193, 3)
 local warnStormShield		= mod:NewSpellAnnounce(93059, 3)
 local warnPoisonToxic	 	= mod:NewSpellAnnounce(86281, 3)
-local warnGatherStrength	= mod:NewTargetNoFilfterAnnounce(86307, 4)
+local warnGatherStrength	= mod:NewTargetNoFilterAnnounce(86307, 4)
 local warnSpecialSoon		= mod:NewAnnounce("warnSpecialSoon", 2, "132866")--Hurricane/Sleet Storm/Zephyr in single announce
 
 local specWarnSpecial		= mod:NewSpecialWarning("specWarnSpecial", nil, nil, nil, 2, 2)

@@ -28,9 +28,9 @@ mod:RegisterEventsInCombat(
 
 local warnTailSwipe				= mod:NewSpellSourceAnnounce(77827, 3)
 local warnShadowflameBreath		= mod:NewSpellSourceAnnounce(77826, 3, nil, "Tank")
-local warnCinder				= mod:NewTargetNoFIlterAnnounce(79339, 4)
+local warnCinder				= mod:NewTargetNoFilterAnnounce(79339, 4)
 local warnPhase					= mod:NewPhaseChangeAnnounce(2, 2, nil, nil, nil, nil, nil, 2)
-local warnDominion				= mod:NewTargetNoFIlterAnnounce(79318, 3)
+local warnDominion				= mod:NewTargetNoFilterAnnounce(79318, 3)
 local warnShadowBlaze			= mod:NewSpellAnnounce(81031, 4)--May be quirky
 local warnShadowblazeSoon		= mod:NewAnnounce("warnShadowblazeSoon", 2, 81031, "Tank", nil, true)--Back to on by default for tanks until option isn't tied to sound.
 
