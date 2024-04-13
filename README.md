@@ -1,4 +1,4 @@
-<h1><img src="https://media.forgecdn.net/attachments/76/25/patreon-medium-button.png" width="408" height="80" /></h1>
+<p><img src="http://mysticalos.com/images/DBM/support_on_patreon.png" width="408" height="80" /></p>
 <p><a href="https://www.patreon.com/deadlybossmods">https://www.patreon.com/deadlybossmods</a></p>
 <h2 id="w-cataclysm-boss-mods-for-dbm"><strong>Cataclysm raid mods for DBM</strong></h2>
 <p>Cataclysm raid mods for <a href="http://wow.curseforge.com/addons/deadly-boss-mods/">Deadly Boss Mods</a></p>
