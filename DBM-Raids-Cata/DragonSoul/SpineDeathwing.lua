@@ -91,14 +91,6 @@ local function checkOozeResurrect(GUID)
 	end
 end
 
-local function countCorruptionActive()
-	local count = 0
-	for i, v in pairs(corruptionActive) do
-		count = count + 1
-	end
-	return count
-end
-
 function mod:OnCombatStart(delay)
 	self.vb.shieldCount = 0
 	numberOfPlayers = DBM:GetNumRealGroupMembers()

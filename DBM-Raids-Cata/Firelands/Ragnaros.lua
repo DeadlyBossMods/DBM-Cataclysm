@@ -101,7 +101,7 @@ local timerPhaseSons		= mod:NewTimer(45, "TimerPhaseSons", 99014, nil, nil, 6)	-
 local timerCloudBurstCD		= mod:NewCDTimer(50, 100714)
 local timerBreadthofFrostCD	= mod:NewCDTimer(45, 100479)
 local timerEntrapingRootsCD	= mod:NewCDTimer(56, 100646, nil, nil, nil, 5)--56-60sec variations. Always cast before empowered sulf, varies between 3 sec before and like 11 sec before.
-local timerEmpoweredSulfCD	= mod:NewCDTimer(56, 100604, nil, nil, nil, 5, nil, DBM_COMMON_L.DEADLY_ICON..DBM_COMMON_L.TANK_ICON, nil, mod:IsTank() and 1, 5)--56-64sec variations
+local timerEmpoweredSulfCD	= mod:NewCDTimer(56, 100604, nil, nil, nil, 5, nil, DBM_COMMON_L.DEADLY_ICON..DBM_COMMON_L.TANK_ICON, nil, mod:IsTank() and 1 or nil, 5)--56-64sec variations
 local timerEmpoweredSulf	= mod:NewBuffActiveTimer(10, 100604, nil, "Tank", nil, 5, nil, DBM_COMMON_L.DEADLY_ICON..DBM_COMMON_L.TANK_ICON, nil, 1, 0)--Countout timer
 local timerDreadFlameCD		= mod:NewCDTimer(40, 100675, nil, false, nil, 5)--Off by default as only the people dealing with them care about it.
 
@@ -570,7 +570,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
 		if self.Options.warnSeedsLand then--Warn after they are on ground, typical strat for normal mode. Time not 100% consistent.
 			self:Schedule(2.5, warnSeeds, self)--But use upper here
 		else
-			warnSeeds(self)
+			warnSeeds()
 		end
 		self:Schedule(17.5, clearSeedsActive, self)--Clear active/warned seeds after they have all blown up.
 		if self.Options.AggroFrame then--Show aggro frame regardless if health frame is still up, it should be more important than health frame at this point. Shouldn't be blowing up traps while elementals are up.

@@ -115,14 +115,14 @@ function mod:SPELL_CAST_START(args)
 			end
 			if UnitExists("boss2") then
 				if kohcromSkip == 2 then
-					kohcromSkip = nil
+					kohcromSkip = 0
 				elseif self:IsDifficulty("heroic25") then
 					timerKohcromCD:Start(5, args.spellName)
 				else
 					timerKohcromCD:Start(6, args.spellName)
 				end
 			end
-			if kohcromSkip and self:IsDifficulty("heroic10", "heroic25") then
+			if kohcromSkip ~= 0 and self:IsDifficulty("heroic10", "heroic25") then
 				kohcromSkip = 1
 			end
 		else
@@ -151,14 +151,14 @@ function mod:SPELL_SUMMON(args)
 			end
 			if UnitExists("boss2") then
 				if kohcromSkip == 1 then
-					kohcromSkip = nil
+					kohcromSkip = 0
 				elseif self:IsDifficulty("heroic25") then
 					timerKohcromCD:Start(5, args.spellName)
 				else
 					timerKohcromCD:Start(6, args.spellName)
 				end
 			end
-			if kohcromSkip and self:IsDifficulty("heroic10", "heroic25") then
+			if kohcromSkip ~= 0 and self:IsDifficulty("heroic10", "heroic25") then
 				kohcromSkip = 2
 			end
 		else
