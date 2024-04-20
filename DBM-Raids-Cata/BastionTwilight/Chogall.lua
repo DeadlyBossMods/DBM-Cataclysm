@@ -76,7 +76,7 @@ local Bloodlevel = DBM:EJ_GetSectionInfo(3165)
 
 local function showWorshipWarning(self)
 	warnWorship:Show(table.concat(worshipTargets, "<, >"))
-	warnWorship:Play("mindcontrol")
+	warnWorship:Play("findmc")
 	table.wipe(worshipTargets)
 	self.vb.worshipIcon = 1
 	timerWorshipCD:Start(self.vb.worshipCooldown)
