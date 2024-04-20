@@ -187,7 +187,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		dominionTargets[#dominionTargets + 1] = args.destName
 		if args:IsPlayer() then
 			specWarnDominion:Show()
-			specWarnDominion:Play("mindcontrol")
+			specWarnDominion:Play("findmc")
 		end
 		self:Unschedule(warnDominionTargets)
 		if (self:IsDifficulty("heroic25") and #dominionTargets >= 5) or (self:IsDifficulty("heroic10") and #dominionTargets >= 2) then
