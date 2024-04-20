@@ -107,7 +107,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(173)
 
 L:SetWarningLocalization({
-	WarnPhase			= "第%s阶段",
+	WarnPhase			= "第%s阶段"
 })
 
 L:SetTimerLocalization({
