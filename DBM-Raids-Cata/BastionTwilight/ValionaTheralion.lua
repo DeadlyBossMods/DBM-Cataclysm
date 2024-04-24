@@ -302,7 +302,7 @@ do
 	function mod:UNIT_AURA(uId)
 		if DBM:UnitDebuff("player", meteorTarget) and not markWarned then--Switch to ID if correct ID is verified
 			specWarnTwilightMeteorite:Show()
-			specWarnTwilightMeteorite:Play()
+			specWarnTwilightMeteorite:Play("targetyou")
 			timerTwilightMeteorite:Start()
 			yellTwilightMeteorite:Yell()
 			markWarned = true
