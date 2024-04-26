@@ -63,7 +63,6 @@ mod.vb.shadowblazeTimer = 35
 mod.vb.cinderIcons = 1
 local castsPerGUID = {}
 local cinderTargets	= {}
-local cinderDebuff = DBM:GetSpellInfo(79339)
 local dominionTargets = {}
 local lastBlaze = 0--Do NOT use prototype for this, it's updated in a special way using different triggers then when method is called.
 local CVAR = false

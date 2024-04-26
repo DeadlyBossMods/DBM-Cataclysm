@@ -129,7 +129,7 @@ mod.vb.dreadFlameTimer = 45
 local magmaTrapGUID = {}
 local elementalsGUID = {}
 local meteorWarned = false
-local dreadflame, meteorTarget, staffDebuff = DBM:GetSpellInfo(100675), DBM:GetSpellInfo(99849), DBM:GetSpellInfo(101109)
+local dreadflame, meteorTarget, staffDebuff = DBM:GetSpellName(100675), DBM:GetSpellName(99849), DBM:GetSpellName(101109)
 
 local function showRangeFrame(self)
 	if DBM:UnitDebuff("player", staffDebuff) then return end--Staff debuff, don't change their range finder from 8.

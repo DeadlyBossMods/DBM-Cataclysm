@@ -62,7 +62,7 @@ mod.vb.expectedTargets = 25
 local orbList = {}
 local cachedWhelps = {}
 local playerWarned = nil
-local wrackName = DBM:GetSpellInfo(89421)
+local wrackName = DBM:GetSpellName(89421)
 local wrackTargets = {}
 
 local function resetPlayerOrbStatus(self)

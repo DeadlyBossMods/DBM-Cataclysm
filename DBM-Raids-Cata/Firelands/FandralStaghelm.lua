@@ -55,7 +55,7 @@ mod:AddSetIconOption("IconOnLeapingFlames", 98476, false, false, {8})
 mod.vb.abilityCount = 0
 mod.vb.recentlyJumped = false
 mod.vb.kitty = false
-local leap, swipe, seedsDebuff = DBM:GetSpellInfo(98535), DBM:GetSpellInfo(98474), DBM:GetSpellInfo(98450)
+local leap, swipe, seedsDebuff = DBM:GetSpellName(98535), DBM:GetSpellName(98474), DBM:GetSpellName(98450)
 
 local abilityTimers = {
 	[0] = 17.3,--Still The same baseline.

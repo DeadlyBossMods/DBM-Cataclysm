@@ -158,7 +158,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 end
 
 do
-	local pestered = DBM:GetSpellInfo(92685)--TODO, if can verify exact spellID then no reason to localize spellname, just pass ID in unitDebuff
+	local pestered = DBM:GetSpellName(92685)--TODO, if can verify exact spellID then no reason to localize spellname, just pass ID in unitDebuff
 	local pesteredWarned = false
 	function mod:UNIT_AURA(uId)
 		local isPestered = DBM:UnitDebuff("player", pestered)

@@ -55,7 +55,7 @@ mod:AddDropdownOption("SpecWarnHoTN", {"Never", "One", "Two", "Three"}, "Never",
 local hourOfTwilightCount = 0
 local fadingLightCount = 0
 local fadingLightTargets = {}
-local hourOfTwilight = DBM:GetSpellInfo(106371)
+local hourOfTwilight = DBM:GetSpellName(106371)
 
 local function warnFadingLightTargets()
 	warnFadingLight:Show(fadingLightCount, table.concat(fadingLightTargets, "<, >"))

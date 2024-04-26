@@ -48,14 +48,14 @@ mod:AddBoolOption("InfoFrame", true)
 mod:AddBoolOption("SetIconOnGrip", true)
 
 mod.vb.shieldCount = 0
-local sealArmorText = DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.cast:format(DBM:GetSpellInfo(105847), 23)
+local sealArmorText = DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.cast:format(DBM:GetSpellName(105847), 23)
 local gripTargets = {}
 local gripIcon = 6
 local corruptionActive = {}
 local residueNum = 0
 local diedOozeGUIDS = {}
 local numberOfPlayers = 1
-local tendrilDebuff = DBM:GetSpellInfo(105563)
+local tendrilDebuff = DBM:GetSpellName(105563)
 
 local function checkTendrils()
 	if not DBM:UnitDebuff("player", tendrilDebuff) and not UnitIsDeadOrGhost("player") then
@@ -95,9 +95,9 @@ function mod:OnCombatStart(delay)
 	self.vb.shieldCount = 0
 	numberOfPlayers = DBM:GetNumRealGroupMembers()
 	if self:IsDifficulty("lfr25") then
-		sealArmorText = DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.cast:format(DBM:GetSpellInfo(105847), 34.5)
+		sealArmorText = DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.cast:format(DBM:GetSpellName(105847), 34.5)
 	else
-		sealArmorText = DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.cast:format(DBM:GetSpellInfo(105847), 23)
+		sealArmorText = DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.cast:format(DBM:GetSpellName(105847), 23)
 	end
 	table.wipe(gripTargets)
 	table.wipe(corruptionActive)

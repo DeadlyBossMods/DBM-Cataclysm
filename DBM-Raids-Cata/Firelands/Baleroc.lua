@@ -66,7 +66,7 @@ local lastStrike = 0--Custom, no prototype
 local currentStrike = 0--^^
 local strikeCount = 0--^^
 local countdownTargets = {}
-local tormentDebuff, stackDebuff1, stackDebuff2 = DBM:GetSpellInfo(99257), DBM:GetSpellInfo(99262), DBM:GetSpellInfo(99263)
+local tormentDebuff, stackDebuff1, stackDebuff2 = DBM:GetSpellName(99257), DBM:GetSpellName(99262), DBM:GetSpellName(99263)
 
 local function showCountdownWarning(self)
 	warnCountdown:Show(table.concat(countdownTargets, "<, >"))
@@ -168,12 +168,12 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif spellId == 99263 and args:IsPlayer() then
 		timerVitalFlame:Start()
 	elseif spellId == 99352 then--Decimation Blades
-		bladesName = DBM:GetSpellInfo(99353)
+		bladesName = DBM:GetSpellName(99353)
 		lastStrike = GetTime()--Set last strike here too
 		strikeCount = 0--Reset count.
 		timerStrikeCD:Start(self:IsHeroic() and 3 or 6, bladesName)
 	elseif spellId == 99350 then--Inferno Blades
-		bladesName = DBM:GetSpellInfo(99351)
+		bladesName = DBM:GetSpellName(99351)
 		lastStrike = GetTime()--Set last strike here too
 		strikeCount = 0--Reset count.
 		timerStrikeCD:Start(2.5, bladesName)
