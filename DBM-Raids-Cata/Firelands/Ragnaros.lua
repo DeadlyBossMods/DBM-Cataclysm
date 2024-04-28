@@ -108,7 +108,7 @@ local timerDreadFlameCD		= mod:NewCDTimer(40, 100675, nil, false, nil, 5)--Off b
 local berserkTimer			= mod:NewBerserkTimer(1080)
 
 mod:AddRangeFrameOption("6/8")
-mod:AddSetIconOption("BlazingHeatIcons", 100460, true, false, {1, 2})
+mod:AddSetIconOption("BlazingHeatIcons", 100460, true, 0, {1, 2})
 mod:AddBoolOption("InfoHealthFrame", "Healer")--Phase 1 info framefor low health detection.
 mod:AddBoolOption("AggroFrame", false)--Phase 2 info frame for seed aggro detection.
 mod:AddBoolOption("MeteorFrame", true)--Phase 3 info frame for meteor fixate detection.

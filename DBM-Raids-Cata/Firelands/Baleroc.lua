@@ -54,8 +54,8 @@ local berserkTimer			= mod:NewBerserkTimer(360)
 
 mod:AddRangeFrameOption(5, 99257)
 mod:AddInfoFrameOption(99262, "Healer")
-mod:AddSetIconOption("SetIconOnCountdown", 99516, true, false, {1, 2})
-mod:AddSetIconOption("SetIconOnTorment", 99256, true, false, {3, 4, 5, 6, 7, 8})
+mod:AddSetIconOption("SetIconOnCountdown", 99516, true, 0, {1, 2})
+mod:AddSetIconOption("SetIconOnTorment", 99256, true, 0, {3, 4, 5, 6, 7, 8})
 mod:AddBoolOption("ResetShardsinThrees", true, "misc")
 
 mod.vb.lastStrikeDiff = 0

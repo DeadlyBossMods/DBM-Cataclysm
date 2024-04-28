@@ -68,8 +68,8 @@ local timerFaceRageCD			= mod:NewCDTimer(27, 99947, nil, false, nil, 3)--Has a 2
 
 local berserkTimer				= mod:NewBerserkTimer(600)
 
-mod:AddSetIconOption("SetIconOnFaceRage", 99945, false, false, {2})
-mod:AddSetIconOption("SetIconOnRage", 100415, false, false, {1})
+mod:AddSetIconOption("SetIconOnFaceRage", 99945, false, 0, {2})
+mod:AddSetIconOption("SetIconOnRage", 100415, false, 0, {1})
 
 mod.vb.prewarnedPhase2 = false
 mod.vb.ripLimbDead = false
