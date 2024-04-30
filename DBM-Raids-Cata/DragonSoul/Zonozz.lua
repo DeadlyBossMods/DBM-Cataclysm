@@ -47,7 +47,7 @@ mod:AddDropdownOption("CustomRangeFrame", {"Never", "Normal", "DynamicPhase2", "
 local shadowsTargets = {}
 local phase2Started = false
 local voidWarned = false
-local filterDebuff = DBM:GetSpellInfo(103434)
+local filterDebuff = DBM:GetSpellName(103434)
 
 local function warnShadowsTargets()
 	warnShadows:Show(table.concat(shadowsTargets, "<, >"))

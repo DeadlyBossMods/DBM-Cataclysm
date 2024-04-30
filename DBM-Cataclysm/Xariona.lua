@@ -33,7 +33,7 @@ local timerUnleashedMagicCD		= mod:NewCDTimer(66, 93556, nil, nil, nil, 2)--66 C
 
 local specialCharging = false
 local hasPower = false
-local zoneName = DBM:GetSpellInfo(93553)
+local zoneName = DBM:GetSpellName(93553)
 
 function mod:FissureTarget()
 	local targetname = self:GetBossTarget(50061)

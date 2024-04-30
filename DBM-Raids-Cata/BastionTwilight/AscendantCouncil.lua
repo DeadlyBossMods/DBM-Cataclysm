@@ -139,7 +139,7 @@ local warnedLowHP = {}
 local isBeacon = false
 local isRod = false
 local infoFrameUpdated = false
-local groundedName, searingName = DBM:GetSpellInfo(83581), DBM:GetSpellInfo(83500)
+local groundedName, searingName = DBM:GetSpellName(83581), DBM:GetSpellName(83500)
 
 local shieldHealth = {
 	["heroic25"] = 2000000,

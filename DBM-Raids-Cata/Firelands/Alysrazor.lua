@@ -66,7 +66,7 @@ mod:AddInfoFrameOption(98734, false)
 mod.vb.initiatesSpawned = 0
 mod.vb.cataCast = 0
 mod.vb.moltCast = 0
-local PowerLevel = DBM:GetSpellInfo(98734)
+local PowerLevel = DBM:GetSpellName(98734)
 
 function mod:OnCombatStart(delay)
 	if self:IsHeroic() then

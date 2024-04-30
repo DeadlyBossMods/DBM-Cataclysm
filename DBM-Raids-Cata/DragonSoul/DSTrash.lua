@@ -29,7 +29,7 @@ local timerRoleplay			= mod:NewTimer(45.5, "timerRoleplay", "237538")
 local drakeRunning = false
 local drakesCount = 15
 local drakeguid = {}
-local drakeEscape = DBM:GetSpellInfo(109904)
+local drakeEscape = DBM:GetSpellName(109904)
 
 local function drakeDied(GUID)
 	if not drakeguid[GUID] then
