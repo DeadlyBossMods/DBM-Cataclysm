@@ -168,7 +168,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		cinderTargets[#cinderTargets + 1] = args.destName
 		if args:IsPlayer() then
 			specWarnCinderMove:Schedule(3)
-			specWarnCinderMove:ScheduleVoice("runout")
+			specWarnCinderMove:ScheduleVoice(3, "runout")
 			yellCinder:Yell()
 			yellCinderFades:Countdown(args.spellId)
 		end
