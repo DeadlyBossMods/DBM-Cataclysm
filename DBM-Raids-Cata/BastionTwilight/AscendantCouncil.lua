@@ -191,7 +191,8 @@ local function checkSearingWinds(self)
 end
 
 function mod:OnCombatStart(delay)
-	DBM:GetModByName("BoTrash"):SetFlamestrike(true)
+	local botTrash = DBM:GetModByName("BoTrash")
+	botTrash:SetFlamestrike(true)
 	self:SetStage(1)
 	self.vb.lightningRodIcon = 1
 	self.vb.gravityCrushIcon = 1
