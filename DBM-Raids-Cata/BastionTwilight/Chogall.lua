@@ -131,9 +131,11 @@ function mod:SPELL_CAST_START(args)
 			self.vb.firstFury = true
 			self.vb.worshipCooldown = 36
 			self.vb.shadowOrdersCD = 25
-			timerWorshipCD:Restart(10)--worship is 10 seconds after first fury, regardless of what timer was at before 85%
+			timerWorshipCD:Stop()
+			timerWorshipCD:Start(10)--worship is 10 seconds after first fury, regardless of what timer was at before 85%
 			timerShadowsOrders:Cancel()--Cancel shadows orders timer, flame is going to be next.
-			timerFlamesOrders:Restart(15)--Flames orders is 15 seconds after first fury, regardless whether or not shadow was last.
+			timerFlamesOrders:Stop()
+			timerFlamesOrders:Start(15)--Flames orders is 15 seconds after first fury, regardless whether or not shadow was last.
 		end
 	elseif args.spellId == 82411 then -- Creatures are channeling after their spawn.
 		if self.Options.SetIconOnCreature then
