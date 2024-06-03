@@ -76,7 +76,8 @@ function mod:SPELL_AURA_APPLIED(args)
 		timerParalysis:Start()
 		timerParalysisCD:Start()
 	elseif args.spellId == 83908 then
-		timerMalevolentStrike:Restart(30, args.destName)
+		timerMalevolentStrike:Stop(args.destName)
+		timerMalevolentStrike:Start(30, args.destName)
 		local amount = args.amount or 1
 		if args:IsPlayer() and amount >= 8 then
 			specWarnMalevolent:Show(amount)
