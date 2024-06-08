@@ -1,4 +1,4 @@
-## Interface: 100207
+## Interface: 100207, 110000
 ## X-Min-Interface: 80000
 ## Title:|cffffe00a<|r|cffff7d0aDBM Mod|r|cffffe00a>|r |cff10ff10World Bosses (Cata)|r
 ## Title-koKR:|cffffe00a<|r|cffff7d0aDBM Mod|r|cffffe00a>|r |cff10ff10필드 보스 (대격변)|r
