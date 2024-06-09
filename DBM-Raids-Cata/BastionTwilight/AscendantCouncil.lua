@@ -365,7 +365,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		specWarnAegisFlame:Play("targetchange")
 		if self.Options.InfoFrame then
 			DBM.InfoFrame:SetHeader(args.spellName)
-			DBM.InfoFrame:Show(2, "enemyabsorb", nil, shieldHealth[(DBM:GetCurrentInstanceDifficulty())])
+			DBM.InfoFrame:Show(2, "enemyabsorb", nil, shieldHealth[(DBM:GetCurrentInstanceDifficulty())], args.spellId)
 		end
 	elseif args.spellId == 82762 and args:IsPlayer() then
 		specWarnWaterLogged:Show()
