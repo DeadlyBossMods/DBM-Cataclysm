@@ -38,7 +38,7 @@ local warnRedEssence		= mod:NewSpellAnnounce(87946, 3)
 
 local specWarnOrbs			= mod:NewSpecialWarning("SpecWarnOrbs", nil, nil, nil, 2, 2, nil, nil, 92852)
 local specWarnOrbOnYou		= mod:NewSpecialWarning("SpecWarnAggroOnYou", nil, nil, nil, 3, 5, nil, nil, 92852)
-local specWarnBreath		= mod:NewSpecialWarningDodge(90125, nil, nil, nil, 2, 2)
+local specWarnBreath		= mod:NewSpecialWarningSpell(90125, nil, nil, nil, 2, 2)
 local specWarnEggShield		= mod:NewSpecialWarningSpell(87654, "Ranged", nil, nil, 1, 2)
 local specWarnEggWeaken		= mod:NewSpecialWarningSwitch(-3238, "Ranged", nil, nil, 1, 2)
 local specWarnIndomitable	= mod:NewSpecialWarningDispel(90045, "RemoveEnrage", nil, nil, 1, 2)
