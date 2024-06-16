@@ -25,7 +25,7 @@ local warnVoidofUnmaking		= mod:NewSpellAnnounce(103571, 4, 103527)
 local warnVoidDiffusion			= mod:NewStackAnnounce(106836, 2)
 local warnFocusedAnger			= mod:NewStackAnnounce(104543, 3, nil, false)
 local warnPsychicDrain			= mod:NewSpellAnnounce(104322, 4)
-local warnShadows				= mod:NewSpellAnnounce(103434, 3)
+local warnShadows				= mod:NewTargetAnnounce(103434, 3)
 
 local specWarnVoidofUnmaking	= mod:NewSpecialWarningSpell(103571, nil, nil, nil, 2)
 local specWarnBlackBlood		= mod:NewSpecialWarningSpell(104378, nil, nil, nil, 2)
