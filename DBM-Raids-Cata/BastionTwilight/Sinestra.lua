@@ -7,6 +7,7 @@ mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(45213)
 mod:SetEncounterID(1082, 1083)--Muiti encounter id. need to verify.
 mod:SetUsedIcons(1, 2)
+mod.respawnTime = 40
 --mod:SetModelSound("Sound\\Creature\\Sinestra\\VO_BT_Sinestra_Aggro01.ogg", "Sound\\Creature\\Sinestra\\VO_BT_Sinestra_Kill02.ogg")
 --Long: We were fools to entrust an imbecile like Cho'gall with such a sacred duty! I will deal with you intruders myself!
 --Short: Powerless....
@@ -37,7 +38,7 @@ local warnRedEssence		= mod:NewSpellAnnounce(87946, 3)
 
 local specWarnOrbs			= mod:NewSpecialWarning("SpecWarnOrbs", nil, nil, nil, 2, 2, nil, nil, 92852)
 local specWarnOrbOnYou		= mod:NewSpecialWarning("SpecWarnAggroOnYou", nil, nil, nil, 3, 5, nil, nil, 92852)
-local specWarnBreath		= mod:NewSpecialWarningDodge(90125, nil, nil, nil, 2, 2)
+local specWarnBreath		= mod:NewSpecialWarningSpell(90125, nil, nil, nil, 2, 2)
 local specWarnEggShield		= mod:NewSpecialWarningSpell(87654, "Ranged", nil, nil, 1, 2)
 local specWarnEggWeaken		= mod:NewSpecialWarningSwitch(-3238, "Ranged", nil, nil, 1, 2)
 local specWarnIndomitable	= mod:NewSpecialWarningDispel(90045, "RemoveEnrage", nil, nil, 1, 2)
