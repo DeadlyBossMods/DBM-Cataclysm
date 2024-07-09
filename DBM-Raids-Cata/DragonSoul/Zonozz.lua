@@ -119,11 +119,13 @@ function mod:SPELL_AURA_APPLIED(args)
 		timerBlackBlood:Start()
 		self:Schedule(30, blackBloodEnds)
 		if self:IsDifficulty("heroic10", "heroic25") then
-			if timerVoidofUnmakingCD:GetTime() > 45.3 then--Heroic has a failsafe in place, if CD ends before 15 seconds after black phase ending, it's extended
+			--Heroic has a failsafe in place, if CD ends before 15 seconds after black phase ending, it's extended
+			if timerVoidofUnmakingCD:GetTime() > 45.3 then
 				timerVoidofUnmakingCD:Update(45.3, 90.3)
 			end
 		else
-			if timerVoidofUnmakingCD:GetTime() > 54.3 then--Normal also has a failsafe but much smaller
+			--Normal also has a failsafe but much smaller
+			if timerVoidofUnmakingCD:GetTime() > 54.3 then
 				timerVoidofUnmakingCD:Update(54.3, 90.3)
 			end
 		end
