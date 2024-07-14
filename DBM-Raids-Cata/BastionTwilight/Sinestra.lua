@@ -215,7 +215,7 @@ end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 90045 then
-		specWarnIndomitable:Show()
+		specWarnIndomitable:Show(args.destName)
 		specWarnIndomitable:Play("enrage")
 	elseif args.spellId == 89421 then--Cast wracks (10,25)
 		warnWrack:Show(args.destName)
