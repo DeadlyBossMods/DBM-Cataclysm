@@ -46,7 +46,7 @@ local warnBarrierSoon			= mod:NewPreWarnAnnounce(79582, 10, 3, nil, "-Healer")
 local warnBarrier				= mod:NewSpellAnnounce(79582, 4)
 local warnAcquiringTarget		= mod:NewTargetNoFilterAnnounce(79501, 4)
 
-local specWarnBarrier			= mod:NewSpecialWarningSpell(79582, "-Healer", nil, nil, 1, 2)
+local specWarnBarrier			= mod:NewSpecialWarningReflect(79582, "-Healer", nil, nil, 1, 2)
 local specWarnAcquiringTarget	= mod:NewSpecialWarningMoveAway(79501, nil, nil, nil, 1, 2)
 local yellAcquiringTarget		= mod:NewYell(79501)
 local specWarnEncasingShadows	= mod:NewSpecialWarningTarget(92023, nil, nil, nil, 1, 2, 3)--Heroic Ability
@@ -292,7 +292,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		bossActivate(self, cid)
 		if self.vb.pulled then -- prevent show warning when first pulled.
 			if self.Options.SpecWarn78740switch then
-				specWarnActivated:Show(args.destName)
+				specWarnActivated:Show()
 				specWarnActivated:Play("targetchange")
 			else
 				warnActivated:Show(args.destName)
@@ -365,7 +365,7 @@ function mod:SPELL_AURA_APPLIED(args)
 	elseif args.spellId == 79629 and args:IsDestTypeHostile() then--Check if Generator buff is gained by a hostile.
 		local targetCID = self:GetUnitCreatureId("target")--Get CID of current target
 		if args:GetDestCreatureID() == targetCID and args:GetDestCreatureID() ~= 42897 then--If target gaining buff is target then not an ooze (only hostiles left filtering oozes is golems)
-			specWarnGenerator:Show(args.destName)--Show special warning to move him out of it.
+			specWarnGenerator:Show()--Show special warning to move him out of it.
 			specWarnGenerator:Play("moveboss")
 		end
 	elseif args.spellId == 92048 then--Shadow Infusion, debuff 5 seconds before shadow conductor.

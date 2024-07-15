@@ -133,7 +133,7 @@ function mod:SPELL_AURA_REMOVED(args)
 			self:SetIcon(args.destName, 0)
 		end
 	elseif args.spellId == 92681 then--Phase shift removed, add targetable/killable.
-		specWarnAddTargetable:Show(args.destName)
+		specWarnAddTargetable:Show()
 		specWarnAddTargetable:Play("killmob")
 	end
 end
