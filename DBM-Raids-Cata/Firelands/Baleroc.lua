@@ -166,7 +166,13 @@ function mod:SPELL_AURA_APPLIED(args)
 		bladesName = DBM:GetSpellName(99353)
 		lastStrike = GetTime()--Set last strike here too
 		strikeCount = 0--Reset count.
-		timerStrikeCD:Start(self:IsHeroic() and 3 or 6, bladesName)
+		--On retail, it's 3 seconds on heroic any size, and 6 on normal any size
+		--In Classic, it's a 10 vs 25 thing instead
+		if self:IsDifficulty("normal25", "heroic25", "heroic") then--The very first timer is subject to inaccuracis do to variation. But they are minor, usually within 0.5sec
+			timerStrikeCD:Start(3, bladesName)
+		else
+			timerStrikeCD:Start(6, bladesName)--6 seconds on 10 man
+		end
 	elseif spellId == 99350 then--Inferno Blades
 		bladesName = DBM:GetSpellName(99351)
 		lastStrike = GetTime()--Set last strike here too
