@@ -3,11 +3,6 @@ local L		= mod:GetLocalizedStrings()
 local Riplimb	= DBM:EJ_GetSectionInfo(2581)
 local Rageface	= DBM:EJ_GetSectionInfo(2583)
 
---normal,normal25,heroic,heroic25 in classic
-if not mod:IsClassic() then--Future planning, so cata classic uses regular rules defined in toc and not timewalker rules for this zone
-	mod.statTypes = "normal,heroic,timewalker"
-end
-
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(53691)
 mod:SetEncounterID(1205)

@@ -1,11 +1,6 @@
 local mod	= DBM:NewMod(192, "DBM-Raids-Cata", 2, 78)
 local L		= mod:GetLocalizedStrings()
 
---normal,normal25,heroic,heroic25 in classic
-if not mod:IsClassic() then--Future planning, so cata classic uses regular rules defined in toc and not timewalker rules for this zone
-	mod.statTypes = "normal,heroic,timewalker"
-end
-
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(52498)
 mod:SetEncounterID(1197)
