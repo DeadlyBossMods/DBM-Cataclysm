@@ -320,13 +320,13 @@ L= DBM:GetModLocalization(194)
 
 L:SetWarningLocalization({
 	WarnPhase			= "Фаза %d",
-	WarnNewInitiate		= "Новообращенный друид-огнеястреб (%s)"
+	WarnNewInitiate		= "Друид (%s)"
 })
 
 L:SetTimerLocalization({
 	TimerPhaseChange	= "Фаза %d",
-	TimerHatchEggs		= "Вылупление яиц",
-	timerNextInitiate	= "Следующий друид (%s)"
+	TimerHatchEggs		= "Яйца",
+	timerNextInitiate	= "Друид (%s)"
 })
 
 L:SetOptionLocalization({
