@@ -322,13 +322,13 @@ L= DBM:GetModLocalization(194)
 
 L:SetWarningLocalization({
 	WarnPhase			= "Phase %d",
-	WarnNewInitiate		= "Blazing Talon Initiate (%s)"
+	WarnNewInitiate		= "Initiate (%s)"
 })
 
 L:SetTimerLocalization({
 	TimerPhaseChange	= "Phase %d",
-	TimerHatchEggs		= "Next Eggs",
-	timerNextInitiate	= "Next Initiate (%s)"
+	TimerHatchEggs		= "Eggs",
+	timerNextInitiate	= "Initiate (%s)"
 })
 
 L:SetOptionLocalization({
