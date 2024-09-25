@@ -209,7 +209,7 @@ do
 			warnNewInitiate:Show(initiateSpawns[self.vb.initiatesSpawned])
 			if self.vb.initiatesSpawned == 6 then return end--All 6 are spawned, lets not create any timers.
 			local nextText = initiateSpawns[self.vb.initiatesSpawned+1]
-			local nextTimer = self:IsHeroic() and intiateHeroicTimers[self.vb.initiatesSpawned+1] or initiateSpawns[self.vb.initiatesSpawned+1]
+			local nextTimer = self:IsHeroic() and intiateHeroicTimers[self.vb.initiatesSpawned+1] or intiateTimers[self.vb.initiatesSpawned+1]
 			timerNextInitiate:Start(nextTimer, nextText)
 		end
 	end

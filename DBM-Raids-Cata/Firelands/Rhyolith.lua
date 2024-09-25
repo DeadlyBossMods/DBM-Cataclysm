@@ -42,7 +42,6 @@ local timerSuperheated		= mod:NewNextTimer(10, 101304, nil, nil, nil, 5, nil, DB
 local timerMoltenSpew		= mod:NewCastTimer(6, 98034, nil, nil, nil, 2, nil, DBM_COMMON_L.HEALER_ICON)		--6secs after Drinking Magma
 local timerMagmaFlowActive	= mod:NewBuffActiveTimer(10, 97225)	--10 second buff volcano has, after which the magma line explodes.
 
-mod.vb.phase = 1
 mod.vb.addCount = 0
 mod.vb.prewarnedPhase2 = false
 
@@ -55,7 +54,7 @@ function mod:OnCombatStart(delay)
 	else
 		timerSuperheated:Start(360-delay)--6 min on normal
 	end
-	self.vb.phase = 1
+	self:SetStage(1)
 	self.vb.addCount = 0
 	self.vb.prewarnedPhase2 = false
 end
@@ -96,7 +95,7 @@ end
 function mod:SPELL_AURA_APPLIED(args)
 	local spellId = args.spellId
 	if spellId == 99846 and self.vb.phase < 2 then
-		self.vb.phase = 2
+		self:SetStage(2)
 		warnPhase2:Show()
 		if timerFlameStomp:GetTime() > 0 then--This only happens if it was still on CD going into phase
 			timerFlameStomp:Cancel()
