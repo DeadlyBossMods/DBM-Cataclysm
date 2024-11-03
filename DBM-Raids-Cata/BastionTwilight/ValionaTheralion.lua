@@ -5,6 +5,7 @@ mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(45992, 45993)
 mod:SetEncounterID(1032)
 mod:SetUsedIcons(1, 2, 3, 8)
+mod:SetZone(671)
 --mod:SetModelSound("Sound\\Creature\\Chogall\\VO_BT_Chogall_BotEvent10.ogg", "Sound\\Creature\\Valiona\\VO_BT_Valiona_Event06.ogg")
 --Long: Valiona, Theralion put them in their place!
 --Short: Enter twilight!

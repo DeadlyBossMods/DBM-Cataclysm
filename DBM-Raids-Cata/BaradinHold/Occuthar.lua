@@ -6,6 +6,7 @@ mod.statTypes = "normal,normal25"
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(52363)
 mod:SetEncounterID(1250)
+mod:SetZone(757)
 
 mod:RegisterCombat("combat")
 

@@ -5,6 +5,7 @@ mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(41378)
 mod:SetEncounterID(1025)
 mod:SetUsedIcons(1, 2, 3, 4, 6, 7)
+mod:SetZone(669)
 --mod:SetModelSound("Sound\\Creature\\Nefarian\\VO_BD_Nefarian_MaloriakIntro01.ogg", "Sound\\Creature\\Maloriak\\VO_BD_Maloriak_Event05.ogg")
 --Long: Maloriak, try not to lose to these mortals. Semicompetent help is SO hard to create.
 --Short: Mix and stir, apply heat...

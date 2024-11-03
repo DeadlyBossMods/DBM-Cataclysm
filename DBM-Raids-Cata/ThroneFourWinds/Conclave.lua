@@ -7,6 +7,7 @@ local Rohash	= DBM:EJ_GetSectionInfo(3172)
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(45870, 45871, 45872)
 mod:SetEncounterID(1035)
+mod:SetZone(754)
 mod:SetBossHPInfoToHighest()
 
 mod:RegisterCombat("combat")

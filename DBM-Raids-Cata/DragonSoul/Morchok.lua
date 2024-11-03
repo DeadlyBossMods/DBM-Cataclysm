@@ -6,6 +6,7 @@ mod.statTypes = "normal,normal25,heroic,heroic25,lfr"
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(55265)
 mod:SetEncounterID(1292)
+mod:SetZone(967)
 --mod:SetModelSound("sound\\CREATURE\\MORCHOK\\VO_DS_MORCHOK_EVENT_04.OGG", "sound\\CREATURE\\MORCHOK\\VO_DS_MORCHOK_ORB_01.OGG")
 
 mod:RegisterCombat("combat")

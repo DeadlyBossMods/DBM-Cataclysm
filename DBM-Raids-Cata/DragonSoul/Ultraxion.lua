@@ -6,6 +6,7 @@ mod.statTypes = "normal,normal25,heroic,heroic25,lfr"
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(55294)
 mod:SetEncounterID(1297)
+mod:SetZone(967)
 --mod:SetModelSound("sound\\CREATURE\\ULTRAXION\\VO_DS_ULTRAXION_INTRO_01.OGG", "sound\\CREATURE\\ULTRAXION\\VO_DS_ULTRAXION_AGGRO_01.OGG")
 
 mod:RegisterCombat("combat")
