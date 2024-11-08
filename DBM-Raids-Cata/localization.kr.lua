@@ -314,13 +314,13 @@ L= DBM:GetModLocalization(194)
 
 L:SetWarningLocalization({
 	WarnPhase			= "%d단계",
-	WarnNewInitiate		= "타오르는 발톱 수습생 (%s)"
+	WarnNewInitiate		= "수습생 (%s)"
 })
 
 L:SetTimerLocalization({
 	TimerPhaseChange	= "%d단계",
-	TimerHatchEggs		= "다음 알",
-	timerNextInitiate	= "다음 수습생 (%s)"
+	TimerHatchEggs		= "알",
+	timerNextInitiate	= "수습생 (%s)"
 })
 
 L:SetOptionLocalization({
