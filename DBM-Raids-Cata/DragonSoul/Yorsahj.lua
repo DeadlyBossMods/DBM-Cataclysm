@@ -6,6 +6,7 @@ mod.statTypes = "normal,normal25,heroic,heroic25,lfr"
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(55312)
 mod:SetEncounterID(1295)
+mod:SetZone(967)
 --mod:DisableRegenDetection()--Uncomment in next dbm release
 --mod:SetModelSound("sound\\CREATURE\\Yorsahj\\VO_DS_YORSAHJ_INTRO_01.OGG", "sound\\CREATURE\\Yorsahj\\VO_DS_YORSAHJ_SPELL_02.OGG")
 
