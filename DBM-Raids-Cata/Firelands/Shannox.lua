@@ -208,7 +208,7 @@ end
 
 function mod:UNIT_DIED(args)
 	local cid = self:GetCIDFromGUID(args.destGUID)
-	if cid == 53694 then
+	if cid == 53694 then--Riplimb
 		timerSpearCD:Cancel()--Cancel it and replace it with other timer
 		timerMagmaRuptureCD:Start(10)
 		self.vb.ripLimbDead = true
