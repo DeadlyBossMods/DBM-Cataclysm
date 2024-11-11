@@ -28,7 +28,7 @@ local timerRoleplay			= mod:NewTimer(45.5, "timerRoleplay", "237538")
 --I suspect some shitty LFR group is still gonna hit timer limit before 15 drakes, so we'll see
 
 local drakeRunning = false
-local drakesCount = 15
+local drakesCount = mod:IsRetail() and 5 or 15
 local drakeguid = {}
 local drakeEscape = DBM:GetSpellName(109904)
 
@@ -159,7 +159,7 @@ function mod:OnSync(msg, GUID)
 			drakeRunning = true
 		end
 		table.wipe(drakeguid)
-		drakesCount = 15--Reset drakes here too soo they stay accurate after wipes.
+		drakesCount = self:IsRetail() and 5 or 15
 		timerDrakes:Start(231, drakeEscape)
 	elseif msg == "SkyrimEnded" then
 		drakeRunning = false
@@ -181,7 +181,7 @@ function mod:OnSync(msg, GUID)
 			drakeRunning = true
 		end
 		table.wipe(drakeguid)
-		drakesCount = 15--Reset drakes here still in case no one running current dbm is targeting thrall
+		drakesCount = self:IsRetail() and 5 or 15--Reset drakes here still in case no one running current dbm is targeting thrall
 		timerDrakes:Start(253, drakeEscape)--^^
 		--timer still remains even combat starts. so, cancels manually. (Probably for someone who wasn't present for first drake dying.
 	end

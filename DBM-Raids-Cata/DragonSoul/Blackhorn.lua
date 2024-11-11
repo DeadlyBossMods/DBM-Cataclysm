@@ -293,7 +293,7 @@ end
 
 function mod:OnSync(msg, sourceGUID)
 	if msg == "PreCombat" then
-		timerCombatStart:Start(19.1)
+		timerCombatStart:Start(19.1)--Time from yell to ENCOUNTER_START
 	elseif msg == "BladeRush" and self:IsInCombat() then
 		timerBladeRushCD:Start(self:IsHeroic() and 15.5 or 20, sourceGUID)
 	end
