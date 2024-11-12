@@ -126,6 +126,7 @@ local elementalsGUID = {}
 local meteorWarned = false
 local dreadflame, meteorTarget, staffDebuff = DBM:GetSpellName(100675), DBM:GetSpellName(99849), DBM:GetSpellName(101109)
 
+---@param self DBMMod
 local function showRangeFrame(self)
 	if DBM:UnitDebuff("player", staffDebuff) then return end--Staff debuff, don't change their range finder from 8.
 	if self.Options.RangeFrame then
@@ -137,6 +138,7 @@ local function showRangeFrame(self)
 	end
 end
 
+---@param self DBMMod
 local function hideRangeFrame(self)
 	if DBM:UnitDebuff("player", staffDebuff) then return end--Staff debuff, don't hide it either.
 	if self.Options.RangeFrame then
@@ -144,6 +146,7 @@ local function hideRangeFrame(self)
 	end
 end
 
+---@param self DBMMod
 local function TransitionEnded(self)
 	timerPhaseSons:Stop()
 	timerLavaBoltCD:Stop()
@@ -189,6 +192,10 @@ local function warnSeeds()
 	timerMoltenSeedCD:Start()
 end
 
+---@param self DBMMod
+---@param spellId number
+---@param spellName string
+---@param adjustedTime number
 local function splittingBlowCasting(self, spellId, spellName, adjustedTime)
 	self.vb.sonsLeft = self.vb.sonsLeft + 8
 	self:SetStage(0)
