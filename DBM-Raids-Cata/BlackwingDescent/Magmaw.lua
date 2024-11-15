@@ -46,8 +46,6 @@ local timerArmageddon		= mod:NewCastTimer(8, 92177, nil, nil, nil, 3)
 
 local berserkTimer			= mod:NewBerserkTimer(600)
 
-mod:AddRangeFrameOption("6")--For shadow breath
-
 mod.vb.prewarnedPhase2 = false
 
 function mod:OnCombatStart(delay)
@@ -59,12 +57,6 @@ function mod:OnCombatStart(delay)
 		timerInferno:Start(30-delay)
 		specWarnInfernoSoon:Schedule(26-delay)
 		specWarnInfernoSoon:ScheduleVoice(26-delay, "bigmobsoon")
-	end
-end
-
-function mod:OnCombatEnd()
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Hide()
 	end
 end
 
@@ -123,9 +115,6 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		specWarnInfernoSoon:Cancel()
 		specWarnInfernoSoon:CancelVoice()
 		warnPhase2:Show()
-		if self.Options.RangeFrame and self:IsDifficulty("heroic10", "heroic25") then
-			DBM.RangeCheck:Show(6)
-		end
 	end
 end
 

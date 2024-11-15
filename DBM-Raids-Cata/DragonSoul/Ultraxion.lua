@@ -24,14 +24,14 @@ local warnHourofTwilightSoon		= mod:NewPreWarnAnnounce(106371, 15, 4)--Why 15? b
 local warnHourofTwilight			= mod:NewCountAnnounce(106371, 4)
 local warnFadingLight				= mod:NewTargetCountAnnounce(109075, 3)
 
-local specWarnHourofTwilight		= mod:NewSpecialWarningSpell(106371, nil, nil, nil, 2)
-local specWarnHourofTwilightN		= mod:NewSpecialWarning("specWarnHourofTwilightN", nil, false)
-local specWarnFadingLight			= mod:NewSpecialWarningYou(109075)
-local specWarnFadingLightOther		= mod:NewSpecialWarningTarget(109075, "Tank")
-local specWarnTwilightEruption		= mod:NewSpecialWarningSpell(106388, nil, nil, 2, 3)
+local specWarnHourofTwilight		= mod:NewSpecialWarningSpell(106371, nil, nil, nil, 2, 2)
+local specWarnHourofTwilightN		= mod:NewSpecialWarning("specWarnHourofTwilightN", nil, false, nil, 2, 2)
+local specWarnFadingLight			= mod:NewSpecialWarningYou(109075, nil, nil, nil, 1, 2)
+local specWarnFadingLightOther		= mod:NewSpecialWarningTaunt(109075, nil, nil, nil, 1, 2)
+local specWarnTwilightEruption		= mod:NewSpecialWarningSpell(106388, nil, nil, 2, 3, 2)
 
 local timerCombatStart				= mod:NewTimer(35, "TimerCombatStart", 59571)
-local timerUnstableMonstrosity		= mod:NewNextTimer(60, 106372, nil, "Healer", nil, 5, nil, DBM_COMMON_L.HEALER_ICON)
+--local timerUnstableMonstrosity	= mod:NewNextTimer(60, 106372, nil, "Healer", nil, 5, nil, DBM_COMMON_L.HEALER_ICON)
 local timerHourofTwilight			= mod:NewCastTimer(5, 106371)
 local timerHourofTwilightCD			= mod:NewNextCountTimer(45.5, 106371, nil, nil, nil, 5, nil, nil, nil, 2, 4)
 local timerTwilightEruption			= mod:NewCastTimer(5, 106388, nil, nil, nil, 2)
@@ -70,15 +70,13 @@ function mod:OnCombatStart(delay)
 	warnHourofTwilightSoon:Schedule(30.5)
 	if self.Options.SpecWarnHoTN == "One" then--Don't filter here, this is supposed to work for everyone. IF they don't want special warning they set SpecWarnHoTN to Never (it's default)
 		specWarnHourofTwilightN:Schedule(40.5, hourOfTwilight, hourOfTwilightCount+1)
+		specWarnHourofTwilightN:ScheduleVoice(40.5, "specialsoon")
 	end
 	timerHourofTwilightCD:Start(45.5-delay, 1)
 	timerGiftofLight:Start(-delay)
 	timerEssenceofDreams:Start(-delay)
 	timerSourceofMagic:Start(-delay)
 	berserkTimer:Start(-delay)
-end
-
-function mod:OnCombatEnd()
 end
 
 function mod:SPELL_CAST_START(args)
@@ -88,6 +86,11 @@ function mod:SPELL_CAST_START(args)
 		hourOfTwilightCount = hourOfTwilightCount + 1
 		warnHourofTwilight:Show(hourOfTwilightCount)
 		specWarnHourofTwilight:Show()
+		if DBM:UnitDebuff("player", 105925) then
+			specWarnHourofTwilight:Play("useextraaction")
+		else
+			specWarnHourofTwilight:Play("aesoon")
+		end
 		--Reset Mechanic begin
 		if self:IsDifficulty("heroic10", "heroic25") and (self.Options.ResetHoTCounter == "ResetDynamic" or self.Options.ResetHoTCounter == "Reset3Always") and hourOfTwilightCount == 3
 		or self.Options.ResetHoTCounter == "ResetDynamic" and self:IsDifficulty("normal10", "normal25", "lfr25") and hourOfTwilightCount == 2 then
@@ -98,6 +101,7 @@ function mod:SPELL_CAST_START(args)
 		or self.Options.SpecWarnHoTN == "Two" and (hourOfTwilightCount == 1 or hourOfTwilightCount == 4)--All use this
 		or self.Options.SpecWarnHoTN == "Three" and (hourOfTwilightCount == 2 or hourOfTwilightCount == 5) then--ResetDynamic doesn't use this on normal, however, no reason to filter it here as hourOfTwilightCount was already reset before this ran. Never also uses this safely.
 			specWarnHourofTwilightN:Schedule(40.5, args.spellName, hourOfTwilightCount+1)
+			specWarnHourofTwilightN:ScheduleVoice(40.5, "specialsoon")
 		end
 		warnHourofTwilightSoon:Schedule(30.5)
 		timerHourofTwilightCD:Start(45.5, hourOfTwilightCount+1)
@@ -110,6 +114,7 @@ function mod:SPELL_CAST_START(args)
 		end
 	elseif spellId == 106388 then
 		specWarnTwilightEruption:Show()
+		specWarnTwilightEruption:Play("stilldanger")
 		timerTwilightEruption:Start()
 	end
 end
@@ -125,13 +130,15 @@ function mod:SPELL_AURA_APPLIED(args)
 			timerFadingLightCD:Start(15)
 		end
 		if (args:IsPlayer() or DBM:UnitDebuff("player", args.spellName)) and self:AntiSpam(2) then--Sometimes the combatlog doesn't report all fading lights, so we perform an additional aura check
-			local _, _, _, _, duration, expires = DBM:UnitDebuff("player", args.spellName)--Find out what our specific fading light is
+			local _, _, _, _, duration = DBM:UnitDebuff("player", args.spellName)--Find out what our specific fading light is
 			if duration then
 				specWarnFadingLight:Show()
+				specWarnFadingLight:Play("targetyou")
 				timerFadingLight:Start(duration-1)
 			end
 		else
 			specWarnFadingLightOther:Show(args.destName)
+			specWarnFadingLightOther:Play("tauntboss")
 		end
 		self:Unschedule(warnFadingLightTargets)
 		if self:IsDifficulty("lfr25") or self:IsDifficulty("heroic25") and #fadingLightTargets >= 7 or self:IsDifficulty("normal25") and #fadingLightTargets >= 4 or self:IsDifficulty("heroic10") and #fadingLightTargets >= 3 or self:IsDifficulty("normal10") and #fadingLightTargets >= 2 then
@@ -145,6 +152,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			local _, _, _, _, duration, expires = DBM:UnitDebuff("player", args.spellName)
 			if duration then
 				specWarnFadingLight:Show()
+				specWarnFadingLight:Play("targetyou")
 				timerFadingLight:Start(duration-1)
 			end
 		end

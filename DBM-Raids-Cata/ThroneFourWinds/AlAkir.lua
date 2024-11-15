@@ -49,8 +49,7 @@ local timerSquallLineCD		= mod:NewCDTimer(20, 91129, nil, nil, nil, 3, nil, DBM_
 
 local berserkTimer			= mod:NewBerserkTimer(600)
 
-mod:AddBoolOption("LightningRodIcon")
-mod:AddBoolOption("RangeFrame", true)
+mod:AddSetIconOption("LightningRodIcon", 89668, true, 0, {8})
 
 mod.vb.phase2Started = false
 
@@ -78,9 +77,6 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:OnCombatEnd()
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Hide()
-	end
 	self:UnregisterShortTermEvents()
 end
 
@@ -118,9 +114,6 @@ function mod:SPELL_AURA_APPLIED(args)
 			specWarnLightningRod:Show()
 			specWarnLightningRod:Play("runout")
 			yellLightningRod:Yell()
-			if self.Options.RangeFrame then
-				DBM.RangeCheck:Show(20)
-			end
 		end
 		if self.Options.LightningRodIcon then
 			self:SetIcon(args.destName, 8, 5)
@@ -136,9 +129,6 @@ function mod:SPELL_AURA_REMOVED(args)
 			self:SetIcon(args.destName, 0)
 		end
 		if args:IsPlayer() then
-			if self.Options.RangeFrame then
-				DBM.RangeCheck:Hide()
-			end
 		end
 	end
 end

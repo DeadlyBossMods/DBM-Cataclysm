@@ -15,13 +15,12 @@ mod:RegisterEvents(
 local warnBoulder			= mod:NewTargetAnnounce(107597, 3)--This is morchok entryway trash that throws rocks at random poeple.
 local warnDrakesLeft		= mod:NewAnnounce("DrakesLeft", 2, 61248)
 
-local specWarnBoulder		= mod:NewSpecialWarningMove(107597)
-local specWarnBoulderNear	= mod:NewSpecialWarningClose(107597)
+local specWarnBoulder		= mod:NewSpecialWarningMoveAway(107597, nil, nil, nil, 1, 2)
 local yellBoulder			= mod:NewYell(107597)
-local specWarnFlames		= mod:NewSpecialWarningMove(105579)
+local specWarnFlames		= mod:NewSpecialWarningGTFO(105579, nil, nil, nil, 1, 8)
 
-local timerDrakes			= mod:NewTimer(253, "TimerDrakes", 61248)
-local timerRoleplay			= mod:NewTimer(45.5, "timerRoleplay", "237538")
+local timerDrakes			= mod:NewTimer(253, "TimerDrakes", 61248, nil, nil, 6)
+local timerRoleplay			= mod:NewTimer(45.5, "timerRoleplay", "237538", nil, nil, 6)
 --Leave this timer for now, I think this is the same.
 --it still seems timed, just ends earlier if you kill 15 drakes.
 --No one knew it ended at 24 drakes before hotfix because timer always expired before any raid hit 24, so we often just saw the hard capped event limit.
@@ -32,7 +31,9 @@ local drakesCount = mod:IsRetail() and 5 or 15
 local drakeguid = {}
 local drakeEscape = DBM:GetSpellName(109904)
 
-local function drakeDied(GUID)
+---@param self DBMMod
+---@param GUID string
+local function drakeDied(self, GUID)
 	if not drakeguid[GUID] then
 		drakeguid[GUID] = true
 		drakesCount = drakesCount - 1
@@ -40,66 +41,48 @@ local function drakeDied(GUID)
 			warnDrakesLeft:Show(drakesCount)
 		end
 		if drakesCount == 0 then
-			mod:SendSync("SkyrimEnded")
+			self:SendSync("SkyrimEnded")
 		end
 	end
 end
 
-function mod:BoulderTarget(sGUID)
-	if not IsInGroup() then--you are ALWAYS target
-		if self:AntiSpam(3, 1) then
-			specWarnBoulder:Show()
-		end
-		return
-	end
-	local targetname = nil
-	for uId in DBM:GetGroupMembers() do
-		if UnitGUID(uId.."target") == sGUID then
-			targetname = DBM:GetUnitFullName(uId.."targettarget")
-			break
-		end
-	end
+function mod:BoulderTarget(targetname, uId)
 	if targetname and self:AntiSpam(1, targetname) then--Anti spam using targetname as an identifier, will prevent same target being announced double/tripple but NOT prevent multiple targets being announced at once :)
-		warnBoulder:Show(targetname)
 		if targetname == UnitName("player") then
 			if self:AntiSpam(3, 1) then
 				specWarnBoulder:Show()
 				yellBoulder:Yell()
 			end
 		else
-			local uId = DBM:GetRaidUnitId(targetname)
-			if uId then
-				local inRange = DBM.RangeCheck:GetDistance("player", uId)
-				if self:AntiSpam(3, 1) and inRange and inRange < 6 then--Guessed, unknown, spelltip isn't informative.
-					specWarnBoulderNear:Show(targetname)
-				end
-			end
+			warnBoulder:Show(targetname)
 		end
 	end
 end
 
 function mod:SPELL_CAST_START(args)
 	if args.spellId == 107597 then -- Spell cast 3 sec. Seems to location sets before cast completion. I tested 2.5 and good worked.
-		self:ScheduleMethod(2.5, "BoulderTarget", args.sourceGUID)
+		self:ScheduleMethod(0.5, "BossTargetScanner", args.sourceGUID, "BoulderTarget", 0.1, 9)
 	end
 end
 
-function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId, _, _, _, overkill)
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId, spellName, _, _, overkill)
 	if spellId == 105579 and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then
-		specWarnFlames:Show()
+		specWarnFlames:Show(spellName)
+		specWarnFlames:Play("watchfeet")
 	elseif (overkill or 0) > 0 then -- prevent to waste cpu. only pharse cid when event have overkill parameter.
 		local cid = self:GetCIDFromGUID(destGUID)
 		if (cid == 56249 or cid == 56250 or cid == 56251 or cid == 56252 or cid == 57281 or cid == 57795) then--Hack for mobs that don't fire UNIT_DIED event.
-			drakeDied(destGUID)
+			drakeDied(self, destGUID)
 		end
 	end
 end
 mod.SPELL_PERIODIC_DAMAGE = mod.SPELL_DAMAGE
 mod.RANGE_DAMAGE = mod.SPELL_DAMAGE
 
-function mod:SPELL_MISSED(_, _, _, _, destGUID, _, _, _, spellId)
+function mod:SPELL_MISSED(_, _, _, _, destGUID, _, _, _, spellId, spellName)
 	if spellId == 105579 and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then
-		specWarnFlames:Show()
+		specWarnFlames:Show(spellName)
+		specWarnFlames:Play("watchfeet")
 	end
 end
 
@@ -108,7 +91,7 @@ function mod:SWING_DAMAGE(_, _, _, _, destGUID, _, _, _, _, overkill)
 	if (overkill or 0) > 0 then -- prevent to waste cpu. only pharse cid when event have overkill parameter.
 		local cid = self:GetCIDFromGUID(destGUID)
 		if (cid == 56249 or cid == 56250 or cid == 56251 or cid == 56252 or cid == 57281 or cid == 57795) then--Hack for mobs that don't fire UNIT_DIED event.
-			drakeDied(destGUID)
+			drakeDied(self, destGUID)
 		end
 	end
 end
@@ -116,7 +99,7 @@ end
 function mod:UNIT_DIED(args)
 	local cid = self:GetCIDFromGUID(args.destGUID)
 	if cid == 56249 or cid == 56250 or cid == 56251 or cid == 56252 or cid == 57281 or cid == 57795 then
-		drakeDied(args.destGUID)
+		drakeDied(self, args.destGUID)
 	end
 end
 

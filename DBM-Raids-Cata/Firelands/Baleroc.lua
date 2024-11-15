@@ -48,7 +48,6 @@ local timerTormented		= mod:NewBuffFadesTimer(40, 99257, nil, nil, nil, 5)
 
 local berserkTimer			= mod:NewBerserkTimer(360)
 
-mod:AddRangeFrameOption(5, 99257)
 mod:AddInfoFrameOption(99262, "Healer")
 mod:AddSetIconOption("SetIconOnCountdown", 99516, true, 0, {1, 2})
 mod:AddSetIconOption("SetIconOnTorment", 99256, true, 0, {3, 4, 5, 6, 7, 8})
@@ -87,9 +86,6 @@ function mod:OnCombatStart(delay)
 	berserkTimer:Start(-delay)
 	if self:IsHeroic() then
 		timerCountdownCD:Start(-delay)
-		if self.Options.RangeFrame then
-			DBM.RangeCheck:Show(5, tormentDebuffFilter)--Show only people who have tormented debuff.
-		end
 	end
 	if self.Options.InfoFrame then
 		--DBM.InfoFrame:SetHeader(L.VitalSpark)
@@ -100,9 +96,6 @@ end
 function mod:OnCombatEnd()
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Hide()
-	end
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Hide()
 	end
 end
 
@@ -189,9 +182,6 @@ function mod:SPELL_AURA_APPLIED(args)
 				local remaining = expireTime-GetTime()
 				timerTormented:Start(remaining)
 			end
-			if self.Options.RangeFrame and self:IsHeroic() and self:IsInCombat() then
-				DBM.RangeCheck:Show(5, nil)--Show everyone, cause you're debuff person and need to stay away from people.
-			end
 		end
 	end
 end
@@ -222,9 +212,6 @@ function mod:SPELL_AURA_REMOVED(args)
 	elseif spellId == 99257 then--Tormented
 		if args:IsPlayer() then
 			timerTormented:Cancel()
-			if self.Options.RangeFrame and self:IsHeroic() and self:IsInCombat() then
-				DBM.RangeCheck:Show(5, tormentDebuffFilter)--Show only debuffed poeple again.
-			end
 		end
 	elseif spellId == 99516 then
 		if args:IsPlayer() then

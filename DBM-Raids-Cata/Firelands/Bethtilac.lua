@@ -50,8 +50,6 @@ mod.vb.flareCount = 0
 mod.vb.dronesCount = 0
 mod.vb.smolderingCount = 0
 
-mod:AddRangeFrameOption(10, 99476)
-
 local function repeatDrone(self)
 	self.vb.dronesCount = self.vb.dronesCount + 1
 	warnDrone:Show(self.vb.dronesCount)
@@ -77,9 +75,6 @@ end
 
 function mod:OnCombatEnd()
 	self:UnregisterShortTermEvents()
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Hide()
-	end
 end
 
 function mod:SPELL_CAST_START(args)
@@ -115,9 +110,6 @@ function mod:SPELL_CAST_SUCCESS(args)
 	local spellId = args.spellId
 	if spellId == 99476 then--Cast debuff only, don't add other spellid. (99476 spellid uses on SPELL_CAST_START, NOT SPELL_AURA_APPLIED),
 		timerWidowsKissCD:Start()
-		if self.Options.RangeFrame and self:IsTank() then
-			DBM.RangeCheck:Show(10)
-		end
 		if args:IsPlayer() then
 			specWarnTouchWidowKiss:Show()
 			specWarnTouchWidowKiss:Play("defensive")
@@ -157,11 +149,6 @@ function mod:SPELL_AURA_REMOVED(args)
 	local spellId = args.spellId
 	if spellId == 99506 then
 		timerWidowKiss:Stop(args.destName)
-		if args:IsPlayer() then
-			if self.Options.RangeFrame then
-				DBM.RangeCheck:Hide()
-			end
-		end
 	end
 end
 

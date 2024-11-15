@@ -63,7 +63,6 @@ local berserkTimer					= mod:NewBerserkTimer(600)
 
 mod:AddSetIconOption("SetIconOnWorship", 91317, true, 0, {1, 2, 3, 4})
 mod:AddSetIconOption("SetIconOnCreature", 82411, false, 5, {1, 2, 3, 4, 5, 6, 7, 8})
-mod:AddRangeFrameOption(5, 82235)
 mod:AddInfoFrameOption(-3165, true)
 
 mod.vb.prewarned_Phase2 = false
@@ -114,9 +113,6 @@ end
 function mod:OnCombatEnd()
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Hide()
-	end
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Hide()
 	end
 end
 
@@ -258,8 +254,5 @@ function mod:UNIT_AURA(uId)
 		specWarnSickness:Show()
 		specWarnSickness:Play("range5")
 		timerSickness:Start()
-		if self.Options.RangeFrame then
-			DBM.RangeCheck:Show(5)
-		end
 	end
 end
