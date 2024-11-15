@@ -68,13 +68,6 @@ local function showCountdownWarning(self)
 	table.wipe(countdownTargets)
 end
 
-local tormentDebuffFilter
-do
-	tormentDebuffFilter = function(uId)
-		return DBM:UnitDebuff(uId, tormentDebuff)
-	end
-end
-
 function mod:OnCombatStart(delay)
 	lastStrike = 0
 	currentStrike = 0
