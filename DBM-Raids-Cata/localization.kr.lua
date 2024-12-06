@@ -17,11 +17,11 @@ L= DBM:GetModLocalization(140)
 L= DBM:GetModLocalization(339)
 
 L:SetTimerLocalization({
-	TimerFirstSpecial	= "첫번째 특수 공격"
+	TimerFirstSpecial	= "첫번째 특수 기술"
 })
 
 L:SetOptionLocalization({
-	TimerFirstSpecial	= "$spell:105738 후 첫번째 특수 공격 타이머 바 보기<br/>(첫번째 특수 공격은 $spell:105067와 $spell:104936 중에서 무작위로 결정됩니다.)"
+	TimerFirstSpecial	= "$spell:105738 후 첫번째 특수 기술 타이머 바 보기<br/>(첫번째 특수 기술은 $spell:105067와 $spell:104936 중에서 무작위로 결정됩니다.)"
 })
 
 -------------------------------
@@ -57,8 +57,7 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
-	SpecWarnInferno	= "$spell:92154 사전 특수 경고 보기 (~4초)",
-	RangeFrame		= "2단계에서 거리 창 보기 (5m)"
+	SpecWarnInferno	= "$spell:92154 사전 특수 경고 보기 (~4초)"
 })
 
 L:SetMiscLocalization({
@@ -83,9 +82,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(172)
 
 L:SetOptionLocalization({
-	RangeFrame		= "거리 창 보기 (6m)",
 	InfoFrame		= "생명력 정보 창에 표시 (&lt;1만)"
-
 })
 
 L:SetMiscLocalization({
@@ -99,6 +96,10 @@ L = DBM:GetModLocalization(173)
 
 L:SetWarningLocalization({
 	WarnPhase			= "%s단계"
+})
+
+L:SetTimerLocalization({
+	TimerPhase			= "다음 단계"
 })
 
 L:SetOptionLocalization({
@@ -133,7 +134,7 @@ L:SetMiscLocalization({
 	YellPhase2			= "저주받을 필멸자들! 내 소중한 작품을 이렇게 망치다니! 쓴맛을 봐야 정신을 차리겠군!",
 	YellPhase3			= "품위있는 집주인답게 행동하려 했건만, 네놈들이 도무지 죽질 않는군! 겉치레는 이제 집어치우자고. 그냥 모두 없애 버리겠어!",
 	YellShadowBlaze			= "살을 재로 만들어 주마!",
-	ShadowBlazeExact	= "%d초 후 암흑불꽃!"
+	ShadowBlazeExact	= "%d초 후 암흑불꽃 불똥"
 })
 
 -------------------------------
@@ -289,8 +290,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	TimerFeedback		= "$spell:87904 지속시간 타이머 바 보기",
-	RangeFrame			= "$spell:89668에 걸렸을 때 거리 창 보기 (20m)"
+	TimerFeedback		= "$spell:87904 지속시간 타이머 바 보기"
 })
 
 -----------------
@@ -356,7 +356,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	ResetShardsinThrees	= "$spell:99259 중첩 횟수를 3개(25인)/2개(10인) 설정에 맞춰 초기화",
+	ResetShardsinThrees	= "$spell:99259 중첩 횟수를 3개(25인)/2개(10인) 마다 초기화",
 	warnStrike			= "학살/지옥불 칼날 경고 보기",
 	timerStrike			= "다음 학살/지옥불 칼날 타이머 바 보기",
 	TimerBladeActive	= "활성화된 칼날 지속시간 타이머 바 보기",
@@ -373,9 +373,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	timerNextSpecial		= "다음 불꽃 낫/화염도약 바 보기",
-	RangeFrameSeeds			= "$spell:98450 대상이 된 경우 거리 창 보기(12m)",
-	RangeFrameCat			= "$spell:98374 일때 거리 창 보기(10m)"
+	timerNextSpecial		= "다음 특수 기술 타이머 바 보기"
 })
 
 --------------
@@ -401,9 +399,9 @@ L:SetOptionLocalization({
 	warnEngulfingFlameHeroic	= "$spell:99171 위치 경고 보기 (영웅)",
 	warnSeedsLand				= "씨앗 시전 대신 $spell:98520이 땅에 떨어지는 시간에 맞춰 경고/타이머 바 보기",
 	TimerPhaseSons				= "\"화염의 피조물 단계\" 지속시간 타이머 바 보기",
-	InfoHealthFrame				= "생명력을 정보 창에 표시 (<10만)",
+	InfoHealthFrame				= "생명력을 정보 창에 표시 (생명력 <10만)",
 	MeteorFrame					= "$spell:99849 대상을 정보 창에 표시",
-	AggroFrame					= "$journal:2647 동안 어그로가 없는 공대원을 정보 창에 표시"
+	AggroFrame					= "$journal:2647이 나왔을 때 어그로가 없는 공대원을 정보 창에 표시"
 })
 
 L:SetMiscLocalization({
@@ -474,8 +472,7 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	KohcromWarning	= "$journal:4262의 스킬 따라하기 경고 보기",
-	KohcromCD		= "$journal:4262의 다음 따라할 스킬 타이머 바 보기",
-	RangeFrame		= "업적 거리 창 보기 (5m)"
+	KohcromCD		= "$journal:4262의 다음 따라할 스킬 타이머 바 보기"
 })
 
 L:SetMiscLocalization({
@@ -487,12 +484,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(324)
 
 L:SetOptionLocalization({
-	ShadowYell			= "$spell:103434에 걸렸을 때 말풍선으로 알리기<br/>(영웅 난이도 전용)",
-	CustomRangeFrame	= "거리 창 설정 (영웅 전용)",
-	Never				= "사용 안함",
-	Normal				= "일반 거리 창",
-	DynamicPhase2		= "2단계 디버프 숨김",
-	DynamicAlways		= "항상 디버프 숨김"
+	ShadowYell			= "$spell:103434에 걸렸을 때 말풍선으로 알리기<br/>(영웅 난이도 전용)"
 })
 
 L:SetMiscLocalization({
@@ -510,21 +502,20 @@ L:SetWarningLocalization({
 
 L:SetTimerLocalization({
 	timerOozesActive	= "핏방울 공격 가능",
-	timerOozesReach		= "핏방울 보스에 도착"
+	timerOozesReach		= "핏방울이 보스에 닿음"
 })
 
 L:SetOptionLocalization({
-	warnOozesHit		= "어떤 핏방울이 보스에 도착했는지 알림 보기",
+	warnOozesHit		= "어떤 핏방울이 보스에 닿았는지 알림 보기",
 	timerOozesActive	= "핏방울 공격 가능 타이머 바 보기",
-	timerOozesReach		= "핏방울이 요르사지에 도착하는 시간 타이머 바 보기",
-	RangeFrame			= "$spell:104898|1을;를; 거리 창으로 보기 (4m)<br/>(일반 난이도 이상)"
+	timerOozesReach		= "핏방울이 요르사지까지 가는 시간 타이머 바 보기"
 })
 
 L:SetMiscLocalization({
 	Black			= "|cFF424242검정|r",
 	Purple			= "|cFF9932CD보라|r",
 	Red				= "|cFFFF0404빨강|r",
-	Green			= "|cFF088A08초록|r",
+	Green			= "|cFF088A08녹색|r",
 	Blue			= "|cFF0080FF파랑|r",
 	Yellow			= "|cFFFFA901노랑|r"
 })
@@ -540,13 +531,12 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
-	TimerSpecial			= "첫 특수 스킬"
+	TimerSpecial			= "첫번째 특수 기술"
 })
 
 L:SetOptionLocalization({
-	WarnPillars				= "$journal:3919와 $journal:4069 남은 숫자 알림 보기",
+	WarnPillars				= "$journal:3919와 $journal:4069 남은 개수 알림",
 	TimerSpecial			= "첫번째 특수 기술 시전 타이머 바 보기",
-	RangeFrame				= "거리 창 보기: $spell:105269 (3m), $journal:4327 (10m)",
 	AnnounceFrostTombIcons	= "$spell:104451 대상의 징표를 공격대 대화로 알리기<br/>(공대장 권한 필요)",
 	SpecialCount			= "$spell:105256와 $spell:105465 초읽기 효과음 재생",
 	SetBubbles				= "$spell:104451을 시전할 수 있을 때 자동으로 말풍선 숨김<br/>(전투 종료 후 원상복구)"
@@ -620,7 +610,7 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
-	SpecWarnTendril			= "$spell:105563 디버프가 없을 때 특수 경고 보기",
+	SpecWarnTendril			= "회전하는 동안 $spell:105563 디버프가 없으면 특수 경고 보기",
 	InfoFrame				= "$spell:105563가 없는 공대원을 정보 창에 표시",
 	ShowShieldInfo			= "$spell:105479 흡수량 바 보기<br/>(보스 프레임 설정 무시)"
 })
@@ -637,10 +627,6 @@ L:SetMiscLocalization({
 -- Madness of Deathwing  --
 ---------------------------
 L= DBM:GetModLocalization(333)
-
-L:SetOptionLocalization({
-	RangeFrame			= "영웅 난이도에서 $spell:108649 디버프 상태에 따라 능동적으로 거리 창 보기"
-})
 
 L:SetMiscLocalization({
 	Pull				= "넌 아무것도 못 했다. 내가 이 세상을 조각내주마."
