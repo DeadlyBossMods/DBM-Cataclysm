@@ -27,40 +27,41 @@ mod:RegisterEventsInCombat(
 )
 
 local warnAbsorbedBlood		= mod:NewStackAnnounce(105248, 2)
-local warnResidue			= mod:NewCountAnnounce("ej4057", 3, nil, false)--This is HIGHLY inaccurate in 5.x, i do not know why right now. I'll actually log fight next week
+local warnResidue			= mod:NewCountAnnounce(-4057, 3, nil, false)--This is HIGHLY inaccurate in 5.x, i do not know why right now. I'll actually log fight next week
 local warnGrip				= mod:NewTargetAnnounce(105490, 4)
 local warnNuclearBlast		= mod:NewCastAnnounce(105845, 4)
 local warnSealArmor			= mod:NewAnnounce("warnSealArmor", 4, 105847)
-local warnAmalgamation		= mod:NewSpellAnnounce("ej4054", 3, 106005)--Amalgamation spawning, give temp icon.
+local warnAmalgamation		= mod:NewSpellAnnounce(-4054, 3, 106005)--Amalgamation spawning, give temp icon.
 
-local specWarnRoll			= mod:NewSpecialWarningSpell("ej4050", nil, nil, nil, 2)--The actual roll
-local specWarnTendril		= mod:NewSpecialWarning("SpecWarnTendril", nil, nil, nil, 3)--A personal warning for you only if you're not gripped 3 seconds after roll started
-local specWarnGrip			= mod:NewSpecialWarningSpell(105490, "Dps")
-local specWarnNuclearBlast	= mod:NewSpecialWarningRun(105845, "Melee", nil, nil, 4)
-local specWarnSealArmor		= mod:NewSpecialWarningSpell(105847, "Dps")
-local specWarnAmalgamation	= mod:NewSpecialWarningSpell("ej4054", false)
+local specWarnRoll			= mod:NewSpecialWarningSpell(-4050, nil, nil, nil, 2, 17)--The actual roll
+local specWarnTendril		= mod:NewSpecialWarning("SpecWarnTendril", nil, nil, 3, 17)--A personal warning for you only if you're not gripped 3 seconds after roll started
+local specWarnGrip			= mod:NewSpecialWarningSwitch(105490, "Dps", nil, nil, 1, 2)
+local specWarnNuclearBlast	= mod:NewSpecialWarningRun(105845, "Melee", nil, nil, 4, 2)
+local specWarnSealArmor		= mod:NewSpecialWarningSwitch(105847, nil, nil, nil, 1, 2)
+local specWarnAmalgamation	= mod:NewSpecialWarningSpell(-4054, false)
 
 local timerSealArmor		= mod:NewCastTimer(23, 105847, nil, nil, nil, 6)
-local timerBarrelRoll		= mod:NewCastTimer(5, "ej4050", nil, nil, nil, 2, nil, DBM_COMMON_L.DEADLY_ICON, nil, 1, 3)
+local timerBarrelRoll		= mod:NewCastTimer(5, -4050, nil, nil, nil, 2, nil, DBM_COMMON_L.DEADLY_ICON, nil, 1, 3)
 local timerGripCD			= mod:NewNextTimer(32, 105490, nil, nil, nil, 3)
 local timerDeathCD			= mod:NewCDTimer(8.5, 106199, nil, nil, nil, 5)--8.5-10sec variation.
 
-mod:AddBoolOption("InfoFrame", true)
-mod:AddBoolOption("SetIconOnGrip", true)
+mod:AddInfoFrameOption(105563, true)
+mod:AddSetIconOption("SetIconOnGrip", 105490, true, 0, {6, 5, 4, 3, 2, 1})
 
 mod.vb.shieldCount = 0
+mod.vb.gripIcon = 6
+mod.vb.residueNum = 0
 local sealArmorText = DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.cast:format(DBM:GetSpellName(105847), 23)
 local gripTargets = {}
-local gripIcon = 6
 local corruptionActive = {}
-local residueNum = 0
 local diedOozeGUIDS = {}
-local numberOfPlayers = 1
+mod.vb.numberOfPlayers = 1
 local tendrilDebuff = DBM:GetSpellName(105563)
 
 local function checkTendrils()
 	if not DBM:UnitDebuff("player", tendrilDebuff) and not UnitIsDeadOrGhost("player") then
 		specWarnTendril:Show()
+		specWarnTendril:Play("movetotendrils")
 	end
 end
 
@@ -73,28 +74,29 @@ end
 local function showGripWarning()
 	warnGrip:Show(table.concat(gripTargets, "<, >"))
 	specWarnGrip:Show()
+	specWarnGrip:Play("targetchange")
 	table.wipe(gripTargets)
 end
 
-local function warningResidue()
-	if residueNum >= 0 then -- (better to warn 0 on heroic)
-		warnResidue:Show(residueNum)
+local function warningResidue(self)
+	if self.vb.residueNum >= 0 then -- (better to warn 0 on heroic)
+		warnResidue:Show(self.vb.residueNum)
 	end
 end
 
-local function checkOozeResurrect(GUID)
+local function checkOozeResurrect(self, GUID)
 	-- set min resurrect time to 5 sec. (guessed)
 	if diedOozeGUIDS[GUID] and GetTime() - diedOozeGUIDS[GUID] > 5 then
-		residueNum = residueNum - 1
+		self.vb.residueNum = self.vb.residueNum - 1
 		diedOozeGUIDS[GUID] = nil
 		mod:Unschedule(warningResidue)
-		mod:Schedule(1.25, warningResidue)
+		mod:Schedule(1.25, warningResidue, self)
 	end
 end
 
 function mod:OnCombatStart(delay)
 	self.vb.shieldCount = 0
-	numberOfPlayers = DBM:GetNumRealGroupMembers()
+	self.vb.numberOfPlayers = DBM:GetNumRealGroupMembers()--Done this way instead of just checking if solo raid, cause you still have to be a raid group to enter instance, but "solo" condition triggers based on number INSIDE raid
 	if self:IsDifficulty("lfr25") then
 		sealArmorText = DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.cast:format(DBM:GetSpellName(105847), 34.5)
 	else
@@ -103,8 +105,8 @@ function mod:OnCombatStart(delay)
 	table.wipe(gripTargets)
 	table.wipe(corruptionActive)
 	table.wipe(diedOozeGUIDS)
-	gripIcon = 6
-	residueNum = 0
+	self.vb.gripIcon = 6
+	self.vb.residueNum = 0
 end
 
 function mod:OnCombatEnd()
@@ -117,10 +119,16 @@ function mod:SPELL_CAST_START(args)
 	local spellId = args.spellId
 	if spellId == 105845 then
 		warnNuclearBlast:Show()
-		specWarnNuclearBlast:Show()
+		if self.Options.SpecWarn105845run then
+			specWarnNuclearBlast:Show()
+			specWarnNuclearBlast:Play("justrun")
+		else
+			warnNuclearBlast:Show()
+		end
 	elseif args:IsSpellID(105847, 105848) then--This still has 2 spellids, since it's locational, location based IDs did NOT get crunched.
 		warnSealArmor:Show(sealArmorText)
 		specWarnSealArmor:Show()
+		specWarnSealArmor:Play("targetchange")
 		if self:IsDifficulty("lfr25") then
 			timerSealArmor:Start(34.5)
 		else
@@ -148,15 +156,15 @@ end
 function mod:SPELL_CAST_SUCCESS(args)
 	local spellId = args.spellId
 	if spellId == 105219 then
-		residueNum = residueNum + 1
+		self.vb.residueNum = self.vb.residueNum + 1
 		diedOozeGUIDS[args.sourceGUID] = GetTime()
 		self:Unschedule(warningResidue)
-		self:Schedule(1.25, warningResidue)
+		self:Schedule(1.25, warningResidue, self)
 	elseif spellId == 105248 and diedOozeGUIDS[args.sourceGUID] then
-		residueNum = residueNum - 1
+		self.vb.residueNum = self.vb.residueNum - 1
 		diedOozeGUIDS[args.sourceGUID] = nil
 		self:Unschedule(warningResidue)
-		self:Schedule(1.25, warningResidue)
+		self:Schedule(1.25, warningResidue, self)
 	end
 end
 
@@ -171,13 +179,13 @@ function mod:SPELL_AURA_APPLIED(args)
 		if corruptionActive[args.sourceGUID] then
 			corruptionActive[args.sourceGUID] = nil
 		end
-		if self.Options.SetIconOnGrip then
-			if gripIcon == 0 then
-				gripIcon = 6
-			end
-			self:SetIcon(args.destName, gripIcon)
-			gripIcon = gripIcon - 1
+		if self.vb.gripIcon == 0 then
+			self.vb.gripIcon = 6
 		end
+		if self.Options.SetIconOnGrip then
+			self:SetIcon(args.destName, self.vb.gripIcon)
+		end
+		self.vb.gripIcon = self.vb.gripIcon - 1
 		self:Unschedule(showGripWarning)
 		self:Schedule(0.3, showGripWarning)
 	elseif spellId == 105479 then
@@ -221,12 +229,12 @@ end
 --this cause bad revive check, so only source SPELL_DAMAGE (fires when ooze dies again) and SWING_DAMAGE event will resolve this.
 --although this change causes slow revive check, it will be better than shows bad residue count.
 function mod:SPELL_DAMAGE(sourceGUID, _, _, _, destGUID)
-	checkOozeResurrect(sourceGUID)
+	checkOozeResurrect(self, sourceGUID)
 end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE
 
 function mod:SWING_DAMAGE(sourceGUID, _, _, _, destGUID)
-	checkOozeResurrect(sourceGUID)
+	checkOozeResurrect(self, sourceGUID)
 end
 mod.SWING_MISSED = mod.SWING_DAMAGE
 
@@ -236,10 +244,11 @@ function mod:RAID_BOSS_EMOTE(msg)
 		self:Unschedule(clearTendrils)--^
 		if self:AntiSpam(3, 1) then
 			specWarnRoll:Show()--Warn you right away.
+			specWarnRoll:Play("rollincoming")
 		end
 		self:Schedule(3, checkTendrils)--After 3 seconds of roll starting, check tendrals, you should have leveled him out by now if this wasn't on purpose.
 		timerBarrelRoll:Cancel()
-		if numberOfPlayers > 1 then
+		if self.vb.numberOfPlayers > 1 then
 			timerBarrelRoll:Start(5)
 			self:Schedule(8, clearTendrils)--Clearing 3 seconds after the roll should be sufficent
 		else

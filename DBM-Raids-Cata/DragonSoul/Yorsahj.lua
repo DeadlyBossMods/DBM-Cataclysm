@@ -17,24 +17,23 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED 104849 104901 104896 105027 104897 104894 104898",
 	"SPELL_AURA_APPLIED_DOSE 104849",
 	"SPELL_AURA_REMOVED 104849 104901 104897 104898",
-	"CHAT_MSG_ADDON",
 	"UNIT_SPELLCAST_SUCCEEDED boss1",
 	"UNIT_DIED"
 )
 
-local warnOozes				= mod:NewTargetAnnounce("ej3978", 4)
+local warnOozes				= mod:NewTargetNoFilterAnnounce(-3978, 4)
 local warnOozesHit			= mod:NewAnnounce("warnOozesHit", 3, 16372)
 local warnVoidBolt			= mod:NewStackAnnounce(104849, 3, nil, "Tank|Healer")
 local warnManaVoid			= mod:NewSpellAnnounce(105530, 3)
 local warnDeepCorruption	= mod:NewSpellAnnounce(105171, 4)
 
-local specWarnOozes			= mod:NewSpecialWarningSpell("ej3978")
-local specWarnVoidBolt		= mod:NewSpecialWarningStack(104849, "Tank", 2)
-local specWarnVoidBoltOther	= mod:NewSpecialWarningTarget(104849, "Tank")
-local specWarnManaVoid		= mod:NewSpecialWarningSpell(105530, "ManaUser")
-local specWarnPurple		= mod:NewSpecialWarningSpell(104896, "Tank|Healer")
+local specWarnOozes			= mod:NewSpecialWarningSpell(-3978, nil, nil, nil, 1, 2)
+local specWarnVoidBolt		= mod:NewSpecialWarningStack(104849, nil, 2, nil, nil, 1, 6)
+local specWarnVoidBoltOther	= mod:NewSpecialWarningTaunt(104849, nil, nil, nil, 1, 2)
+local specWarnManaVoid		= mod:NewSpecialWarningSpell(105530, "ManaUser", nil, nil, 1, 2)
+local specWarnPurple		= mod:NewSpecialWarningSpell(104896, "Tank|Healer", nil, nil, 1, 2)
 
-local timerOozesCD			= mod:NewNextTimer(90, "ej3978", nil, nil, nil, 1, nil, DBM_COMMON_L.DAMAGE_ICON)
+local timerOozesCD			= mod:NewNextTimer(90, -3978, nil, nil, nil, 1, nil, DBM_COMMON_L.DAMAGE_ICON)
 local timerOozesActive		= mod:NewTimer(7, "timerOozesActive", 16372, nil, nil, 1, DBM_COMMON_L.DAMAGE_ICON) -- varies (7.0~8.5)
 local timerOozesReach		= mod:NewTimer(34.5, "timerOozesReach", 16372, nil, nil, 1, DBM_COMMON_L.DAMAGE_ICON)
 local timerAcidCD			= mod:NewNextTimer(8.3, 105573, nil, nil, nil, 2)--Green ooze aoe
@@ -44,9 +43,7 @@ local timerVoidBolt			= mod:NewTargetTimer(12, 104849, nil, "Tank|Healer")--Nerf
 local timerManaVoid			= mod:NewBuffFadesTimer(4, 105530, nil, "ManaUser")
 local timerDeepCorruption	= mod:NewBuffFadesTimer(25, 105171, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.HEALER_ICON..DBM_COMMON_L.TANK_ICON)
 
-local berserkTimer		= mod:NewBerserkTimer(600)
-
-mod:AddBoolOption("RangeFrame", true)
+local berserkTimer			= mod:NewBerserkTimer(600)
 
 local oozesHitTable = {}
 local expectedOozes = 0
@@ -84,19 +81,17 @@ function mod:OnCombatStart(delay)
 	end
 end
 
-function mod:OnCombatEnd()
-	if self.Options.RangeFrame and not self:IsDifficulty("lfr25") then
-		DBM.RangeCheck:Hide()
-	end
-end
-
 function mod:SPELL_CAST_SUCCESS(args)
 	local spellId = args.spellId
 	if spellId == 104849 then--Do not add any other ID, these are tank IDs. Raid aoe IDs coul be added as an alternate timer somewhere else maybe.
 		timerVoidBoltCD:Start()
 	elseif spellId == 105530 then
-		warnManaVoid:Show()
-		specWarnManaVoid:Show()
+		if self.Options.SpecWarn105530spell then
+			specWarnManaVoid:Show()
+			specWarnManaVoid:Play("stopcast")
+		else
+			warnManaVoid:Show()
+		end
 		timerManaVoid:Start()
 	elseif spellId == 105573 and self:IsInCombat() then
 		if yellowActive then
@@ -135,9 +130,11 @@ function mod:SPELL_AURA_APPLIED(args)
 		if amount >= 2 then
 			if args:IsPlayer() then
 				specWarnVoidBolt:Show(amount)
+				specWarnVoidBolt:Play("stackhigh")
 			else
 				if not UnitIsDeadOrGhost("player") then--You're not dead and other tank has 2 stacks (meaning it's your turn).
 					specWarnVoidBoltOther:Show(args.destName)
+					specWarnVoidBoltOther:Play("tauntboss")
 				end
 			end
 		end
@@ -153,6 +150,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			warnOozesHit:Show(bossName, table.concat(oozesHitTable, ", "))
 		end
 		specWarnPurple:Show()--We warn here to make sure everyone is topped off and things like healing rain are not on ground.
+		specWarnPurple:Play("specialsoon")
 	elseif spellId == 105027 and args:GetDestCreatureID() == 55312 then--Blue
 		table.insert(oozesHitTable, L.Blue)
 		if #oozesHitTable == expectedOozes then
@@ -175,9 +173,6 @@ function mod:SPELL_AURA_APPLIED(args)
 				warnOozesHit:Show(bossName, table.concat(oozesHitTable, ", "))
 			end
 		end
-		if self.Options.RangeFrame and not self:IsDifficulty("lfr25") then--Range finder outside boss check so we can open and close when green ooze spawns to pre spread.
-			DBM.RangeCheck:Show(4)
-		end
 	end
 end
 mod.SPELL_AURA_APPLIED_DOSE = mod.SPELL_AURA_APPLIED
@@ -194,9 +189,6 @@ function mod:SPELL_AURA_REMOVED(args)
 		if args:GetDestCreatureID() == 55312 then
 			timerAcidCD:Cancel()
 		end
-		if self.Options.RangeFrame and not self:IsDifficulty("lfr25") then
-			DBM.RangeCheck:Hide()
-		end
 	end
 end
 
@@ -211,6 +203,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
 	if oozeColors[spellId] then
 		table.wipe(oozesHitTable)
 		specWarnOozes:Show()
+		specWarnOozes:Play("targetchange")
 		timerVoidBoltCD:Start(42)
 		timerOozesActive:Start()
 		timerOozesReach:Start()
@@ -225,28 +218,3 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
 		end
 	end
 end
-
--- support Yor'sahj raid leading tools (eg YorsahjAnnounce) who want to broadcast a target arrow
-C_ChatInfo.RegisterAddonMessagePrefix("DBM-YORSAHJARROW")
---mod:RegisterEvents("CHAT_MSG_ADDON") -- for debugging
-local oozePos = {
-	["BLUE"] = 	{ 71, 34 },
-	["PURPLE"] = 	{ 57, 13 },
-	["RED"] = 	{ 37, 12 },
-	["GREEN"] = 	{ 22, 34 },
-	["YELLOW"] = 	{ 37, 85 },
-	["BLACK"] = 	{ 71, 65 },
-}
-
-function mod:CHAT_MSG_ADDON(prefix, message, channel, sender)
-	if prefix ~= "DBM-YORSAHJARROW" then return end
-	local cmd = message or ""
-	cmd = cmd:match("^(%w+)") or ""
-	cmd = cmd:upper()
-	if cmd == "CLEAR" then
-		DBM.Arrow:Hide()
-	elseif oozePos[cmd] then
-		DBM.Arrow:ShowRunTo(oozePos[cmd][1],oozePos[cmd][2],nil,20,true)
-	end
-end
-

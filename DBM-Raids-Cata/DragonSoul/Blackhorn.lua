@@ -34,28 +34,27 @@ mod:RegisterEventsInCombat(
 )
 
 local warnDrakesLeft				= mod:NewAddsLeftAnnounce(-4192, 2, 61248)
-local warnHarpoon					= mod:NewTargetAnnounce(108038, 2)
+local warnHarpoon					= mod:NewTargetNoFilterAnnounce(108038, 2)
 local warnReloading					= mod:NewCastAnnounce(108039, 2)
 local warnPhase2					= mod:NewPhaseAnnounce(2, 3)
 local warnRoar						= mod:NewSpellAnnounce(108044, 2)
 local warnTwilightFlames			= mod:NewSpellAnnounce(108051, 3)
 local warnTwilightBreath			= mod:NewSpellAnnounce(110212, 3)
-local warnShockwave					= mod:NewTargetAnnounce(108046, 4)
+local warnShockwave					= mod:NewTargetNoFilterAnnounce(108046, 4)
 local warnSunder					= mod:NewStackAnnounce(108043, 3, nil, "Tank|Healer")
-local warnConsumingShroud			= mod:NewTargetAnnounce(110214)
+local warnConsumingShroud			= mod:NewTargetNoFilterAnnounce(110214, 2, nil, "Healer")
 
-local specWarnHarpoon				= mod:NewSpecialWarningTarget(108038, false)
-local specWarnTwilightOnslaught		= mod:NewSpecialWarningCount(107588, nil, nil, nil, 2)
-local specWarnSapper				= mod:NewSpecialWarningSwitch(-4200, "Dps")
-local specWarnDeckFireCast			= mod:NewSpecialWarningSpell(110095, false, nil, nil, true)
-local specWarnDeckFire				= mod:NewSpecialWarningMove(110095)
-local specWarnElites				= mod:NewSpecialWarning("SpecWarnElites", "Tank")
-local specWarnShockwave				= mod:NewSpecialWarningMove(108046)
-local specWarnShockwaveOther		= mod:NewSpecialWarningTarget(108046, false)
+local specWarnHarpoon				= mod:NewSpecialWarningTarget(108038, false, nil, nil, 1, 2)
+local specWarnTwilightOnslaught		= mod:NewSpecialWarningSoakCount(107588, nil, nil, nil, 2, 2)
+local specWarnSapper				= mod:NewSpecialWarningSwitch(-4200, "Dps", nil, nil, 1, 2)
+local specWarnDeckFireCast			= mod:NewSpecialWarningDodge(110095, false, nil, nil, 2, 2)
+local specWarnGTFO					= mod:NewSpecialWarningGTFO(110095, nil, nil, nil, 1, 8)
+local specWarnElites				= mod:NewSpecialWarning("SpecWarnElites", "Tank", nil, nil, 1, 2)
+local specWarnShockwave				= mod:NewSpecialWarningYou(108046, nil, nil, nil, 1, 2)
+local specWarnShockwaveOther		= mod:NewSpecialWarningTarget(108046, false, nil, nil, 2, 2)
 local yellShockwave					= mod:NewYell(108046)
-local specWarnTwilightFlames		= mod:NewSpecialWarningMove(108076)
-local specWarnSunder				= mod:NewSpecialWarningStack(108043, "Tank", 3)
-local specWarnSunderOther			= mod:NewSpecialWarningTarget(108043, "Tank")
+local specWarnSunder				= mod:NewSpecialWarningStack(108043, nil, 3, nil, nil, 1, 6)
+local specWarnSunderOther			= mod:NewSpecialWarningTaunt(108043, nil, nil, nil, 1, 2)
 
 local timerCombatStart				= mod:NewCombatTimer(20.5)
 local timerAdd						= mod:NewTimer(61, "TimerAdd", 107752, nil, nil, 1)
@@ -80,26 +79,28 @@ local berserkTimer					= mod:NewBerserkTimer(240)
 
 mod:AddBoolOption("SetTextures", false)--Disable projected textures in phase 1, because no harmful spells use them in phase 1, but friendly spells make the blade rush lines harder to see.
 
-local phase2Started = false
-local addsCount = 0
-local drakesCount = 6
-local twilightOnslaughtCount = 0
+mod.vb.addsCount = 0
+mod.vb.drakesCount = 6
+mod.vb.twilightOnslaughtCount = 0
 local CVAR = false
 
+---@param self DBMMod
 local function AddsRepeat(self)
-	if addsCount < 2 then
-		addsCount = addsCount + 1
+	if self.vb.addsCount < 2 then
+		self.vb.addsCount = self.vb.addsCount + 1
 		timerAdd:Start()
 		self:Schedule(61, AddsRepeat, self)
 	end
 	specWarnElites:Show()
-	if addsCount == 1 then
+	specWarnElites:Play("targetchange")
+	if self.vb.addsCount == 1 then
 		timerHarpoonCD:Start(18)--20 seconds after first elites (Confirmed). If harpoon bug not happening, it comes 18 sec after first elites.
 	else--6-7 seconds after sets 2 and 3.
 		timerHarpoonCD:Start()--6-7 second variation.
 	end
 end
 
+---@param self DBMMod
 local function Phase2Delay(self)
 	self:Unschedule(AddsRepeat)
 	timerSapperCD:Cancel()
@@ -120,20 +121,23 @@ end
 function mod:ShockwaveTarget()
 	local targetname = self:GetBossTarget(56427)
 	if not targetname then return end
-	warnShockwave:Show(targetname)
 	if targetname == UnitName("player") then
 		specWarnShockwave:Show()
+		specWarnShockwave:Play("targetyou")
 		yellShockwave:Yell()
-	else
+	elseif self.Options.SpecWarn108046target then
 		specWarnShockwaveOther:Show(targetname)
+		specWarnShockwaveOther:Play("shockwave")
+	else
+		warnShockwave:Show(targetname)
 	end
 end
 
 function mod:OnCombatStart(delay)
-	phase2Started = false
-	addsCount = 0
-	drakesCount = 6
-	twilightOnslaughtCount = 0
+	self:SetStage(1)
+	self.vb.addsCount = 0
+	self.vb.drakesCount = 6
+	self.vb.twilightOnslaughtCount = 0
 	CVAR = false
 	timerAdd:Start(8.3-delay)--Likely wrong for now
 	self:Schedule(8.3-delay, AddsRepeat, self)--22.8 old
@@ -159,10 +163,11 @@ end
 function mod:SPELL_CAST_START(args)
 	local spellId = args.spellId
 	if spellId == 107588 then
-		twilightOnslaughtCount = twilightOnslaughtCount + 1
-		specWarnTwilightOnslaught:Show(twilightOnslaughtCount)
+		self.vb.twilightOnslaughtCount = self.vb.twilightOnslaughtCount + 1
+		specWarnTwilightOnslaught:Show(self.vb.twilightOnslaughtCount)
+		specWarnTwilightOnslaught:Play("helpsoak")
 		timerTwilightOnslaught:Start()
-		timerTwilightOnslaughtCD:Start(nil, twilightOnslaughtCount + 1)
+		timerTwilightOnslaughtCD:Start(nil, self.vb.twilightOnslaughtCount + 1)
 	elseif spellId == 108046 then
 		self:ScheduleMethod(0.2, "ShockwaveTarget")
 		timerShockwaveCD:Start()
@@ -196,24 +201,27 @@ function mod:SPELL_AURA_APPLIED(args)
 		if args:IsPlayer() then
 			if amount >= 3 then
 				specWarnSunder:Show(amount)
+				specWarnSunder:Play("stackhigh")
 			end
 		else
 			if amount >= 2 and not DBM:UnitDebuff("player", args.spellName) and not UnitIsDeadOrGhost("player") then
 				specWarnSunderOther:Show(args.destName)
+				specWarnSunderOther:Play("tauntboss")
 			end
 		end
 	elseif spellId == 108038 then
 		if self:AntiSpam(5, 1) then -- Use time check for harpooning warning. It can be avoid bad casts also.
 			warnHarpoon:Show(args.destName)
 			specWarnHarpoon:Show(args.destName)
+			specWarnHarpoon:Play("targetchange")
 		end
 		-- Timer not use time check. 2 harpoons cast same time even not bugged.
 		timerHarpoonActive:Start(self:IsHeroic() and 20 or 25, args.destGUID)
-	elseif spellId == 108040 and not phase2Started then--Goriona is being shot by the ships Artillery Barrage (phase 2 trigger)
+	elseif spellId == 108040 and self:GetStage(1) then--Goriona is being shot by the ships Artillery Barrage (phase 2 trigger)
 		timerTwilightOnslaughtCD:Cancel()
 		timerBroadsideCD:Cancel()
 		self:Schedule(10, Phase2Delay, self)--seems to only sapper comes even phase2 started. so delays only sapper stuff.
-		phase2Started = true
+		self:SetStage(2)
 		warnPhase2:Show()--We still warn phase 2 here though to get into position, especially since he can land on deck up to 5 seconds before his yell.
 		--timerCombatStart:Start(5)--5-8 seems variation, we use shortest.
 	elseif spellId == 110214 then
@@ -238,11 +246,13 @@ function mod:SPELL_SUMMON(args)
 	end
 end
 
-function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId, spellName)
 	if spellId == 108076 and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then--Goriona's Void zones
-		specWarnTwilightFlames:Show()
+		specWarnGTFO:Show(spellName)
+		specWarnGTFO:Play("watchfeet")
 	elseif spellId == 110095 and destGUID == UnitGUID("player") and self:AntiSpam(3, 3) then
-		specWarnDeckFire:Show()
+		specWarnGTFO:Show(spellName)
+		specWarnGTFO:Play("watchfeet")
 	end
 end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE
@@ -257,10 +267,12 @@ function mod:RAID_BOSS_EMOTE(msg)
 	if msg == L.SapperEmote or msg:find(L.SapperEmote) then
 		timerSapperCD:Start()
 		specWarnSapper:Show()
+		specWarnSapper:Play("killmob")
 	elseif msg:find("110153") then
 		timerBroadsideCD:Start()
 	elseif msg:find("110095") then
 		specWarnDeckFireCast:Show()
+		specWarnDeckFireCast:Play("watchstep")
 	elseif msg == L.GorionaRetreat or msg:find(L.GorionaRetreat) then
 		self:Schedule(1.5, function()
 			timerTwilightBreath:Cancel()
@@ -278,8 +290,8 @@ function mod:UNIT_DIED(args)
 		timerBladeRushCD:Cancel(args.sourceGUID)
 		timerDegenerationCD:Cancel(args.sourceGUID)
 	elseif cid == 56855 or cid == 56587 then--Drakes
-		drakesCount = drakesCount - 1
-		warnDrakesLeft:Show(drakesCount)
+		self.vb.drakesCount = self.vb.drakesCount - 1
+		warnDrakesLeft:Show(self.vb.drakesCount)
 		timerReloadingCast:Cancel(args.sourceGUID)
 		timerHarpoonActive:Cancel(args.sourceGUID)
 	end

@@ -23,16 +23,16 @@ mod:RegisterEventsInCombat(
 local warnCrushArmor		= mod:NewStackAnnounce(103687, 3, nil, "Tank|Healer")
 local warnCrystal			= mod:NewSpellAnnounce(103639, 3)
 local warnStomp				= mod:NewSpellAnnounce(103414, 3)
-local warnVortex			= mod:NewSpellAnnounce(103821, 3)
 local warnBlood				= mod:NewSpellAnnounce(103851, 4)
 local warnFurious			= mod:NewSpellAnnounce(103846, 3)
 local warnKohcrom			= mod:NewSpellAnnounce(109017, 4)
 local KohcromWarning		= mod:NewAnnounce("KohcromWarning", 2, 55342)--Mirror image icon. use different color for easlier distingush.
 
-local specwarnCrushArmor	= mod:NewSpecialWarningStack(103687, "Tank", 3)
-local specwarnVortex		= mod:NewSpecialWarningSpell(103821, nil, nil, nil, 2)
-local specwarnBlood			= mod:NewSpecialWarningMove(103785)
-local specwarnCrystal		= mod:NewSpecialWarningTarget(103639, false)
+local specwarnCrushArmor	= mod:NewSpecialWarningStack(103687, nil, 3, nil, nil, 1, 6)
+local specWarnCrushTaunt	= mod:NewSpecialWarningTaunt(103687, nil, nil, nil, 1, 2)
+local specwarnVortex		= mod:NewSpecialWarningSpell(103821, nil, nil, nil, 2, 2)
+local specwarnBlood			= mod:NewSpecialWarningGTFO(103785, nil, nil, nil, 1, 8)
+local specwarnCrystal		= mod:NewSpecialWarningTarget(103639, false, nil, nil, 1, 2)
 
 local timerCrushArmor		= mod:NewTargetTimer(20, 103687, nil, "Tank", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
 local timerCrystal			= mod:NewCDTimer(12, 103640, nil, nil, nil, 5)	-- 12-14sec variation (is also time till 'detonate')
@@ -45,8 +45,6 @@ local timerKohcromCD		= mod:NewTimer(6, "KohcromCD", 55342, nil, nil, nil, DBM_C
 --EJ is pretty clear, they are cast shortly after morchok, always. So echo timer is perfect and clean solution.
 
 local berserkTimer			= mod:NewBerserkTimer(420)
-
-mod:AddBoolOption("RangeFrame", false)--For achievement
 
 local stompCount = 1
 local crystalCount = 1--3 crystals between each vortex cast by Morchok, we ignore his twins.
@@ -65,9 +63,6 @@ function mod:OnCombatStart(delay)
 end
 
 function mod:OnCombatEnd()
-	if self.Options.RangeFrame and not self:IsDifficulty("lfr25") then
-		DBM.RangeCheck:Hide()
-	end
 	self:UnregisterShortTermEvents()
 end
 
@@ -75,10 +70,17 @@ function mod:SPELL_AURA_APPLIED(args)
 	local spellId = args.spellId
 	if spellId == 103687 then
 		local amount = args.amount or 1
-		warnCrushArmor:Show(args.destName, amount)
 		timerCrushArmor:Start(args.destName)
 		if amount > 3 then
-			specwarnCrushArmor:Show(amount)
+			if args:IsPlayer() then
+				specwarnCrushArmor:Show(amount)
+				specwarnCrushArmor:Play("stackhigh")
+			else
+				specWarnCrushTaunt:Show(args.destName)
+				specWarnCrushTaunt:Play("tauntboss")
+			end
+		else
+			warnCrushArmor:Show(args.destName, amount)
 		end
 	elseif spellId == 103846 and self:AntiSpam(3, 1) then
 		warnFurious:Show()
@@ -94,9 +96,6 @@ function mod:SPELL_AURA_REMOVED(args)
 		timerStomp:Start(19)
 		timerCrystal:Start(26)
 		timerVortexNext:Start()
-		if self.Options.RangeFrame and not self:IsDifficulty("lfr25") then
-			DBM.RangeCheck:Hide()
-		end
 		if self:IsDifficulty("heroic10", "heroic25") then
 			kohcromSkip = 1
 		end
@@ -142,6 +141,7 @@ function mod:SPELL_SUMMON(args)
 	if spellId == 103639 then
 		if self:GetUnitCreatureId("target") == self:GetCIDFromGUID(args.sourceGUID) or self:GetUnitCreatureId("focus") == self:GetCIDFromGUID(args.sourceGUID) then
 			specwarnCrystal:Show(args.sourceName)
+			specwarnCrystal:Play("helpsoak")
 		end
 		if args:GetSrcCreatureID() == 55265 then
 			crystalCount = crystalCount + 1
@@ -189,11 +189,8 @@ function mod:SPELL_CAST_SUCCESS(args)
 		timerStomp:Cancel()
 		timerCrystal:Cancel()
 		timerKohcromCD:Cancel()
-		warnVortex:Show()
 		specwarnVortex:Show()
-		if self.Options.RangeFrame and not self:IsDifficulty("lfr25") then
-			DBM.RangeCheck:Show(5)
-		end
+		specwarnVortex:Play("aesoon")
 		if not self:IsTrivial() then--Only register damage events during vortex (when black blood is out) and only if it's not trivial
 			self:RegisterShortTermEvents(
 				"SPELL_DAMAGE 103785",
@@ -203,9 +200,10 @@ function mod:SPELL_CAST_SUCCESS(args)
 	end
 end
 
-function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
+function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId, spellName)
 	if spellId == 103785 and destGUID == UnitGUID("player") and self:AntiSpam(3, 2) then
-		specwarnBlood:Show()
+		specwarnBlood:Show(spellName)
+		specwarnBlood:Play("watchfeet")
 	end
 end
 mod.SPELL_MISSED = mod.SPELL_DAMAGE

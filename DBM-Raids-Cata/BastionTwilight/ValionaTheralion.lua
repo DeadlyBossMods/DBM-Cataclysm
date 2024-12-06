@@ -75,7 +75,6 @@ local berserkTimer					= mod:NewBerserkTimer(600)
 
 mod:AddSetIconOption("BlackoutIcon", 86788, true, 0, {8})
 mod:AddSetIconOption("EngulfingIcon", 86622, true, 0, {1, 2, 3})
-mod:AddRangeFrameOption("8/10")
 mod:AddInfoFrameOption(86788, true)
 
 mod.vb.blackoutCount = 0
@@ -97,9 +96,6 @@ local function valionaDelay(self)
 	timerEngulfingMagicNext:Cancel()
 	timerBlackoutCD:Start(10)
 	timerDevouringFlamesCD:Start(25)
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Show(8)
-	end
 end
 
 local function theralionDelay(self)
@@ -109,9 +105,6 @@ local function theralionDelay(self)
 	timerEngulfingMagicNext:Start(15)
 	timerNextDeepBreath:Start()
 	self.vb.ValionaLanded = false
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Show(10)
-	end
 end
 
 local function AMSTimerDelay()
@@ -153,15 +146,9 @@ function mod:OnCombatStart(delay)
 	self.vb.dazzlingCast = 0
 	self.vb.breathCast = 0
 	self.vb.ValionaLanded = true
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Show(8)
-	end
 end
 
 function mod:OnCombatEnd()
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Hide()
-	end
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Hide()
 	end

@@ -44,8 +44,6 @@ local timerNextSpecial			= mod:NewTimer(4, "timerNextSpecial", 97238)--This one 
 
 local berserkTimer				= mod:NewBerserkTimer(600)
 
-mod:AddBoolOption("RangeFrameSeeds", true)
-mod:AddBoolOption("RangeFrameCat", false)--Diff options for each ability cause seeds strat is pretty universal, don't blow up raid, but leaps may or may not use a stack strategy, plus melee will never want it on by default.
 mod:AddSetIconOption("IconOnLeapingFlames", 98476, false, 0, {8})
 
 mod.vb.abilityCount = 0
@@ -106,12 +104,6 @@ function mod:OnCombatStart(delay)
 	self.vb.kitty = false
 end
 
-function mod:OnCombatEnd()
-	if self.Options.RangeFrameSeeds or self.Options.RangeFrameCat then
-		DBM.RangeCheck:Hide()
-	end
-end
-
 function mod:SPELL_CAST_START(args)
 	local spellId = args.spellId
 	if spellId == 98451 then
@@ -134,17 +126,11 @@ function mod:SPELL_AURA_APPLIED(args)
 		self.vb.abilityCount = 0
 		timerNextSpecial:Cancel()
 		timerNextSpecial:Start(abilityTimers[self.vb.abilityCount], leap, self.vb.abilityCount+1)
-		if self.Options.RangeFrameCat then
-			DBM.RangeCheck:Show(10)
-		end
 	elseif spellId == 98379 then	-- Scorpion Form
 		self.vb.kitty = false
 		self.vb.abilityCount = 0
 		timerNextSpecial:Cancel()
 		timerNextSpecial:Start(abilityTimers[self.vb.abilityCount], swipe, self.vb.abilityCount+1)
-		if self.Options.RangeFrameCat and not DBM:UnitDebuff("player", seedsDebuff) then--Only hide range finder if you do not have seed.
-			DBM.RangeCheck:Hide()
-		end
 	elseif spellId == 97238 then
 		self.vb.abilityCount = (args.amount or 1)--This should change your ability account to his current stack, which is disconnect friendly.
 		warnAdrenaline:Show(args.destName, args.amount or 1)
@@ -168,9 +154,6 @@ function mod:SPELL_AURA_APPLIED(args)
 			specWarnSearingSeed:Schedule(remaining-5)	-- Show "move away" warning 5secs before explode
 			specWarnSearingSeed:ScheduleVoice(remaining-5, "runout")
 			timerSearingSeed:Start(remaining)
-			if self.Options.RangeFrameSeeds then
-				DBM.RangeCheck:Show(12)
-			end
 		end
 	end
 end
@@ -182,8 +165,5 @@ function mod:SPELL_AURA_REMOVED(args)
 		specWarnSearingSeed:Cancel()
 		specWarnSearingSeed:CancelVoice()
 		timerSearingSeed:Cancel()
-		if self.Options.RangeFrameSeeds then
-			DBM.RangeCheck:Hide()
-		end
 	end
 end

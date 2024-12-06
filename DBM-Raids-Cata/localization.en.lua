@@ -56,8 +56,7 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
-	SpecWarnInferno	= "Show pre-special warning for $spell:92154 (~4s)",
-	RangeFrame		= "Show range frame in Phase 2 (5)"
+	SpecWarnInferno	= "Show pre-special warning for $spell:92154 (~4s)"
 })
 
 L:SetMiscLocalization({
@@ -82,7 +81,6 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization(172)
 
 L:SetOptionLocalization({
-	RangeFrame		= "Show range frame (6)",
 	SetIconOnSlime	= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(82935),
 	InfoFrame		= "Show info frame for health (&lt;10k hp)"
 })
@@ -297,8 +295,7 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	LightningRodIcon= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(89668),
-	TimerFeedback	= "Show timer for $spell:87904 duration",
-	RangeFrame		= "Show range frame (20) when affected by $spell:89668"
+	TimerFeedback	= "Show timer for $spell:87904 duration"
 })
 
 -----------------
@@ -386,9 +383,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	timerNextSpecial			= "Show timer for next special ability",
-	RangeFrameSeeds				= "Show range frame (12) for $spell:98450",
-	RangeFrameCat				= "Show range frame (10) for $spell:98374"
+	timerNextSpecial			= "Show timer for next special ability"
 })
 
 --------------
@@ -494,8 +489,7 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	KohcromWarning	= "Show warnings for $journal:4262 mimicking abilities.",
-	KohcromCD		= "Show timers for $journal:4262's next ability mimick.",
-	RangeFrame		= "Show range frame (5) for achievement."
+	KohcromCD		= "Show timers for $journal:4262's next ability mimick."
 })
 
 L:SetMiscLocalization({
@@ -507,12 +501,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(324)
 
 L:SetOptionLocalization({
-	ShadowYell			= "Yell when you are affected by $spell:103434<br/>(Heroic difficulty only)",
-	CustomRangeFrame	= "Range Frame options (Heroic only)",
-	Never				= "Disabled",
-	Normal				= "Normal Range Frame",
-	DynamicPhase2		= "Phase2 Debuff Filtering",
-	DynamicAlways		= "Always Debuff Filtering"
+	ShadowYell			= "Yell when you are affected by $spell:103434<br/>(Heroic difficulty only)"
 })
 
 L:SetMiscLocalization({
@@ -536,8 +525,7 @@ L:SetTimerLocalization({
 L:SetOptionLocalization({
 	warnOozesHit		= "Announce what oozes hit the boss",
 	timerOozesActive	= "Show timer for when Oozes become attackable",
-	timerOozesReach		= "Show timer for when Oozes reach Yor'sahj",
-	RangeFrame			= "Show range frame (4) for $spell:104898<br/>(Normal+ difficulty)"
+	timerOozesReach		= "Show timer for when Oozes reach Yor'sahj"
 })
 
 L:SetMiscLocalization({
@@ -566,7 +554,6 @@ L:SetTimerLocalization({
 L:SetOptionLocalization({
 	WarnPillars				= "Announce how many $journal:3919 or $journal:4069 are left",
 	TimerSpecial			= "Show timer for first special ability cast",
-	RangeFrame				= "Show range frame: (3) for $spell:105269, (10) for $journal:4327",
 	AnnounceFrostTombIcons	= "Announce icons for $spell:104451 targets to raid chat<br/>(requires raid leader)",
 	warnFrostTombCast		= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(104451),
@@ -614,7 +601,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(332)
 
 L:SetWarningLocalization({
-	SpecWarnElites	= "Twilight Elites!"
+	SpecWarnElites		= "Twilight Elites!"
 })
 
 L:SetTimerLocalization({
@@ -640,12 +627,12 @@ L= DBM:GetModLocalization(318)
 
 L:SetWarningLocalization({
 	warnSealArmor			= "%s",
-	SpecWarnTendril			= "Get Secured!"
+	SpecWarnTendril			= "Get Secured to tendril!"
 })
 
 L:SetOptionLocalization({
 	warnSealArmor			= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.cast:format(105847),
-	SpecWarnTendril			= "Show special warning when you are missing $spell:105563 debuff",
+	SpecWarnTendril			= "Show special warning when you are missing $spell:105563 debuff during roll",
 	InfoFrame				= "Show info frame for players without $spell:105563",
 	SetIconOnGrip			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(105490),
 	ShowShieldInfo			= "Show absorb bar for $spell:105479<br/>(Ignores boss health frame option)"
@@ -665,7 +652,6 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(333)
 
 L:SetOptionLocalization({
-	RangeFrame			= "Show dynamic range frame based on player debuff status for<br/>$spell:108649 on Heroic difficulty",
 	SetIconOnParasite	= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(108649)
 })
 

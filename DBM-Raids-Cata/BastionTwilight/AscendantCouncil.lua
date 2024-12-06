@@ -27,7 +27,6 @@ mod:RegisterEventsInCombat(
 --General
 local specWarnBossLow		= mod:NewSpecialWarning("specWarnBossLow")
 
-mod:AddRangeFrameOption("10")
 mod:AddInfoFrameOption(nil, true)
 --Feludius
 mod:AddTimerLine(DBM:EJ_GetSectionInfo(3110))
@@ -214,16 +213,10 @@ function mod:OnCombatStart(delay)
 	if self:IsDifficulty("heroic10", "heroic25") then
 		timerGravityCoreCD:Start(25-delay)
 		timerStaticOverloadCD:Start(20-delay)
-		if self.Options.RangeFrame then
-			DBM.RangeCheck:Show(10)
-		end
 	end
 end
 
 function mod:OnCombatEnd()
-	if self.Options.RangeFrame then
-		DBM.RangeCheck:Hide()
-	end
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Hide()
 	end
@@ -343,9 +336,6 @@ function mod:SPELL_AURA_APPLIED(args)
 			else--You only have rod so do normal yell
 				yellLightningRod:Yell()
 			end
-			--if self.Options.RangeFrame then
-			--	DBM.RangeCheck:Show(10)
-			--end
 		end
 		if self.Options.LightningRodIcon then
 			self:SetIcon(args.destName, self.vb.lightningRodIcon)
@@ -570,8 +560,5 @@ function mod:OnSync(msg, boss)
 		timerFrostBeaconCD:Cancel()--Cancel here to avoid problems with orbs that spawn during the transition.
 		timerLavaSeedCD:Start(18)
 		timerGravityCrushCD:Start(28)
-		--if self.Options.RangeFrame then
-		--	DBM.RangeCheck:Show(10)
-		--end
 	end
 end
