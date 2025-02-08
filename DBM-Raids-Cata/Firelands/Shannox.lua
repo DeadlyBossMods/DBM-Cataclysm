@@ -60,7 +60,7 @@ local timerCrystalPrison		= mod:NewTargetTimer(10, 99837, nil, nil, nil, 5)--Dog
 local timerCrystalPrisonCD		= mod:NewCDTimer(25.5, 99836, nil, nil, nil, 3)--Seems consistent timing, other trap is not.
 local timerSpearCD				= mod:NewCDTimer(42, 100002, nil, nil, nil, 3)--Before riplimb dies
 local timerMagmaRuptureCD		= mod:NewCDTimer(15, 99840, nil, nil, nil, 2)--After riplimb dies
-local timerFaceRageCD			= mod:NewCDTimer(27, 99947, nil, nil, nil, 3)--Has a 27-30 sec cd but off by default as it's subject to wild variation do to traps.
+local timerFaceRageCD			= mod:NewVarTimer("v27-30", 99947, nil, nil, nil, 3)--Has a 27-30 sec cd
 
 local berserkTimer				= mod:NewBerserkTimer(600)
 

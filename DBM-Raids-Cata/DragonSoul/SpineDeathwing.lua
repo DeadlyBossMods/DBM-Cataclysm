@@ -43,7 +43,7 @@ local specWarnAmalgamation	= mod:NewSpecialWarningSpell(-4054, false)
 local timerSealArmor		= mod:NewCastTimer(23, 105847, nil, nil, nil, 6)
 local timerBarrelRoll		= mod:NewCastTimer(5, -4050, nil, nil, nil, 2, nil, DBM_COMMON_L.DEADLY_ICON, nil, 1, 3)
 local timerGripCD			= mod:NewNextTimer(32, 105490, nil, nil, nil, 3)
-local timerDeathCD			= mod:NewCDTimer(8.5, 106199, nil, nil, nil, 5)--8.5-10sec variation.
+local timerDeathCD			= mod:NewVarTimer("v8.5-10", 106199, nil, nil, nil, 5)--8.5-10sec variation.
 
 mod:AddInfoFrameOption(105563, true)
 mod:AddSetIconOption("SetIconOnGrip", 105490, true, 0, {6, 5, 4, 3, 2, 1})

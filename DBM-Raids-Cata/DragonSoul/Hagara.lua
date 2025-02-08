@@ -40,7 +40,7 @@ local yellFrostflake		= mod:NewYell(109325)
 
 local timerAssault			= mod:NewBuffActiveTimer(5, 107851, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
 local timerAssaultCD		= mod:NewCDCountTimer(15, 107851, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
-local timerShatteringCD		= mod:NewCDTimer(10.5, 105289, nil, nil, nil, 3)--every 10.5-15 seconds
+local timerShatteringCD		= mod:NewVarTimer("v10.5-15", 105289, nil, nil, nil, 3)--every 10.5-15 seconds
 local timerIceLance			= mod:NewBuffActiveTimer(15, 105269)
 local timerIceLanceCD		= mod:NewNextTimer(30, 105269, nil, nil, nil, 5)
 local timerFrostTomb		= mod:NewCastTimer(8, 104448, nil, nil, nil, 3)

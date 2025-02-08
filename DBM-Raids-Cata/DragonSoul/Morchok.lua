@@ -35,8 +35,8 @@ local specwarnBlood			= mod:NewSpecialWarningGTFO(103785, nil, nil, nil, 1, 8)
 local specwarnCrystal		= mod:NewSpecialWarningTarget(103639, false, nil, nil, 1, 2)
 
 local timerCrushArmor		= mod:NewTargetTimer(20, 103687, nil, "Tank", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
-local timerCrystal			= mod:NewCDTimer(12, 103640, nil, nil, nil, 5)	-- 12-14sec variation (is also time till 'detonate')
-local timerStomp 			= mod:NewCDTimer(11, 103414, nil, nil, nil, 2)	-- 12-14sec variation
+local timerCrystal			= mod:NewVarTimer("v12-14", 103640, nil, nil, nil, 5)	-- 12-14sec variation (is also time till 'detonate')
+local timerStomp 			= mod:NewVarTimer("v11-14", 103414, nil, nil, nil, 2)	-- 12-14sec variation
 local timerVortexNext		= mod:NewCDTimer(74, 103821, nil, nil, nil, 6)--96~97 sec after last vortex. must subtract blood 17 + vortex buff 5 sec. 74 sec left
 local timerBlood			= mod:NewBuffActiveTimer(17, 103851, nil, nil, nil, 6)
 local timerKohcromCD		= mod:NewTimer(6, "KohcromCD", 55342, nil, nil, nil, DBM_COMMON_L.HEROIC_ICON)--Enable when we have actual timing for any of his abilies
