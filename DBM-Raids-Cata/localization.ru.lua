@@ -17,11 +17,11 @@ L= DBM:GetModLocalization(140)
 L= DBM:GetModLocalization(339)
 
 L:SetTimerLocalization({
-	TimerFirstSpecial		= "Первая особая способность"
+	TimerFirstSpecial		= "Первая спецспособность"
 })
 
 L:SetOptionLocalization({
-	TimerFirstSpecial		= "Отсчет времени до первой особой способности после $spell:105738<br/>Первая особая способность - случайная. Либо $spell:105067, либо $spell:104936"
+	TimerFirstSpecial		= "Отсчет времени до первой спецспособности после $spell:105738<br/>Первая спецспособность - случайная. Либо $spell:105067, либо $spell:104936"
 })
 
 -------------------------------
