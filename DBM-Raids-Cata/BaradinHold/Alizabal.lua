@@ -20,7 +20,7 @@ local warnSeethingHate			= mod:NewTargetAnnounce(105067, 3)
 
 local specWarnBladeDance		= mod:NewSpecialWarningRun(104995, nil, nil, nil, 4, 2)
 local specWarnSkewer			= mod:NewSpecialWarningTaunt(104936, nil, nil, nil, 1, 2)
-local specWarnSeethingHate		= mod:NewSpecialWarningMoveAway(105067, nil, nil, nil, 1, 2)
+local specWarnSeethingHate		= mod:NewSpecialWarningSoak(105067, nil, nil, nil, 1, 2)
 
 local timerBladeDance			= mod:NewBuffActiveTimer(15, 104995, nil, nil, nil, 6)
 local timerBladeDanceCD			= mod:NewCDTimer(60, 104995, nil, nil, nil, 6)
@@ -74,7 +74,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		end
 		if args:IsPlayer() then
 			specWarnSeethingHate:Show()
-			specWarnSeethingHate:Play("scatter")
+			specWarnSeethingHate:Play("gathershare")
 		else
 			warnSeethingHate:Show(args.destName)
 		end
