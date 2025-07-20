@@ -531,7 +531,6 @@ L:SetTimerLocalization({
 L:SetOptionLocalization({
 	TimerSpecial			= "Délai avant la première incantation d'une technique spéciale",
 	RangeFrame				= "Cadre des portées (3) pour $spell:105269",
-	AnnounceFrostTombIcons	= "Annonce des icônes des cibles de $spell:104451 au canal Raid<br/>(nécessite d'être le chef du raid)",
 	warnFrostTombCast		= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(109325)

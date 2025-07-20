@@ -537,7 +537,6 @@ L:SetTimerLocalization({
 L:SetOptionLocalization({
 	WarnPillars				= "$journal:3919와 $journal:4069 남은 개수 알림",
 	TimerSpecial			= "첫번째 특수 기술 시전 타이머 바 보기",
-	AnnounceFrostTombIcons	= "$spell:104451 대상의 징표를 공격대 대화로 알리기<br/>(공대장 권한 필요)",
 	SpecialCount			= "$spell:105256와 $spell:105465 초읽기 효과음 재생",
 	SetBubbles				= "$spell:104451을 시전할 수 있을 때 자동으로 말풍선 숨김<br/>(전투 종료 후 원상복구)"
 })

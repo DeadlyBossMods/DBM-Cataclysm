@@ -559,7 +559,6 @@ L:SetOptionLocalization({
 	WarnPillars				= "Verkünde die Anzahl der verbleibenden $journal:3919 bzw. $journal:4069e",
 	TimerSpecial			= "Zeige Zeit bis erste Spezialfähigkeit gewirkt wird",
 	RangeFrame				= "Zeige Abstandsfenster für $spell:105269 (3m) bzw. $journal:4327 (10m)",
-	AnnounceFrostTombIcons	= "Verkünde Zeichen für Ziele von $spell:104451 im Schlachtzugchat (nur als Leiter)",
 	SpecialCount			= "Spiele akustischen Countdown für $spell:105256 bzw. $spell:105465",
 	SetBubbles				= "Automatische Deaktivierung d. 'Sprechblasen' bevor $spell:104451 gewirkt wird<br/>(wird nach dem Kampfende auf die vorherige Einstellung zurückgesetzt)"
 })

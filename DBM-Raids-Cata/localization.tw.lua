@@ -559,7 +559,6 @@ L:SetOptionLocalization({
 	WarnPillars				= "提示$journal:3919或$journal:4069的剩餘數量",
 	TimerSpecial			= "為第一次特別技能$spell:105256或$spell:105465施放顯示計時器<br/>(第一次施放根據首領手中的武器的附魔)",
 	RangeFrame				= "為$spell:105269(3碼),$journal:4327(10碼)顯示距離框",
-	AnnounceFrostTombIcons	= "為$spell:104451的目標發佈圖示至團隊頻道<br/>(需要團隊隊長)",
 	SpecialCount			= "為$spell:105256或$spell:105465播放倒數計時音效",
 	SetBubbles				= "自動地為$spell:104451關閉對話氣泡功能<br/>(當戰鬥結束後還原功能)"
 })

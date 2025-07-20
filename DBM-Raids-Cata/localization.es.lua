@@ -564,7 +564,6 @@ L:SetOptionLocalization({
 	WarnPillars				= "Anunciar el número de $journal:3919 y $journal:4069 restantes",
 	TimerSpecial			= "Mostrar temporizador para el primer lanzamiento de habilidad especial",
 	RangeFrame				= "Mostrar marco de distancia para $spell:105269 (3 m) y $journal:4327 (10 m)",
-	AnnounceFrostTombIcons	= "Anunciar iconos de los objetivos de $spell:104451 en el chat de banda (requiere líder o ayudante)",
 	warnFrostTombCast		= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(109325),

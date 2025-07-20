@@ -564,7 +564,6 @@ L:SetOptionLocalization({
 	WarnPillars				= "Anunciar quantos $journal:3919 ou $journal:4069 restam",
 	TimerSpecial			= "Exibir cronógrafo para lançamento da primeira habilidade",
     RangeFrame				= "Exibir medidor de distância: (3) para $spell:105269, (10) para $journal:4327",
-	AnnounceFrostTombIcons	= "Anunciar no chat da raide, ícones para alvos de $spell:104451<br/>(requer liderança)",
 	warnFrostTombCast		= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(109325),

@@ -56,7 +56,6 @@ local berserkTimer			= mod:NewBerserkTimer(480)
 
 mod:AddSetIconOption("SetIconOnFrostflake", 109325, false, 0, {3})
 mod:AddSetIconOption("SetIconOnFrostTomb", 104451, true, 0, {3, 4, 5, 6, 7, 8})
-mod:AddBoolOption("AnnounceFrostTombIcons", false)
 mod:AddBoolOption("SetBubbles", true)--because chat bubble hides Ice Tomb target indication if bubbles are on.
 
 local lanceTargets = {}
@@ -129,9 +128,6 @@ do
 		table.sort(tombIconTargets, sort_by_group)
 		local tombIcons = 8
 		for i, v in ipairs(tombIconTargets) do
-			if self.Options.AnnounceFrostTombIcons and DBM:GetRaidRank() > 0 then
-				SendChatMessage(L.TombIconSet:format(tombIcons, DBM:GetUnitFullName(v)), "RAID")
-			end
 			self:SetIcon(v, tombIcons)
 			tombIcons = tombIcons - 1
 		end

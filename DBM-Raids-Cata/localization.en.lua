@@ -554,7 +554,6 @@ L:SetTimerLocalization({
 L:SetOptionLocalization({
 	WarnPillars				= "Announce how many $journal:3919 or $journal:4069 are left",
 	TimerSpecial			= "Show timer for first special ability cast",
-	AnnounceFrostTombIcons	= "Announce icons for $spell:104451 targets to raid chat<br/>(requires raid leader)",
 	warnFrostTombCast		= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(109325),

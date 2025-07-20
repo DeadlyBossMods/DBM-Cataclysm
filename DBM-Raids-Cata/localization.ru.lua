@@ -556,7 +556,6 @@ L:SetTimerLocalization({
 L:SetOptionLocalization({
 	WarnPillars				= "Объявлять сколько $journal:3919 или $journal:4069 осталось",
 	TimerSpecial			= "Отсчет времени до первой особой способности",
-	AnnounceFrostTombIcons	= "Объявлять рейдовые иконки на целях $spell:104451 в рейд-чат<br/>(необходимы права лидера рейда)",
 	warnFrostTombCast		= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(109325),

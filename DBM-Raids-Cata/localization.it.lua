@@ -91,7 +91,6 @@ L:SetOptionLocalization({
 	WarnPillars				= "Annuncia quanti $journal:3919 o $journal:4069 sono rimasti",
 	TimerSpecial			= "Visualizza un Timer per il lancio della prima abilita' speciale",
 	RangeFrame				= "Visualizza Radar di Prossimita'(3mt) per $spell:105269, (10) per $journal:4327",
-	AnnounceFrostTombIcons	= "Elenca in Chat le Icone per i bersagli di $spell:104451 <br/>(Richiede CapoIncursione)",
 	warnFrostTombCast		= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(104451),
 	SetIconOnFrostflake		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(109325),
