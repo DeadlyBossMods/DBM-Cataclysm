@@ -602,16 +602,16 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(332)
 
 L:SetWarningLocalization({
-	SpecWarnElites	= "Сумеречные Элитки!"
+	SpecWarnElites	= "Элитные сумеречные бойцы!"
 })
 
 L:SetTimerLocalization({
-	TimerAdd			= "След. Помощники"
+	TimerAdd			= "След. Адды"
 })
 
 L:SetOptionLocalization({
-	TimerAdd			= "Отсчет времени до появления следующих помощников",
-	SpecWarnElites		= "Показывать спецпредупреждение для новых Сумеречных Элиток",
+	TimerAdd			= "Отсчет времени до появления следующих Элитных сумеречных бойцов",
+	SpecWarnElites		= "Показывать спецпредупреждение для новых Элитных сумеречных бойцов",
 	SetTextures			= "Автоматически отключать проэцирование текстур на 1-й фазе<br/>(возвращает в исходное состояние на 2 фазе)"
 })
 
