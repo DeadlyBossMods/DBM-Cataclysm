@@ -5,6 +5,7 @@ local Nezir		= DBM:EJ_GetSectionInfo(3178)
 local Rohash	= DBM:EJ_GetSectionInfo(3172)
 
 mod:SetRevision("@file-date-integer@")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(45870, 45871, 45872)
 mod:SetEncounterID(1035)
 mod:SetZone(754)

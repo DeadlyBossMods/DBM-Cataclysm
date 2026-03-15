@@ -2,6 +2,7 @@ local mod	= DBM:NewMod("BWDTrash", "DBM-Raids-Cata", 5)
 local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision("@file-date-integer@")
+mod:DisableHardcodedOptions()
 mod:SetModelID(29539)
 mod:SetZone(669)
 mod.isTrashMod = true

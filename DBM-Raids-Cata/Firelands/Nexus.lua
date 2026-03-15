@@ -8,6 +8,7 @@ else
 end
 
 mod:SetRevision("@file-date-integer@")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(53472)
 mod:SetModelID(32230)
 mod:SetZone(951)--Scoped to Nexus only

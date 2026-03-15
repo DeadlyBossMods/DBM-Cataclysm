@@ -2,6 +2,7 @@ local mod	= DBM:NewMod("Mobus", "DBM-Cataclysm")
 local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision("@file-date-integer@")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(50009)
 mod:SetModelID(37338)
 mod:EnableWBEngageSync()--Enable syncing engage in outdoors

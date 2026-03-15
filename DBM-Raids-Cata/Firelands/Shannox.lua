@@ -4,6 +4,7 @@ local L		= mod:GetLocalizedStrings()
 --local Rageface	= DBM:EJ_GetSectionInfo(2583)--Unused
 
 mod:SetRevision("@file-date-integer@")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(53691)
 mod:SetEncounterID(1205)
 mod:SetUsedIcons(1, 2) -- cross(7) is hard to see in redish environment?

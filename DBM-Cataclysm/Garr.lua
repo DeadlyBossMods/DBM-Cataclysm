@@ -2,6 +2,7 @@ local mod	= DBM:NewMod("Garr", "DBM-Cataclysm")
 local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision("@file-date-integer@")
+mod:DisableHardcodedOptions()
 mod:SetCreatureID(50056)
 mod:SetModelID(37307)
 mod:EnableWBEngageSync()--Enable syncing engage in outdoors
