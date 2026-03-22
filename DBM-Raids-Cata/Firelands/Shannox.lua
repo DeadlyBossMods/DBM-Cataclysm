@@ -3,6 +3,8 @@ local L		= mod:GetLocalizedStrings()
 --local Riplimb	= DBM:EJ_GetSectionInfo(2581)--Unused
 --local Rageface	= DBM:EJ_GetSectionInfo(2583)--Unused
 
+mod.statTypes = "normal,heroic,timewalker"
+
 mod:SetRevision("@file-date-integer@")
 mod:DisableHardcodedOptions()
 mod:SetCreatureID(53691)
