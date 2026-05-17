@@ -51,7 +51,7 @@ local specWarnDeepBreath			= mod:NewSpecialWarningDodge(86059, nil, nil, nil, 2,
 local specWarnFabulousFlames		= mod:NewSpecialWarningMove(86505, nil, nil, nil, 2, 8)
 local yellFabFlames					= mod:NewYell(86505)
 local specWarnTwilightMeteorite		= mod:NewSpecialWarningYou(86013, nil, nil, nil, 1, 2)
-local yellTwilightMeteorite			= mod:NewYell(86013, false, nil, nil, "YELL")
+local yellTwilightMeteorite			= mod:NewYell(86013, nil, false, nil, "YELL")
 local specWarnEngulfingMagic		= mod:NewSpecialWarningMoveAway(86622, nil, nil, nil, 3, 2)
 local yellEngulfingMagic			= mod:NewYell(86622)
 
