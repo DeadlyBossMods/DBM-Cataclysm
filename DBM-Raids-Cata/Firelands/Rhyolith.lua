@@ -33,13 +33,13 @@ local warnHeatedVolcano		= mod:NewSpellAnnounce(98493, 3)
 local warnFlameStomp		= mod:NewSpellAnnounce(97282, 3, nil, "Melee")--According to journal only hits players within 20 yards of him, so melee by default?
 local warnMoltenArmor		= mod:NewStackAnnounce(98255, 4, nil, "Tank|Healer")	-- Would this be nice if we could show this in the infoFrame? (changed defaults to tanks/healers, if you aren't either it doesn't concern you unless you find stuff to stand in)
 local warnDrinkMagma		= mod:NewSpellAnnounce(98034, 4)	-- if you "kite" him to close to magma
-local warnAdds				= mod:NewCountAnnounce("ej2529", 2, 98136)
+local warnAdds				= mod:NewCountAnnounce(-2529, 2, 98136)
 local warnPhase2Soon		= mod:NewPrePhaseAnnounce(2, 2)
 local warnPhase2			= mod:NewPhaseAnnounce(2, 3)
 
 local specWarnMagmaFlow		= mod:NewSpecialWarningSpell(97225, nil, nil, nil, 2, 2)
 
-local timerAddsCD			= mod:NewNextCountTimer(22.3, "ej2529", nil, nil, nil, 1, 98552, DBM_COMMON_L.DAMAGE_ICON)
+local timerAddsCD			= mod:NewNextCountTimer(22.3, -2529, nil, nil, nil, 1, 98552, DBM_COMMON_L.DAMAGE_ICON)
 local timerHeatedVolcano	= mod:NewNextTimer(25.5, 98493, nil, nil, nil, 5)
 local timerFlameStomp		= mod:NewCDTimer(30.5, 97282, nil, nil, nil, 2)
 local timerSuperheated		= mod:NewNextTimer(10, 101304, nil, nil, nil, 5, nil, DBM_COMMON_L.DAMAGE_ICON)		--Add the 10 second party in later at some point if i remember to actually log it better

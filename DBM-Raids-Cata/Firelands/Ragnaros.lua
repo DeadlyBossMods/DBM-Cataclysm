@@ -49,7 +49,7 @@ local warnMagmaTrap			= mod:NewTargetAnnounce(98164, 3)--Phase 1 ability.
 local warnPhase2Soon		= mod:NewPrePhaseAnnounce(2, 3)
 mod:AddBoolOption("warnSeedsLand", false, "announce")
 local warnSplittingBlow		= mod:NewAnnounce("warnSplittingBlow", 3, 98951)
-local warnSonsLeft			= mod:NewAddsLeftAnnounce("ej2637", 2, 99014)
+local warnSonsLeft			= mod:NewAddsLeftAnnounce(-2637, 2, 99014)
 local warnEngulfingFlame	= mod:NewAnnounce("warnEngulfingFlame", 4, 99171)
 mod:AddBoolOption("warnEngulfingFlameHeroic", false, "announce")
 local warnPhase3Soon		= mod:NewPrePhaseAnnounce(3, 3)
