@@ -29,11 +29,11 @@ local warnFurious			= mod:NewSpellAnnounce(103846, 3)
 local warnKohcrom			= mod:NewSpellAnnounce(109017, 4)
 local KohcromWarning		= mod:NewAnnounce("KohcromWarning", 2, 55342)--Mirror image icon. use different color for easlier distingush.
 
-local specwarnCrushArmor	= mod:NewSpecialWarningStack(103687, nil, 3, nil, nil, 1, 6)
-local specWarnCrushTaunt	= mod:NewSpecialWarningTaunt(103687, nil, nil, nil, 1, 2)
-local specwarnVortex		= mod:NewSpecialWarningSpell(103821, nil, nil, nil, 2, 2)
-local specwarnBlood			= mod:NewSpecialWarningGTFO(103785, nil, nil, nil, 1, 8)
-local specwarnCrystal		= mod:NewSpecialWarningTarget(103639, false, nil, nil, 1, 2)
+local specwarnCrushArmor	= mod:NewSpecialWarningStack(103687, nil, 3, nil, nil, 1, 6, nil, nil, "stackhigh")
+local specWarnCrushTaunt	= mod:NewSpecialWarningTaunt(103687, nil, nil, nil, 1, 2, nil, nil, "tauntboss")
+local specwarnVortex		= mod:NewSpecialWarningSpell(103821, nil, nil, nil, 2, 2, nil, nil, "aesoon")
+local specwarnBlood			= mod:NewSpecialWarningGTFO(103785, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
+local specwarnCrystal		= mod:NewSpecialWarningTarget(103639, false, nil, nil, 1, 2, nil, nil, "helpsoak")
 
 local timerCrushArmor		= mod:NewTargetTimer(20, 103687, nil, "Tank", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
 local timerCrystal			= mod:NewVarTimer("v12-14", 103640, nil, nil, nil, 5)	-- 12-14sec variation (is also time till 'detonate')

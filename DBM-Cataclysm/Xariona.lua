@@ -23,8 +23,8 @@ local warnTwilightFissure		= mod:NewTargetNoFilterAnnounce(93546, 3)--Typical vo
 local warnTwilightBuffet		= mod:NewTargetNoFilterAnnounce(93551, 3, nil, "Healers", 2)
 local warnUnleashedMagicSoon	= mod:NewPreWarnAnnounce(93556, 10, 3)
 
-local specWarnUnleashedMagic	= mod:NewSpecialWarningMoveTo(93556, nil, nil, nil, 3, 2)
-local specWarnTwilightFissure	= mod:NewSpecialWarningYou(93546, nil, nil, nil, 1, 2)
+local specWarnUnleashedMagic	= mod:NewSpecialWarningMoveTo(93556, nil, nil, nil, 3, 2, nil, nil, "findshelter")
+local specWarnTwilightFissure	= mod:NewSpecialWarningYou(93546, nil, nil, nil, 1, 2, nil, nil, "targetyou")
 
 local timerTwilightFissureCD	= mod:NewCDTimer(23, 93546, nil, nil, nil, 3)
 local timerTwilightZoneCD		= mod:NewNextTimer(30, 93553, nil, nil, nil, 3)

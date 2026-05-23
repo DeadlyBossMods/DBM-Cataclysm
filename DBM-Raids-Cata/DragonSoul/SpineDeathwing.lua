@@ -34,11 +34,11 @@ local warnNuclearBlast		= mod:NewCastAnnounce(105845, 4)
 local warnSealArmor			= mod:NewAnnounce("warnSealArmor", 4, 105847)
 local warnAmalgamation		= mod:NewSpellAnnounce(-4054, 3, 106005)--Amalgamation spawning, give temp icon.
 
-local specWarnRoll			= mod:NewSpecialWarningSpell(-4050, nil, nil, nil, 2, 17)--The actual roll
-local specWarnTendril		= mod:NewSpecialWarning("SpecWarnTendril", nil, nil, 3, 17)--A personal warning for you only if you're not gripped 3 seconds after roll started
-local specWarnGrip			= mod:NewSpecialWarningSwitch(105490, "Dps", nil, nil, 1, 2)
-local specWarnNuclearBlast	= mod:NewSpecialWarningRun(105845, "Melee", nil, nil, 4, 2)
-local specWarnSealArmor		= mod:NewSpecialWarningSwitch(105847, nil, nil, nil, 1, 2)
+local specWarnRoll			= mod:NewSpecialWarningSpell(-4050, nil, nil, nil, 2, 17, nil, nil, "rollincoming")--The actual roll
+local specWarnTendril		= mod:NewSpecialWarning("SpecWarnTendril", nil, nil, 3, 17, nil, nil, nil, nil, nil, "movetotendrils")--A personal warning for you only if you're not gripped 3 seconds after roll started
+local specWarnGrip			= mod:NewSpecialWarningSwitch(105490, "Dps", nil, nil, 1, 2, nil, nil, "targetchange")
+local specWarnNuclearBlast	= mod:NewSpecialWarningRun(105845, "Melee", nil, nil, 4, 2, nil, nil, "justrun")
+local specWarnSealArmor		= mod:NewSpecialWarningSwitch(105847, nil, nil, nil, 1, 2, nil, nil, "targetchange")
 local specWarnAmalgamation	= mod:NewSpecialWarningSpell(-4054, false)
 
 local timerSealArmor		= mod:NewCastTimer(23, 105847, nil, nil, nil, 6)

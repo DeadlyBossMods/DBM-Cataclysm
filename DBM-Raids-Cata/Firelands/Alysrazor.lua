@@ -41,10 +41,10 @@ local warnCataclysm				= mod:NewCastAnnounce(102111, 3)
 local warnPhase					= mod:NewAnnounce("WarnPhase", 3, "136116")
 local warnNewInitiate			= mod:NewAnnounce("WarnNewInitiate", 3, 61131)
 
-local specWarnFirestorm			= mod:NewSpecialWarningSpell(100744, nil, nil, nil, 2, 2)
-local specWarnFieroblast		= mod:NewSpecialWarningInterrupt(101223, "HasInterrupt", nil, 2, 1, 2)
-local specWarnGushingWoundSelf	= mod:NewSpecialWarningYou(99308, false, nil, nil, 1, 2)
-local specWarnTantrum			= mod:NewSpecialWarningSpell(99362, "Tank", nil, nil, 1, 2)
+local specWarnFirestorm			= mod:NewSpecialWarningSpell(100744, nil, nil, nil, 2, 2, nil, nil, "aesoon")
+local specWarnFieroblast		= mod:NewSpecialWarningInterrupt(101223, "HasInterrupt", nil, 2, 1, 2, nil, nil, "kickcast")
+local specWarnGushingWoundSelf	= mod:NewSpecialWarningYou(99308, false, nil, nil, 1, 2, nil, nil, "defensive")
+local specWarnTantrum			= mod:NewSpecialWarningSpell(99362, "Tank", nil, nil, 1, 2, nil, nil, "moveboss")
 local specWarnGushingWoundOther	= mod:NewSpecialWarningTarget(99308, false, nil, nil, 1)--There is no voice that really fits this
 
 local timerCombatStart			= mod:NewCombatTimer(33)

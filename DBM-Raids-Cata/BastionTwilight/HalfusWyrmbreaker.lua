@@ -24,9 +24,9 @@ local warnVengeance			= mod:NewStackAnnounce(87683, 3)
 local warnParalysis			= mod:NewSpellAnnounce(84030, 2)
 local warnMalevolentStrike	= mod:NewStackAnnounce(83908, 2, nil, "Tank|Healer")
 
-local specWarnFuriousRoar	= mod:NewSpecialWarningCount(83710, nil, nil, nil, 2, 2)
-local specWarnShadowNova	= mod:NewSpecialWarningInterrupt(83703, "HasInterrupt", nil, nil, 1, 2)
-local specWarnMalevolent	= mod:NewSpecialWarningStack(83908, nil, 8, nil, nil, 1, 6)
+local specWarnFuriousRoar	= mod:NewSpecialWarningCount(83710, nil, nil, nil, 2, 2, nil, nil, "stunsoon")
+local specWarnShadowNova	= mod:NewSpecialWarningInterrupt(83703, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnMalevolent	= mod:NewSpecialWarningStack(83908, nil, 8, nil, nil, 1, 6, nil, nil, "stackhigh")
 
 local timerFuriousRoarCD	= mod:NewCDCountTimer("d30", 83710, nil, nil, nil, 2)
 local timerBreathCD			= mod:NewCDCountTimer(20, 83707, nil, nil, nil, 3)--every 20-25 seconds.

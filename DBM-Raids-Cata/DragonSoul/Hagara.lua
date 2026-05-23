@@ -30,13 +30,13 @@ local warnFrostflake		= mod:NewTargetAnnounce(109325, 3, nil, "Healer")--Spammy,
 local warnStormPillars		= mod:NewSpellAnnounce(109557, 3, nil, false)--Spammy, off by default (since we can't get a target anyways.
 local warnPillars			= mod:NewAnnounce("WarnPillars", 2, 105311)
 
-local specWarnAssault		= mod:NewSpecialWarningDefensive(107851, nil, nil, nil, 1, 2)
-local specWarnShattering	= mod:NewSpecialWarningYou(105289, nil, nil, nil, 1, 2)
-local specWarnIceLance		= mod:NewSpecialWarningStack(105316, nil, 3, nil, nil, 1, 6)
-local specWarnTempest		= mod:NewSpecialWarningSpell(105256, nil, nil, nil, 2, 2)
-local specWarnLightingStorm	= mod:NewSpecialWarningSpell(105465, nil, nil, nil, 2, 2)
-local specWarnWatery		= mod:NewSpecialWarningGTFO(110317, nil, nil, nil, 1, 8)
-local specWarnFrostflake	= mod:NewSpecialWarningMoveAway(109325, nil, nil, nil, 1, 2)
+local specWarnAssault		= mod:NewSpecialWarningDefensive(107851, nil, nil, nil, 1, 2, nil, nil, "defensive")
+local specWarnShattering	= mod:NewSpecialWarningYou(105289, nil, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnIceLance		= mod:NewSpecialWarningStack(105316, nil, 3, nil, nil, 1, 6, nil, nil, "stackhigh")
+local specWarnTempest		= mod:NewSpecialWarningSpell(105256, nil, nil, nil, 2, 2, nil, nil, "phasechange")
+local specWarnLightingStorm	= mod:NewSpecialWarningSpell(105465, nil, nil, nil, 2, 2, nil, nil, "aesoon")
+local specWarnWatery		= mod:NewSpecialWarningGTFO(110317, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
+local specWarnFrostflake	= mod:NewSpecialWarningMoveAway(109325, nil, nil, nil, 1, 2, nil, nil, "runout")
 local yellFrostflake		= mod:NewYell(109325)
 
 local timerAssault			= mod:NewBuffActiveTimer(5, 107851, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)

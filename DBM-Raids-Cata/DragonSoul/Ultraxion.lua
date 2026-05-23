@@ -25,11 +25,11 @@ local warnHourofTwilightSoon		= mod:NewPreWarnAnnounce(106371, 15, 4)--Why 15? b
 local warnHourofTwilight			= mod:NewCountAnnounce(106371, 4)
 local warnFadingLight				= mod:NewTargetCountAnnounce(109075, 3)
 
-local specWarnHourofTwilight		= mod:NewSpecialWarningSpell(106371, nil, nil, nil, 2, 2)
+local specWarnHourofTwilight		= mod:NewSpecialWarningSpell(106371, nil, nil, nil, 2, 2, nil, nil, "aesoon")
 local specWarnHourofTwilightN		= mod:NewSpecialWarning("specWarnHourofTwilightN", nil, false, nil, 2, 2)
-local specWarnFadingLight			= mod:NewSpecialWarningYou(109075, nil, nil, nil, 1, 2)
-local specWarnFadingLightOther		= mod:NewSpecialWarningTaunt(109075, nil, nil, nil, 1, 2)
-local specWarnTwilightEruption		= mod:NewSpecialWarningSpell(106388, nil, nil, 2, 3, 2)
+local specWarnFadingLight			= mod:NewSpecialWarningYou(109075, nil, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnFadingLightOther		= mod:NewSpecialWarningTaunt(109075, nil, nil, nil, 1, 2, nil, nil, "tauntboss")
+local specWarnTwilightEruption		= mod:NewSpecialWarningSpell(106388, nil, nil, 2, 3, 2, nil, nil, "stilldanger")
 
 local timerCombatStart				= mod:NewTimer(35, "TimerCombatStart", 59571)
 --local timerUnstableMonstrosity	= mod:NewNextTimer(60, 106372, nil, "Healer", nil, 5, nil, DBM_COMMON_L.HEALER_ICON)

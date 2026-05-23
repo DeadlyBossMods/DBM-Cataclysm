@@ -37,7 +37,7 @@ local warnAdds				= mod:NewCountAnnounce(-2529, 2, 98136)
 local warnPhase2Soon		= mod:NewPrePhaseAnnounce(2, 2)
 local warnPhase2			= mod:NewPhaseAnnounce(2, 3)
 
-local specWarnMagmaFlow		= mod:NewSpecialWarningSpell(97225, nil, nil, nil, 2, 2)
+local specWarnMagmaFlow		= mod:NewSpecialWarningSpell(97225, nil, nil, nil, 2, 2, nil, nil, "aesoon")
 
 local timerAddsCD			= mod:NewNextCountTimer(22.3, -2529, nil, nil, nil, 1, 98552, DBM_COMMON_L.DAMAGE_ICON)
 local timerHeatedVolcano	= mod:NewNextTimer(25.5, 98493, nil, nil, nil, 5)

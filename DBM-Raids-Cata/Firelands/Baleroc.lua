@@ -33,12 +33,12 @@ local warnStrike			= mod:NewAnnounce("warnStrike", 4, 99353, "Tank|Healer")
 local warnInfernoBlade		= mod:NewSpellAnnounce(99350, 3, nil, "Tank")
 local warnCountdown			= mod:NewTargetAnnounce(99516, 4)
 
-local specWarnShardsTorment	= mod:NewSpecialWarningCount(99259, nil, nil, nil, 2, 2)
-local specWarnCountdown		= mod:NewSpecialWarningMoveTo(99516, nil, nil, nil, 3, 2)
+local specWarnShardsTorment	= mod:NewSpecialWarningCount(99259, nil, nil, nil, 2, 2, nil, nil, "specialsoon")
+local specWarnCountdown		= mod:NewSpecialWarningMoveTo(99516, nil, nil, nil, 3, 2, nil, nil, "gather")
 local yellCountdown			= mod:NewYell(99516)
 local yellCountdownFades	= mod:NewShortFadesYell(99516)
-local specWarnTormented		= mod:NewSpecialWarningYou(99257, nil, nil, 2, 1, 2)
-local specWarnDecimation	= mod:NewSpecialWarningSpell(99352, "Tank|Healer", nil, 2, 3, 2)
+local specWarnTormented		= mod:NewSpecialWarningYou(99257, nil, nil, 2, 1, 2, nil, nil, "targetyou")
+local specWarnDecimation	= mod:NewSpecialWarningSpell(99352, "Tank|Healer", nil, 2, 3, 2, nil, nil, "tankheal")
 
 local timerBladeActive		= mod:NewTimer(15, "TimerBladeActive", 99352, nil, nil, 6)
 local timerBladeNext		= mod:NewTimer(30, "TimerBladeNext", 99350, "Tank|Healer", nil, 5, DBM_COMMON_L.TANK_ICON)	-- either Decimation Blade or Inferno Blade

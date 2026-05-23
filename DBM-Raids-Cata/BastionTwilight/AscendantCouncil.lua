@@ -37,11 +37,11 @@ local warnWaterBomb			= mod:NewSpellAnnounce(82699, 3)
 local warnFrozen			= mod:NewTargetNoFilterAnnounce(82772, 3, nil, "Healer")
 local warnFrostBeacon		= mod:NewTargetNoFilterAnnounce(92307, 4)--Heroic Phase 2 ablity
 
-local specWarnHeartIce		= mod:NewSpecialWarningYou(82665, false, nil, nil, 1, 2)
-local specWarnGlaciate		= mod:NewSpecialWarningRun(82746, "Melee", nil, nil, 4, 2)
-local specWarnWaterLogged	= mod:NewSpecialWarningYou(82762, nil, nil, nil, 1, 2)--beter voice than defensive?
-local specWarnHydroLance	= mod:NewSpecialWarningInterrupt(82752, "HasInterrupt", nil, nil, 1, 2)
-local specWarnFrostBeacon	= mod:NewSpecialWarningMoveAway(92307, nil, nil, nil, 3, 2)--Heroic
+local specWarnHeartIce		= mod:NewSpecialWarningYou(82665, false, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnGlaciate		= mod:NewSpecialWarningRun(82746, "Melee", nil, nil, 4, 2, nil, nil, "justrun")
+local specWarnWaterLogged	= mod:NewSpecialWarningYou(82762, nil, nil, nil, 1, 2, nil, nil, "defensive")--beter voice than defensive?
+local specWarnHydroLance	= mod:NewSpecialWarningInterrupt(82752, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnFrostBeacon	= mod:NewSpecialWarningMoveAway(92307, nil, nil, nil, 3, 2, nil, nil, "runout")--Heroic
 local yellFrostbeacon		= mod:NewYell(92307)
 local yellScrewed			= mod:NewYell(92307, L.blizzHatesMe, true, "yellScrewed", "YELL")--Amusing but effective.
 
@@ -61,9 +61,9 @@ local warnBurningBlood		= mod:NewTargetAnnounce(82660, 3, nil, false)
 local warnFlameTorrent		= mod:NewSpellAnnounce(82777, 2, nil, "Tank|Healer")--Not too useful to announce but will leave for now. CD timer useless.
 local warnFlameStrike		= mod:NewCastAnnounce(92212, 3) --Heroic Phase 2 ablity
 
-local specWarnBurningBlood	= mod:NewSpecialWarningYou(82660, false, nil, nil, 1, 2)
-local specWarnAegisFlame	= mod:NewSpecialWarningSwitch(82631, nil, nil, nil, 1, 2)
-local specWarnRisingFlames	= mod:NewSpecialWarningInterrupt(82636, "HasInterrupt", nil, nil, 1, 2)
+local specWarnBurningBlood	= mod:NewSpecialWarningYou(82660, false, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnAegisFlame	= mod:NewSpecialWarningSwitch(82631, nil, nil, nil, 1, 2, nil, nil, "targetchange")
+local specWarnRisingFlames	= mod:NewSpecialWarningInterrupt(82636, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
 
 local timerBurningBlood		= mod:NewTargetTimer(60, 82660, nil, false, nil, 5)
 local timerBurningBloodCD	= mod:NewCDTimer(22, 82660, nil, false, nil, 3)--22-33 seconds, even worth having a timer?
@@ -79,10 +79,10 @@ local warnQuakeSoon			= mod:NewPreWarnAnnounce(83565, 10, 3)
 local warnQuake				= mod:NewSpellAnnounce(83565, 4)
 local warnGravityCore		= mod:NewTargetNoFilterAnnounce(92075, 4)--Heroic Phase 1 ablity
 
-local specWarnEruption		= mod:NewSpecialWarningDodge(83675, false, nil, nil, 2, 2)
+local specWarnEruption		= mod:NewSpecialWarningDodge(83675, false, nil, nil, 2, 2, nil, nil, "watchstep")
 local specWarnSearingWinds	= mod:NewSpecialWarning("SpecWarnSearingWinds")--No decent custom voice
-local specWarnHardenedSkin	= mod:NewSpecialWarningInterrupt(83718, "HasInterrupt", nil, nil, 1, 2)
-local specWarnGravityCore	= mod:NewSpecialWarningYou(92075, nil, nil, nil, 1, 2)--Heroic
+local specWarnHardenedSkin	= mod:NewSpecialWarningInterrupt(83718, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnGravityCore	= mod:NewSpecialWarningYou(92075, nil, nil, nil, 1, 2, nil, nil, "targetyou")--Heroic
 local yellGravityCore		= mod:NewYell(92075)
 
 local timerEruptionCD		= mod:NewNextTimer(15, 83675, nil, "Melee", nil, 3)
@@ -102,10 +102,10 @@ local warnThundershock		= mod:NewSpellAnnounce(83067, 4)
 local warnStaticOverload	= mod:NewTargetNoFilterAnnounce(92067, 4)--Heroic Phase 1 ablity
 
 local specWarnGrounded		= mod:NewSpecialWarning("SpecWarnGrounded")--No decent custom voice
-local specWarnLightningBlast= mod:NewSpecialWarningInterrupt(83070, false, nil, nil, 1, 2)
-local specWarnLightningRod	= mod:NewSpecialWarningMoveAway(83099, nil, nil, nil, 1, 2)
+local specWarnLightningBlast= mod:NewSpecialWarningInterrupt(83070, false, nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnLightningRod	= mod:NewSpecialWarningMoveAway(83099, nil, nil, nil, 1, 2, nil, nil, "runout")
 local yellLightningRod		= mod:NewYell(83099)
-local specWarnStaticOverload= mod:NewSpecialWarningYou(92067, nil, nil, nil, 1, 2)--Heroic
+local specWarnStaticOverload= mod:NewSpecialWarningYou(92067, nil, nil, nil, 1, 2, nil, nil, "targetyou")--Heroic
 local yellStaticOverload	= mod:NewYell(92067)
 
 local timerLightningRod		= mod:NewBuffFadesTimer(15, 83099, nil, nil, nil, 5)

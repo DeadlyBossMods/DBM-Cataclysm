@@ -31,11 +31,11 @@ local warnPhase2Soon				= mod:NewPrePhaseAnnounce(2, 3)
 local warnFixate					= mod:NewTargetAnnounce(99526, 4)--Heroic ability
 local warnDrone						= mod:NewCountAnnounce(-2773, 3)
 
-local specWarnFixate				= mod:NewSpecialWarningYou(99526, nil, nil, nil, 1, 2)
-local specWarnTouchWidowKiss		= mod:NewSpecialWarningYou(99476, nil, nil, nil, 1, 2)
-local specWarnSmolderingDevastation	= mod:NewSpecialWarningCount(99052, nil, nil, nil, 3, 2)
-local specWarnVolatilePoison		= mod:NewSpecialWarningMove(99278, nil, nil, nil, 1, 2)--Heroic ability
-local specWarnTouchWidowKissOther	= mod:NewSpecialWarningTarget(99476, "Tank", nil, nil, 1, 2)
+local specWarnFixate				= mod:NewSpecialWarningYou(99526, nil, nil, nil, 1, 2, nil, nil, "justrun")
+local specWarnTouchWidowKiss		= mod:NewSpecialWarningYou(99476, nil, nil, nil, 1, 2, nil, nil, "defensive")
+local specWarnSmolderingDevastation	= mod:NewSpecialWarningCount(99052, nil, nil, nil, 3, 2, nil, nil, "aesoon")
+local specWarnVolatilePoison		= mod:NewSpecialWarningMove(99278, nil, nil, nil, 1, 2, nil, nil, "watchfeet")--Heroic ability
+local specWarnTouchWidowKissOther	= mod:NewSpecialWarningTarget(99476, "Tank", nil, nil, 1, 2, nil, nil, "watchstep")
 
 local timerSpinners 				= mod:NewNextTimer(15, -2770, nil, nil, nil, 1, 97370) -- 15secs after Smoldering cast start
 local timerSpiderlings				= mod:NewNextTimer(30, -2778, nil, nil, nil, 1, 72106)

@@ -37,14 +37,14 @@ local warnPhase2					= mod:NewPhaseAnnounce(2)
 local warnPhase2Soon				= mod:NewPrePhaseAnnounce(2)
 local warnCreations					= mod:NewSpellAnnounce(82414, 3)--Phase 2
 
-local specWarnSickness				= mod:NewSpecialWarningYou(82235, nil, nil, nil, 1, 2)--Ranged should already be spread out and not need a special warning every sickness.
-local specWarnBlaze					= mod:NewSpecialWarningGTFO(81538, nil, nil, nil, 1, 8)
+local specWarnSickness				= mod:NewSpecialWarningYou(82235, nil, nil, nil, 1, 2, nil, nil, "range5")--Ranged should already be spread out and not need a special warning every sickness.
+local specWarnBlaze					= mod:NewSpecialWarningGTFO(81538, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
 local specWarnEmpoweredShadows		= mod:NewSpecialWarningSpell(81572, "Healer", nil, nil, 2)
-local specWarnCorruptingCrash		= mod:NewSpecialWarningMoveAway(81685, nil, nil, nil, 1, 2)--Subject to accuracy flaws in rare cases but most of the time it's right.
+local specWarnCorruptingCrash		= mod:NewSpecialWarningMoveAway(81685, nil, nil, nil, 1, 2, nil, nil, "runout")--Subject to accuracy flaws in rare cases but most of the time it's right.
 local yellCrash						= mod:NewYell(81685)--^^
-local specWarnDepravity				= mod:NewSpecialWarningInterrupt(81713, nil, nil, nil, 1, 2)--On by default cause these things don't get interrupted otherwise. but will only warn if it's target.
+local specWarnDepravity				= mod:NewSpecialWarningInterrupt(81713, nil, nil, nil, 1, 2, nil, nil, "kickcast")--On by default cause these things don't get interrupted otherwise. but will only warn if it's target.
 --local specwarnFury					= mod:NewSpecialWarningTarget(82524, "Tank", nil, nil, 1, 2)
-local specwarnFlamingDestruction	= mod:NewSpecialWarningDefensive(81194, nil, nil, nil, 1, 2)
+local specwarnFlamingDestruction	= mod:NewSpecialWarningDefensive(81194, nil, nil, nil, 1, 2, nil, nil, "defensive")
 
 local timerWorshipCD				= mod:NewCDTimer(36, 91303, nil, nil, nil, 3, nil, DBM_COMMON_L.INTERRUPT_ICON)
 local timerAdherent					= mod:NewCDTimer(92, 81628, nil, nil, nil, 1)

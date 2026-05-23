@@ -32,8 +32,8 @@ local Arcanotron = DBM:EJ_GetSectionInfo(3194)
 --All
 local warnActivated				= mod:NewTargetNoFilterAnnounce(78740, 3)
 
-local specWarnActivated			= mod:NewSpecialWarningSwitch(78740, false, nil, nil, 1, 2)--Good for target switches, but healers probably don't want an extra special warning for it.
-local specWarnGTFO				= mod:NewSpecialWarningGTFO(80161, nil, nil, nil, 1, 8)
+local specWarnActivated			= mod:NewSpecialWarningSwitch(78740, false, nil, nil, 1, 2, nil, nil, "targetchange")--Good for target switches, but healers probably don't want an extra special warning for it.
+local specWarnGTFO				= mod:NewSpecialWarningGTFO(80161, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
 
 local timerNextActivate			= mod:NewNextTimer(45, 78740, nil, nil, nil, 1)				--Activations are every 90 (60sec heroic) seconds but encounter staggers them in an alternating fassion so 45 (30 heroic) seconds between add switches
 local timerNefAbilityCD			= mod:NewTimer(30, "timerNefAblity", 92048, nil, nil, 3, DBM_COMMON_L.HEROIC_ICON)--Huge variation on this, but shortest CD i've observed is 30.
@@ -48,10 +48,10 @@ local warnBarrierSoon			= mod:NewPreWarnAnnounce(79582, 10, 3, nil, "-Healer")
 local warnBarrier				= mod:NewSpellAnnounce(79582, 4)
 local warnAcquiringTarget		= mod:NewTargetNoFilterAnnounce(79501, 4)
 
-local specWarnBarrier			= mod:NewSpecialWarningReflect(79582, "-Healer", nil, nil, 1, 2)
-local specWarnAcquiringTarget	= mod:NewSpecialWarningMoveAway(79501, nil, nil, nil, 1, 2)
+local specWarnBarrier			= mod:NewSpecialWarningReflect(79582, "-Healer", nil, nil, 1, 2, nil, nil, "stopattack")
+local specWarnAcquiringTarget	= mod:NewSpecialWarningMoveAway(79501, nil, nil, nil, 1, 2, nil, nil, "runout")
 local yellAcquiringTarget		= mod:NewYell(79501)
-local specWarnEncasingShadows	= mod:NewSpecialWarningTarget(92023, nil, nil, nil, 1, 2, 3)--Heroic Ability
+local specWarnEncasingShadows	= mod:NewSpecialWarningTarget(92023, nil, nil, nil, 1, 2, 3, nil, "runaway")--Heroic Ability
 local yellEncasingShadows		= mod:NewYell(92023, L.YellTargetLock)
 
 local timerAcquiringTarget		= mod:NewNextTimer(40, 79501, nil, nil, nil, 3)
@@ -66,10 +66,10 @@ local warnUnstableShieldSoon	= mod:NewPreWarnAnnounce(79900, 10, 3, nil, "-Heale
 local warnUnstableShield		= mod:NewSpellAnnounce(79900, 4)
 local warnShadowConductorCast	= mod:NewPreWarnAnnounce(92053, 5, 4)--Heroic Ability
 
-local specWarnUnstableShield	= mod:NewSpecialWarningTarget(79900, "-Healer", nil, nil, 1, 2)
-local specWarnConductor			= mod:NewSpecialWarningMoveAway(79888, nil, nil, nil, 1, 2)
+local specWarnUnstableShield	= mod:NewSpecialWarningTarget(79900, "-Healer", nil, nil, 1, 2, nil, nil, "stopattack")
+local specWarnConductor			= mod:NewSpecialWarningMoveAway(79888, nil, nil, nil, 1, 2, nil, nil, "runout")
 local yellLightConductor		= mod:NewYell(79888)
-local specWarnShadowConductor	= mod:NewSpecialWarningTarget(92053, nil, nil, nil, 1, 2, 3)--Heroic Ability
+local specWarnShadowConductor	= mod:NewSpecialWarningTarget(92053, nil, nil, nil, 1, 2, 3, nil, "gathershare")--Heroic Ability
 local yellShadowConductor		= mod:NewYell(92053, nil, nil, nil, "YELL")
 
 local timerLightningConductor	= mod:NewTargetTimer(10, 79888, nil, nil, nil, 5)
@@ -88,12 +88,12 @@ local warnChemicalBomb			= mod:NewTargetNoFilterAnnounce(80157, 3)
 local warnShellSoon				= mod:NewPreWarnAnnounce(79835, 10, 2, nil, false)
 local warnShell					= mod:NewSpellAnnounce(79835, 3)
 
-local specWarnShell				= mod:NewSpecialWarningTarget(79835, "-Healer", nil, nil, 1, 2)
-local specWarnBombTarget		= mod:NewSpecialWarningRun(80094, nil, nil, nil, 4, 2)
+local specWarnShell				= mod:NewSpecialWarningTarget(79835, "-Healer", nil, nil, 1, 2, nil, nil, "stopattack")
+local specWarnBombTarget		= mod:NewSpecialWarningRun(80094, nil, nil, nil, 4, 2, nil, nil, "justrun")
 local yellFixate				= mod:NewYell(80094, nil, false)
-local specWarnPoisonProtocol	= mod:NewSpecialWarningSpell(80053, "-Healer", nil, nil, 2, 2)
+local specWarnPoisonProtocol	= mod:NewSpecialWarningSpell(80053, "-Healer", nil, nil, 2, 2, nil, nil, "specialsoon")
 local yellChemicalCloud			= mod:NewYell(80161)--May Return false tank yells
-local specWarnGrip				= mod:NewSpecialWarningSpell(91849, nil, nil, nil, 2, 13, 3)--Heroic Ability
+local specWarnGrip				= mod:NewSpecialWarningSpell(91849, nil, nil, nil, 2, 13, 3, nil, "pullin")--Heroic Ability
 
 local timerChemicalBomb			= mod:NewCDTimer(30, 80157, nil, nil, nil, 3)							--Timer Series, 11, 30, 36 (on normal) from activate til shutdown.
 local timerShell				= mod:NewBuffActiveTimer(11.5, 79835, nil, false, nil, 5, nil, DBM_COMMON_L.DAMAGE_ICON)	-- 10 + 1.5 cast time
@@ -104,10 +104,10 @@ local warnGenerator				= mod:NewSpellAnnounce(79624, 3)
 local warnConversionSoon		= mod:NewPreWarnAnnounce(79729, 10, 3, nil, "-Healer")
 local warnConversion			= mod:NewSpellAnnounce(79729, 4)
 
-local specWarnConversion		= mod:NewSpecialWarningTarget(79729, "-Healer", nil, nil, 1, 2)
-local specWarnGenerator			= mod:NewSpecialWarningMove(79624, "Tank", nil, nil, 1, 2)
-local specWarnOverchargedGen	= mod:NewSpecialWarningDodge(91857, nil, nil, nil, 2, 2, 3)--Heroic Ability
-local specWarnAnnihilator		= mod:NewSpecialWarningInterrupt(79710, "HasInterrupt", nil, nil, 1, 2)--On by default for melee now that there is a smart filterin place on whether or not they should be warned.
+local specWarnConversion		= mod:NewSpecialWarningTarget(79729, "-Healer", nil, nil, 1, 2, nil, nil, "stopattack")
+local specWarnGenerator			= mod:NewSpecialWarningMove(79624, "Tank", nil, nil, 1, 2, nil, nil, "moveboss")
+local specWarnOverchargedGen	= mod:NewSpecialWarningDodge(91857, nil, nil, nil, 2, 2, 3, nil, "watchstep")--Heroic Ability
+local specWarnAnnihilator		= mod:NewSpecialWarningInterrupt(79710, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")--On by default for melee now that there is a smart filterin place on whether or not they should be warned.
 
 local timerGeneratorCD			= mod:NewNextTimer(30, 79624, nil, nil, nil, 5)
 local timerConversion			= mod:NewBuffActiveTimer(11.5, 79729, nil, false, nil, 5, nil, DBM_COMMON_L.DAMAGE_ICON)		--10 + 1.5 cast time

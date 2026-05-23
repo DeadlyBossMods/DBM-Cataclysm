@@ -21,8 +21,8 @@ mod:RegisterEventsInCombat(
 local warnShockwave			= mod:NewCastAnnounce(93610, 3)
 local warnMC				= mod:NewTargetNoFilterAnnounce(93621, 4)
 
-local specWarnShockwave		= mod:NewSpecialWarningDodge(93610, "Tank", nil, nil, 1, 2)
-local specWarnBreath		= mod:NewSpecialWarningMove(93612, nil, nil, nil, 1, 8)
+local specWarnShockwave		= mod:NewSpecialWarningDodge(93610, "Tank", nil, nil, 1, 2, nil, nil, "shockwave")
+local specWarnBreath		= mod:NewSpecialWarningMove(93612, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
 
 local timerShockwaveCD		= mod:NewNextTimer(28.5, 93610, nil, nil, nil, 3)
 local timerMCCD				= mod:NewNextTimer(40, 93621, nil, nil, nil, 3)

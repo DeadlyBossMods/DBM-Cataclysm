@@ -22,9 +22,9 @@ mod:RegisterEvents(
 )
 mod.noStatistics = true
 
-local specwarnBreath			= mod:NewSpecialWarningSpell(99502, nil, nil, nil, 1, 2)
-local specwarnHealInterrupt		= mod:NewSpecialWarningInterrupt(99392, "HasInterrupt", nil, 2, 1, 2)
-local specwarnHealDispel		= mod:NewSpecialWarningDispel(99392, "MagicDispeller", nil, 2, 1, 2)
+local specwarnBreath			= mod:NewSpecialWarningSpell(99502, nil, nil, nil, 1, 2, nil, nil, "breathsoon")
+local specwarnHealInterrupt		= mod:NewSpecialWarningInterrupt(99392, "HasInterrupt", nil, 2, 1, 2, nil, nil, "kickcast")
+local specwarnHealDispel		= mod:NewSpecialWarningDispel(99392, "MagicDispeller", nil, 2, 1, 2, nil, nil, "dispelboss")
 
 local timerBreath				= mod:NewBuffActiveTimer(14, 99502, nil, nil, nil, 3)
 local timerHeal					= mod:NewTargetTimer(16, 99392, nil, nil, nil, 5, nil, DBM_COMMON_L.MAGIC_ICON)

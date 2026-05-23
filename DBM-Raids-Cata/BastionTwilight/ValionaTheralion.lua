@@ -40,22 +40,22 @@ local warnDeepBreath				= mod:NewCountAnnounce(86059, 4)--Used by Valiona just b
 local warnTwilightShift				= mod:NewStackAnnounce(93051, 2)
 
 --Valiona Ground Phase
-local specWarnDevouringFlames		= mod:NewSpecialWarningRun(86840, nil, nil, nil, 4, 2)
-local specWarnDazzlingDestruction	= mod:NewSpecialWarningSpell(86408, nil, nil, nil, 2, 2)
-local specWarnBlackout				= mod:NewSpecialWarningYou(86788, nil, nil, nil, 1, 2)
+local specWarnDevouringFlames		= mod:NewSpecialWarningRun(86840, nil, nil, nil, 4, 2, nil, nil, "justrun")
+local specWarnDazzlingDestruction	= mod:NewSpecialWarningSpell(86408, nil, nil, nil, 2, 2, nil, nil, "watchstep")
+local specWarnBlackout				= mod:NewSpecialWarningYou(86788, nil, nil, nil, 1, 2, nil, nil, "targetyou")
 mod:AddBoolOption("TBwarnWhileBlackout", false, "announce")
-local specWarnTwilightBlast			= mod:NewSpecialWarningMove(86369, false, nil, nil, 1, 2)
+local specWarnTwilightBlast			= mod:NewSpecialWarningMove(86369, false, nil, nil, 1, 2, nil, nil, "targetyou")
 local yellTwilightBlast				= mod:NewYell(86369, nil, false)
 --Theralion Ground Phase
-local specWarnDeepBreath			= mod:NewSpecialWarningDodge(86059, nil, nil, nil, 2, 2)
-local specWarnFabulousFlames		= mod:NewSpecialWarningMove(86505, nil, nil, nil, 2, 8)
+local specWarnDeepBreath			= mod:NewSpecialWarningDodge(86059, nil, nil, nil, 2, 2, nil, nil, "breathsoon")
+local specWarnFabulousFlames		= mod:NewSpecialWarningMove(86505, nil, nil, nil, 2, 8, nil, nil, "watchfeet")
 local yellFabFlames					= mod:NewYell(86505)
-local specWarnTwilightMeteorite		= mod:NewSpecialWarningYou(86013, nil, nil, nil, 1, 2)
+local specWarnTwilightMeteorite		= mod:NewSpecialWarningYou(86013, nil, nil, nil, 1, 2, nil, nil, "targetyou")
 local yellTwilightMeteorite			= mod:NewYell(86013, nil, false, nil, "YELL")
-local specWarnEngulfingMagic		= mod:NewSpecialWarningMoveAway(86622, nil, nil, nil, 3, 2)
+local specWarnEngulfingMagic		= mod:NewSpecialWarningMoveAway(86622, nil, nil, nil, 3, 2, nil, nil, "runout")
 local yellEngulfingMagic			= mod:NewYell(86622)
 
-local specWarnTwilightZone			= mod:NewSpecialWarningStack(86214, nil, 20, nil, nil, 1, 6)
+local specWarnTwilightZone			= mod:NewSpecialWarningStack(86214, nil, 20, nil, nil, 1, 6, nil, nil, "stackhigh")
 
 --Valiona Ground Phase
 local timerBlackout					= mod:NewTargetTimer(15, 86788, nil, nil, nil, 5, nil, DBM_COMMON_L.MAGIC_ICON..DBM_COMMON_L.HEALER_ICON)

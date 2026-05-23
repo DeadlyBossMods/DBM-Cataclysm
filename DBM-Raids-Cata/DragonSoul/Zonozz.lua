@@ -27,9 +27,9 @@ local warnFocusedAnger			= mod:NewStackAnnounce(104543, 3, nil, false)
 local warnPsychicDrain			= mod:NewSpellAnnounce(104322, 4)
 local warnShadows				= mod:NewTargetAnnounce(103434, 3)
 
-local specWarnVoidofUnmaking	= mod:NewSpecialWarningSpell(103571, nil, nil, nil, 2, 2)
-local specWarnBlackBlood		= mod:NewSpecialWarningSpell(104378, nil, nil, nil, 2, 2)
-local specWarnShadows			= mod:NewSpecialWarningMoveAway(103434, nil, nil, nil, 1, 2)
+local specWarnVoidofUnmaking	= mod:NewSpecialWarningSpell(103571, nil, nil, nil, 2, 2, nil, nil, "phasechange")
+local specWarnBlackBlood		= mod:NewSpecialWarningSpell(104378, nil, nil, nil, 2, 2, nil, nil, "phasechange")
+local specWarnShadows			= mod:NewSpecialWarningMoveAway(103434, nil, nil, nil, 1, 2, nil, nil, "runout")
 local yellShadows				= mod:NewYell(103434, nil, false, L.ShadowYell)--Requested by 10 man guilds, but a spammy mess in 25s, so off by default. With the option to enable when desired.
 
 local timerVoidofUnmakingCD		= mod:NewNextTimer(90.3, 103571, nil, nil, nil, 5, 103527)

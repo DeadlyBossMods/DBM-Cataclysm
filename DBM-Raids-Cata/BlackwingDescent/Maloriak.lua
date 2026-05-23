@@ -37,16 +37,16 @@ local warnEngulfingDarkness		= mod:NewSpellAnnounce(92754, 4, nil, "Tank|Healer"
 local warnPhase2Soon			= mod:NewPrePhaseAnnounce(2, 2)
 local warnPhase2				= mod:NewPhaseAnnounce(2, 3, nil, nil, nil, nil, nil, 2)
 
-local specWarnBitingChill		= mod:NewSpecialWarningMoveAway(77760, nil, nil, nil, 1, 2)
+local specWarnBitingChill		= mod:NewSpecialWarningMoveAway(77760, nil, nil, nil, 1, 2, nil, nil, "scatter")
 local yellBitingChill			= mod:NewShortYell(77760)
-local specWarnConsumingFlames	= mod:NewSpecialWarningYou(77786, nil, nil, nil, 1, 2)
-local specWarnSludge			= mod:NewSpecialWarningGTFO(92930, nil, nil, nil, 1, 8)
-local specWarnArcaneStorm		= mod:NewSpecialWarningInterrupt(77896, false, nil, nil, 1, 2)--Cast kickable, but many used to let it channel anyways (because it kept boss from doing other stuff and was easy to heal)
-local specWarnMagmaJets			= mod:NewSpecialWarningDodge(78194, nil, nil, nil, 1, 2)
-local specWarnEngulfingDarkness	= mod:NewSpecialWarningDefensive(92754, nil, nil, nil, 3, 2, 3)--Heroic Ability
+local specWarnConsumingFlames	= mod:NewSpecialWarningYou(77786, nil, nil, nil, 1, 2, nil, nil, "targetyou")
+local specWarnSludge			= mod:NewSpecialWarningGTFO(92930, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
+local specWarnArcaneStorm		= mod:NewSpecialWarningInterrupt(77896, false, nil, nil, 1, 2, nil, nil, "kickcast")--Cast kickable, but many used to let it channel anyways (because it kept boss from doing other stuff and was easy to heal, "kickcast")
+local specWarnMagmaJets			= mod:NewSpecialWarningDodge(78194, nil, nil, nil, 1, 2, nil, nil, "shockwave")
+local specWarnEngulfingDarkness	= mod:NewSpecialWarningDefensive(92754, nil, nil, nil, 3, 2, 3, nil, "defensive")--Heroic Ability
 local specWarnFlashFreeze		= mod:NewSpecialWarningTarget(77699, "Ranged", nil, nil, 1, 2)--On Heroic it has a lot more health.
-local specWarnRemedy			= mod:NewSpecialWarningDispel(77912, "MagicDispeller", nil, nil, 1, 2)
-local specWarnAdds				= mod:NewSpecialWarningSpell(77569, false, nil, nil, 1, 2)
+local specWarnRemedy			= mod:NewSpecialWarningDispel(77912, "MagicDispeller", nil, nil, 1, 2, nil, nil, "dispelboss")
+local specWarnAdds				= mod:NewSpecialWarningSpell(77569, false, nil, nil, 1, 2, nil, nil, "mobsoon")
 
 local timerPhase				= mod:NewStageTimer(49, 89250)--Just some random cauldron icon not actual spellid
 local timerFlashFreeze			= mod:NewCDTimer(14, 77699, nil, nil, nil, 3)--Varies on other abilities CDs

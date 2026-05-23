@@ -25,8 +25,8 @@ mod:RegisterEventsInCombat(
 local warnSearingShadows		= mod:NewCastAnnounce(96913, 3)
 local warnEyes					= mod:NewSpellAnnounce(96920, 3)
 
-local specWarnSearingShadows	= mod:NewSpecialWarningTaunt(96913, nil, nil, nil, 1, 2)
-local specWarnFocusedFire		= mod:NewSpecialWarningGTFO(97212, nil, nil, nil, 1, 8)
+local specWarnSearingShadows	= mod:NewSpecialWarningTaunt(96913, nil, nil, nil, 1, 2, nil, nil, "tauntboss")
+local specWarnFocusedFire		= mod:NewSpecialWarningGTFO(97212, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
 
 local timerSearingShadows		= mod:NewCDTimer(24, 96913, nil, "Tank", 2, 5, nil, DBM_COMMON_L.TANK_ICON)
 local timerEyes					= mod:NewCDTimer(57.5, 96920, nil, nil, nil, 1)

@@ -36,10 +36,10 @@ local warnPoisonToxic	 	= mod:NewSpellAnnounce(86281, 3)
 local warnGatherStrength	= mod:NewTargetNoFilterAnnounce(86307, 4)
 local warnSpecialSoon		= mod:NewAnnounce("warnSpecialSoon", 2, "132866")--Hurricane/Sleet Storm/Zephyr in single announce
 
-local specWarnSpecial		= mod:NewSpecialWarning("specWarnSpecial", nil, nil, nil, 2, 2)
-local specWarnShield		= mod:NewSpecialWarningSpell(93059, nil, nil, nil, 1, 2)
-local specWarnWindBlast		= mod:NewSpecialWarningDodge(86193, nil, nil, nil, 2, 16)
-local specWarnGTFO			= mod:NewSpecialWarningGTFO(86111, nil, nil, nil, 1, 8)
+local specWarnSpecial		= mod:NewSpecialWarning("specWarnSpecial", nil, nil, nil, 2, 2, nil, nil, nil, nil, "specialsoon")
+local specWarnShield		= mod:NewSpecialWarningSpell(93059, nil, nil, nil, 1, 2, nil, nil, "attackshield")
+local specWarnWindBlast		= mod:NewSpecialWarningDodge(86193, nil, nil, nil, 2, 16, nil, nil, "frontal")
+local specWarnGTFO			= mod:NewSpecialWarningGTFO(86111, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
 
 local timerNurture			= mod:NewNextTimer(35, 85422, nil, nil, nil, 1)--This this is typically 35 seconds after a special has ended.
 local timerWindChill		= mod:NewNextTimer(10.5, 84645, nil, false, nil, 2)

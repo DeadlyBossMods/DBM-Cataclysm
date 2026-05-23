@@ -18,8 +18,8 @@ mod:RegisterEventsInCombat(
 local warnShockwave			= mod:NewSpellAnnounce(94968, 2, nil, "Tank|Healer")
 local warnSandsofTime		= mod:NewTargetNoFilterAnnounce(93578, 2)
 
-local specWarnFuryofSands	= mod:NewSpecialWarningDodge(94946, nil, nil, nil, 2, 2)
-local specWarnMantle		= mod:NewSpecialWarningSpell(93561, nil, nil, nil, 1, 2)
+local specWarnFuryofSands	= mod:NewSpecialWarningDodge(94946, nil, nil, nil, 2, 2, nil, nil, "watchstep")
+local specWarnMantle		= mod:NewSpecialWarningSpell(93561, nil, nil, nil, 1, 2, nil, nil, "attackshield")
 
 local timerShockwaveCD		= mod:NewCDTimer(16, 94968, nil, nil, nil, 3)--Every 16 seconds shockwave and fury alternate unless mantle, is cast, then it's 18 seconds cause of the cast delay of mantle affecting both CDs
 local timerFuryofSandsCD	= mod:NewCDTimer(16, 94946, nil, nil, nil, 3)

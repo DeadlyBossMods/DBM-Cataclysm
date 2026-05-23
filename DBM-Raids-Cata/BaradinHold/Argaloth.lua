@@ -24,9 +24,9 @@ mod:RegisterEventsInCombat(
 local warnConsuming			= mod:NewTargetNoFilterAnnounce(88954, 3, nil, "RemoveMagic|Healer")
 local warnFirestormSoon		= mod:NewSoonAnnounce(88972, 3)
 
-local specWarnMeteorSlash	= mod:NewSpecialWarningTaunt(88942, nil, nil, nil, 1, 2)
-local specWarnFirestormCast	= mod:NewSpecialWarningDodge(88972, nil, nil, nil, 2, 2)
-local specWarnFirestorm		= mod:NewSpecialWarningGTFO(89000, nil, nil, nil, 1, 8)
+local specWarnMeteorSlash	= mod:NewSpecialWarningTaunt(88942, nil, nil, nil, 1, 2, nil, nil, "tauntboss")
+local specWarnFirestormCast	= mod:NewSpecialWarningDodge(88972, nil, nil, nil, 2, 2, nil, nil, "watchstep")
+local specWarnFirestorm		= mod:NewSpecialWarningGTFO(89000, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
 
 local timerConsuming		= mod:NewBuffFadesTimer(15, 88954, nil, "Healer", 2, 5, nil, DBM_COMMON_L.HEALER_ICON..DBM_COMMON_L.MAGIC_ICON)
 local timerConsumingCD		= mod:NewCDTimer(24, 88954, nil, "Healer", 2, 5, nil, DBM_COMMON_L.HEALER_ICON)

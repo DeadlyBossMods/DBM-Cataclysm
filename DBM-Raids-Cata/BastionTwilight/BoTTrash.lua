@@ -18,9 +18,9 @@ local warnFrostWhirl		= mod:NewSpellAnnounce(93340, 4)--This is nasty frost whir
 local warnFlameStrike		= mod:NewTargetAnnounce(93362, 4)--This is Flame strike we need to not stand in unless we're dispeling frost dudes shield.
 local warnRupture			= mod:NewTargetAnnounce(93377, 4)--This is twilight rupture the big guys do in hallway before halfus.
 
-local specWarnVolcanicWrath	= mod:NewSpecialWarningInterrupt(87903, "HasInterrupt", nil, nil, 1, 2)
-local specWarnRupture		= mod:NewSpecialWarningSpell(93377, nil, nil, nil, 2, 2)
-local specWarnFlameStrike	= mod:NewSpecialWarningGTFO(93362, nil, nil, nil, 1, 8)
+local specWarnVolcanicWrath	= mod:NewSpecialWarningInterrupt(87903, "HasInterrupt", nil, nil, 1, 2, nil, nil, "kickcast")
+local specWarnRupture		= mod:NewSpecialWarningSpell(93377, nil, nil, nil, 2, 2, nil, nil, "watchstep")
+local specWarnFlameStrike	= mod:NewSpecialWarningGTFO(93362, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
 local yellFlamestrike		= mod:NewYell(93362)
 
 local timerVolcanicWrath	= mod:NewBuffActiveTimer(9, 87903, nil, nil, nil, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)--Maybe need a Guid based targettimer since most pulls have 2 of these?
