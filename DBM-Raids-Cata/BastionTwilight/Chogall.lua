@@ -39,7 +39,7 @@ local warnCreations					= mod:NewSpellAnnounce(82414, 3)--Phase 2
 
 local specWarnSickness				= mod:NewSpecialWarningYou(82235, nil, nil, nil, 1, 2)--Ranged should already be spread out and not need a special warning every sickness.
 local specWarnBlaze					= mod:NewSpecialWarningGTFO(81538, nil, nil, nil, 1, 8)
-local specWarnEmpoweredShadows		= mod:NewSpecialWarningSpell(81572, "Healer", nil, nil, true)
+local specWarnEmpoweredShadows		= mod:NewSpecialWarningSpell(81572, "Healer", nil, nil, 2)
 local specWarnCorruptingCrash		= mod:NewSpecialWarningMoveAway(81685, nil, nil, nil, 1, 2)--Subject to accuracy flaws in rare cases but most of the time it's right.
 local yellCrash						= mod:NewYell(81685)--^^
 local specWarnDepravity				= mod:NewSpecialWarningInterrupt(81713, nil, nil, nil, 1, 2)--On by default cause these things don't get interrupted otherwise. but will only warn if it's target.
