@@ -31,7 +31,7 @@ local specWarnMalevolent	= mod:NewSpecialWarningStack(83908, nil, 8, nil, nil, 1
 local timerFuriousRoarCD	= mod:NewCDCountTimer("d30", 83710, nil, nil, nil, 2)
 local timerBreathCD			= mod:NewCDCountTimer(20, 83707, nil, nil, nil, 3)--every 20-25 seconds.
 local timerParalysis		= mod:NewBuffActiveTimer(12, 84030, nil, nil, nil, 5)
-local timerParalysisCD		= mod:NewCDTimer(35, 84030, 84030, nil, nil, nil, 2)
+local timerParalysisCD		= mod:NewCDTimer(35, 84030, nil, nil, nil, 2)
 local timerNovaCD			= mod:NewCDTimer(7.2, 83703, nil, "HasInterrupt", 2, 4, nil, DBM_COMMON_L.INTERRUPT_ICON)--7.2 is actually exact next timer, but since there are other variables like roars, or paralysis that could mis time it, we use CD bar instead so we don't give false idea of precision.
 local timerMalevolentStrike	= mod:NewTargetTimer(30, 83908, nil, "Tank|Healer", nil, 5, nil, DBM_COMMON_L.TANK_ICON)
 
