@@ -37,7 +37,7 @@ local specWarnLeapingFlamesCast	= mod:NewSpecialWarningYou(98476, nil, nil, nil,
 local yellLeapingFlames			= mod:NewYell(98476)
 local specWarnLeapingFlamesNear	= mod:NewSpecialWarningClose(98476, nil, nil, nil, 1, 2, nil, nil, "runaway")
 local specWarnLeapingFlames		= mod:NewSpecialWarningMove(98535, nil, nil, nil, 1, 2, nil, nil, "runaway")
-local specWarnSearingSeed		= mod:NewSpecialWarningMoveAway(98450, nil, nil, nil, 3, 2)
+local specWarnSearingSeed		= mod:NewSpecialWarningMoveAway(98450, nil, nil, nil, 3, 2, nil, nil, "runout")
 local specWarnOrb				= mod:NewSpecialWarningStack(98584, true, 4, nil, nil, 1, 6, nil, nil, "stackhigh")
 
 local timerOrbActive			= mod:NewBuffActiveTimer(64, 98451, nil, nil, nil, 6)

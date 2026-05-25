@@ -34,7 +34,7 @@ local warnPhase2			= mod:NewPhaseAnnounce(2, 4)--heroic
 
 local specWarnPillar		= mod:NewSpecialWarningSwitch(-3312, "Ranged", nil, nil, 1, 2, nil, nil, "killmob")
 local specWarnIgnition		= mod:NewSpecialWarningGTFO(92128, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
-local specWarnInfernoSoon   = mod:NewSpecialWarning("SpecWarnInferno", nil, nil, nil, 1, 2)
+local specWarnInfernoSoon   = mod:NewSpecialWarning("SpecWarnInferno", nil, nil, nil, 1, 2, nil, nil, nil, nil, "bigmobsoon")
 local specWarnArmageddon	= mod:NewSpecialWarningRun(92177, nil, nil, nil, 4, 2, nil, nil, "justrun")
 
 local timerLavaSpew			= mod:NewCDTimer(22, 77689, nil, nil, nil, 2, nil, DBM_COMMON_L.HEALER_ICON)

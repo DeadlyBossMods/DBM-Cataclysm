@@ -34,10 +34,10 @@ local warnUnstableCorruption		= mod:NewCastAnnounce(108813, 4, 10)
 local warnTetanus					= mod:NewStackAnnounce(106730, 4, nil, false)
 local warnCongealingBloodSoon		= mod:NewSoonAnnounce(-4350, 4, 109089)--15%, 10%, 5% on heroic. spellid is 109089.
 
-local specWarnMutated				= mod:NewSpecialWarningSwitch(-4112, "-Healer", nil, nil, 1, 2)--Because tanks need to switch to it too.
+local specWarnMutated				= mod:NewSpecialWarningSwitch(-4112, "-Healer", nil, nil, 1, 2, nil, nil, "killbigmob")--Because tanks need to switch to it too.
 local specWarnImpale				= mod:NewSpecialWarningDefensive(106400, nil, nil, nil, 1, 2, nil, nil, "defensive")
 local specWarnImpaleOther			= mod:NewSpecialWarningTaunt(106400, nil, nil, nil, 1, 2, nil, nil, "tauntboss")
-local specWarnElementiumBoltDPS		= mod:NewSpecialWarningSwitch(105651, "Dps", nil, nil, 1, 2)--Warning for when to switch to dps it, because i really felt one warning didn't serve both meanings, one is an aoe/damage warning for cast, other should be specifically yelling at dps to kill it.
+local specWarnElementiumBoltDPS		= mod:NewSpecialWarningSwitch(105651, "Dps", nil, nil, 1, 2, nil, nil, "targetchange")--Warning for when to switch to dps it, because i really felt one warning didn't serve both meanings, one is an aoe/damage warning for cast, other should be specifically yelling at dps to kill it.
 local specWarnTentacle				= mod:NewSpecialWarningSwitch(-4103, "Dps", nil, nil, 1, 2, nil, nil, "targetchange")--Tanks not included in this one cause they may still have adds.
 local specWarnHemorrhage			= mod:NewSpecialWarningSwitch(105863, "-Healer", nil, nil, 1, 2, nil, nil, "targetchange")--Because tanks need to switch to it too.
 local specWarnFragments				= mod:NewSpecialWarningSwitch(-4115, "Dps", nil, nil, 1, 2, nil, nil, "targetchange")--Not a "switch" warning because on normal a lot of groups choose to ignore these if they can burn boss and just pop dream. Let the raid leader decide strat on this one, not DBM.

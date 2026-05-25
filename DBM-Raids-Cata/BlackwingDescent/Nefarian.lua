@@ -40,10 +40,10 @@ local specWarnElectrocute		= mod:NewSpecialWarningSpell(81198, nil, nil, nil, 2,
 local specWarnBlastsNova		= mod:NewSpecialWarningInterruptCount(80734, nil, nil, nil, 1, 2, nil, nil, "kickcast")
 local specWarnDominion			= mod:NewSpecialWarningYou(79318, nil, nil, nil, 1, 2, nil, nil, "findmc")
 local specWarnStolenPower		= mod:NewSpecialWarningStack(80627, nil, 150, nil, nil, 1, 6, nil, nil, "stackhigh")
-local specWarnCinderMove		= mod:NewSpecialWarningMoveAway(79339, nil, nil, nil, 3, 2)
+local specWarnCinderMove		= mod:NewSpecialWarningMoveAway(79339, nil, nil, nil, 3, 2, nil, nil, "runout")
 local yellCinder				= mod:NewShortYell(79339)
 local yellCinderFades			= mod:NewShortFadesYell(79339)
-local specWarnShadowblazeSoon	= mod:NewSpecialWarningPreWarn(81031, "Tank", 5, nil, nil, 1, 2)
+local specWarnShadowblazeSoon	= mod:NewSpecialWarningPreWarn(81031, "Tank", 5, nil, nil, 1, 2, nil, nil, "specialsoon")
 local specWarnGTFO				= mod:NewSpecialWarningGTFO(81007, nil, nil, nil, 1, 8, nil, nil, "watchfeet")
 
 local timerElectrocute			= mod:NewCastTimer(5, 81198, nil, nil, nil, 2, nil, DBM_COMMON_L.HEALER_ICON)

@@ -44,7 +44,7 @@ local specWarnSludge			= mod:NewSpecialWarningGTFO(92930, nil, nil, nil, 1, 8, n
 local specWarnArcaneStorm		= mod:NewSpecialWarningInterrupt(77896, false, nil, nil, 1, 2, nil, nil, "kickcast")--Cast kickable, but many used to let it channel anyways (because it kept boss from doing other stuff and was easy to heal, "kickcast")
 local specWarnMagmaJets			= mod:NewSpecialWarningDodge(78194, nil, nil, nil, 1, 2, nil, nil, "shockwave")
 local specWarnEngulfingDarkness	= mod:NewSpecialWarningDefensive(92754, nil, nil, nil, 3, 2, 3, nil, "defensive")--Heroic Ability
-local specWarnFlashFreeze		= mod:NewSpecialWarningTarget(77699, "Ranged", nil, nil, 1, 2)--On Heroic it has a lot more health.
+local specWarnFlashFreeze		= mod:NewSpecialWarningTarget(77699, "Ranged", nil, nil, 1, 2, nil, nil, "targetchange")--On Heroic it has a lot more health.
 local specWarnRemedy			= mod:NewSpecialWarningDispel(77912, "MagicDispeller", nil, nil, 1, 2, nil, nil, "dispelboss")
 local specWarnAdds				= mod:NewSpecialWarningSpell(77569, false, nil, nil, 1, 2, nil, nil, "mobsoon")
 
