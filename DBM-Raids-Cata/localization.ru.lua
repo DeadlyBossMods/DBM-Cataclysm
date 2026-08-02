@@ -148,7 +148,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("BWDTrash")
 
 L:SetGeneralLocalization({
-	name = "Трэш мобы Твердыни Крыла Тьмы"
+	name = "Трэш: Твердыня Крыла Тьмы"
 })
 
 --------------------------
@@ -254,7 +254,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("BoTrash")
 
 L:SetGeneralLocalization({
-	name =	"Трэш мобы Сумеречный бастион"
+	name =	"Трэш: Сумеречный бастион"
 })
 
 ------------------------
@@ -441,7 +441,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("FirelandsTrash")
 
 L:SetGeneralLocalization({
-	name = "Трэш мобы Огненные Просторы"
+	name = "Трэш: Огненные Просторы"
 })
 
 ----------------
@@ -666,7 +666,7 @@ L:SetMiscLocalization({
 L = DBM:GetModLocalization("DSTrash")
 
 L:SetGeneralLocalization({
-	name =	"Трэш мобы Душа Дракона"
+	name =	"Трэш: Душа Дракона"
 })
 
 L:SetWarningLocalization({
