@@ -11,26 +11,50 @@ on:
       - master
 
 jobs:
-  build:
+  test:
+    name: Testing
     runs-on: ubuntu-latest
 
-    env:
-      CF_API_KEY: ${{ secrets.CF_API_KEY }}
-      GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout repository
+        uses: actions/checkout@v5
         with:
-          fetch-depth: 0
+          path: ./workspace
 
       - name: Install and run Luacheck
         uses: nebularg/actions-luacheck@v1
         with:
           args: "--no-color -q"
+          path: ${{ github.workspace }}/workspace
 
       - name: Run DBM Checks
         uses: DeadlyBossMods/DBM-Actions@master
 
+      - name: LuaLS check
+        uses: DeadlyBossMods/LuaLS-config@main
+        with:
+          luals-check-dir: ${{ github.workspace }}/workspace
+
+      - name: Send Status to Discord
+        uses: nebularg/actions-discord-webhook@v1
+        with:
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ job.status }}
+        if: ${{ failure() }}
+
+  deploy:
+    name: Deployment
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'pull_request' }}
+    needs:
+      - test
+    strategy:
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
       - name: Create Package
         uses: BigWigsMods/packager@master
         if: ${{ github.event_name != 'pull_request' }}
