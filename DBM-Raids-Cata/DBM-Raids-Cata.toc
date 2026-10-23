@@ -1,5 +1,5 @@
 ## AllowLoadGameType: cata, mists, standard
-## Interface: 40402, 50504, 120100, 120105
+## Interface: 40402, 50504, 120105, 120107
 ## Version: @project-version@
 ## Category: DBM
 
