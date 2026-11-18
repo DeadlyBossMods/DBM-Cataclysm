@@ -124,7 +124,7 @@ mod.vb.dreadFlameTimer = 45
 local magmaTrapGUID = {}
 local elementalsGUID = {}
 local meteorWarned = false
-local dreadflame, meteorTarget, staffDebuff = DBM:GetSpellName(100675), DBM:GetSpellName(99849), DBM:GetSpellName(101109)
+local dreadflame, meteorTarget, staffDebuff = DBM:GetSpellName(100675), DBM:GetSpellName(99849), DBM:GetSpellName(101109) or DBM_COMMON_L.UNKNOWN
 
 ---@param self DBMMod
 local function TransitionEnded(self)
