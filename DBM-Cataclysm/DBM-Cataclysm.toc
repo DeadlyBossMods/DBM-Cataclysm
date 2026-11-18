@@ -1,6 +1,6 @@
 ## AllowLoadGameType: cata, mists, standard
 ## Interface: 40402, 50504, 120105, 120107
-## Version: @project-version@
+## Version: r264
 ## Category: DBM
 
 ## Title:|cffffe00a<|r|cffff7d0aDBM Mod|r|cffffe00a>|r |cff10ff10World Bosses (Cata)|r
@@ -17,6 +17,7 @@
 ## X-DBM-Mod-Category: CATA
 ## X-DBM-StatTypes: normal
 ## X-DBM-Mod-Name: World Bosses (Cataclysm)
+## X-DBM-Mod-Name-zhCN: 世界首领 (大地的裂变)
 ## X-DBM-Mod-Name-koKR: 필드 보스 (대격변)
 ## X-DBM-Mod-Name-ruRU: Мировые боссы (Катаклизм)
 ## X-DBM-Mod-World-Boss: 1
