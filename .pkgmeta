@@ -1,6 +1,9 @@
 package-as: DBM-Raids-Cata
 enable-nolib-creation: no
 
+required-dependencies:
+  - deadly-boss-mods
+
 move-folders:
     DBM-Raids-Cata/DBM-Cataclysm: DBM-Cataclysm
     DBM-Raids-Cata/DBM-Raids-Cata: DBM-Raids-Cata
