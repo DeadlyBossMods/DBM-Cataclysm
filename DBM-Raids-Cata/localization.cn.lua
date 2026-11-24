@@ -1,6 +1,4 @@
--- Simplified Chinese by Diablohu(diablohudream@gmail.com)
--- 接盘 By Mini Dragon(projecteurs@gmail.NOSPAM.com) <流浪者酒馆-Brilla@金色平原>
--- Last update: 20240420
+-- 泰坦重铸时光服-时光2-法师-旺仔芒果/椰奶冻-2026.11.13--
 
 if GetLocale() ~= "zhCN"  then return end
 
@@ -93,7 +91,7 @@ L = DBM:GetModLocalization(172)
 
 L:SetOptionLocalization({
 	RangeFrame		= "距离监视器（6码）",
---	SetIconOnSlime	= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(82935),
+	SetIconOnSlime	= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(82935),
 	InfoFrame		= "信息框：生命值小于1万的团员的列表"
 })
 
@@ -120,7 +118,7 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	YellRed				= "红瓶|r扔进了大锅里！",--Partial matchs, no need for full strings unless you really want em, mod checks for both.
+	YellRed				= "红瓶|r扔进了大锅里！",
 	YellBlue			= "蓝瓶|r扔进了大锅里！",
 	YellGreen			= "绿瓶|r扔进了大锅里！",
 	YellDark			= "黑暗|r魔法！"
@@ -209,10 +207,10 @@ L:SetOptionLocalization({
 L:SetMiscLocalization({
 	Quake			= "你脚下的地面发出不祥的“隆隆”声……",
 	Thundershock	= "周围的空气因为充斥着强大的能量而发出“噼啪”声……",
-	Switch			= "停止你的愚行！",--"We will handle them!" comes 3 seconds after this one
-	Phase3			= "令人印象深刻……",--"BEHOLD YOUR DOOM!" is about 13 seconds after
+	Switch			= "停止你的愚行！",
+	Phase3			= "令人印象深刻……",
 	Kill			= "这不可能……",
-	blizzHatesMe	= "我中了冰霜道标和闪电魔棒！快让路！",--You're probably fucked, and gonna kill half your raid if this happens, but worth a try anyways :).
+	blizzHatesMe	= "我中了冰霜道标和闪电魔棒！快让路！",
 	WrongDebuff		= "没有 %s"
 })
 
@@ -242,14 +240,14 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	WarnOrbsSoon		= "预警：暗影宝珠（5秒前，每秒警报一次。不精确）",
---	WarnEggWeaken		= "预警：$spell:87654消失",
+	WarnOrbSoon		= "预警：暗影宝珠（5秒前，每秒警报一次。不精确）",
+	WarnEggWeaken		= "预警：$spell:87654消失",
 	warnWrackJump		= "警报：$spell:92955跳跃的目标",
---	WarnWrackCount5s	= "警报：当$spell:92955在某一团员身上持续了10、15和20秒时",
+	WarnWrackCount5s	= "警报：当$spell:92955在某一团员身上持续了10、15和20秒时",
 	warnAggro			= "警报：暗影宝珠刷新时拥有仇恨的团员（可能成为宝珠的目标）",
 	SpecWarnAggroOnYou	= "特殊警报：当宝珠刷新时你获得仇恨（可能成为宝珠的目标）",
 	SpecWarnOrbs		= "特殊警报：宝珠即将刷新（预计时间，不精确）",
---	SpecWarnDispel		= "特殊警报：提醒驱散$spell:92955（在效果施放或跳跃后的特定时间警报）",
+	SpecWarnDispel		= "特殊警报：提醒驱散$spell:92955（在效果施放或跳跃后的特定时间警报）",
 	TimerEggWeakening	= "计时条：$spell:87654消失",
 	TimerEggWeaken		= "计时条：$spell:87654再生",
 	TimerOrbs			= "计时条：暗影宝珠冷却时间",
@@ -279,7 +277,7 @@ L:SetGeneralLocalization({
 L = DBM:GetModLocalization(154)
 
 L:SetWarningLocalization({
-	warnSpecial			= "飓风/微风/暴雨",--Special abilities hurricane, sleet storm, zephyr(which are on shared cast/CD)
+	warnSpecial			= "飓风/微风/暴雨",
 	specWarnSpecial		= "特殊技能启动！",
 	warnSpecialSoon		= "特殊技能10秒后启动！"
 })
@@ -290,7 +288,7 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	warnSpecial			= "警报：飓风/微风/暴雨",--Special abilities hurricane, sleet storm, zephyr(which are on shared cast/CD)
+	warnSpecial			= "警报：飓风/微风/暴雨",
 	specWarnSpecial		= "特殊警报：特殊技能的施放",
 	timerSpecial		= "计时条：特殊技能冷却时间",
 	timerSpecialActive	= "计时条：特殊技能持续时间",
@@ -299,7 +297,7 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	gatherstrength	= "即将获得全部力量！" --大波胡的锅
+	gatherstrength	= "即将获得全部力量！"
 })
 
 ---------------
@@ -359,7 +357,7 @@ L:SetOptionLocalization({
 L:SetMiscLocalization({
 	YellPull		= "凡人们，我现在侍奉新的主人！",
 	YellPhase2		= "天空，归我统治！",
-	LavaWorms		= "熔岩火虫从地下涌出来了！",--Might use this one day if i feel it needs a warning for something. Or maybe pre warning for something else (like transition soon)
+	LavaWorms		= "熔岩火虫从地下涌出来了！",
 	PowerLevel		= "熔火之羽",
 	East			= "东",
 	West			= "西",
@@ -415,22 +413,22 @@ L:SetOptionLocalization({
 L= DBM:GetModLocalization(198)
 
 L:SetWarningLocalization({
-	warnRageRagnarosSoon	= "5秒后 %s -> %s",--Spellname on targetname
-	warnSplittingBlow		= "%s于%s",--Spellname in Location
-	warnEngulfingFlame		= "%s于%s",--Spellname in Location
-	warnEmpoweredSulf		= "%s - 5秒后施放"--The spell has a 5 second channel, but tooltip doesn't reflect it so cannot auto localize
+	warnRageRagnarosSoon	= "5秒后 %s -> %s",
+	warnSplittingBlow		= "%s于%s",
+	warnEngulfingFlame		= "%s于%s",
+	warnEmpoweredSulf		= "%s - 5秒后施放"
 })
 
 L:SetTimerLocalization({
-		timerRageRagnaros	= "%s -> %s",--Spellname on targetname
-		TimerPhaseSons		= "阶段转换"
+	timerRageRagnaros	= "%s -> %s",
+	TimerPhaseSons		= "阶段转换"
 })
 
 L:SetOptionLocalization({
 	warnRageRagnarosSoon		= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.prewarn:format(101109),
 	warnSplittingBlow			= "警报：$spell:100877的位置",
 	warnEngulfingFlame			= "警报：$spell:99171",
-	WarnEngulfingFlameHeroic	= "警报：英雄模式下$spell:99171的位置",
+	warnEngulfingFlameHeroic	= "警报：英雄模式下$spell:99171的位置",
 	warnSeedsLand				= "警报与计时条：$spell:98520落地，而非施法警报",
 	warnEmpoweredSulf			= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.cast:format(100997),
 	timerRageRagnaros			= DBM_CORE_L.AUTO_TIMER_OPTIONS.cast:format(101109),
@@ -448,8 +446,8 @@ L:SetMiscLocalization({
 	South				= "场景后方",
 	HealthInfo			= "生命值少于10万",
 	HasNoAggro			= "未获仇恨",
-	MeteorTargets		= "流星点名",--Keep rollin' rollin' rollin' rollin'.
-	TransitionEnded1	= "够了！我会亲自解决。",--More reliable then adds method.
+	MeteorTargets		= "流星点名",
+	TransitionEnded1	= "够了！我会亲自解决。",
 	TransitionEnded2	= "萨弗拉斯将会是你的末日。",
 	TransitionEnded3	= "跪下吧，凡人们！一切都结束了。",
 	Defeat				= "太早了！……你们来得太早了……",
@@ -484,8 +482,8 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	StaffEvent			= "%S+的触摸令诺达希尔的分枝产生了强烈反应！",--Reg expression pull match
-	StaffTrees			= "烈焰树人从地下涌出，来协助保护者了！",--Might add a spec warning for this later.
+	StaffEvent			= "%S+的触摸令诺达希尔的分枝产生了强烈反应！",
+	StaffTrees			= "烈焰树人从地下涌出，来协助保护者了！",
 	StaffTransition		= "受折磨的保护者身上一直燃烧着的火焰熄灭了！"
 })
 
@@ -504,11 +502,11 @@ L:SetGeneralLocalization({
 L= DBM:GetModLocalization(311)
 
 L:SetWarningLocalization({
-	KohcromWarning	= "%s：%s"--Bossname, spellname. At least with this we can get boss name from casts in this one, unlike a timer started off the previous bosses casts.
+	KohcromWarning	= "%s：%s"
 })
 
 L:SetTimerLocalization({
-	KohcromCD		= "克卓莫模拟%s",--Universal single local timer used for all of his mimick timers
+	KohcromCD		= "克卓莫模拟%s"
 })
 
 L:SetOptionLocalization({
@@ -535,7 +533,7 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	voidYell	= "Gul'kafh an'qov N'Zoth."--客户端没翻译
+	voidYell	= "Gul'kafh an'qov N'Zoth."
 })
 
 -----------------------------
@@ -549,13 +547,13 @@ L:SetWarningLocalization({
 
 L:SetTimerLocalization({
 	timerOozesActive	= "软泥怪可攻击",
-	timerOozesReach		= "软泥怪碰到Boss"
+	timerOozesReach		= "软泥怪碰到首领"
 })
 
 L:SetOptionLocalization({
 	warnOozesHit		= "警报：软泥怪种类",
 	timerOozesActive	= "计时条：软泥怪可攻击",
-	timerOozesReach		= "计时条：软泥怪碰到Boss",
+	timerOozesReach		= "计时条：软泥怪碰到首领",
 	RangeFrame			= "距离监视器（4码）：应对$spell:104898（普通和英雄难度）"
 })
 
@@ -583,9 +581,9 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	WarnPillars				= "警报：$journal:3919或$journal:4069剩余数量", -- bad grammer?
+	WarnPillars				= "警报：$journal:3919或$journal:4069剩余数量",
 	TimerSpecial			= "计时条：第一次特殊技能施放",
-	RangeFrame				= "距离监视器（3码）：应对$spell:105269 |（10码）：应对$journal:4327",
+	RangeFrame				= "距离监视器（3码）：应对$spell:105269，（10码）：应对$journal:4327",
 	AnnounceFrostTombIcons	= "向团队频道通报$spell:104451目标的团队标记（需要团队领袖权限）",
 	warnFrostTombCast		= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.cast:format(104448),
 	SetIconOnFrostTomb		= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(104451),
@@ -604,7 +602,7 @@ L:SetMiscLocalization({
 L= DBM:GetModLocalization(331)
 
 L:SetWarningLocalization({
-	specWarnHourofTwilightN		= "%s (%d) - 5秒后施放"--spellname Count
+	specWarnHourofTwilightN		= "%s (%d) - 5秒后施放"
 })
 
 L:SetTimerLocalization({
@@ -613,7 +611,7 @@ L:SetTimerLocalization({
 
 L:SetOptionLocalization({
 	TimerCombatStart	= "计时条：战斗即将开始",
-	ResetHoTCounter		= "重新开始目光审判计数器",--$spell doesn't work in this function apparently so use typed spellname for now.
+	ResetHoTCounter		= "重新开始目光审判计数器",
 	Never				= "从不",
 	ResetDynamic		= "每3/2次（英雄/普通难度）重置一次",
 	Reset3Always		= "总是每3次进行重置",
@@ -637,12 +635,12 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
---	TimerCombatStart	= "战斗即将开始",
+	TimerCombatStart	= "战斗即将开始",
 	TimerAdd			= "下一波暮光精英"
 })
 
 L:SetOptionLocalization({
---	TimerCombatStart	= "计时条：战斗即将开始",
+	TimerCombatStart	= "计时条：战斗即将开始",
 	TimerAdd			= "计时条：下一波暮光精英",
 	SpecWarnElites		= "特殊警报：新的暮光精英出现",
 	SetTextures			= "在第1阶段自动禁用材质投射（第2阶段自动恢复）"
@@ -665,10 +663,10 @@ L:SetWarningLocalization({
 })
 
 L:SetOptionLocalization({
---	warnSealArmor			= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.cast:format(105847),
+	warnSealArmor			= DBM_CORE_L.AUTO_ANNOUNCE_OPTIONS.cast:format(105847),
 	SpecWarnTendril			= "特殊警报：当你没有$spell:109454效果时",
---	InfoFrame				= "信息框：没有$spell:109454效果的玩家",
-	SetIconOnGrip			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(109459),
+	InfoFrame				= "信息框：没有$spell:109454效果的玩家",
+	SetIconOnGrip			= DBM_CORE_L.AUTO_ICONS_OPTION_TARGETS:format(105490),
 	ShowShieldInfo			= "首领生命值信息框：应对$spell:105479"
 })
 
@@ -677,7 +675,7 @@ L:SetMiscLocalization({
 	NoDebuff		= "没有%s",
 	PlasmaTarget	= "灼热血浆：%s",
 	DRoll			= "侧翻滚！",
-	DLevels			= "保持平衡" -- 保持平衡
+	DLevels			= "保持平衡"
 })
 
 ---------------------------
@@ -708,8 +706,8 @@ L:SetWarningLocalization({
 })
 
 L:SetTimerLocalization({
---	timerRoleplay		= GUILD_INTEREST_RP,
-	TimerDrakes			= "%s"--spellname from mod
+	timerRoleplay		= GUILD_INTEREST_RP,
+	TimerDrakes			= "%s"
 })
 
 L:SetOptionLocalization({
@@ -718,7 +716,8 @@ L:SetOptionLocalization({
 })
 
 L:SetMiscLocalization({
-	EoEEvent			= "这没有用，巨龙之魂的力量太强大了。",--Partial
+	firstRP				= "赞美泰坦，他们回来了！",
+	EoEEvent			= "这没有用，巨龙之魂的力量太强大了。",
 	UltraxionTrash		= "重逢真令我高兴，阿莱克斯塔萨。分开之后，我可是一直很忙。",
-	UltraxionTrashEnded = "这些龙崽子，这些实验，只为一个崇高的目标。你很快就会看到我最伟大的研究成果。"--死亡之翼带配音
+	UltraxionTrashEnded = "这些龙崽子，这些实验，只为一个崇高的目标。你很快就会看到我最伟大的研究成果。"
 })

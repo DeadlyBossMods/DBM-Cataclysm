@@ -1,3 +1,4 @@
+-- 泰坦重铸时光服-时光2-法师-旺仔芒果/椰奶冻-2026.11.13--
 if GetLocale() ~= "zhCN" then
 	return
 end
@@ -41,9 +42,9 @@ L:SetGeneralLocalization{
 	name = "魔布斯"
 }
 
--------------
+-----------
 -- Xariona --
--------------
+-----------
 L = DBM:GetModLocalization("Xariona")
 
 L:SetGeneralLocalization{
